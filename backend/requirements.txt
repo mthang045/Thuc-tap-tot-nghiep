@@ -1,0 +1,26 @@
+# Core packages
+django>=5.2.0
+djangorestframework
+django-cors-headers
+python-dotenv
+
+# Database
+pymongo>=4.6.0
+djongo>=1.3.6
+
+# AI/ML packages
+langchain
+langchain-community
+langchain-groq
+langchain-openai
+sentence-transformers
+
+# SVM and Machine Learning
+scikit-learn>=1.3.0
+joblib
+
+# Document processing
+PyPDF2
+
+# Other utilities
+numpy
