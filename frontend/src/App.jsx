@@ -17,27 +17,23 @@ export default function App() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
-  // Restore session on mount
+  // Restore session on mount (session-based auth with cookies)
   useEffect(() => {
     const restoreSession = async () => {
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        try {
-          const response = await apiService.verifyToken();
-          if (response.success && response.user) {
-            setUserEmail(response.user.email);
-            setIsAuthenticated(true);
-            setIsAdmin(response.user.is_admin || false);
-          } else {
-            // Token invalid, clear it
-            localStorage.removeItem('authToken');
-          }
-        } catch (error) {
-          console.error('Failed to restore session:', error);
-          localStorage.removeItem('authToken');
+      try {
+        // Check if we have a session cookie (backend will verify)
+        const response = await apiService.verifyToken();
+        if (response && response.success && response.user) {
+          setUserEmail(response.user.email);
+          setIsAuthenticated(true);
+          setIsAdmin(response.user.is_admin || false);
         }
+      } catch (error) {
+        console.log('No active session or session expired');
+        // No need to clear anything - session cookies handled by backend
+      } finally {
+        setIsLoadingAuth(false);
       }
-      setIsLoadingAuth(false);
     };
     
     restoreSession();
@@ -46,17 +42,17 @@ export default function App() {
   const handleLogin = async (email, password) => {
     try {
       const response = await apiService.login(email, password);
-      // Check if login was successful
-      if (response && response.success && response.token) {
-        // Save token to localStorage
-        localStorage.setItem('authToken', response.token);
-        
-        setUserEmail(response.user?.email || email);
+      console.log('Login response:', response);
+      
+      // Check if login was successful (session-based auth, no token needed)
+      if (response && response.success) {
+        // Session is stored in cookies by backend
+        setUserEmail(response.email || email);
         setIsAuthenticated(true);
-        setIsAdmin(response.user?.is_admin || false);
+        setIsAdmin(response.is_admin || false);
         return { success: true };
       } else {
-        // Handle case where response doesn't have success field
+        // Handle case where login failed
         return { success: false, message: response?.message || response?.error || 'Đăng nhập thất bại' };
       }
     } catch (error) {
@@ -71,9 +67,7 @@ export default function App() {
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
-      // Clear token from localStorage
-      localStorage.removeItem('authToken');
-      
+      // Session cookies cleared by backend
       setIsAuthenticated(false);
       setIsAdmin(false);
       setUserEmail('');
@@ -90,6 +84,47 @@ export default function App() {
   const handleUpgrade = (plan) => {
     // Simulate payment process
     alert(`Bạn đã chọn gói ${plan === 'pro' ? 'Professional' : 'Enterprise'}`);
+  };
+
+  const handleViewAnalysis = (historyItem) => {
+    // Transform history data to analysis format
+    const data = historyItem.fullData || {};
+    const issuesArray = data.issues || [];
+    
+    const analysisData = {
+      fileName: data.filename || historyItem.fileName,
+      uploadDate: data.upload_time || historyItem.date,
+      riskLevel: data.risk_level || 'medium',
+      summary: data.summary || '',
+      aiAnalysis: data.ai_analysis || '',
+      totalIssues: issuesArray.length,
+      highRisk: historyItem.highRisk || 0,
+      mediumRisk: historyItem.mediumRisk || 0,
+      lowRisk: historyItem.lowRisk || 0,
+      issues: issuesArray.map((issue, idx) => ({
+        type: typeof issue === 'string' ? 
+          (issue.includes('🚨') ? 'high' : (issue.includes('⚡') ? 'medium' : 'low')) : 
+          (issue.severity || 'medium'),
+        title: typeof issue === 'string' ? issue.replace(/[🚨⚡ℹ️]/g, '').trim() : (issue.title || issue),
+        description: typeof issue === 'string' ? '' : (issue.description || ''),
+        reference: typeof issue === 'string' ? '' : (issue.location || issue.article || ''),
+        suggestion: typeof issue === 'string' ? '' : (issue.recommendation || '')
+      })),
+      keyPoints: [
+        `Loại hợp đồng: ${data.contract_type || 'Không xác định'}`,
+        `Mức độ rủi ro: ${data.risk_level || 'Không xác định'}`,
+        `Khả năng vi phạm: ${data.has_violation ? 'Có' : 'Không'}`
+      ],
+      recommendations: issuesArray,
+      legalReferences: data.legal_references ? data.legal_references.map(ref => ({
+        title: ref.title,
+        articles: [ref.content],
+        relevance: ref.source
+      })) : []
+    };
+    
+    setAnalysisData(analysisData);
+    setCurrentPage('home');
   };
 
   const handleFileUpload = async (file) => {
@@ -210,7 +245,10 @@ export default function App() {
         )}
 
         {currentPage === 'history' && (
-          <AnalysisHistory userEmail={userEmail} />
+          <AnalysisHistory 
+            userEmail={userEmail}
+            onViewAnalysis={handleViewAnalysis}
+          />
         )}
 
         {currentPage === 'settings' && (

@@ -19,16 +19,43 @@ export function AnalysisHistory({ onViewAnalysis }) {
       
       if (response.success) {
         // Transform backend data to frontend format
-        const transformedData = response.history.map(contract => ({
-          id: contract.id,
-          fileName: contract.file_name,
-          date: new Date(contract.uploaded_at).toISOString().split('T')[0],
-          totalIssues: contract.analysis?.total_issues || 0,
-          highRisk: contract.analysis?.high_risk || 0,
-          mediumRisk: contract.analysis?.medium_risk || 0,
-          lowRisk: contract.analysis?.low_risk || 0,
-          status: contract.status
-        }));
+        const transformedData = response.history.map((contract, index) => {
+          const data = contract.data || {};
+          
+          // Parse date safely
+          let date = 'N/A';
+          try {
+            if (contract.timestamp) {
+              date = new Date(contract.timestamp).toISOString().split('T')[0];
+            } else if (data.upload_time) {
+              date = data.upload_time.split(' ')[0]; // Format: "DD/MM/YYYY HH:MM:SS"
+            }
+          } catch (e) {
+            console.warn('Invalid date:', contract.timestamp);
+            date = 'N/A';
+          }
+          
+          return {
+            id: contract.id || index + 1,
+            fileName: data.filename || 'Không rõ',
+            date: date,
+            totalIssues: (data.issues || []).length || 0,
+            highRisk: (data.issues || []).filter(i => 
+              (typeof i === 'string' && i.includes('🚨')) || 
+              (typeof i === 'object' && i.severity === 'high')
+            ).length,
+            mediumRisk: (data.issues || []).filter(i => 
+              (typeof i === 'string' && i.includes('⚡')) || 
+              (typeof i === 'object' && i.severity === 'medium')
+            ).length,
+            lowRisk: (data.issues || []).filter(i => 
+              (typeof i === 'string' && i.includes('ℹ️')) || 
+              (typeof i === 'object' && i.severity === 'low')
+            ).length,
+            status: 'completed',
+            fullData: data // Store full data for viewing
+          };
+        });
         
         setHistoryData(transformedData);
       }
@@ -207,7 +234,7 @@ export function AnalysisHistory({ onViewAnalysis }) {
                     {item.status === 'completed' && (
                       <>
                         <button
-                          onClick={() => onViewAnalysis(item.id)}
+                          onClick={() => onViewAnalysis(item)}
                           className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-lg transition-all shadow-lg shadow-cyan-500/30"
                         >
                           <Eye className="w-4 h-4" />

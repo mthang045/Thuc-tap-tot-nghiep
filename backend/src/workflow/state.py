@@ -8,6 +8,9 @@ class AgentState(TypedDict):
     # Đầu vào: Toàn bộ văn bản hợp đồng
     contract_text: str
     
+    # Bước 0: Kết quả phân loại SVM (NEW!)
+    svm_results: Dict[str, Any]
+    
     # Bước 1: Danh sách các điều khoản đã tách ra
     extracted_clauses: List[str]
     

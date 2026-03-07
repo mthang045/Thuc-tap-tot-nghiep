@@ -141,6 +141,11 @@ def research_node(state: AgentState):
     retriever = get_cached_retriever()
     results = []
     
+    # Check if retriever is available
+    if retriever is None:
+        print("  ⚠️ PageIndex retriever not available, skipping research")
+        return {"research_results": results}
+    
     # Lấy thông tin SVM nếu có
     clauses_with_svm = state.get('clauses_with_svm', [])
     
@@ -152,18 +157,18 @@ def research_node(state: AgentState):
         
         # PAGEINDEX: Tree-based retrieval with reasoning
         print(f"  🌲 PageIndex searching for clause {idx+1}...")
-        docs = retriever.invoke(clause, k=DEFAULT_TOP_K)
+        docs = retriever.search(query=clause, top_k_docs=2, top_k_sections=DEFAULT_TOP_K)
         
         # Format legal context from PageIndex results
         legal_context_parts = []
         for doc in docs:
-            # PageIndex returns dict with metadata including path
+            # PageIndex returns dict with law_name, section_title, content, path
             content = doc.get('content', '')
-            metadata = doc.get('metadata', {})
-            path = metadata.get('path', 'Unknown')
-            title = metadata.get('title', 'Untitled')
+            law_name = doc.get('law_name', 'Unknown')
+            section_title = doc.get('section_title', 'Untitled')
+            path = doc.get('path', 'Unknown')
             
-            legal_context_parts.append(f"[{path}] {title}\n{content[:200]}...")
+            legal_context_parts.append(f"[{law_name} - {section_title}]\n{content[:200]}...")
         
         legal_context = "\n\n".join(legal_context_parts)
         if not legal_context:

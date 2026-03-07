@@ -69,16 +69,27 @@ app.secret_key = secrets.token_hex(16)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = False  # Set True in production with HTTPS
 
-# Enable CORS for frontend
-CORS(app, resources={
-    r"/api/*": {
-        "origins": ["http://localhost:3000", "http://localhost:3001"],
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": True
-    }
-})
+# Enable CORS for frontend - More permissive config
+CORS(app, 
+     resources={r"/api/*": {"origins": "*"}},
+     supports_credentials=True,
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With", "x-csrftoken", "X-CSRFToken"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+     expose_headers=["Content-Type", "Authorization"])
+
+# Additional CORS headers for all responses
+@app.after_request
+def after_request(response):
+    origin = request.headers.get('Origin')
+    if origin in ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://localhost:5173']:
+        response.headers['Access-Control-Allow-Origin'] = origin
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, x-csrftoken, X-CSRFToken'
+    return response
 
 # Tạo thư mục uploads nếu chưa có
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -168,6 +179,10 @@ def index():
 @app.route('/api/login', methods=['POST', 'OPTIONS'])
 def login():
     """API đăng nhập với MongoDB"""
+    # Handle OPTIONS request for CORS preflight
+    if request.method == 'OPTIONS':
+        return '', 200
+    
     if not MONGODB_CONNECTED:
         return jsonify({'success': False, 'message': 'Database không khả dụng'}), 503
     
@@ -217,6 +232,9 @@ def get_csrf():
 @app.route('/api/register', methods=['POST', 'OPTIONS'])
 def register():
     """API đăng ký với MongoDB"""
+    # Handle OPTIONS request for CORS preflight
+    if request.method == 'OPTIONS':
+        return '', 200
     if not MONGODB_CONNECTED:
         return jsonify({'success': False, 'message': 'Database không khả dụng'}), 503
     
@@ -352,13 +370,39 @@ def upload_file():
             inputs = {"contract_text": contract_text}
             result = app_graph.invoke(inputs)
             
-            # Parse kết quả
+            # Extract SVM results for structured data
+            svm_results = result.get('svm_results', {})
+            contract_type = svm_results.get('contract_type', {}).get('predicted_type', 'Không xác định')
+            risk_level = svm_results.get('risk_assessment', {}).get('predicted_risk', 'medium')
+            has_violation = svm_results.get('violation_check', {}).get('has_violation', False)
+            
+            # Extract issues from final report
+            final_report = result.get('final_report', 'Không có kết quả phân tích')
+            issues = []
+            if '🚨' in final_report or '⚡' in final_report or 'ℹ️' in final_report:
+                # Parse issues from report
+                lines = final_report.split('\n')
+                for line in lines:
+                    if any(emoji in line for emoji in ['🚨', '⚡', 'ℹ️']):
+                        issues.append(line.strip())
+            
+            # Create summary from first part of report
+            summary_lines = final_report.split('\n')[:3]
+            summary = '\n'.join(summary_lines) if summary_lines else 'Đã phân tích hợp đồng thành công'
+            
+            # Parse kết quả - FRONTEND FORMAT
             analysis_data = {
-                'contractName': filename,
-                'uploadDate': datetime.now().strftime('%d/%m/%Y'),
-                'finalReport': result.get('final_report', 'Không có kết quả phân tích'),
-                'extractedClauses': result.get('extracted_clauses', [])[:10],  # Giới hạn
-                'researchResults': result.get('research_results', [])[:5]  # Giới hạn
+                'filename': filename,
+                'upload_time': datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
+                'contract_type': contract_type,
+                'risk_level': risk_level,
+                'has_violation': has_violation,
+                'summary': summary,
+                'ai_analysis': final_report,
+                'issues': issues,
+                'extractedClauses': result.get('extracted_clauses', [])[:10],
+                'researchResults': result.get('research_results', [])[:5],
+                'legal_references': []  # Can be populated from research_results if needed
             }
             
             # Cache kết quả
