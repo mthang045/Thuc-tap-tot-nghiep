@@ -85,13 +85,14 @@ load_dotenv()
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': os.getenv('MONGODB_DB', 'legal_db'),
-        'CLIENT': {
-            'host': os.getenv('MONGODB_URI', 'mongodb://admin:Buithang12@localhost:27017/legal_db?authSource=admin'),
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# MongoDB connection (for manual usage with pymongo)
+MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://admin:Buithang12@localhost:27017/legal_db?authSource=admin')
+MONGODB_DB = os.getenv('MONGODB_DB', 'legal_db')
 
 
 # Password validation

@@ -483,5 +483,38 @@ def main():
     print("="*60)
 
 
+# Helper function for backward compatibility
+def get_page_index_retriever():
+    """
+    Get PageIndex retriever instance (lazy initialization)
+    Returns a simple retriever instance for backward compatibility
+    """
+    from langchain_groq import ChatGroq
+    import os
+    
+    # Initialize LLM
+    llm = ChatGroq(
+        model=os.getenv('GROQ_MODEL', 'llama-3.1-70b-versatile'),
+        api_key=os.getenv('GROQ_API_KEY'),
+        temperature=0.7
+    )
+    
+    # Initialize PageIndex system
+    system = PageIndexSystem()
+    
+    # Try to load existing documents
+    try:
+        document_trees = system.load_all_documents()
+        if not document_trees:
+            print("⚠️ No PageIndex documents found, using empty retriever")
+            return None
+    except Exception as e:
+        print(f"⚠️ Could not load PageIndex documents: {e}")
+        return None
+    
+    # Return retriever
+    return system.get_retriever()
+
+
 if __name__ == '__main__':
     main()

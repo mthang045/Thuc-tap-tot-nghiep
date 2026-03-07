@@ -4,7 +4,7 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from src.workflow.state import AgentState
 # PAGEINDEX: Import PageIndex instead of vector_db
-from src.page_index_integration import get_page_index_retriever
+from pageindex_rag import get_page_index_retriever
 from src.classifier import SVMContractClassifier
 from src.resource_config import (
     GROQ_API_KEY, GROQ_MODEL, LLM_TEMPERATURE, 
