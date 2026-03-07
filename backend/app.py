@@ -1,10 +1,11 @@
 """
 Flask Web Application for Legal Contract Reviewer
-Optimized version with caching and resource management
+MongoDB-only architecture - No Django, Pure Flask + MongoDB
 """
 from flask import Flask, render_template, request, jsonify, session, redirect
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from datetime import datetime, timedelta
 import secrets
@@ -16,20 +17,52 @@ import atexit
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-# Setup Django
-import django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-django.setup()
-
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password, check_password
-
 from src.workflow.graph import build_graph
 from src.resource_config import (
     MAX_FILE_SIZE, ALLOWED_EXTENSIONS, UPLOAD_FOLDER,
     AUTO_CLEANUP_UPLOADS, CLEANUP_AFTER_HOURS, SESSION_LIFETIME,
     ENABLE_RATE_LIMIT, RATE_LIMIT_PER_MINUTE
 )
+
+# MongoDB Connection
+import pymongo
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Kết nối MongoDB
+try:
+    MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
+    MONGODB_DB = os.getenv('MONGODB_DB', 'legal_db')
+    
+    mongo_client = pymongo.MongoClient(MONGODB_URI, serverSelectionTimeoutMS=5000)
+    # Test connection
+    mongo_client.server_info()
+    mongo_db = mongo_client[MONGODB_DB]
+    
+    # Collections
+    users_collection = mongo_db['users']
+    analysis_collection = mongo_db['analysis_history']
+    contracts_collection = mongo_db['contracts']
+    legal_docs_collection = mongo_db['legal_documents']
+    
+    # Tạo indexes
+    users_collection.create_index('email', unique=True)
+    users_collection.create_index('username', unique=True)
+    analysis_collection.create_index([('user', 1), ('timestamp', -1)])
+    
+    print(f"✅ MongoDB connected: {MONGODB_DB}")
+    print(f"✅ Collections: users, analysis_history, contracts, legal_documents")
+    MONGODB_CONNECTED = True
+except Exception as e:
+    print(f"⚠️ MongoDB connection failed: {e}")
+    print("⚠️ Will use in-memory storage instead")
+    MONGODB_CONNECTED = False
+    mongo_db = None
+    users_collection = None
+    analysis_collection = None
+    contracts_collection = None
+    legal_docs_collection = None
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -134,7 +167,10 @@ def index():
 
 @app.route('/api/login', methods=['POST', 'OPTIONS'])
 def login():
-    """API đăng nhập với Django User"""
+    """API đăng nhập với MongoDB"""
+    if not MONGODB_CONNECTED:
+        return jsonify({'success': False, 'message': 'Database không khả dụng'}), 503
+    
     try:
         data = request.json
         email = data.get('email', '').strip()
@@ -143,26 +179,28 @@ def login():
         if not email or not password:
             return jsonify({'success': False, 'message': 'Email và mật khẩu không được để trống'}), 400
         
-        # Tìm user bằng email hoặc username
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            try:
-                user = User.objects.get(username=email)
-            except User.DoesNotExist:
-                return jsonify({'success': False, 'message': 'Email hoặc mật khẩu không đúng'}), 401
+        # Tìm user trong MongoDB
+        user = users_collection.find_one({
+            '$or': [
+                {'email': email},
+                {'username': email}
+            ]
+        })
+        
+        if not user:
+            return jsonify({'success': False, 'message': 'Email hoặc mật khẩu không đúng'}), 401
         
         # Kiểm tra password
-        if check_password(password, user.password):
-            session['user_id'] = user.id
-            session['user_email'] = user.email or user.username
-            session['is_admin'] = user.is_staff or user.is_superuser
+        if check_password_hash(user['password'], password):
+            session['user_id'] = str(user['_id'])
+            session['user_email'] = user['email']
+            session['is_admin'] = user.get('is_admin', False)
             session.permanent = True
             
             return jsonify({
                 'success': True,
-                'email': user.email or user.username,
-                'is_admin': user.is_staff or user.is_superuser
+                'email': user['email'],
+                'is_admin': user.get('is_admin', False)
             })
         else:
             return jsonify({'success': False, 'message': 'Email hoặc mật khẩu không đúng'}), 401
@@ -178,7 +216,10 @@ def get_csrf():
 
 @app.route('/api/register', methods=['POST', 'OPTIONS'])
 def register():
-    """API đăng ký với Django User"""
+    """API đăng ký với MongoDB"""
+    if not MONGODB_CONNECTED:
+        return jsonify({'success': False, 'message': 'Database không khả dụng'}), 503
+    
     try:
         data = request.json
         email = data.get('email', '').strip()
@@ -192,33 +233,40 @@ def register():
             return jsonify({'success': False, 'message': 'Mật khẩu phải có ít nhất 6 ký tự'}), 400
         
         # Kiểm tra email đã tồn tại
-        if User.objects.filter(email=email).exists():
+        if users_collection.find_one({'email': email}):
             return jsonify({'success': False, 'message': 'Email đã tồn tại'}), 400
         
         # Kiểm tra username đã tồn tại
-        if User.objects.filter(username=username).exists():
+        if users_collection.find_one({'username': username}):
             # Tạo username unique
-            username = f"{username}_{User.objects.count() + 1}"
+            count = users_collection.count_documents({})
+            username = f"{username}_{count + 1}"
         
-        # Tạo user mới
-        user = User.objects.create(
-            username=username,
-            email=email,
-            password=make_password(password),
-            is_active=True
-        )
+        # Tạo user mới trong MongoDB
+        user_doc = {
+            'username': username,
+            'email': email,
+            'password': generate_password_hash(password),
+            'is_admin': False,
+            'is_active': True,
+            'created_at': datetime.now(),
+            'updated_at': datetime.now()
+        }
+        
+        result = users_collection.insert_one(user_doc)
+        user_id = str(result.inserted_id)
         
         # Tự động đăng nhập sau khi đăng ký
-        session['user_id'] = user.id
-        session['user_email'] = user.email
+        session['user_id'] = user_id
+        session['user_email'] = email
         session['is_admin'] = False
         session.permanent = True
         
         return jsonify({
             'success': True, 
             'message': 'Đăng ký thành công',
-            'email': user.email,
-            'user_id': user.id
+            'email': email,
+            'user_id': user_id
         })
         
     except Exception as e:
@@ -316,17 +364,38 @@ def upload_file():
             # Cache kết quả
             ANALYSIS_CACHE[cache_key] = (analysis_data, now)
             
-            # Lưu vào lịch sử (giới hạn size)
-            ANALYSIS_HISTORY.append({
-                'id': len(ANALYSIS_HISTORY) + 1,
+            # Lưu vào MongoDB history
+            history_doc = {
                 'user': session['user_email'],
                 'data': analysis_data,
-                'timestamp': datetime.now().isoformat()
-            })
+                'timestamp': datetime.now(),
+                'created_at': datetime.now()
+            }
             
-            # Giới hạn history size
-            if len(ANALYSIS_HISTORY) > 100:
-                ANALYSIS_HISTORY.pop(0)
+            if MONGODB_CONNECTED and analysis_collection is not None:
+                try:
+                    analysis_collection.insert_one(history_doc)
+                    print("✅ Saved to MongoDB history")
+                except Exception as e:
+                    print(f"⚠️ Failed to save to MongoDB: {e}")
+                    # Fallback to memory
+                    ANALYSIS_HISTORY.append({
+                        'id': len(ANALYSIS_HISTORY) + 1,
+                        'user': session['user_email'],
+                        'data': analysis_data,
+                        'timestamp': datetime.now().isoformat()
+                    })
+            else:
+                # Fallback: Lưu vào memory nếu MongoDB không khả dụng
+                ANALYSIS_HISTORY.append({
+                    'id': len(ANALYSIS_HISTORY) + 1,
+                    'user': session['user_email'],
+                    'data': analysis_data,
+                    'timestamp': datetime.now().isoformat()
+                })
+                # Giới hạn history size
+                if len(ANALYSIS_HISTORY) > 100:
+                    ANALYSIS_HISTORY.pop(0)
             
             # Cleanup file ngay sau khi phân tích xong
             if AUTO_CLEANUP_UPLOADS:
@@ -355,11 +424,41 @@ def upload_file():
 
 @app.route('/api/history', methods=['GET'])
 def get_history():
-    """API lay lich su phan tich"""
+    """API lay lich su phan tich - from MongoDB"""
     if 'user_email' not in session:
         return jsonify({'success': False, 'message': 'Vui long dang nhap'}), 401
     
     user_email = session['user_email']
+    
+    # Lấy từ MongoDB nếu có kết nối
+    if MONGODB_CONNECTED and analysis_collection is not None:
+        try:
+            # Query MongoDB
+            cursor = analysis_collection.find(
+                {'user': user_email}
+            ).sort('timestamp', -1).limit(100)
+            
+            user_history = []
+            for idx, doc in enumerate(cursor):
+                # Convert MongoDB document to dict
+                history_item = {
+                    'id': idx + 1,
+                    'user': doc['user'],
+                    'data': doc['data'],
+                    'timestamp': doc['timestamp'].isoformat() if isinstance(doc['timestamp'], datetime) else doc['timestamp']
+                }
+                user_history.append(history_item)
+            
+            print(f"✅ Loaded {len(user_history)} items from MongoDB")
+            return jsonify({
+                'success': True,
+                'history': user_history
+            })
+        except Exception as e:
+            print(f"⚠️ MongoDB query failed: {e}")
+            # Fallback to memory
+    
+    # Fallback: Lấy từ memory nếu MongoDB không khả dụng
     user_history = [h for h in ANALYSIS_HISTORY if h['user'] == user_email]
     
     return jsonify({

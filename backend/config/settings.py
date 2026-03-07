@@ -90,8 +90,12 @@ DATABASES = {
     }
 }
 
-# MongoDB connection (for manual usage with pymongo)
-MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://admin:Buithang12@localhost:27017/legal_db?authSource=admin')
+# NOTE: SQLite chỉ dùng cho Django User authentication
+# Tất cả dữ liệu chính (contracts, analysis history, legal documents) 
+# đều lưu trong MongoDB và được truy cập trực tiếp qua pymongo trong app.py
+
+# MongoDB Configuration (dùng pymongo trực tiếp, không qua Django ORM)
+MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
 MONGODB_DB = os.getenv('MONGODB_DB', 'legal_db')
 
 
