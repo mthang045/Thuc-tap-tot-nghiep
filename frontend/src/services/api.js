@@ -92,7 +92,7 @@ class ApiService {
     await this.fetchCsrfToken();
     const body = JSON.stringify({ email, password });
     console.log('API Service - request body:', body);
-    return this.request('/login/', {
+    return this.request('/login', {
       method: 'POST',
       body: body,
     });
@@ -101,7 +101,7 @@ class ApiService {
   async register(fullName, email, phone, password) {
     // Ensure we have CSRF token before register
     await this.fetchCsrfToken();
-    return this.request('/register/', {
+    return this.request('/register', {
       method: 'POST',
       body: JSON.stringify({
         full_name: fullName,
@@ -115,13 +115,13 @@ class ApiService {
   async logout() {
     // Clear token from localStorage
     localStorage.removeItem('authToken');
-    return this.request('/logout/', {
+    return this.request('/logout', {
       method: 'POST',
     });
   }
 
   async verifyToken() {
-    return this.request('/verify/', {
+    return this.request('/verify', {
       method: 'GET',
     });
   }
@@ -131,7 +131,7 @@ class ApiService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.request('/upload/', {
+    return this.request('/upload', {
       method: 'POST',
       body: formData,
     });
@@ -139,14 +139,14 @@ class ApiService {
 
   // Get analysis history
   async getHistory() {
-    return this.request('/history/', {
+    return this.request('/history', {
       method: 'GET',
     });
   }
 
   // Get specific contract analysis
   async getContractAnalysis(contractId) {
-    return this.request(`/contracts/${contractId}/analysis/`, {
+    return this.request(`/contracts/${contractId}/analysis`, {
       method: 'GET',
     });
   }
@@ -155,7 +155,7 @@ class ApiService {
   async generatePDF(analysisData) {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`${this.baseURL}/generate-pdf/`, {
+      const response = await fetch(`${this.baseURL}/generate-pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ class ApiService {
 
   // Admin endpoints
   async getAdminStats() {
-    return this.request('/admin/stats/', {
+    return this.request('/admin/stats', {
       method: 'GET',
     });
   }

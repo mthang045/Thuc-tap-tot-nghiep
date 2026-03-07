@@ -231,6 +231,19 @@ def logout():
     session.clear()
     return jsonify({'success': True})
 
+@app.route('/api/verify', methods=['GET'])
+def verify_session():
+    """API kiểm tra session"""
+    if 'user_email' in session:
+        return jsonify({
+            'success': True,
+            'user': {
+                'email': session['user_email'],
+                'is_admin': session.get('is_admin', False)
+            }
+        })
+    return jsonify({'success': False, 'message': 'Chưa đăng nhập'}), 401
+
 @app.route('/api/upload', methods=['POST'])
 @rate_limit
 def upload_file():
