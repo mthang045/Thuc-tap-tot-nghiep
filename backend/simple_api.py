@@ -1,6 +1,17 @@
 """
 Simple Flask API for Legal Contract System
 Minimal version without Django dependencies
+
+ML/AI Stack:
+- SVM Classifier: 10 contract types, 60% accuracy
+- BM25 Search: Keyword-based search, in-memory from MongoDB
+- PageIndex RAG: Tree-based LLM reasoning, 98.7% accuracy benchmark
+- Groq LLM: Llama 3.3 70B for contract analysis
+
+Replaced Vector RAG (sentence-transformers) with BM25 for:
+- Faster build time (0.4s vs 5s)  
+- No embedding model dependency
+- Better keyword matching for legal terms
 """
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -20,9 +31,27 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from dotenv import load_dotenv
 load_dotenv()
 
-# Import SVM and PageIndex
-from src.classifier.svm_classifier import SVMContractClassifier
-from src.page_index_integration import PageIndexManager
+# Import ML models (SVM + BM25 + PageIndex)
+from ml_models import get_svm_classifier
+from bm25_search_v2 import get_bm25_searcher
+
+# PageIndex lazy loading
+_pageindex_manager = None
+
+def get_pageindex_retriever():
+    """Lazy load PageIndex retriever"""
+    global _pageindex_manager
+    if _pageindex_manager is None:
+        print("🔧 Loading PageIndex system...")
+        try:
+            from pageindex_rag import PageIndexManager
+            _pageindex_manager = PageIndexManager(cache_file='embeddings/pageindex_cache.pkl')
+            _pageindex_manager.build_index(force_rebuild=False)
+            print("✅ PageIndex system loaded")
+        except Exception as e:
+            print(f"⚠️ PageIndex loading failed: {e}")
+            _pageindex_manager = None
+    return _pageindex_manager.get_retriever() if _pageindex_manager else None
 
 # Configure upload folder
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
@@ -30,8 +59,6 @@ ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx', 'txt'}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Initialize global instances (lazy loading)
-_svm_classifier = None
-_pageindex_manager = None
 _llm_client = None
 
 def get_llm_client():
@@ -41,8 +68,10 @@ def get_llm_client():
         print("🔧 Loading Groq LLM...")
         from langchain_groq import ChatGroq
         api_key = os.getenv("GROQ_API_KEY")
-        if not api_key:
-            raise ValueError("GROQ_API_KEY not found")
+        if not api_key or api_key == "your-groq-api-key-here":
+            print("⚠️  GROQ_API_KEY not configured - AI analysis will be limited")
+            print("💡 Get FREE API key at: https://console.groq.com/keys")
+            raise ValueError("GROQ_API_KEY not configured")
         _llm_client = ChatGroq(
             api_key=api_key,
             model="llama-3.3-70b-versatile",  # Updated to newer model
@@ -51,25 +80,42 @@ def get_llm_client():
         )
     return _llm_client
 
-def get_svm_classifier():
-    """Lazy load SVM classifier"""
-    global _svm_classifier
-    if _svm_classifier is None:
-        print("🔧 Loading SVM Classifier...")
-        _svm_classifier = SVMContractClassifier(model_dir="models/svm")
-    return _svm_classifier
-
-def get_pageindex_manager():
-    """Lazy load PageIndex manager"""
-    global _pageindex_manager
-    if _pageindex_manager is None:
-        print("🔧 Loading PageIndex...")
-        _pageindex_manager = PageIndexManager(
-            data_folder="data/source_laws",
-            cache_file="data/page_index_cache.pkl"
-        )
-        _pageindex_manager.build_index()
-    return _pageindex_manager
+def save_analysis_to_history(user_email, analysis_data):
+    """Save analysis result to MongoDB history collection"""
+    try:
+        import pymongo
+        from datetime import datetime
+        
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        history_collection = db['analysis_history']
+        
+        # Prepare document
+        history_doc = {
+            "user_email": user_email,
+            "filename": analysis_data.get("filename"),
+            "file_size": analysis_data.get("file_size"),
+            "upload_time": datetime.now(),
+            "contract_type": analysis_data.get("contract_type"),
+            "risk_level": analysis_data.get("risk_level"),
+            "has_violation": analysis_data.get("has_violation", False),
+            "summary": analysis_data.get("summary"),
+            "ai_analysis": analysis_data.get("ai_analysis"),
+            "issues_count": len(analysis_data.get("issues", [])),
+            "issues": analysis_data.get("issues", []),
+            "created_at": datetime.now()
+        }
+        
+        # Insert into collection
+        result = history_collection.insert_one(history_doc)
+        print(f"✅ Saved to history: {result.inserted_id}")
+        
+        client.close()
+        return str(result.inserted_id)
+        
+    except Exception as e:
+        print(f"⚠️  Failed to save history: {e}")
+        return None
 
 def extract_text_from_file(filepath):
     """Extract text from uploaded file"""
@@ -147,7 +193,7 @@ def health():
         import pymongo
         client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=3000)
         client.server_info()
-        db = client['legal_db']
+        db = client['legal_AI_db']
         collections = len(db.list_collection_names())
         client.close()
         
@@ -236,6 +282,149 @@ def verify():
         "user": request.user
     })
 
+@app.route('/api/history/', methods=['GET'])
+@token_required
+def get_analysis_history():
+    """Get analysis history for current user"""
+    try:
+        import pymongo
+        from bson import ObjectId
+        
+        user_email = request.user.get('email')
+        
+        # Get pagination parameters
+        limit = int(request.args.get('limit', 20))
+        skip = int(request.args.get('skip', 0))
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        history_collection = db['analysis_history']
+        
+        # Get total count
+        total = history_collection.count_documents({"user_email": user_email})
+        
+        # Get history records
+        history_records = list(history_collection.find(
+            {"user_email": user_email}
+        ).sort("created_at", -1).skip(skip).limit(limit))
+        
+        # Convert ObjectId to string
+        for record in history_records:
+            record['_id'] = str(record['_id'])
+            if 'upload_time' in record and hasattr(record['upload_time'], 'isoformat'):
+                record['upload_time'] = record['upload_time'].isoformat()
+            if 'created_at' in record and hasattr(record['created_at'], 'isoformat'):
+                record['created_at'] = record['created_at'].isoformat()
+        
+        client.close()
+        
+        return jsonify({
+            "success": True,
+            "data": {
+                "records": history_records,
+                "total": total,
+                "limit": limit,
+                "skip": skip
+            }
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error retrieving history: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@app.route('/api/history/<history_id>', methods=['GET'])
+@token_required
+def get_analysis_detail(history_id):
+    """Get specific analysis detail by ID"""
+    try:
+        import pymongo
+        from bson import ObjectId
+        
+        user_email = request.user.get('email')
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        history_collection = db['analysis_history']
+        
+        # Get record
+        record = history_collection.find_one({
+            "_id": ObjectId(history_id),
+            "user_email": user_email
+        })
+        
+        if not record:
+            return jsonify({
+                "success": False,
+                "error": "Không tìm thấy bản ghi"
+            }), 404
+        
+        # Convert ObjectId to string
+        record['_id'] = str(record['_id'])
+        if 'upload_time' in record and hasattr(record['upload_time'], 'isoformat'):
+            record['upload_time'] = record['upload_time'].isoformat()
+        if 'created_at' in record and hasattr(record['created_at'], 'isoformat'):
+            record['created_at'] = record['created_at'].isoformat()
+        
+        client.close()
+        
+        return jsonify({
+            "success": True,
+            "data": record
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error retrieving detail: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@app.route('/api/history/<history_id>', methods=['DELETE'])
+@token_required
+def delete_analysis_history(history_id):
+    """Delete specific analysis from history"""
+    try:
+        import pymongo
+        from bson import ObjectId
+        
+        user_email = request.user.get('email')
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        history_collection = db['analysis_history']
+        
+        # Delete record
+        result = history_collection.delete_one({
+            "_id": ObjectId(history_id),
+            "user_email": user_email
+        })
+        
+        client.close()
+        
+        if result.deleted_count > 0:
+            return jsonify({
+                "success": True,
+                "message": "Đã xóa bản ghi"
+            }), 200
+        else:
+            return jsonify({
+                "success": False,
+                "error": "Không tìm thấy bản ghi"
+            }), 404
+        
+    except Exception as e:
+        print(f"❌ Error deleting history: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
 def create_token(user_email, user_data):
     """Create JWT token for user"""
     payload = {
@@ -297,7 +486,7 @@ def register():
         from datetime import datetime
         
         client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
-        db = client['legal_db']
+        db = client['legal_AI_db']
         users_collection = db['users']
         
         # Check if user already exists
@@ -358,7 +547,7 @@ def login():
         import pymongo
         
         client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
-        db = client['legal_db']
+        db = client['legal_AI_db']
         users_collection = db['users']
         
         # Find user
@@ -398,6 +587,217 @@ def login():
         return jsonify({
             "success": False,
             "error": f"Lỗi server: {str(e)}"
+        }), 500
+
+@app.route('/api/legal-documents/', methods=['GET'])
+def get_legal_documents():
+    """Get list of legal documents with optional filtering"""
+    try:
+        import pymongo
+        from bson import ObjectId
+        
+        # Get query parameters
+        category = request.args.get('category', None)
+        year = request.args.get('year', None)
+        search = request.args.get('search', None)
+        limit = int(request.args.get('limit', 50))
+        skip = int(request.args.get('skip', 0))
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        legal_docs = db['legal_documents']
+        
+        # Build query
+        query = {}
+        if category:
+            query['category_code'] = category
+        if year:
+            query['year'] = int(year)
+        if search:
+            query['$text'] = {'$search': search}
+        
+        # Get total count
+        total = legal_docs.count_documents(query)
+        
+        # Get documents
+        documents = list(legal_docs.find(
+            query,
+            {'full_content': 0}  # Exclude full content for list view
+        ).sort('year', -1).skip(skip).limit(limit))
+        
+        # Convert ObjectId to string
+        for doc in documents:
+            doc['_id'] = str(doc['_id'])
+            if 'imported_at' in doc and hasattr(doc['imported_at'], 'isoformat'):
+                doc['imported_at'] = doc['imported_at'].isoformat()
+            if 'updated_at' in doc and hasattr(doc['updated_at'], 'isoformat'):
+                doc['updated_at'] = doc['updated_at'].isoformat()
+        
+        client.close()
+        
+        return jsonify({
+            "success": True,
+            "data": {
+                "documents": documents,
+                "total": total,
+                "limit": limit,
+                "skip": skip
+            }
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error retrieving legal documents: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@app.route('/api/legal-documents/<doc_id>', methods=['GET'])
+def get_legal_document_detail(doc_id):
+    """Get detailed information about a specific legal document"""
+    try:
+        import pymongo
+        from bson import ObjectId
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        legal_docs = db['legal_documents']
+        
+        # Get document
+        document = legal_docs.find_one({'_id': ObjectId(doc_id)})
+        
+        if not document:
+            return jsonify({
+                "success": False,
+                "error": "Không tìm thấy văn bản"
+            }), 404
+        
+        # Convert ObjectId to string
+        document['_id'] = str(document['_id'])
+        if 'imported_at' in document and hasattr(document['imported_at'], 'isoformat'):
+            document['imported_at'] = document['imported_at'].isoformat()
+        if 'updated_at' in document and hasattr(document['updated_at'], 'isoformat'):
+            document['updated_at'] = document['updated_at'].isoformat()
+        
+        client.close()
+        
+        return jsonify({
+            "success": True,
+            "data": document
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error retrieving document detail: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@app.route('/api/legal-documents/search', methods=['POST'])
+def search_legal_documents():
+    """Search legal documents by text"""
+    try:
+        import pymongo
+        from bson import ObjectId
+        
+        data = request.get_json()
+        query_text = data.get('query', '')
+        category = data.get('category', None)
+        limit = int(data.get('limit', 10))
+        
+        if not query_text:
+            return jsonify({
+                "success": False,
+                "error": "Query text is required"
+            }), 400
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        legal_docs = db['legal_documents']
+        
+        # Build search query
+        search_query = {'$text': {'$search': query_text}}
+        if category:
+            search_query['category_code'] = category
+        
+        # Search with text score
+        results = list(legal_docs.find(
+            search_query,
+            {'score': {'$meta': 'textScore'}, 'full_content': 0}
+        ).sort([('score', {'$meta': 'textScore'})]).limit(limit))
+        
+        # Convert ObjectId to string and prepare results
+        for doc in results:
+            doc['_id'] = str(doc['_id'])
+            if 'imported_at' in doc and hasattr(doc['imported_at'], 'isoformat'):
+                doc['imported_at'] = doc['imported_at'].isoformat()
+            if 'updated_at' in doc and hasattr(doc['updated_at'], 'isoformat'):
+                doc['updated_at'] = doc['updated_at'].isoformat()
+        
+        client.close()
+        
+        return jsonify({
+            "success": True,
+            "data": {
+                "results": results,
+                "count": len(results),
+                "query": query_text
+            }
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error searching documents: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@app.route('/api/legal-documents/categories', methods=['GET'])
+def get_legal_categories():
+    """Get list of all categories with document counts"""
+    try:
+        import pymongo
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        legal_docs = db['legal_documents']
+        
+        # Aggregate by category
+        pipeline = [
+            {'$group': {
+                '_id': {
+                    'category': '$category',
+                    'category_code': '$category_code'
+                },
+                'count': {'$sum': 1}
+            }},
+            {'$sort': {'count': -1}}
+        ]
+        
+        categories = []
+        for item in legal_docs.aggregate(pipeline):
+            categories.append({
+                'category': item['_id']['category'],
+                'category_code': item['_id']['category_code'],
+                'count': item['count']
+            })
+        
+        client.close()
+        
+        return jsonify({
+            "success": True,
+            "data": categories
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error retrieving categories: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
         }), 500
 
 @app.route('/api/upload/', methods=['POST', 'OPTIONS'])
@@ -454,17 +854,65 @@ def upload_file():
         
         print(f"✓ Extracted {len(contract_text)} characters")
         
-        # ========== AI DETAILED ANALYSIS ==========
-        print("\n🤖 Running AI Detailed Analysis...")
+        # ========== AI DETAILED ANALYSIS WITH RAG ==========
+        print("\n🤖 Running AI Detailed Analysis with RAG...")
+        ai_analysis = None
+        ai_available = False
+        legal_context = ""
+        
         try:
             from langchain_core.prompts import ChatPromptTemplate
             
             llm = get_llm_client()
             
-            # Create analysis prompt
+            # ===== BM25: Get relevant legal context (keyword matching) =====
+            print("🔍 Retrieving relevant legal context (BM25 keyword search)...")
+            bm25_searcher = get_bm25_searcher()
+            if bm25_searcher.is_loaded():
+                # Extract key terms for search
+                search_query = contract_text[:500]  # Use first 500 chars as query
+                bm25_results = bm25_searcher.search(search_query, top_k=3)
+                
+                if bm25_results['success'] and bm25_results['results']:
+                    legal_context = "\n\nVĂN BẢN PHÁP LUẬT LIÊN QUAN (BM25 Keyword Search):\n"
+                    for result in bm25_results['results']:
+                        legal_context += f"\n[{result['law_name']}]\n"
+                        if result['section_title']:
+                            legal_context += f"Phần: {result['section_title']}\n"
+                        legal_context += f"{result['content'][:300]}...\n"
+                        legal_context += f"(Điểm BM25: {result['score']:.2f})\n"
+                    print(f"  ✓ Found {len(bm25_results['results'])} relevant legal documents (BM25)")
+                else:
+                    print("  ⚠️ No relevant legal documents found")
+            else:
+                print("  ⚠️ BM25 system not loaded")
+            
+            # ===== PAGEINDEX: Get relevant legal context (tree-based reasoning) =====
+            print("🌲 Retrieving legal context (PageIndex Tree Search)...")
+            pageindex_retriever = get_pageindex_retriever()
+            if pageindex_retriever:
+                try:
+                    search_query = contract_text[:500]
+                    pageindex_results = pageindex_retriever.search(search_query, top_k_docs=2, top_k_sections=2)
+                    
+                    if pageindex_results:
+                        legal_context += "\n\nVĂN BẢN PHÁP LUẬT (PageIndex Tree Search với LLM Reasoning):\n"
+                        for result in pageindex_results[:3]:  # Top 3
+                            legal_context += f"\n[{result['law_name']} - {result['section_title']}]\n"
+                            legal_context += f"{result['content'][:300]}...\n"
+                            legal_context += f"(Phương pháp: {result['retrieval_method']}, Độ tin cậy: {result['reasoning_score']:.2%})\n"
+                        print(f"  ✓ Found {len(pageindex_results)} relevant sections via PageIndex")
+                    else:
+                        print("  ⚠️ PageIndex: No results found")
+                except Exception as e:
+                    print(f"  ⚠️ PageIndex search error: {e}")
+            else:
+                print("  ⚠️ PageIndex system not loaded")
+            
+            # Create analysis prompt with legal context
             analysis_prompt = ChatPromptTemplate.from_messages([
                 ("system", """Bạn là chuyên gia pháp lý Việt Nam chuyên phân tích hợp đồng. 
-Nhiệm vụ của bạn là phân tích chi tiết hợp đồng và đưa ra đánh giá chuyên môn.
+Nhiệm vụ của bạn là phân tích chi tiết hợp đồng và đưa ra đánh giá chuyên môn dựa trên văn bản pháp luật.
 
 Hãy phân tích theo cấu trúc sau:
 1. TÓM TẮT TỔNG QUAN (2-3 câu ngắn gọn về loại hợp đồng và mục đích)
@@ -472,20 +920,56 @@ Hãy phân tích theo cấu trúc sau:
    - Dùng "NGHIÊM TRỌNG:" cho vấn đề nguy hiểm
    - Dùng "TRUNG BÌNH:" cho vấn đề cần chú ý
    - Dùng "THẤP:" cho gợi ý cải thiện
-3. PHÂN TÍCH CHI TIẾT (giải thích tại sao mỗi vấn đề quan trọng)
+3. PHÂN TÍCH CHI TIẾT (giải thích tại sao mỗi vấn đề quan trọng và tham chiếu văn bản pháp luật nếu có)
 4. KHUYẾN NGHỊ CẢI THIỆN (đề xuất cụ thể từng điểm cần sửa đổi)
 
-Trả lời bằng tiếng Việt, chuyên nghiệp nhưng dễ hiểu."""),
+Trả lời bằng tiếng Việt, chuyên nghiệp nhưng dễ hiểu.{legal_context}"""),
                 ("human", "Phân tích hợp đồng sau:\n\n{contract_text}")
             ])
             
             chain = analysis_prompt | llm
-            ai_response = chain.invoke({"contract_text": contract_text[:4000]})  # Limit text length
+            ai_response = chain.invoke({
+                "contract_text": contract_text[:4000],  # Limit text length
+                "legal_context": legal_context
+            })
             ai_analysis = ai_response.content
+            ai_available = True
             print(f"  ✓ AI Analysis completed ({len(ai_analysis)} chars)")
         except Exception as e:
             print(f"  ⚠️ AI Analysis failed: {e}")
-            ai_analysis = "Không thể phân tích chi tiết do lỗi hệ thống."
+            # Fallback analysis when AI is not available
+            ai_analysis = f"""📋 PHÂN TÍCH CƠ BẢN (AI chưa được cấu hình)
+
+🔍 TÓM TẮT:
+Hợp đồng đã được tải lên thành công với {len(contract_text)} ký tự.
+
+⚠️ LƯU Ý:
+- Để sử dụng phân tích AI chi tiết, vui lòng cấu hình GROQ_API_KEY
+- Truy cập https://console.groq.com/keys để lấy API key miễn phí
+- Cập nhật file .env với API key của bạn
+
+💡 KHUYẾN NGHỊ:
+- Kiểm tra kỹ các điều khoản về trách nhiệm và nghĩa vụ
+- Xem xét các điều khoản về thanh toán và thời hạn
+- Đảm bảo hợp đồng tuân thủ quy định pháp luật Việt Nam
+- Nên có luật sư xem xét trước khi ký kết
+
+📖 Để phân tích chi tiết, vui lòng cấu hình GROQ_API_KEY trong file .env"""
+            ai_available = False
+        
+        # ========== SVM CLASSIFICATION ==========
+        print("\n📊 Classifying contract type with SVM...")
+        svm_classifier = get_svm_classifier()
+        classification_result = {'category_code': 'khac', 'category_name': 'Hợp đồng khác', 'confidence': 0.0}
+        
+        if svm_classifier.is_loaded():
+            classification_result = svm_classifier.classify(contract_text[:1000])  # Use first 1000 chars
+            if classification_result['success']:
+                print(f"  ✓ Contract type: {classification_result['category_name']} ({classification_result['confidence']:.0%})")
+            else:
+                print(f"  ⚠️ Classification failed: {classification_result.get('error', 'Unknown')}")
+        else:
+            print("  ⚠️ SVM classifier not loaded")
         
         # ========== PARSE AI ANALYSIS TO ISSUES ==========
         issues_detected = []
@@ -516,12 +1000,15 @@ Trả lời bằng tiếng Việt, chuyên nghiệp nhưng dễ hiểu."""),
             
             # AI Analysis - CHI TIẾT QUAN TRỌNG
             "ai_analysis": ai_analysis,
+            "ai_available": ai_available,
             
-            # Mock SVM data (will be replaced with real SVM later)
-            "contract_type": "Hợp đồng (phân tích bởi AI)",
-            "contract_type_confidence": 0.85,
-            "contract_type_probabilities": {},
+            # SVM Classification Results
+            "contract_type": classification_result.get('category_name', 'Hợp đồng khác'),
+            "contract_type_code": classification_result.get('category_code', 'khac'),
+            "contract_type_confidence": classification_result.get('confidence', 0.0),
+            "contract_type_probabilities": classification_result.get('all_scores', {}),
             
+            # Mock risk/violation data (có thể train thêm model cho tương lai)
             "risk_level": "medium",
             "risk_confidence": 0.75,
             "risk_probabilities": {},
@@ -529,30 +1016,47 @@ Trả lời bằng tiếng Việt, chuyên nghiệp nhưng dễ hiểu."""),
             "has_violation": False,
             "violation_probability": 0.0,
             
-            # Mock legal references
-            "legal_references": [
-                {
-                    "title": "Bộ luật Dân sự 2015",
-                    "content": "Quy định về hợp đồng và nghĩa vụ trong quan hệ dân sự...",
-                    "source": "Bộ luật Dân sự / Phần 3",
-                    "relevance": 0.8
-                },
-                {
-                    "title": "Luật Lao động 2019",
-                    "content": "Quy định về hợp đồng lao động và quyền lợi người lao động...",
-                    "source": "Luật Lao động / Chương 2",
-                    "relevance": 0.75
-                }
-            ],
+            # RAG Legal References - replaced mock data with real RAG results
+            "legal_references": [],
             
             # Summary
-            "summary": f"Hợp đồng đã được phân tích chi tiết bởi AI. Độ dài: {len(contract_text)} ký tự. Phát hiện {len(issues_detected)} vấn đề cần lưu ý.",
+            "summary": f"Hợp đồng loại '{classification_result.get('category_name', 'Khác')}' đã được phân tích {'chi tiết bởi AI với RAG' if ai_available else 'cơ bản'}. Độ dài: {len(contract_text)} ký tự. Phát hiện {len(issues_detected)} vấn đề cần lưu ý.",
             
             # Issues from AI
             "issues": issues_detected
         }
         
-        print("\n✅ ANALYSIS COMPLETED WITH AI!")
+        # Add real BM25 legal references if available
+        if legal_context:
+            bm25_searcher = get_bm25_searcher()
+            search_query = contract_text[:500]
+            bm25_results = bm25_searcher.search(search_query, top_k=3)
+            if bm25_results['success']:
+                for result in bm25_results['results']:
+                    analysis_result["legal_references"].append({
+                        "title": result['law_name'],
+                        "section": result.get('section_title', ''),
+                        "content": result['content'][:200] + '...' if len(result['content']) > 200 else result['content'],
+                        "source": f"{result['law_name']} / {result.get('section_title', 'Toàn văn')}",
+                        "relevance": result['score']
+                    })
+        
+        # ========== SAVE TO DATABASE HISTORY ========== ==========
+        # Try to get user email from token
+        user_email = "anonymous"
+        auth_header = request.headers.get('Authorization')
+        if auth_header and auth_header.startswith('Bearer '):
+            token = auth_header[7:]
+            payload = verify_token(token)
+            if payload:
+                user_email = payload.get('email', 'anonymous')
+        
+        # Save to MongoDB history
+        history_id = save_analysis_to_history(user_email, analysis_result)
+        if history_id:
+            analysis_result["history_id"] = history_id
+        
+        print("\n✅ ANALYSIS COMPLETED WITH AI!" if ai_available else "\n✅ ANALYSIS COMPLETED (Basic mode)")
         print("="*60)
         
         return jsonify({
@@ -577,7 +1081,10 @@ Trả lời bằng tiếng Việt, chuyên nghiệp nhưng dễ hiểu."""),
 
 @app.route('/api/generate-pdf/', methods=['POST', 'OPTIONS'])
 def generate_pdf():
-    """Generate PDF report from analysis data"""
+    """
+    Generate PDF report from analysis data (Vietnamese support)
+    Uses fpdf2 with Arial Unicode fonts
+    """
     # Handle preflight OPTIONS request
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'ok'})
@@ -588,7 +1095,7 @@ def generate_pdf():
         return response, 200
     
     try:
-        from pdf_generator import ContractPDFReport
+        from pdf_generator import generate_pdf_report
         import uuid
         
         data = request.get_json()
@@ -598,21 +1105,42 @@ def generate_pdf():
                 "error": "Không có dữ liệu để tạo báo cáo"
             }), 400
         
+        # Get analysis content (Markdown format)
+        analysis_content = data.get('analysis', data.get('ai_analysis', ''))
+        if not analysis_content:
+            return jsonify({
+                "success": False,
+                "error": "Thiếu nội dung phân tích (analysis field)"
+            }), 400
+        
         # Generate unique filename
-        pdf_filename = f"report_{uuid.uuid4().hex[:8]}.pdf"
+        contract_name = data.get('filename', data.get('contract_name', 'Hop_Dong'))
+        # Remove file extension and special chars
+        contract_name = contract_name.rsplit('.', 1)[0]
+        contract_name = contract_name.replace(' ', '_')
+        
+        pdf_filename = f"Bao_Cao_{contract_name}_{uuid.uuid4().hex[:6]}.pdf"
         pdf_path = os.path.join(UPLOAD_FOLDER, pdf_filename)
         
-        # Create PDF report
-        report = ContractPDFReport(pdf_path)
-        report.generate(data)
+        # Create PDF report with Vietnamese support
+        print(f"🔨 Generating PDF: {pdf_filename}")
+        result_path = generate_pdf_report(analysis_content, pdf_path)
+        
+        if not result_path or not os.path.exists(result_path):
+            return jsonify({
+                "success": False,
+                "error": "Lỗi tạo PDF - File không được tạo"
+            }), 500
+        
+        print(f"✅ PDF created: {result_path}")
         
         # Return file as download with CORS headers
         from flask import send_file, make_response
         response = make_response(send_file(
-            pdf_path,
+            result_path,
             mimetype='application/pdf',
             as_attachment=True,
-            download_name=f"{data.get('contract_name', 'report')}.pdf"
+            download_name=f"Bao_Cao_{contract_name}.pdf"
         ))
         
         # Add CORS headers to file response
@@ -623,13 +1151,310 @@ def generate_pdf():
         return response
         
     except Exception as e:
-        print(f"PDF Generation Error: {e}")
+        print(f"❌ PDF Generation Error: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({
             "success": False,
             "error": f"Lỗi khi tạo PDF: {str(e)}"
         }), 500
+
+
+# ==================== ML ENDPOINTS ====================
+
+@app.route('/api/classify-contract/', methods=['POST', 'OPTIONS'])
+def classify_contract():
+    """
+    SVM Contract Classification Endpoint
+    Phân loại hợp đồng bằng SVM model
+    """
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    try:
+        data = request.get_json()
+        
+        if not data or 'text' not in data:
+            return jsonify({
+                "success": False,
+                "error": "Thiếu trường 'text' trong request body"
+            }), 400
+        
+        text = data['text']
+        
+        if len(text) < 50:
+            return jsonify({
+                "success": False,
+                "error": "Text quá ngắn (cần ít nhất 50 ký tự)"
+            }), 400
+        
+        # Classify với SVM
+        print(f"🔍 Classifying contract ({len(text)} chars)...")
+        svm_classifier = get_svm_classifier()
+        
+        if not svm_classifier.is_loaded():
+            return jsonify({
+                "success": False,
+                "error": "SVM model chưa được load. Chạy: python train_svm_model.py"
+            }), 500
+        
+        result = svm_classifier.classify(text)
+        
+        print(f"✅ Classification: {result.get('category_name', 'Unknown')} ({result.get('confidence', 0):.0%})")
+        
+        return jsonify(result), 200
+        
+    except Exception as e:
+        print(f"❌ Classification error: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": f"Lỗi khi phân loại: {str(e)}"
+        }), 500
+
+
+@app.route('/api/bm25-search/', methods=['POST', 'OPTIONS'])
+def bm25_search():
+    """
+    BM25 Keyword Search Endpoint
+    Tìm kiếm dựa trên từ khóa (keyword matching) không cần embeddings
+    """
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    try:
+        data = request.get_json()
+        
+        if not data or 'query' not in data:
+            return jsonify({
+                "success": False,
+                "error": "Thiếu trường 'query' trong request body"
+            }), 400
+        
+        query = data['query']
+        top_k = data.get('top_k', 5)
+        filter_category = data.get('category', None)
+        
+        if len(query) < 3:
+            return jsonify({
+                "success": False,
+                "error": "Query quá ngắn (cần ít nhất 3 ký tự)"
+            }), 400
+        
+        # Search với BM25
+        print(f"🔍 BM25 Search: '{query[:50]}...' (top_k={top_k})")
+        bm25_searcher = get_bm25_searcher()
+        
+        if not bm25_searcher.is_loaded():
+            return jsonify({
+                "success": False,
+                "error": "BM25 index chưa được build từ MongoDB"
+            }), 500
+        
+        result = bm25_searcher.search(query, top_k=top_k, filter_category=filter_category)
+        
+        if result['success']:
+            print(f"✅ Found {result['total_results']} results")
+        
+        return jsonify(result), 200
+        
+    except Exception as e:
+        print(f"❌ BM25 search error: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": f"Lỗi khi tìm kiếm: {str(e)}"
+        }), 500
+
+
+@app.route('/api/search/', methods=['POST', 'OPTIONS'])
+@app.route('/api/pageindex-search/', methods=['POST', 'OPTIONS'])  # Backward compatibility
+def pageindex_search():
+    """
+    PageIndex Tree Search Endpoint
+    Tìm kiếm bằng tree-based reasoning với LLM (không dùng vector embeddings)
+    """
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    try:
+        data = request.get_json()
+        
+        if not data or 'query' not in data:
+            return jsonify({
+                "success": False,
+                "error": "Thiếu trường 'query' trong request body"
+            }), 400
+        
+        query = data['query']
+        top_k_docs = data.get('top_k_docs', 2)
+        top_k_sections = data.get('top_k_sections', 3)
+        
+        if len(query) < 3:
+            return jsonify({
+                "success": False,
+                "error": "Query quá ngắn (cần ít nhất 3 ký tự)"
+            }), 400
+        
+        # Search với PageIndex
+        print(f"🌲 PageIndex Search: '{query[:50]}...'")
+        pageindex_retriever = get_pageindex_retriever()
+        
+        if not pageindex_retriever:
+            return jsonify({
+                "success": False,
+                "error": "PageIndex chưa được load. Chạy: python pageindex_rag.py"
+            }), 500
+        
+        results = pageindex_retriever.search(query, top_k_docs=top_k_docs, top_k_sections=top_k_sections)
+        
+        print(f"✅ PageIndex found {len(results)} results via tree search")
+        
+        return jsonify({
+            "success": True,
+            "results": results,
+            "total_results": len(results),
+            "method": "pageindex_tree_search",
+            "query": query
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ PageIndex search error: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": f"Lỗi khi tìm kiếm PageIndex: {str(e)}"
+        }), 500
+
+
+@app.route('/api/compare-search/', methods=['POST', 'OPTIONS'])
+def compare_search():
+    """
+    So sánh kết quả giữa BM25 (keyword) và PageIndex (LLM reasoning)
+    """
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    try:
+        data = request.get_json()
+        
+        if not data or 'query' not in data:
+            return jsonify({
+                "success": False,
+                "error": "Thiếu trường 'query' trong request body"
+            }), 400
+        
+        query = data['query']
+        top_k = data.get('top_k', 3)
+        
+        print(f"\n🔍 COMPARISON SEARCH: '{query[:50]}...'")
+        print("="*60)
+        
+        # BM25 search
+        bm25_results = []
+        bm25_time = 0
+        bm25_searcher = get_bm25_searcher()
+        if bm25_searcher and bm25_searcher.is_loaded():
+            import time
+            start = time.time()
+            bm25_result = bm25_searcher.search(query, top_k=top_k)
+            bm25_time = (time.time() - start) * 1000  # ms
+            if bm25_result['success']:
+                bm25_results = bm25_result['results']
+            print(f"✓ BM25: {len(bm25_results)} results in {bm25_time:.2f}ms")
+        
+        # PageIndex search
+        pageindex_results = []
+        pageindex_time = 0
+        pageindex_retriever = get_pageindex_retriever()
+        if pageindex_retriever:
+            import time
+            start = time.time()
+            pageindex_results = pageindex_retriever.search(query, top_k_docs=2, top_k_sections=top_k)
+            pageindex_time = (time.time() - start) * 1000  # ms
+            print(f"✓ PageIndex: {len(pageindex_results)} results in {pageindex_time:.2f}ms")
+        
+        return jsonify({
+            "success": True,
+            "query": query,
+            "bm25": {
+                "results": bm25_results,
+                "count": len(bm25_results),
+                "time_ms": bm25_time,
+                "method": "keyword_matching"
+            },
+            "pageindex": {
+                "results": pageindex_results,
+                "count": len(pageindex_results),
+                "time_ms": pageindex_time,
+                "method": "llm_tree_reasoning"
+            }
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Comparison error: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "error": f"Lỗi khi so sánh: {str(e)}"
+        }), 500
+
+
+@app.route('/api/ml-status/', methods=['GET'])
+def ml_status():
+    """
+    Kiểm tra trạng thái các ML models (SVM, BM25, PageIndex)
+    """
+    try:
+        svm_classifier = get_svm_classifier()
+        bm25_searcher = get_bm25_searcher()
+        pageindex_retriever = get_pageindex_retriever()
+        
+        # Get BM25 stats
+        bm25_stats = bm25_searcher.get_stats() if bm25_searcher else {}
+        
+        status = {
+            "svm": {
+                "loaded": svm_classifier.is_loaded(),
+                "model_path": "models/svm_contract_classifier.pkl",
+                "accuracy": svm_classifier.metadata.get('accuracy', 0) if svm_classifier.metadata else 0,
+                "categories": list(svm_classifier.categories.values()) if svm_classifier.categories else []
+            },
+            "bm25": {
+                "loaded": bm25_stats.get('loaded', False),
+                "total_documents": bm25_stats.get('total_documents', 0),
+                "total_tokens": bm25_stats.get('total_tokens', 0),
+                "avg_tokens_per_doc": round(bm25_stats.get('avg_tokens_per_doc', 0), 2),
+                "method": "keyword_matching",
+                "description": "BM25 in-memory index from MongoDB"
+            },
+            "pageindex": {
+                "loaded": pageindex_retriever is not None,
+                "cache_path": "embeddings/pageindex_cache.pkl",
+                "total_documents": len(pageindex_retriever.document_trees) if pageindex_retriever else 0,
+                "total_nodes": len(pageindex_retriever.node_index) if pageindex_retriever else 0,
+                "method": "llm_tree_reasoning",
+                "description": "Vectorless RAG with LLM reasoning"
+            }
+        }
+        
+        return jsonify({
+            "success": True,
+            "status": status
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+
+# ==================== MAIN ====================
 
 if __name__ == '__main__':
     print("=" * 60)

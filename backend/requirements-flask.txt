@@ -1,0 +1,27 @@
+# Core Flask packages
+flask
+flask-cors
+werkzeug
+
+# Database
+pymongo>=4.6.0
+
+# AI/ML packages
+langchain
+langchain-community
+langchain-groq
+langchain-openai
+sentence-transformers
+
+# SVM and Machine Learning
+scikit-learn>=1.3.0
+joblib
+
+# Document processing
+PyPDF2
+python-docx
+
+# Other utilities
+numpy
+python-dotenv
+PyJWT

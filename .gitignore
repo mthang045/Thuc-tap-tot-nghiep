@@ -49,6 +49,13 @@ env/
 .DS_Store
 Thumbs.db
 
+# Large model files and corpora (too big for GitHub)
+bm25_legal_corpus
+backend/embeddings/*.npy
+*.npy
+backend/models/
+models/
+
 # Uploads
 uploads/
 backend/uploads/
