@@ -703,6 +703,7 @@ This project is licensed under the MIT License.
 
 **Developed by**: Minh Thắng  
 **Supervisor**: Kim Lợi, Nhã Quỳnh 
+
 **Organization**: Vietnam Aviation Academy (VAA)
 
 ### Acknowledgments
