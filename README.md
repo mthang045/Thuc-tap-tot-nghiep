@@ -701,9 +701,9 @@ This project is licensed under the MIT License.
 
 ## 👥 Credits
 
-**Developed by**: [Your Name]  
-**Supervisor**: [Supervisor Name]  
-**Organization**: [University/Company]
+**Developed by**: Minh Thắng  
+**Supervisor**: Kim Lợi, Nhã Quỳnh 
+**Organization**: Vietnam Aviation Academy (VAA)
 
 ### Acknowledgments
 - LangChain & LangGraph community
