@@ -25,13 +25,13 @@ export function AdminDashboard({ onExitAdmin }) {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-lg opacity-40"></div>
-                <div className="relative bg-white p-2 rounded-full shadow-lg shadow-cyan-500/30">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
                   <img 
                     src={logoImage} 
                     alt="GenZ Logo" 
-                    className="h-10 w-10 object-cover rounded-full"
+                    className="w-full h-full object-cover shadow-lg shadow-cyan-500/30"
                   />
                 </div>
               </div>

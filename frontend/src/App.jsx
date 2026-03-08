@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { UploadSection } from './components/UploadSection';
-import { AnalysisResults } from './components/AnalysisResults';
+import { ResultPage } from './components/ResultPage';
 import { AnalysisHistory } from './components/AnalysisHistory';
 import { AccountSettings } from './components/AccountSettings';
 import { PricingPlans } from './components/PricingPlans';
@@ -12,10 +13,12 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [currentPage, setCurrentPage] = useState('home');
   const [analysisData, setAnalysisData] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Restore session on mount (session-based auth with cookies)
   useEffect(() => {
@@ -44,12 +47,12 @@ export default function App() {
       const response = await apiService.login(email, password);
       console.log('Login response:', response);
       
-      // Check if login was successful (session-based auth, no token needed)
+      // Check if login was successful (JWT token saved in localStorage)
       if (response && response.success) {
-        // Session is stored in cookies by backend
-        setUserEmail(response.email || email);
+        // Token already saved in apiService.login()
+        setUserEmail(response.user?.email || response.email || email);
         setIsAuthenticated(true);
-        setIsAdmin(response.is_admin || false);
+        setIsAdmin(response.user?.is_admin || response.is_admin || false);
         return { success: true };
       } else {
         // Handle case where login failed
@@ -72,13 +75,20 @@ export default function App() {
       setIsAdmin(false);
       setUserEmail('');
       setAnalysisData(null);
-      setCurrentPage('home');
+      navigate('/'); // Navigate to home
     }
   };
 
   const handleNavigate = (page) => {
-    setCurrentPage(page);
-    setAnalysisData(null);
+    // Convert old page names to routes
+    const routes = {
+      'home': '/',
+      'history': '/history',
+      'settings': '/settings',
+      'pricing': '/pricing',
+      'admin': '/admin'
+    };
+    navigate(routes[page] || '/');
   };
 
   const handleUpgrade = (plan) => {
@@ -97,6 +107,11 @@ export default function App() {
       riskLevel: data.risk_level || 'medium',
       summary: data.summary || '',
       aiAnalysis: data.ai_analysis || '',
+      
+      // Safety Score - AI generated or calculated
+      safetyScore: data.safety_score || historyItem.safetyScore,
+      safetyReasoning: data.safety_reasoning || historyItem.safetyReasoning,
+      
       totalIssues: issuesArray.length,
       highRisk: historyItem.highRisk || 0,
       mediumRisk: historyItem.mediumRisk || 0,
@@ -124,7 +139,7 @@ export default function App() {
     };
     
     setAnalysisData(analysisData);
-    setCurrentPage('home');
+    navigate('/result'); // Navigate to result page (temporary analysis)
   };
 
   const handleFileUpload = async (file) => {
@@ -167,6 +182,11 @@ export default function App() {
         riskLevel: data.risk_level || 'medium',
         summary: data.summary,
         aiAnalysis: data.ai_analysis || '', // THÊM AI ANALYSIS
+        
+        // Safety Score - AI generated or calculated
+        safetyScore: data.safety_score,
+        safetyReasoning: data.safety_reasoning,
+        
         totalIssues: issuesArray.length,
         highRisk: highRiskCount,
         mediumRisk: mediumRiskCount,
@@ -196,6 +216,11 @@ export default function App() {
       console.log('Transformed analysis data:', analysisData);
       setAnalysisData(analysisData);
       
+      // Navigate to result page with history_id
+      if (data.history_id) {
+        navigate(`/result/${data.history_id}`);
+      }
+      
     } catch (error) {
       console.error('Upload error:', error);
       alert('Lỗi khi phân tích hợp đồng: ' + error.message);
@@ -210,7 +235,7 @@ export default function App() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-white text-xl">Đang tải...</div>
         </div>
-      ) : isAdmin && currentPage === 'admin' ? (
+      ) : location.pathname === '/admin' && isAdmin ? (
         <AdminDashboard 
           onNavigate={handleNavigate}
           onLogout={handleLogout}
@@ -222,50 +247,53 @@ export default function App() {
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
             userEmail={userEmail}
-            currentPage={currentPage}
+            currentPage={location.pathname === '/' ? 'home' : location.pathname.slice(1)}
             onLogin={handleLogin}
             onLogout={handleLogout}
             onNavigate={handleNavigate}
           />
 
           <main className="container mx-auto px-4 py-8">
-        {currentPage === 'home' && !analysisData && (
-          <UploadSection
-            isAuthenticated={isAuthenticated}
-            onFileUpload={handleFileUpload}
-            isAnalyzing={isAnalyzing}
-          />
-        )}
-
-        {currentPage === 'home' && analysisData && (
-          <AnalysisResults
-            data={analysisData}
-            onNewAnalysis={() => setAnalysisData(null)}
-          />
-        )}
-
-        {currentPage === 'history' && (
-          <AnalysisHistory 
-            userEmail={userEmail}
-            onViewAnalysis={handleViewAnalysis}
-          />
-        )}
-
-        {currentPage === 'settings' && (
-          <AccountSettings 
-            userEmail={userEmail}
-            onUpgrade={handleUpgrade}
-          />
-        )}
-
-        {currentPage === 'pricing' && (
-          <PricingPlans 
-            isAuthenticated={isAuthenticated}
-            onUpgrade={handleUpgrade}
-          />
-        )}
-      </main>
-      </>
+            <Routes>
+              <Route path="/" element={
+                <UploadSection
+                  isAuthenticated={isAuthenticated}
+                  onFileUpload={handleFileUpload}
+                  isAnalyzing={isAnalyzing}
+                />
+              } />
+              
+              <Route path="/result" element={
+                <ResultPage analysisData={analysisData} />
+              } />
+              
+              <Route path="/result/:id" element={
+                <ResultPage />
+              } />
+              
+              <Route path="/history" element={
+                <AnalysisHistory 
+                  userEmail={userEmail}
+                  onViewAnalysis={handleViewAnalysis}
+                />
+              } />
+              
+              <Route path="/settings" element={
+                <AccountSettings 
+                  userEmail={userEmail}
+                  onUpgrade={handleUpgrade}
+                />
+              } />
+              
+              <Route path="/pricing" element={
+                <PricingPlans 
+                  isAuthenticated={isAuthenticated}
+                  onUpgrade={handleUpgrade}
+                />
+              } />
+            </Routes>
+          </main>
+        </>
       )}
     </div>
   );

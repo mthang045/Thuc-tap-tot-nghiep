@@ -15,13 +15,13 @@ export function AuthPage({ onLogin }) {
         <div className="hidden lg:block">
           <div className="text-center lg:text-left">
             <div className="flex justify-center lg:justify-start mb-8 animate-float">
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-3xl opacity-60"></div>
-                <div className="relative bg-white p-8 rounded-full shadow-2xl shadow-cyan-500/50">
+                <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex items-center justify-center">
                   <img 
                     src={logoImage} 
                     alt="GenZ Logo" 
-                    className="h-32 w-32 object-cover rounded-full"
+                    className="w-full h-full object-cover shadow-2xl shadow-cyan-500/50"
                   />
                 </div>
               </div>
@@ -76,13 +76,13 @@ export function AuthPage({ onLogin }) {
         <div className="relative">
           {/* Mobile Logo */}
           <div className="lg:hidden flex justify-center mb-8 animate-float">
-            <div className="relative">
+            <div className="relative flex-shrink-0">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-2xl opacity-60"></div>
-              <div className="relative bg-white p-6 rounded-full shadow-2xl shadow-cyan-500/50">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden flex items-center justify-center">
                 <img 
                   src={logoImage} 
                   alt="GenZ Logo" 
-                  className="h-20 w-20 object-cover rounded-full"
+                  className="w-full h-full object-cover shadow-2xl shadow-cyan-500/50"
                 />
               </div>
             </div>

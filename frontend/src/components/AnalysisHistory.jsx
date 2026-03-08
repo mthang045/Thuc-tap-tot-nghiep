@@ -17,47 +17,62 @@ export function AnalysisHistory({ onViewAnalysis }) {
       setIsLoading(true);
       const response = await apiService.getHistory();
       
+      console.log('History API response:', response); // Debug log
+      
       if (response.success) {
+        // Backend returns data.records, not history directly
+        const historyRecords = response.data?.records || response.history || [];
+        
         // Transform backend data to frontend format
-        const transformedData = response.history.map((contract, index) => {
-          const data = contract.data || {};
+        const transformedData = historyRecords.map((contract, index) => {
+          const data = contract.data || contract; // Handle both nested and flat structure
           
           // Parse date safely
           let date = 'N/A';
           try {
-            if (contract.timestamp) {
-              date = new Date(contract.timestamp).toISOString().split('T')[0];
+            if (contract.created_at) {
+              date = new Date(contract.created_at).toLocaleDateString('vi-VN');
+            } else if (contract.upload_time) {
+              date = new Date(contract.upload_time).toLocaleDateString('vi-VN');
             } else if (data.upload_time) {
               date = data.upload_time.split(' ')[0]; // Format: "DD/MM/YYYY HH:MM:SS"
             }
           } catch (e) {
-            console.warn('Invalid date:', contract.timestamp);
+            console.warn('Invalid date:', contract.created_at || contract.upload_time);
             date = 'N/A';
           }
           
+          // Extract issues safely
+          const issues = data.issues || contract.issues || [];
+          
           return {
-            id: contract.id || index + 1,
-            fileName: data.filename || 'Không rõ',
+            id: contract._id || contract.id || index + 1,
+            fileName: data.filename || contract.filename || 'Không rõ',
             date: date,
-            totalIssues: (data.issues || []).length || 0,
-            highRisk: (data.issues || []).filter(i => 
+            totalIssues: issues.length || 0,
+            highRisk: issues.filter(i => 
               (typeof i === 'string' && i.includes('🚨')) || 
               (typeof i === 'object' && i.severity === 'high')
             ).length,
-            mediumRisk: (data.issues || []).filter(i => 
+            mediumRisk: issues.filter(i => 
               (typeof i === 'string' && i.includes('⚡')) || 
               (typeof i === 'object' && i.severity === 'medium')
             ).length,
-            lowRisk: (data.issues || []).filter(i => 
+            lowRisk: issues.filter(i => 
               (typeof i === 'string' && i.includes('ℹ️')) || 
               (typeof i === 'object' && i.severity === 'low')
             ).length,
+            safetyScore: data.safety_score || contract.safety_score,
+            safetyReasoning: data.safety_reasoning || contract.safety_reasoning,
             status: 'completed',
             fullData: data // Store full data for viewing
           };
         });
         
+        console.log('Transformed history data:', transformedData); // Debug log
         setHistoryData(transformedData);
+      } else {
+        console.error('API returned success: false');
       }
     } catch (error) {
       console.error('Failed to load history:', error);
@@ -87,8 +102,19 @@ export function AnalysisHistory({ onViewAnalysis }) {
   };
 
   const getRiskScore = (item) => {
-    if (item.totalIssues === 0) return 100;
-    return 100 - ((item.highRisk * 20 + item.mediumRisk * 10 + item.lowRisk * 5) / item.totalIssues) * 10;
+    // Use AI-provided score if available
+    if (item.safetyScore !== undefined) {
+      return item.safetyScore;
+    }
+    
+    // Fallback: Calculate based on issues
+    let score = 100;
+    score -= (item.highRisk || 0) * 10;    // High risk: -10 points each
+    score -= (item.mediumRisk || 0) * 5;   // Medium risk: -5 points each
+    score -= (item.lowRisk || 0) * 2;      // Low risk: -2 points each
+    
+    // Ensure score stays between 0-100
+    return Math.max(0, Math.min(100, score));
   };
 
   return (

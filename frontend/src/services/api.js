@@ -92,10 +92,18 @@ class ApiService {
     await this.fetchCsrfToken();
     const body = JSON.stringify({ email, password });
     console.log('API Service - request body:', body);
-    return this.request('/login', {
+    const response = await this.request('/login', {
       method: 'POST',
       body: body,
     });
+    
+    // Save token to localStorage if login successful
+    if (response && response.success && response.token) {
+      localStorage.setItem('authToken', response.token);
+      console.log('Token saved to localStorage');
+    }
+    
+    return response;
   }
 
   async register(fullName, email, phone, password) {
@@ -140,6 +148,13 @@ class ApiService {
   // Get analysis history
   async getHistory() {
     return this.request('/history', {
+      method: 'GET',
+    });
+  }
+
+  // Get specific analysis by ID
+  async getAnalysisDetail(historyId) {
+    return this.request(`/history/${historyId}`, {
       method: 'GET',
     });
   }
@@ -200,6 +215,30 @@ class ApiService {
   async getAllContracts() {
     return this.request('/contracts/', {
       method: 'GET',
+    });
+  }
+
+  // Profile endpoints
+  async getProfile() {
+    return this.request('/profile/', {
+      method: 'GET',
+    });
+  }
+
+  async updateProfile(profileData) {
+    return this.request('/profile/', {
+      method: 'PUT',
+      body: JSON.stringify(profileData),
+    });
+  }
+
+  async uploadAvatar(file) {
+    const formData = new FormData();
+    formData.append('avatar', file);
+    
+    return this.request('/upload-avatar/', {
+      method: 'POST',
+      body: formData,
     });
   }
 }

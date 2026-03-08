@@ -42,6 +42,10 @@ env/
 *.sqlite3
 *.db
 
+# Uploads & User data
+backend/uploads/
+backend/static/avatars/
+
 # Logs
 *.log
 

@@ -55,13 +55,13 @@ export function UploadSection({ onFileUpload, isAnalyzing }) {
       {/* Header with Logo */}
       <div className="text-center mb-16">
         <div className="flex flex-col items-center justify-center mb-8 animate-float">
-          <div className="relative mb-6">
+          <div className="relative mb-6 flex-shrink-0">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-2xl opacity-60"></div>
-            <div className="relative bg-white p-6 rounded-full shadow-2xl shadow-cyan-500/50">
+            <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex items-center justify-center">
               <img 
                 src={logoImage} 
                 alt="GenZ Logo" 
-                className="h-24 md:h-32 w-24 md:w-32 object-cover rounded-full"
+                className="w-full h-full object-cover shadow-2xl shadow-cyan-500/50"
               />
             </div>
           </div>
@@ -224,24 +224,24 @@ export function UploadSection({ onFileUpload, isAnalyzing }) {
           <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2 rounded-lg shadow-lg shadow-cyan-500/50">
             <Scale className="w-6 h-6 text-white" />
           </div>
-          Quy trình phân tích RAG
+          Quy trình phân tích Dual RAG
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-cyan-500 to-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/50 group-hover:scale-110 transition-transform">1</div>
-            <p className="text-slate-300 leading-relaxed">Đọc và trích xuất các điều khoản trong hợp đồng bằng AI</p>
+            <p className="text-slate-300 leading-relaxed">Đọc và trích xuất các điều khoản trong hợp đồng bằng AI (Llama 3.3 70B)</p>
           </div>
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-purple-500 to-pink-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/50 group-hover:scale-110 transition-transform">2</div>
-            <p className="text-slate-300 leading-relaxed">So sánh với cơ sở dữ liệu pháp luật (RAG Vector Database)</p>
+            <p className="text-slate-300 leading-relaxed">Tra cứu pháp luật bằng <span className="font-semibold text-cyan-300">Dual RAG</span>: BM25 (6ms) + PageIndex (LLM reasoning)</p>
           </div>
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-pink-500 to-rose-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-pink-500/50 group-hover:scale-110 transition-transform">3</div>
-            <p className="text-slate-300 leading-relaxed">Phát hiện và cảnh báo các điều khoản vi phạm hoặc rủi ro</p>
+            <p className="text-slate-300 leading-relaxed">Phát hiện và phân loại vấn đề (Nghiêm trọng, Trung bình, Thấp) với AI scoring</p>
           </div>
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-orange-500 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/50 group-hover:scale-110 transition-transform">4</div>
-            <p className="text-slate-300 leading-relaxed">Đưa ra khuyến nghị dựa trên quy định pháp luật hiện hành</p>
+            <p className="text-slate-300 leading-relaxed">Đưa ra khuyến nghị cải thiện dựa trên 24 văn bản pháp luật Việt Nam</p>
           </div>
         </div>
       </div>

@@ -31,17 +31,17 @@ export function Header({ isAuthenticated, isAdmin, userEmail, currentPage, onLog
               onClick={() => onNavigate('home')}
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-lg opacity-40"></div>
-                <div className="relative bg-white p-2 rounded-full shadow-lg shadow-cyan-500/30">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
                   <img 
                     src={logoImage} 
                     alt="GenZ Logo" 
-                    className="h-10 w-10 object-cover rounded-full"
+                    className="w-full h-full object-cover shadow-lg shadow-cyan-500/30"
                   />
                 </div>
               </div>
-              <div>
+              <div className="hidden sm:block">
                 <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 text-xl">
                   GenZ Legal AI
                 </h1>
@@ -127,7 +127,7 @@ export function Header({ isAuthenticated, isAdmin, userEmail, currentPage, onLog
                   onClick={() => setShowUserMenu(!showUserMenu)}
                   className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 rounded-lg transition-all"
                 >
-                  <div className="bg-gradient-to-br from-cyan-500 to-pink-500 p-2 rounded-full">
+                  <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
                     <User className="w-4 h-4 text-white" />
                   </div>
                   <div className="text-left hidden sm:block">
@@ -145,7 +145,7 @@ export function Header({ isAuthenticated, isAdmin, userEmail, currentPage, onLog
                     <div className="absolute right-0 top-full mt-2 w-64 bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-xl shadow-2xl shadow-black/50 overflow-hidden z-40">
                       <div className="p-4 border-b border-slate-700">
                         <div className="flex items-center gap-3 mb-2">
-                          <div className="bg-gradient-to-br from-cyan-500 to-pink-500 p-2.5 rounded-full">
+                          <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
                             <User className="w-5 h-5 text-white" />
                           </div>
                           <div>

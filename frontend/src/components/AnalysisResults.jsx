@@ -81,7 +81,25 @@ export function AnalysisResults({ data, onReset }) {
     }
   };
 
-  const riskScore = 100 - ((data.highRisk * 20 + data.mediumRisk * 10 + data.lowRisk * 5) / data.totalIssues) * 10;
+  // Calculate safety score - more logical approach
+  // Start with 100 points (perfect contract) and deduct based on severity
+  const calculateSafetyScore = () => {
+    // Use AI-provided score if available
+    if (data.safetyScore !== undefined) {
+      return data.safetyScore;
+    }
+    
+    // Fallback: Calculate based on issues
+    let score = 100;
+    score -= data.highRisk * 10;    // High risk: -10 points each
+    score -= data.mediumRisk * 5;   // Medium risk: -5 points each
+    score -= data.lowRisk * 2;      // Low risk: -2 points each
+    
+    // Ensure score stays between 0-100
+    return Math.max(0, Math.min(100, score));
+  };
+  
+  const riskScore = calculateSafetyScore();
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -97,13 +115,13 @@ export function AnalysisResults({ data, onReset }) {
           <span>Phân tích hợp đồng mới</span>
         </button>
         
-        <div className="relative">
+        <div className="relative flex-shrink-0">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-xl opacity-40"></div>
-          <div className="relative bg-white p-2 rounded-full shadow-lg shadow-cyan-500/30">
+          <div className="relative w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden flex items-center justify-center">
             <img 
               src={logoImage} 
               alt="GenZ Logo" 
-              className="h-10 md:h-14 w-10 md:w-14 object-cover rounded-full"
+              className="w-full h-full object-cover shadow-lg shadow-cyan-500/30"
             />
           </div>
         </div>
@@ -143,69 +161,53 @@ export function AnalysisResults({ data, onReset }) {
         </div>
       </div>
 
-      {/* Enhanced Statistics Dashboard */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6 mb-8">
-        {/* Risk Score */}
-        <div className="col-span-2 lg:col-span-1 relative group">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity blur-xl"></div>
-          <div className="relative bg-slate-900/70 backdrop-blur-sm rounded-2xl shadow-lg border border-cyan-500/30 p-6 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:border-pink-500/50">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="bg-gradient-to-br from-cyan-500 to-pink-500 p-2 rounded-lg shadow-lg shadow-cyan-500/50">
-                <TrendingUp className="w-5 h-5 text-white" />
-              </div>
-              <div className="text-slate-400 text-sm">Điểm an toàn</div>
-            </div>
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">
-              {riskScore.toFixed(0)}/100
-            </div>
-          </div>
-        </div>
-
+      {/* Enhanced Statistics Dashboard - All cards equal height */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
         {/* Total Issues */}
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-500 to-slate-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity blur-xl"></div>
-          <div className="relative bg-slate-900/70 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-600/50 p-6 hover:shadow-2xl transition-all duration-300">
+          <div className="relative bg-slate-900/70 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-600/50 p-6 hover:shadow-2xl transition-all duration-300 h-full">
             <div className="flex items-center gap-2 mb-2">
               <Shield className="w-5 h-5 text-slate-400" />
               <div className="text-slate-400 text-sm">Tổng vấn đề</div>
             </div>
-            <div className="text-slate-200">{data.totalIssues}</div>
+            <div className="text-3xl font-bold text-slate-200">{data.totalIssues}</div>
           </div>
         </div>
 
         {/* High Risk */}
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity blur-xl"></div>
-          <div className="relative bg-gradient-to-br from-red-900/40 to-orange-900/40 rounded-2xl shadow-lg border-2 border-red-500/50 p-6 hover:shadow-2xl hover:shadow-red-500/30 transition-all duration-300 backdrop-blur-sm">
+          <div className="relative bg-gradient-to-br from-red-900/40 to-orange-900/40 rounded-2xl shadow-lg border-2 border-red-500/50 p-6 hover:shadow-2xl hover:shadow-red-500/30 transition-all duration-300 backdrop-blur-sm h-full">
             <div className="flex items-center gap-2 mb-2">
               <AlertTriangle className="w-5 h-5 text-red-400" />
               <div className="text-red-300 text-sm">Nghiêm trọng</div>
             </div>
-            <div className="text-red-200">{data.highRisk}</div>
+            <div className="text-3xl font-bold text-red-200">{data.highRisk}</div>
           </div>
         </div>
 
         {/* Medium Risk */}
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity blur-xl"></div>
-          <div className="relative bg-gradient-to-br from-yellow-900/40 to-amber-900/40 rounded-2xl shadow-lg border-2 border-yellow-500/50 p-6 hover:shadow-2xl hover:shadow-yellow-500/30 transition-all duration-300 backdrop-blur-sm">
+          <div className="relative bg-gradient-to-br from-yellow-900/40 to-amber-900/40 rounded-2xl shadow-lg border-2 border-yellow-500/50 p-6 hover:shadow-2xl hover:shadow-yellow-500/30 transition-all duration-300 backdrop-blur-sm h-full">
             <div className="flex items-center gap-2 mb-2">
               <AlertTriangle className="w-5 h-5 text-yellow-400" />
               <div className="text-yellow-300 text-sm">Trung bình</div>
             </div>
-            <div className="text-yellow-200">{data.mediumRisk}</div>
+            <div className="text-3xl font-bold text-yellow-200">{data.mediumRisk}</div>
           </div>
         </div>
 
         {/* Low Risk */}
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity blur-xl"></div>
-          <div className="relative bg-gradient-to-br from-blue-900/40 to-indigo-900/40 rounded-2xl shadow-lg border-2 border-blue-500/50 p-6 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 backdrop-blur-sm">
+          <div className="relative bg-gradient-to-br from-blue-900/40 to-indigo-900/40 rounded-2xl shadow-lg border-2 border-blue-500/50 p-6 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 backdrop-blur-sm h-full">
             <div className="flex items-center gap-2 mb-2">
               <Info className="w-5 h-5 text-blue-400" />
               <div className="text-blue-300 text-sm">Thấp</div>
             </div>
-            <div className="text-blue-200">{data.lowRisk}</div>
+            <div className="text-3xl font-bold text-blue-200">{data.lowRisk}</div>
           </div>
         </div>
       </div>
@@ -239,7 +241,7 @@ export function AnalysisResults({ data, onReset }) {
       <div className="mt-10 relative">
         {/* AI DETAILED ANALYSIS SECTION */}
         {data.aiAnalysis && (
-          <div className="mb-10 relative animate-fade-in">
+          <div className="mb-6 relative animate-fade-in">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl"></div>
             <div className="relative bg-gradient-to-br from-purple-900/40 to-pink-900/40 border-2 border-purple-500/30 rounded-2xl p-8 shadow-xl backdrop-blur-xl">
               <div className="flex items-start gap-4 mb-6">
@@ -261,6 +263,34 @@ export function AnalysisResults({ data, onReset }) {
             </div>
           </div>
         )}
+
+        {/* SAFETY SCORE CARD - Moved here below AI analysis */}
+        <div className="mb-6 relative animate-fade-in">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-pink-500/20 rounded-2xl blur-xl"></div>
+          <div className="relative bg-gradient-to-br from-slate-900/80 to-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-cyan-500/30 p-8">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-br from-cyan-500 to-pink-500 p-4 rounded-2xl shadow-xl shadow-cyan-500/50">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <div className="text-slate-400 text-sm mb-1">Điểm an toàn tổng thể</div>
+                  <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">
+                    {riskScore.toFixed(0)}/100
+                  </div>
+                </div>
+              </div>
+              {data.safetyReasoning && (
+                <div className="flex-1 bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                  <div className="text-xs text-slate-400 mb-2 font-semibold">💡 Nhận xét của AI:</div>
+                  <div className="text-sm text-slate-300 leading-relaxed italic">
+                    {data.safetyReasoning}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
         
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 rounded-2xl blur-xl"></div>
         <div className="relative bg-gradient-to-br from-cyan-900/30 to-emerald-900/30 border-2 border-cyan-500/30 rounded-2xl p-8 shadow-xl backdrop-blur-xl">

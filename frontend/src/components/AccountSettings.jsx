@@ -1,8 +1,13 @@
-﻿import { useState } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { User, Mail, Phone, Lock, Save, Camera, Bell, Shield, CreditCard, LogOut } from 'lucide-react';
+import api from '../services/api';
 
 export function AccountSettings({ userEmail, onLogout }) {
   const [activeTab, setActiveTab] = useState('profile');
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState('');
   
   // Profile state
   const [profileData, setProfileData] = useState({
@@ -10,7 +15,8 @@ export function AccountSettings({ userEmail, onLogout }) {
     email: userEmail || '',
     phone: '',
     company: '',
-    address: ''
+    position: '',
+    avatar: ''
   });
 
   // Security state
@@ -28,10 +34,92 @@ export function AccountSettings({ userEmail, onLogout }) {
     weeklyReport: true
   });
 
-  const handleSaveProfile = (e) => {
+  // Load profile data on mount
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  const loadProfile = async () => {
+    try {
+      setLoading(true);
+      const response = await api.getProfile();
+      if (response.success && response.profile) {
+        setProfileData({
+          fullName: response.profile.full_name || '',
+          email: response.profile.email || '',
+          phone: response.profile.phone || '',
+          company: response.profile.company || '',
+          position: response.profile.position || '',
+          avatar: response.profile.avatar || ''
+        });
+        if (response.profile.avatar) {
+          setAvatarPreview(`http://localhost:5000${response.profile.avatar}`);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error);
+      alert('Không thể tải thông tin cá nhân: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('Chỉ chấp nhận file ảnh: PNG, JPG, JPEG, GIF, WEBP');
+        return;
+      }
+      
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Kích thước file không được vượt quá 5MB');
+        return;
+      }
+      
+      setAvatarFile(file);
+      setAvatarPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSaveProfile = async (e) => {
     e.preventDefault();
-    // Simulate save
-    alert('Đã lưu thông tin tài khoản!');
+    
+    try {
+      setSaving(true);
+      
+      // Upload avatar first if changed
+      if (avatarFile) {
+        const avatarResponse = await api.uploadAvatar(avatarFile);
+        if (avatarResponse.success) {
+          console.log('Avatar uploaded:', avatarResponse.avatar_url);
+        }
+      }
+      
+      // Update profile data
+      const response = await api.updateProfile({
+        full_name: profileData.fullName,
+        phone: profileData.phone,
+        company: profileData.company,
+        position: profileData.position
+      });
+      
+      if (response.success) {
+        alert('✅ Đã lưu thông tin tài khoản!');
+        setAvatarFile(null);
+        await loadProfile(); // Reload to get updated data
+      } else {
+        alert('⚠️ ' + (response.error || 'Không thể cập nhật thông tin'));
+      }
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      alert('❌ Lỗi khi lưu thông tin: ' + error.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleChangePassword = (e) => {
@@ -79,8 +167,8 @@ export function AccountSettings({ userEmail, onLogout }) {
                       : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
                   }`}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="hidden lg:inline">{tab.label}</span>
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-sm sm:text-base">{tab.label}</span>
                 </button>
               );
             })}
@@ -89,8 +177,8 @@ export function AccountSettings({ userEmail, onLogout }) {
                 onClick={onLogout}
                 className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-900/20 rounded-lg transition-all"
               >
-                <LogOut className="w-5 h-5" />
-                <span className="hidden lg:inline">Đăng xuất</span>
+                <LogOut className="w-5 h-5 flex-shrink-0" />
+                <span className="text-sm sm:text-base">Đăng xuất</span>
               </button>
             </div>
           </div>
@@ -108,25 +196,36 @@ export function AccountSettings({ userEmail, onLogout }) {
                   {/* Avatar */}
                   <div className="flex items-center gap-6 mb-8">
                     <div className="relative">
-                      <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-24 h-24 rounded-full flex items-center justify-center">
-                        <User className="w-12 h-12 text-white" />
+                      <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-24 h-24 rounded-full flex items-center justify-center overflow-hidden">
+                        {avatarPreview ? (
+                          <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                        ) : (
+                          <User className="w-12 h-12 text-white" />
+                        )}
                       </div>
-                      <button
-                        type="button"
-                        className="absolute bottom-0 right-0 p-2 bg-slate-800 border border-slate-700 rounded-full hover:bg-slate-700 transition-colors"
+                      <label
+                        htmlFor="avatar-upload"
+                        className="absolute bottom-0 right-0 p-2 bg-slate-800 border border-slate-700 rounded-full hover:bg-slate-700 transition-colors cursor-pointer"
                       >
                         <Camera className="w-4 h-4 text-slate-300" />
-                      </button>
+                      </label>
+                      <input
+                        id="avatar-upload"
+                        type="file"
+                        accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
+                        onChange={handleAvatarChange}
+                        className="hidden"
+                      />
                     </div>
                     <div>
-                      <h3 className="text-slate-200 mb-1">{profileData.fullName}</h3>
+                      <h3 className="text-slate-200 mb-1">{profileData.fullName || 'Chưa có tên'}</h3>
                       <p className="text-slate-400 text-sm mb-2">{profileData.email}</p>
-                      <button
-                        type="button"
-                        className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                      <label
+                        htmlFor="avatar-upload"
+                        className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors cursor-pointer"
                       >
                         Thay đổi ảnh đại diện
-                      </button>
+                      </label>
                     </div>
                   </div>
 
@@ -143,6 +242,8 @@ export function AccountSettings({ userEmail, onLogout }) {
                           value={profileData.fullName}
                           onChange={(e) => setProfileData({ ...profileData, fullName: e.target.value })}
                           className="w-full bg-slate-800/50 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-slate-200 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                          placeholder="Nhập họ và tên"
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -156,8 +257,9 @@ export function AccountSettings({ userEmail, onLogout }) {
                         <input
                           type="email"
                           value={profileData.email}
-                          onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
-                          className="w-full bg-slate-800/50 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-slate-200 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                          className="w-full bg-slate-800/50 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-slate-400 cursor-not-allowed"
+                          disabled
+                          readOnly
                         />
                       </div>
                     </div>
@@ -173,6 +275,8 @@ export function AccountSettings({ userEmail, onLogout }) {
                           value={profileData.phone}
                           onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
                           className="w-full bg-slate-800/50 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-slate-200 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                          placeholder="Nhập số điện thoại"
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -184,16 +288,20 @@ export function AccountSettings({ userEmail, onLogout }) {
                         value={profileData.company}
                         onChange={(e) => setProfileData({ ...profileData, company: e.target.value })}
                         className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                        placeholder="Nhập tên công ty"
+                        disabled={loading}
                       />
                     </div>
 
-                    <div className="md:col-span-2">
+                    <div>
                       <label className="block text-slate-300 mb-2">Chức vụ</label>
                       <input
                         type="text"
                         value={profileData.position}
                         onChange={(e) => setProfileData({ ...profileData, position: e.target.value })}
                         className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                        placeholder="Nhập chức vụ"
+                        disabled={loading}
                       />
                     </div>
                   </div>
@@ -201,10 +309,11 @@ export function AccountSettings({ userEmail, onLogout }) {
 
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl transition-all shadow-lg shadow-cyan-500/30"
+                  disabled={saving || loading}
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl transition-all shadow-lg shadow-cyan-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Save className="w-5 h-5" />
-                  Lưu thay đổi
+                  {saving ? 'Đang lưu...' : 'Lưu thay đổi'}
                 </button>
               </form>
             )}

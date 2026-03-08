@@ -103,6 +103,14 @@ def save_analysis_to_history(user_email, analysis_data):
             "ai_analysis": analysis_data.get("ai_analysis"),
             "issues_count": len(analysis_data.get("issues", [])),
             "issues": analysis_data.get("issues", []),
+            
+            # Safety Score fields - NEW!
+            "safety_score": analysis_data.get("safety_score"),
+            "safety_reasoning": analysis_data.get("safety_reasoning"),
+            "high_risk_count": analysis_data.get("high_risk_count", 0),
+            "medium_risk_count": analysis_data.get("medium_risk_count", 0),
+            "low_risk_count": analysis_data.get("low_risk_count", 0),
+            
             "created_at": datetime.now()
         }
         
@@ -145,7 +153,8 @@ def extract_text_from_file(filepath):
         print(f"Error extracting text: {e}")
         return ""
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.url_map.strict_slashes = False  # Fix CORS redirect issue
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10MB max file size
 app.config['SECRET_KEY'] = 'legal-contract-reviewer-secret-key-2026'  # Change in production!
@@ -281,6 +290,207 @@ def verify():
         "success": True,
         "user": request.user
     })
+
+@app.route('/api/profile/', methods=['GET'])
+@token_required
+def get_profile():
+    """Get user profile information"""
+    try:
+        import pymongo
+        
+        user_email = request.user.get('email')
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        users_collection = db['users']
+        
+        # Get user data
+        user = users_collection.find_one({'email': user_email})
+        
+        client.close()
+        
+        if not user:
+            return jsonify({
+                'success': False,
+                'error': 'Không tìm thấy người dùng'
+            }), 404
+        
+        # Return profile data (exclude password)
+        profile = {
+            'email': user.get('email'),
+            'full_name': user.get('full_name', ''),
+            'phone': user.get('phone', ''),
+            'company': user.get('company', ''),
+            'position': user.get('position', ''),
+            'avatar': user.get('avatar', ''),
+            'subscription_tier': user.get('subscription_tier', 'free'),
+            'is_admin': user.get('is_admin', False),
+            'created_at': user.get('created_at').isoformat() if user.get('created_at') else None
+        }
+        
+        return jsonify({
+            'success': True,
+            'profile': profile
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error getting profile: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/profile/', methods=['PUT'])
+@token_required
+def update_profile():
+    """Update user profile information"""
+    try:
+        import pymongo
+        
+        user_email = request.user.get('email')
+        data = request.get_json()
+        
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        users_collection = db['users']
+        
+        # Build update document
+        update_doc = {}
+        allowed_fields = ['full_name', 'phone', 'company', 'position']
+        
+        for field in allowed_fields:
+            if field in data:
+                update_doc[field] = data[field]
+        
+        if not update_doc:
+            client.close()
+            return jsonify({
+                'success': False,
+                'error': 'Không có dữ liệu để cập nhật'
+            }), 400
+        
+        # Update user profile
+        result = users_collection.update_one(
+            {'email': user_email},
+            {'$set': update_doc}
+        )
+        
+        client.close()
+        
+        if result.modified_count == 0:
+            return jsonify({
+                'success': False,
+                'error': 'Không tìm thấy người dùng hoặc không có thay đổi'
+            }), 404
+        
+        return jsonify({
+            'success': True,
+            'message': 'Cập nhật thông tin thành công'
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error updating profile: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/upload-avatar/', methods=['POST'])
+@token_required
+def upload_avatar():
+    """Upload user avatar"""
+    try:
+        import pymongo
+        import os
+        from werkzeug.utils import secure_filename
+        
+        user_email = request.user.get('email')
+        
+        # Check if file is in request
+        if 'avatar' not in request.files:
+            return jsonify({
+                'success': False,
+                'error': 'Không tìm thấy file avatar'
+            }), 400
+        
+        file = request.files['avatar']
+        
+        if file.filename == '':
+            return jsonify({
+                'success': False,
+                'error': 'Không có file được chọn'
+            }), 400
+        
+        # Check file extension
+        allowed_extensions = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+        file_ext = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else None
+        
+        if not file_ext or file_ext not in allowed_extensions:
+            return jsonify({
+                'success': False,
+                'error': 'Định dạng file không hợp lệ. Chỉ chấp nhận: png, jpg, jpeg, gif, webp'
+            }), 400
+        
+        # Create avatars directory if not exists
+        avatars_dir = os.path.join(os.getcwd(), 'static', 'avatars')
+        os.makedirs(avatars_dir, exist_ok=True)
+        
+        # Generate unique filename
+        import uuid
+        filename = f"{uuid.uuid4().hex}.{file_ext}"
+        filepath = os.path.join(avatars_dir, filename)
+        
+        # Save file
+        file.save(filepath)
+        
+        # Save avatar path to database
+        avatar_url = f"/static/avatars/{filename}"
+        
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        users_collection = db['users']
+        
+        # Get old avatar to delete
+        user = users_collection.find_one({'email': user_email})
+        old_avatar = user.get('avatar', '') if user else ''
+        
+        # Update avatar in database
+        result = users_collection.update_one(
+            {'email': user_email},
+            {'$set': {'avatar': avatar_url}}
+        )
+        
+        client.close()
+        
+        # Delete old avatar file if exists
+        if old_avatar and old_avatar.startswith('/static/avatars/'):
+            old_filepath = os.path.join(os.getcwd(), old_avatar[1:])  # Remove leading /
+            if os.path.exists(old_filepath):
+                try:
+                    os.remove(old_filepath)
+                except Exception as e:
+                    print(f"⚠️ Failed to delete old avatar: {e}")
+        
+        if result.modified_count == 0:
+            return jsonify({
+                'success': False,
+                'error': 'Không thể cập nhật avatar'
+            }), 500
+        
+        return jsonify({
+            'success': True,
+            'message': 'Tải lên avatar thành công',
+            'avatar_url': avatar_url
+        }), 200
+        
+    except Exception as e:
+        print(f"❌ Error uploading avatar: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
 @app.route('/api/history/', methods=['GET'])
 @token_required
@@ -991,6 +1201,82 @@ Hợp đồng đã được tải lên thành công với {len(contract_text)} k
             issues_detected.append("⚡ Hợp đồng cần được xem xét kỹ lưỡng hơn")
             issues_detected.append("ℹ️ Nên bổ sung thêm điều khoản bảo vệ quyền lợi")
         
+        # ========== COUNT SEVERITY LEVELS ==========
+        high_risk_count = len([i for i in issues_detected if i.startswith('🚨')])
+        medium_risk_count = len([i for i in issues_detected if i.startswith('⚡')])
+        low_risk_count = len([i for i in issues_detected if i.startswith('ℹ️')])
+        
+        # ========== AI SAFETY SCORE EVALUATION ==========
+        # Ask AI to provide a safety score (0-100) with reasoning
+        safety_score = None
+        safety_reasoning = ""
+        
+        if ai_available:
+            try:
+                print("\n🎯 Getting AI safety score...")
+                score_prompt = ChatPromptTemplate.from_messages([
+                    ("system", """Bạn là chuyên gia đánh giá rủi ro pháp lý. Hãy đánh giá độ an toàn của hợp đồng bằng một điểm số từ 0-100:
+
+- 90-100: Hợp đồng rất an toàn, đầy đủ điều khoản bảo vệ
+- 70-89: Hợp đồng tốt, có một số điểm cần cải thiện nhỏ
+- 50-69: Hợp đồng trung bình, có vấn đề cần lưu ý
+- 30-49: Hợp đồng có rủi ro, cần chỉnh sửa nhiều điểm
+- 0-29: Hợp đồng nguy hiểm, có rủi ro pháp lý nghiêm trọng
+
+Căn cứ vào số lượng và mức độ nghiêm trọng của vấn đề:
+- Vấn đề NGHIÊM TRỌNG: {high_risk} vấn đề (ảnh hưởng lớn đến điểm)
+- Vấn đề TRUNG BÌNH: {medium_risk} vấn đề (ảnh hưởng vừa phải)
+- Vấn đề THẤP: {low_risk} vấn đề (ảnh hưởng nhỏ)
+
+Trả lời theo định dạng:
+ĐIỂM: [số từ 0-100]
+LÝ DO: [1-2 câu giải thích ngắn gọn tại sao cho điểm này]"""),
+                    ("human", "Đánh giá hợp đồng với {total} vấn đề phát hiện:\n{issues}")
+                ])
+                
+                chain = score_prompt | llm
+                score_response = chain.invoke({
+                    "high_risk": high_risk_count,
+                    "medium_risk": medium_risk_count,
+                    "low_risk": low_risk_count,
+                    "total": len(issues_detected),
+                    "issues": "\n".join(issues_detected[:10])  # First 10 issues
+                })
+                
+                # Parse AI response
+                score_text = score_response.content
+                for line in score_text.split('\n'):
+                    if line.strip().startswith('ĐIỂM:'):
+                        try:
+                            score_str = line.split('ĐIỂM:')[1].strip()
+                            # Extract number from string (handle "85" or "85/100" formats)
+                            import re
+                            numbers = re.findall(r'\d+', score_str)
+                            if numbers:
+                                safety_score = int(numbers[0])
+                                safety_score = max(0, min(100, safety_score))  # Clamp to 0-100
+                        except:
+                            pass
+                    elif line.strip().startswith('LÝ DO:'):
+                        safety_reasoning = line.split('LÝ DO:')[1].strip()
+                
+                if safety_score is not None:
+                    print(f"  ✓ AI Safety Score: {safety_score}/100")
+                    print(f"  ✓ Reasoning: {safety_reasoning}")
+                else:
+                    print("  ⚠️ Could not parse AI score, using calculated score")
+            except Exception as e:
+                print(f"  ⚠️ AI scoring failed: {e}")
+        
+        # Fallback calculation if AI score not available
+        if safety_score is None:
+            safety_score = 100
+            safety_score -= high_risk_count * 10    # -10 points per high risk
+            safety_score -= medium_risk_count * 5   # -5 points per medium risk
+            safety_score -= low_risk_count * 2      # -2 points per low risk
+            safety_score = max(0, min(100, safety_score))
+            safety_reasoning = f"Điểm tự động: {high_risk_count} vấn đề nghiêm trọng, {medium_risk_count} trung bình, {low_risk_count} thấp"
+        
         # ========== COMPILE ANALYSIS RESULT ==========
         analysis_result = {
             "filename": filename,
@@ -1001,6 +1287,13 @@ Hợp đồng đã được tải lên thành công với {len(contract_text)} k
             # AI Analysis - CHI TIẾT QUAN TRỌNG
             "ai_analysis": ai_analysis,
             "ai_available": ai_available,
+            
+            # AI Safety Score - ĐIỂM AN TOÀN VỚI LÝ DO
+            "safety_score": safety_score,
+            "safety_reasoning": safety_reasoning,
+            "high_risk_count": high_risk_count,
+            "medium_risk_count": medium_risk_count,
+            "low_risk_count": low_risk_count,
             
             # SVM Classification Results
             "contract_type": classification_result.get('category_name', 'Hợp đồng khác'),
@@ -1020,7 +1313,7 @@ Hợp đồng đã được tải lên thành công với {len(contract_text)} k
             "legal_references": [],
             
             # Summary
-            "summary": f"Hợp đồng loại '{classification_result.get('category_name', 'Khác')}' đã được phân tích {'chi tiết bởi AI với RAG' if ai_available else 'cơ bản'}. Độ dài: {len(contract_text)} ký tự. Phát hiện {len(issues_detected)} vấn đề cần lưu ý.",
+            "summary": f"Hợp đồng loại '{classification_result.get('category_name', 'Khác')}' đã được phân tích {'chi tiết bởi AI với RAG' if ai_available else 'cơ bản'}. Độ dài: {len(contract_text)} ký tự. Phát hiện {len(issues_detected)} vấn đề cần lưu ý. Điểm an toàn: {safety_score}/100.",
             
             # Issues from AI
             "issues": issues_detected
