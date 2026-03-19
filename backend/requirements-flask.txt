@@ -21,6 +21,7 @@ joblib
 # Document processing
 PyPDF2
 python-docx
+reportlab
 
 # Other utilities
 numpy

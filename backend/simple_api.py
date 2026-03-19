@@ -13,7 +13,7 @@ Replaced Vector RAG (sentence-transformers) with BM25 for:
 - No embedding model dependency
 - Better keyword matching for legal terms
 """
-from flask import Flask, jsonify, request, send_from_directory, abort
+from flask import Flask, jsonify, request, send_from_directory, abort, send_file
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -28,6 +28,8 @@ from functools import wraps
 from datetime import datetime
 import PyPDF2
 import docx
+import io
+from template_generator import generate_template_file
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -207,13 +209,51 @@ def home():
 @app.route('/api/templates/<template_id>/download')
 def download_template(template_id):
     """Serve predefined template files from static/templates
+    - Requires a valid JWT
+    - Only users with subscription_tier == 'pro' are allowed to download
+    - If a requested real file (.docx/.pdf) is missing, generate and save it on demand
     Allowed template_id: t1, t2, t3
     """
+    # Require token and ensure user is Pro
+    token = request.headers.get('Authorization')
+    if not token:
+        return jsonify({'success': False, 'error': 'Token không tồn tại'}), 401
+    if token.startswith('Bearer '):
+        token = token[7:]
+
+    payload = verify_token(token)
+    if not payload:
+        return jsonify({'success': False, 'error': 'Token không hợp lệ hoặc đã hết hạn'}), 401
+
+    # Prefer authoritative subscription from DB (in case token is stale)
+    try:
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=3000)
+        db = client['legal_AI_db']
+        users_collection = db['users']
+        user = users_collection.find_one({'email': payload.get('email')})
+        client.close()
+        subscription = (user.get('subscription_tier') if user else payload.get('subscription_tier', 'free'))
+    except Exception:
+        subscription = payload.get('subscription_tier', 'free')
+
+    # Allow if user is Pro OR is an admin
+    is_admin = False
+    try:
+        is_admin = bool(user.get('is_admin', False)) if user else bool(payload.get('is_admin', False))
+    except Exception:
+        is_admin = bool(payload.get('is_admin', False))
+
+    if not subscription or (str(subscription).lower() != 'pro' and not is_admin):
+        return jsonify({'success': False, 'error': 'Chỉ tài khoản Pro hoặc admin mới được tải file này'}), 403
+
     templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'templates')
+    os.makedirs(templates_dir, exist_ok=True)
+
     mapping = {
-        't1': 't1.txt',
-        't2': 't2.txt',
-        't3': 't3.txt'
+        # map to real document types
+        't1': 't1.docx',
+        't2': 't2.pdf',
+        't3': 't3.docx'
     }
 
     filename = mapping.get(template_id)
@@ -221,14 +261,21 @@ def download_template(template_id):
         return jsonify({'success': False, 'error': 'Template not found'}), 404
 
     file_path = os.path.join(templates_dir, filename)
-    if not os.path.exists(file_path):
-        return jsonify({'success': False, 'error': 'File missing on server'}), 404
 
+    # If file missing, generate sample .docx or .pdf using template_generator
+    if not os.path.exists(file_path):
+        try:
+            generate_template_file(template_id, file_path, context={'generated_by': 'template_generator'})
+        except Exception as e:
+            print('Error generating template file:', e)
+            return jsonify({'success': False, 'error': 'Server error khi tạo template'}), 500
+
+    # Send the file as attachment
     try:
         return send_from_directory(templates_dir, filename, as_attachment=True)
     except Exception as e:
         print('Error sending template:', e)
-        return jsonify({'success': False, 'error': 'Server error'}), 500
+        return jsonify({'success': False, 'error': 'Server error khi gửi file'}), 500
 
 @app.route('/health')
 def health():
