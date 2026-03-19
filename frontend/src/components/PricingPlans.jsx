@@ -6,6 +6,13 @@ export function PricingPlans({ userEmail, onUpgrade }) {
   const [billingCycle, setBillingCycle] = useState('monthly');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [showTemplateModal, setShowTemplateModal] = useState(false);
+  const [templateModalFor, setTemplateModalFor] = useState('');
+  const templates = [
+    { id: 't1', title: 'Mẫu hợp đồng mua bán', desc: 'Bao gồm điều khoản thanh toán, giao nhận, bảo hành.' },
+    { id: 't2', title: 'Mẫu hợp đồng lao động', desc: 'Quy định công việc, lương thưởng, chấm dứt hợp đồng.' },
+    { id: 't3', title: 'Mẫu NDA (Bảo mật)', desc: 'Bảo vệ thông tin nhạy cảm giữa hai bên.' }
+  ];
 
   const renderComparisonCell = (value) => {
     const text = String(value || '').trim();
@@ -26,6 +33,11 @@ export function PricingPlans({ userEmail, onUpgrade }) {
         <span className={isExcluded ? 'text-slate-600' : 'text-slate-300'}>{text}</span>
       </div>
     );
+  };
+
+  const openTemplateModal = (planId) => {
+    setTemplateModalFor(planId);
+    setShowTemplateModal(true);
   };
 
   const handleUpgradeClick = (planId) => {
@@ -378,8 +390,31 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                     {category.features.map((feature, i) => (
                       <tr key={i} className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
                         <td className="text-slate-300 py-3 px-4">{feature.name}</td>
-                        <td className="text-center text-slate-400 py-3 px-4">{renderComparisonCell(feature.free)}</td>
-                        <td className="text-center text-cyan-300 py-3 px-4">{renderComparisonCell(feature.pro)}</td>
+                        {/* Free column */}
+                        <td className="text-center text-slate-400 py-3 px-4">
+                          {feature.name === 'Tùy chỉnh template' ? (
+                            <button
+                              onClick={() => openTemplateModal('free')}
+                              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300"
+                            >
+                              <X className="w-4 h-4 text-slate-500" />
+                              Nâng cấp
+                            </button>
+                          ) : renderComparisonCell(feature.free)}
+                        </td>
+
+                        {/* Pro column */}
+                        <td className="text-center text-cyan-300 py-3 px-4">
+                          {feature.name === 'Tùy chỉnh template' ? (
+                            <button
+                              onClick={() => openTemplateModal('pro')}
+                              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 hover:bg-green-500/20 text-slate-300"
+                            >
+                              <Check className="w-4 h-4 text-green-400" />
+                              Xem mẫu
+                            </button>
+                          ) : renderComparisonCell(feature.pro)}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -389,6 +424,38 @@ export function PricingPlans({ userEmail, onUpgrade }) {
           ))}
         </div>
       </div>
+
+      {/* Template Modal */}
+      {showTemplateModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 max-w-xl w-full">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-cyan-100 text-lg">Mẫu template ({templateModalFor === 'pro' ? 'Pro' : 'Thường'})</h3>
+              <button onClick={() => setShowTemplateModal(false)} className="text-slate-400">Đóng</button>
+            </div>
+
+            <div className="space-y-4">
+              {templates.map(t => (
+                <div key={t.id} className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-slate-200 font-semibold">{t.title}</div>
+                      <div className="text-slate-400 text-sm">{t.desc}</div>
+                    </div>
+                    <div>
+                      {templateModalFor === 'pro' ? (
+                        <button onClick={() => alert('Tải về: ' + t.title)} className="px-3 py-2 bg-cyan-600 text-white rounded-lg">Tải về</button>
+                      ) : (
+                        <button onClick={() => { setShowTemplateModal(false); handleUpgradeClick('pro'); }} className="px-3 py-2 bg-amber-600 text-white rounded-lg">Nâng cấp</button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* FAQ Section */}
       <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8">
