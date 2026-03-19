@@ -45,7 +45,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
   const plans = [
     {
       id: 'free',
-      name: 'Miễn phí',
+      name: 'Thường',
       icon: Sparkles,
       price: { monthly: 0, yearly: 0 },
       description: 'Dùng thử các tính năng cơ bản',
@@ -53,20 +53,24 @@ export function PricingPlans({ userEmail, onUpgrade }) {
       gradient: 'from-slate-600 to-slate-700',
       features: [
         { text: '5 phân tích/tháng', included: true },
-        { text: 'Phân tích cơ bản', included: true },
-        { text: 'Lưu trữ 30 ngày', included: true },
-        { text: 'Tải báo cáo PDF', included: true },
-        { text: 'Phân tích nâng cao', included: false },
-        { text: 'API access', included: false },
-        { text: 'Hỗ trợ ưu tiên', included: false },
-        { text: 'Tùy chỉnh template', included: false }
+        { text: 'Lưu trữ: 30 ngày', included: true },
+        { text: 'Kích thước file tối đa: 10MB', included: true },
+        { text: 'Loại file: PDF, DOCX', included: true },
+        { text: 'Phân tích điều khoản: Cơ bản', included: true },
+        { text: 'Đề xuất khuyến nghị: Có', included: true },
+        { text: 'So sánh hợp đồng: Không', included: false },
+        { text: 'Phân tích ngôn ngữ: Tiếng Việt', included: true },
+        { text: 'Chat hỏi đáp: Không', included: false },
+        { text: 'Báo cáo PDF: Có', included: true },
+        { text: 'Báo cáo Word: Không', included: false },
+        { text: 'Tùy chỉnh template: Không', included: false }
       ],
       buttonText: 'Gói hiện tại',
       isPopular: false
     },
     {
       id: 'pro',
-      name: 'Professional',
+      name: 'Pro',
       icon: Zap,
       price: { monthly: 299000, yearly: 2990000 },
       description: 'Cho cá nhân và doanh nghiệp nhỏ',
@@ -74,75 +78,50 @@ export function PricingPlans({ userEmail, onUpgrade }) {
       gradient: 'from-cyan-600 to-blue-600',
       features: [
         { text: '50 phân tích/tháng', included: true },
-        { text: 'Phân tích nâng cao với AI', included: true },
-        { text: 'Lưu trữ không giới hạn', included: true },
-        { text: 'Tải báo cáo PDF & Word', included: true },
-        { text: 'Phân tích đa ngôn ngữ', included: true },
-        { text: 'So sánh hợp đồng', included: true },
-        { text: 'Email support 24/7', included: true },
-        { text: 'Tùy chỉnh template', included: false }
+        { text: 'Lưu trữ: Vĩnh viễn', included: true },
+        { text: 'Kích thước file tối đa: 50MB', included: true },
+        { text: 'Loại file: PDF, DOCX, TXT', included: true },
+        { text: 'Phân tích điều khoản: Nâng cao', included: true },
+        { text: 'Đề xuất khuyến nghị: Có (Chi tiết)', included: true },
+        { text: 'So sánh hợp đồng: Có', included: true },
+        { text: 'Phân tích ngôn ngữ: Tiếng Việt', included: true },
+        { text: 'Chat hỏi đáp: Có', included: true },
+        { text: 'Báo cáo PDF: Có', included: true },
+        { text: 'Báo cáo Word: Có', included: true },
+        { text: 'Tùy chỉnh template: Có', included: true }
       ],
       buttonText: 'Nâng cấp lên Pro',
       isPopular: true
     },
-    {
-      id: 'enterprise',
-      name: 'Enterprise',
-      icon: Building2,
-      price: { monthly: 999000, yearly: 9990000 },
-      description: 'Cho doanh nghiệp và tổ chức lớn',
-      color: 'purple',
-      gradient: 'from-purple-600 to-pink-600',
-      features: [
-        { text: 'Không giới hạn phân tích', included: true },
-        { text: 'AI phân tích chuyên sâu', included: true },
-        { text: 'Lưu trữ không giới hạn', included: true },
-        { text: 'Tất cả format xuất file', included: true },
-        { text: 'Đa ngôn ngữ + Custom', included: true },
-        { text: 'API access đầy đủ', included: true },
-        { text: 'Dedicated support', included: true },
-        { text: 'White-label solution', included: true }
-      ],
-      buttonText: 'Liên hệ tư vấn',
-      isPopular: false
-    }
+    
   ];
 
   const comparisonFeatures = [
     {
       category: 'Phân tích cơ bản',
       features: [
-        { name: 'Số lượng phân tích/tháng', free: '5', pro: '50', enterprise: 'Không giới hạn' },
-        { name: 'Thời gian lưu trữ', free: '30 ngày', pro: 'Vĩnh viễn', enterprise: 'Vĩnh viễn' },
-        { name: 'Kích thước file tối đa', free: '10MB', pro: '50MB', enterprise: '200MB' },
-        { name: 'Loại file hỗ trợ', free: 'PDF, DOCX', pro: 'PDF, DOCX, TXT', enterprise: 'Tất cả' }
+        { name: 'Số lượng phân tích/tháng', free: '5', pro: '50' },
+        { name: 'Thời gian lưu trữ', free: '30 ngày', pro: 'Vĩnh viễn' },
+        { name: 'Kích thước file tối đa', free: '10MB', pro: '50MB' },
+        { name: 'Loại file hỗ trợ', free: 'PDF, DOCX', pro: 'PDF, DOCX, TXT' }
       ]
     },
     {
       category: 'Tính năng AI',
       features: [
-        { name: 'Phân tích điều khoản', free: 'Cơ bản', pro: 'Nâng cao', enterprise: 'Chuyên sâu' },
-        { name: 'Đề xuất khuyến nghị', free: 'Có', pro: 'Có + Chi tiết', enterprise: 'Có + Tùy chỉnh' },
-        { name: 'So sánh hợp đồng', free: '✗', pro: 'Có (2 file)', enterprise: 'Có (nhiều file)' },
-        { name: 'Phân tích ngôn ngữ', free: 'Tiếng Việt', pro: 'VN + EN', enterprise: 'Đa ngôn ngữ' }
+        { name: 'Phân tích điều khoản', free: 'Cơ bản', pro: 'Nâng cao' },
+        { name: 'Đề xuất khuyến nghị', free: 'Có', pro: 'Có + Chi tiết' },
+        { name: 'So sánh hợp đồng', free: 'Không', pro: 'Có' },
+        { name: 'Phân tích ngôn ngữ', free: 'Tiếng Việt', pro: 'Tiếng Việt' },
+        { name: 'Chat hỏi đáp về hợp đồng', free: 'Không', pro: 'Có' }
       ]
     },
     {
       category: 'Xuất báo cáo',
       features: [
-        { name: 'Báo cáo PDF', free: 'Có', pro: 'Có', enterprise: 'Có' },
-        { name: 'Báo cáo Word', free: '✗', pro: 'Có', enterprise: 'Có' },
-        { name: 'Báo cáo Excel', free: '✗', pro: '✗', enterprise: 'Có' },
-        { name: 'Tùy chỉnh template', free: '✗', pro: '✗', enterprise: 'Có' }
-      ]
-    },
-    {
-      category: 'Hỗ trợ & API',
-      features: [
-        { name: 'Email support', free: 'Cơ bản', pro: '24/7', enterprise: 'Dedicated' },
-        { name: 'API access', free: '✗', pro: '✗', enterprise: 'Có' },
-        { name: 'Webhook integration', free: '✗', pro: '✗', enterprise: 'Có' },
-        { name: 'Training & Onboarding', free: '✗', pro: '✗', enterprise: 'Có' }
+        { name: 'Báo cáo PDF', free: 'Có', pro: 'Có' },
+        { name: 'Báo cáo Word', free: 'Không', pro: 'Có' },
+        { name: 'Tùy chỉnh template', free: 'Không', pro: 'Có' }
       ]
     }
   ];
@@ -195,7 +174,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
       </div>
 
       {/* Pricing Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
         {plans.map((plan, index) => {
           const Icon = plan.icon;
           const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly;
@@ -370,9 +349,8 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                   <thead>
                     <tr className="border-b border-slate-700">
                       <th className="text-left text-slate-400 py-3 px-4 w-1/2">Tính năng</th>
-                      <th className="text-center text-slate-400 py-3 px-4">Miễn phí</th>
-                      <th className="text-center text-cyan-400 py-3 px-4">Professional</th>
-                      <th className="text-center text-purple-400 py-3 px-4">Enterprise</th>
+                      <th className="text-center text-slate-400 py-3 px-4">Thường</th>
+                      <th className="text-center text-cyan-400 py-3 px-4">Pro</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -381,7 +359,6 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                         <td className="text-slate-300 py-3 px-4">{feature.name}</td>
                         <td className="text-center text-slate-400 py-3 px-4">{feature.free}</td>
                         <td className="text-center text-cyan-300 py-3 px-4">{feature.pro}</td>
-                        <td className="text-center text-purple-300 py-3 px-4">{feature.enterprise}</td>
                       </tr>
                     ))}
                   </tbody>
