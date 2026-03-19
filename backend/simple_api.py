@@ -13,7 +13,7 @@ Replaced Vector RAG (sentence-transformers) with BM25 for:
 - No embedding model dependency
 - Better keyword matching for legal terms
 """
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory, abort
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -205,6 +205,33 @@ def home():
             "groq_api": "✓ Configured"
         }
     })
+
+
+@app.route('/api/templates/<template_id>/download')
+def download_template(template_id):
+    """Serve predefined template files from static/templates
+    Allowed template_id: t1, t2, t3
+    """
+    templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'templates')
+    mapping = {
+        't1': 't1.txt',
+        't2': 't2.txt',
+        't3': 't3.txt'
+    }
+
+    filename = mapping.get(template_id)
+    if not filename:
+        return jsonify({'success': False, 'error': 'Template not found'}), 404
+
+    file_path = os.path.join(templates_dir, filename)
+    if not os.path.exists(file_path):
+        return jsonify({'success': False, 'error': 'File missing on server'}), 404
+
+    try:
+        return send_from_directory(templates_dir, filename, as_attachment=True)
+    except Exception as e:
+        print('Error sending template:', e)
+        return jsonify({'success': False, 'error': 'Server error'}), 500
 
 @app.route('/health')
 def health():

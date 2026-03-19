@@ -40,6 +40,45 @@ export function PricingPlans({ userEmail, onUpgrade }) {
     setShowTemplateModal(true);
   };
 
+  const downloadTemplate = async (templateId) => {
+    try {
+      const resp = await fetch(`${process.env.REACT_APP_API_BASE || 'http://localhost:5000'}/api/templates/${templateId}/download`, {
+        method: 'GET',
+        credentials: 'include'
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        alert('Không thể tải file: ' + (err.error || resp.statusText));
+        return;
+      }
+
+      const blob = await resp.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      // try to extract filename from Content-Disposition
+      const cd = resp.headers.get('Content-Disposition');
+      let filename = 'template.txt';
+      if (cd) {
+        const match = /filename\*=UTF-8''([^;]+)|filename="?([^";]+)"?/.exec(cd);
+        if (match) filename = decodeURIComponent(match[1] || match[2] || filename);
+      } else {
+        // fallback to templateId
+        filename = templateId + '.txt';
+      }
+
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download error', err);
+      alert('Lỗi khi tải file: ' + err.message);
+    }
+  };
+
   const handleUpgradeClick = (planId) => {
     setSelectedPlan(planId);
     setShowPaymentModal(true);
@@ -444,7 +483,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                     </div>
                     <div>
                       {templateModalFor === 'pro' ? (
-                        <button onClick={() => alert('Tải về: ' + t.title)} className="px-3 py-2 bg-cyan-600 text-white rounded-lg">Tải về</button>
+                        <button onClick={() => downloadTemplate(t.id)} className="px-3 py-2 bg-cyan-600 text-white rounded-lg">Tải về</button>
                       ) : (
                         <button onClick={() => { setShowTemplateModal(false); handleUpgradeClick('pro'); }} className="px-3 py-2 bg-amber-600 text-white rounded-lg">Nâng cấp</button>
                       )}
