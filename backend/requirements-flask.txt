@@ -2,6 +2,7 @@
 flask
 flask-cors
 werkzeug
+flask-limiter
 
 # Database
 pymongo>=4.6.0
