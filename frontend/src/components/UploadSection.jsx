@@ -51,7 +51,16 @@ export function UploadSection({ onFileUpload, isAnalyzing }) {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl">
+    <div className="relative container mx-auto px-4 py-8 md:py-12 max-w-6xl">
+      {/* Analysis loader overlay */}
+      {isAnalyzing && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-auto">
+          <div className="bg-black/40 absolute inset-0"></div>
+          <div className="relative">
+            <div className="loader" />
+          </div>
+        </div>
+      )}
       {/* Header with Logo */}
       <div className="text-center mb-16">
         <div className="flex flex-col items-center justify-center mb-8 animate-float">

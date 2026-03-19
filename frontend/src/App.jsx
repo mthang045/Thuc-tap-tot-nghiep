@@ -13,6 +13,7 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userEmail, setUserEmail] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
   const [analysisData, setAnalysisData] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
@@ -30,6 +31,15 @@ export default function App() {
           setUserEmail(response.user.email);
           setIsAuthenticated(true);
           setIsAdmin(response.user.is_admin || false);
+          // try to load profile (for avatar and extra fields)
+          try {
+            const p = await apiService.getProfile();
+            if (p && p.success && p.profile && p.profile.avatar) {
+              setUserAvatar(`http://localhost:5000${p.profile.avatar}`);
+            }
+          } catch (err) {
+            console.warn('Could not load profile on restore:', err);
+          }
         }
       } catch (error) {
         console.log('No active session or session expired');
@@ -40,6 +50,21 @@ export default function App() {
     };
     
     restoreSession();
+  }, []);
+
+  // Listen for profile updates from AccountSettings (or other parts)
+  useEffect(() => {
+    const handler = (ev) => {
+      const profile = ev.detail;
+      if (profile && profile.avatar) {
+        setUserAvatar(`http://localhost:5000${profile.avatar}`);
+      } else {
+        setUserAvatar('');
+      }
+      if (profile && profile.email) setUserEmail(profile.email);
+    };
+    window.addEventListener('profile-updated', handler);
+    return () => window.removeEventListener('profile-updated', handler);
   }, []);
 
   const handleLogin = async (email, password) => {
@@ -53,6 +78,15 @@ export default function App() {
         setUserEmail(response.user?.email || response.email || email);
         setIsAuthenticated(true);
         setIsAdmin(response.user?.is_admin || response.is_admin || false);
+        // try to load profile (avatar)
+        try {
+          const p = await apiService.getProfile();
+          if (p && p.success && p.profile && p.profile.avatar) {
+            setUserAvatar(`http://localhost:5000${p.profile.avatar}`);
+          }
+        } catch (err) {
+          console.warn('Could not load profile after login:', err);
+        }
         return { success: true };
       } else {
         // Handle case where login failed
@@ -247,6 +281,7 @@ export default function App() {
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
             userEmail={userEmail}
+            userAvatar={userAvatar}
             currentPage={location.pathname === '/' ? 'home' : location.pathname.slice(1)}
             onLogin={handleLogin}
             onLogout={handleLogout}

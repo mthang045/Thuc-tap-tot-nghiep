@@ -3,7 +3,7 @@ import { LogIn, UserPlus, User, LogOut, FileText, Settings, Home, Crown, Shield 
 import logoImage from '/logo.png';
 import { AuthModal } from './AuthModal';
 
-export function Header({ isAuthenticated, isAdmin, userEmail, currentPage, onLogin, onLogout, onNavigate }) {
+export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, currentPage, onLogin, onLogout, onNavigate }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authView, setAuthView] = useState('login');
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -127,8 +127,14 @@ export function Header({ isAuthenticated, isAdmin, userEmail, currentPage, onLog
                   onClick={() => setShowUserMenu(!showUserMenu)}
                   className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 rounded-lg transition-all"
                 >
-                  <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
-                    <User className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 bg-slate-800">
+                    {userAvatar ? (
+                      <img src={userAvatar} alt="avatar" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-full h-full flex items-center justify-center">
+                        <User className="w-4 h-4 text-white" />
+                      </div>
+                    )}
                   </div>
                   <div className="text-left hidden sm:block">
                     <div className="text-slate-300 text-sm">{userEmail}</div>
@@ -145,8 +151,14 @@ export function Header({ isAuthenticated, isAdmin, userEmail, currentPage, onLog
                     <div className="absolute right-0 top-full mt-2 w-64 bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-xl shadow-2xl shadow-black/50 overflow-hidden z-40">
                       <div className="p-4 border-b border-slate-700">
                         <div className="flex items-center gap-3 mb-2">
-                          <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <User className="w-5 h-5 text-white" />
+                          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 bg-slate-800">
+                            {userAvatar ? (
+                              <img src={userAvatar} alt="avatar" className="w-full h-full object-cover" />
+                            ) : (
+                              <div className="bg-gradient-to-br from-cyan-500 to-pink-500 w-full h-full flex items-center justify-center">
+                                <User className="w-5 h-5 text-white" />
+                              </div>
+                            )}
                           </div>
                           <div>
                             <div className="text-slate-300">Tài khoản</div>

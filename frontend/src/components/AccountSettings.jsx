@@ -6,8 +6,10 @@ export function AccountSettings({ userEmail, onLogout }) {
   const [activeTab, setActiveTab] = useState('profile');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [changingPassword, setChangingPassword] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState('');
+  const [deletingAvatar, setDeletingAvatar] = useState(false);
   
   // Profile state
   const [profileData, setProfileData] = useState({
@@ -54,6 +56,12 @@ export function AccountSettings({ userEmail, onLogout }) {
         });
         if (response.profile.avatar) {
           setAvatarPreview(`http://localhost:5000${response.profile.avatar}`);
+        }
+        // notify app about profile (so header/avatar can update)
+        try {
+          window.dispatchEvent(new CustomEvent('profile-updated', { detail: response.profile }));
+        } catch (e) {
+          // ignore
         }
       }
     } catch (error) {
@@ -122,14 +130,32 @@ export function AccountSettings({ userEmail, onLogout }) {
     }
   };
 
-  const handleChangePassword = (e) => {
+  const handleChangePassword = async (e) => {
     e.preventDefault();
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       alert('Mật khẩu mới không khớp!');
       return;
     }
-    alert('Đã thay đổi mật khẩu thành công!');
-    setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+    if (!passwordData.newPassword || passwordData.newPassword.length < 8) {
+      alert('Mật khẩu mới phải có ít nhất 8 ký tự');
+      return;
+    }
+
+    try {
+      setChangingPassword(true);
+      const resp = await api.changePassword(passwordData.currentPassword, passwordData.newPassword);
+      if (resp && resp.success) {
+        alert('✅ Đổi mật khẩu thành công!');
+        setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      } else {
+        alert('⚠️ ' + (resp.error || 'Không thể đổi mật khẩu'));
+      }
+    } catch (err) {
+      console.error('Change password error:', err);
+      alert('❌ Lỗi khi đổi mật khẩu: ' + err.message);
+    } finally {
+      setChangingPassword(false);
+    }
   };
 
   const tabs = [
@@ -203,12 +229,12 @@ export function AccountSettings({ userEmail, onLogout }) {
                           <User className="w-12 h-12 text-white" />
                         )}
                       </div>
-                      <label
-                        htmlFor="avatar-upload"
-                        className="absolute bottom-0 right-0 p-2 bg-slate-800 border border-slate-700 rounded-full hover:bg-slate-700 transition-colors cursor-pointer"
-                      >
-                        <Camera className="w-4 h-4 text-slate-300" />
-                      </label>
+                                  <label
+                                    htmlFor="avatar-upload"
+                                    className="absolute bottom-0 right-0 p-2 bg-slate-800 border border-slate-700 rounded-full hover:bg-slate-700 transition-colors cursor-pointer"
+                                  >
+                                    <Camera className="w-4 h-4 text-slate-300" />
+                                  </label>
                       <input
                         id="avatar-upload"
                         type="file"
@@ -220,12 +246,42 @@ export function AccountSettings({ userEmail, onLogout }) {
                     <div>
                       <h3 className="text-slate-200 mb-1">{profileData.fullName || 'Chưa có tên'}</h3>
                       <p className="text-slate-400 text-sm mb-2">{profileData.email}</p>
-                      <label
-                        htmlFor="avatar-upload"
-                        className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors cursor-pointer"
-                      >
-                        Thay đổi ảnh đại diện
-                      </label>
+                      <div className="flex items-center gap-4">
+                        <label
+                          htmlFor="avatar-upload"
+                          className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors cursor-pointer"
+                        >
+                          Thay đổi ảnh đại diện
+                        </label>
+                        {profileData.avatar && (
+                          <button
+                            type="button"
+                            onClick={async () => {
+                              if (!confirm('Bạn có chắc muốn xóa ảnh đại diện không?')) return;
+                              try {
+                                setDeletingAvatar(true);
+                                const resp = await api.deleteAvatar();
+                                if (resp && resp.success) {
+                                  setAvatarPreview('');
+                                  await loadProfile();
+                                  alert('Đã xóa ảnh đại diện');
+                                } else {
+                                  alert('Không thể xóa ảnh đại diện: ' + (resp.error || 'Lỗi'));
+                                }
+                              } catch (err) {
+                                console.error('Delete avatar error:', err);
+                                alert('Lỗi khi xóa ảnh đại diện: ' + err.message);
+                              } finally {
+                                setDeletingAvatar(false);
+                              }
+                            }}
+                            className="text-sm text-rose-400 hover:text-rose-300 transition-colors"
+                            disabled={deletingAvatar}
+                          >
+                            {deletingAvatar ? 'Đang xóa...' : 'Xóa ảnh'}
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
 
@@ -378,10 +434,11 @@ export function AccountSettings({ userEmail, onLogout }) {
 
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl transition-all shadow-lg shadow-cyan-500/30"
+                  disabled={changingPassword}
+                  className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl transition-all shadow-lg shadow-cyan-500/30 ${changingPassword ? 'opacity-60 cursor-not-allowed' : ''}`}
                 >
                   <Save className="w-5 h-5" />
-                  Đổi mật khẩu
+                  {changingPassword ? 'Đang đổi...' : 'Đổi mật khẩu'}
                 </button>
 
                 {/* Two-Factor Authentication */}

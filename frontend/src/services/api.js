@@ -241,6 +241,19 @@ class ApiService {
       body: formData,
     });
   }
+
+  async changePassword(oldPassword, newPassword) {
+    return this.request('/change-password/', {
+      method: 'PUT',
+      body: JSON.stringify({ old_password: oldPassword, new_password: newPassword }),
+    });
+  }
+
+  async deleteAvatar() {
+    return this.request('/delete-avatar/', {
+      method: 'DELETE'
+    });
+  }
 }
 
 export default new ApiService();

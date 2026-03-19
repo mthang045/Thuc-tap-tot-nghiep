@@ -16,6 +16,9 @@ Replaced Vector RAG (sentence-transformers) with BM25 for:
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import os
 import sys
 import pymongo
@@ -165,6 +168,14 @@ CORS(app,
      allow_headers=['Content-Type', 'Authorization', 'X-CSRFToken'],
      methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
      expose_headers=['Content-Disposition'])
+
+# Initialize Flask-Limiter for rate limiting (memory backend)
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,
+    default_limits=[],
+    storage_uri="memory://",
+)
 
 @app.after_request
 def after_request(response):
@@ -492,6 +503,49 @@ def upload_avatar():
             'error': str(e)
         }), 500
 
+
+@app.route('/api/delete-avatar/', methods=['DELETE'])
+@token_required
+def delete_avatar():
+    """Delete user's avatar file and clear avatar field in DB"""
+    try:
+        import pymongo
+        import os
+
+        user_email = request.user.get('email')
+
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        users_collection = db['users']
+
+        user = users_collection.find_one({'email': user_email})
+        if not user:
+            client.close()
+            return jsonify({'success': False, 'error': 'Không tìm thấy người dùng'}), 404
+
+        avatar = user.get('avatar', '')
+        # Remove avatar file if stored under static/avatars
+        if avatar and avatar.startswith('/static/avatars/'):
+            avatar_path = os.path.join(os.getcwd(), avatar[1:])  # remove leading /
+            if os.path.exists(avatar_path):
+                try:
+                    os.remove(avatar_path)
+                except Exception as e:
+                    print(f"⚠️ Failed to remove avatar file: {e}")
+
+        # Clear avatar field in DB
+        result = users_collection.update_one({'email': user_email}, {'$set': {'avatar': ''}})
+        client.close()
+
+        if result.modified_count == 0:
+            return jsonify({'success': False, 'error': 'Không thể xóa avatar'}), 500
+
+        return jsonify({'success': True, 'message': 'Đã xóa avatar'}), 200
+
+    except Exception as e:
+        print(f"❌ Error deleting avatar: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 @app.route('/api/history/', methods=['GET'])
 @token_required
 def get_analysis_history():
@@ -677,6 +731,7 @@ def token_required(f):
     return decorated
 
 @app.route('/api/register/', methods=['POST'])
+@limiter.limit('3 per minute')
 def register():
     """User registration endpoint"""
     try:
@@ -714,17 +769,18 @@ def register():
                 "error": "Email hoặc số điện thoại đã được đăng ký"
             }), 400
         
-        # Create new user
+        # Create new user (store hashed password)
+        hashed = generate_password_hash(data['password'])
         user_doc = {
             "full_name": data['full_name'],
             "email": data['email'],
             "phone": data['phone'],
-            "password": data['password'],  # In production, hash this!
+            "password": hashed,
             "created_at": datetime.utcnow(),
             "is_active": True,
             "subscription_tier": "free"
         }
-        
+
         result = users_collection.insert_one(user_doc)
         client.close()
         
@@ -742,6 +798,7 @@ def register():
         }), 500
 
 @app.route('/api/login/', methods=['POST'])
+@limiter.limit('10 per minute')
 def login():
     """User login endpoint"""
     try:
@@ -755,19 +812,53 @@ def login():
         
         # Connect to MongoDB
         import pymongo
-        
+
         client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
         db = client['legal_AI_db']
         users_collection = db['users']
-        
-        # Find user
+
+        # Find user by email
         user = users_collection.find_one({
-            "email": data['email'],
-            "password": data['password']  # In production, compare hashed passwords!
+            "email": data['email']
         })
-        
+
+        if not user:
+            client.close()
+            return jsonify({
+                "success": False,
+                "error": "Email hoặc mật khẩu không đúng"
+            }), 401
+
+        stored_pw = user.get('password', '')
+
+        # Check hashed password first
+        password_match = False
+        try:
+            if stored_pw:
+                password_match = check_password_hash(stored_pw, data['password'])
+        except Exception:
+            password_match = False
+
+        # Fallback for existing accounts with plaintext passwords: migrate to hashed password on successful match
+        if not password_match and stored_pw == data['password']:
+            # Plaintext match - migrate to hashed password
+            try:
+                new_hashed = generate_password_hash(data['password'])
+                users_collection.update_one({'email': data['email']}, {'$set': {'password': new_hashed}})
+                password_match = True
+            except Exception as e:
+                print(f"⚠️ Failed to migrate plaintext password: {e}")
+
+        if not password_match:
+            client.close()
+            return jsonify({
+                "success": False,
+                "error": "Email hoặc mật khẩu không đúng"
+            }), 401
+
+        # At this point password verified
         client.close()
-        
+
         if user:
             # Create JWT token
             token = create_token(user['email'], {
@@ -775,7 +866,7 @@ def login():
                 'subscription_tier': user.get('subscription_tier', 'free'),
                 'is_admin': user.get('is_admin', False)
             })
-            
+
             return jsonify({
                 "success": True,
                 "message": "Đăng nhập thành công!",
@@ -787,17 +878,69 @@ def login():
                     "is_admin": user.get('is_admin', False)
                 }
             })
-        else:
-            return jsonify({
-                "success": False,
-                "error": "Email hoặc mật khẩu không đúng"
-            }), 401
-            
+
     except Exception as e:
         return jsonify({
             "success": False,
             "error": f"Lỗi server: {str(e)}"
         }), 500
+
+
+@app.route('/api/change-password/', methods=['PUT'])
+@token_required
+@limiter.limit('6 per minute')
+def change_password():
+    """Allow user to change their password"""
+    try:
+        import pymongo
+        data = request.get_json()
+        user_email = request.user.get('email')
+        if not data or not data.get('old_password') or not data.get('new_password'):
+            return jsonify({'success': False, 'error': 'Thiếu dữ liệu'}), 400
+        old_pw = data.get('old_password')
+        new_pw = data.get('new_password')
+
+        if len(new_pw) < 8:
+            return jsonify({'success': False, 'error': 'Mật khẩu mới phải có ít nhất 8 ký tự'}), 400
+
+        # Connect to MongoDB
+        client = pymongo.MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+        db = client['legal_AI_db']
+        users_collection = db['users']
+
+        user = users_collection.find_one({'email': user_email})
+        if not user:
+            client.close()
+            return jsonify({'success': False, 'error': 'Không tìm thấy người dùng'}), 404
+
+        stored_pw = user.get('password', '')
+
+        # Verify old password (supports hashed and plaintext fallback)
+        valid_old = False
+        try:
+            if stored_pw:
+                valid_old = check_password_hash(stored_pw, old_pw)
+        except Exception:
+            valid_old = False
+
+        if not valid_old and stored_pw == old_pw:
+            # plaintext match - treat as valid
+            valid_old = True
+
+        if not valid_old:
+            client.close()
+            return jsonify({'success': False, 'error': 'Mật khẩu hiện tại không đúng'}), 401
+
+        # Hash new password and save
+        new_hashed = generate_password_hash(new_pw)
+        users_collection.update_one({'email': user_email}, {'$set': {'password': new_hashed}})
+        client.close()
+
+        return jsonify({'success': True, 'message': 'Đổi mật khẩu thành công'}), 200
+
+    except Exception as e:
+        print(f"❌ Error changing password: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/legal-documents/', methods=['GET'])
 def get_legal_documents():

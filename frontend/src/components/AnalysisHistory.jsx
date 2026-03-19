@@ -226,7 +226,7 @@ export function AnalysisHistory({ onViewAnalysis }) {
                             </span>
                             <span>•</span>
                             <span className="text-cyan-400">
-                              Điểm).toFixed(0)}/100
+                              {typeof getRiskScore(item) === 'number' ? `${Math.round(getRiskScore(item))}/100` : 'N/A'}
                             </span>
                           </>
                         )}
