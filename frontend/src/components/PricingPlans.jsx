@@ -7,6 +7,27 @@ export function PricingPlans({ userEmail, onUpgrade }) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
 
+  const renderComparisonCell = (value) => {
+    const text = String(value || '').trim();
+    const excludedKeywords = ['Không', '✗', '✖', 'No', 'N/A'];
+    const isExcluded = excludedKeywords.includes(text);
+
+    return (
+      <div className="flex items-center justify-center gap-3">
+        {isExcluded ? (
+          <div className="bg-slate-700/30 p-1 rounded-full flex items-center justify-center">
+            <X className="w-4 h-4 text-slate-500" />
+          </div>
+        ) : (
+          <div className="bg-green-500/20 p-1 rounded-full flex items-center justify-center">
+            <Check className="w-4 h-4 text-green-400" />
+          </div>
+        )}
+        <span className={isExcluded ? 'text-slate-600' : 'text-slate-300'}>{text}</span>
+      </div>
+    );
+  };
+
   const handleUpgradeClick = (planId) => {
     setSelectedPlan(planId);
     setShowPaymentModal(true);
@@ -357,8 +378,8 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                     {category.features.map((feature, i) => (
                       <tr key={i} className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
                         <td className="text-slate-300 py-3 px-4">{feature.name}</td>
-                        <td className="text-center text-slate-400 py-3 px-4">{feature.free}</td>
-                        <td className="text-center text-cyan-300 py-3 px-4">{feature.pro}</td>
+                        <td className="text-center text-slate-400 py-3 px-4">{renderComparisonCell(feature.free)}</td>
+                        <td className="text-center text-cyan-300 py-3 px-4">{renderComparisonCell(feature.pro)}</td>
                       </tr>
                     ))}
                   </tbody>
