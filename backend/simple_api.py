@@ -170,12 +170,9 @@ CORS(app,
      expose_headers=['Content-Disposition'])
 
 # Initialize Flask-Limiter for rate limiting (memory backend)
-limiter = Limiter(
-    app,
-    key_func=get_remote_address,
-    default_limits=[],
-    storage_uri="memory://",
-)
+# Use init_app to avoid argument ordering issues across versions
+limiter = Limiter(key_func=get_remote_address, default_limits=[], storage_uri="memory://")
+limiter.init_app(app)
 
 @app.after_request
 def after_request(response):
