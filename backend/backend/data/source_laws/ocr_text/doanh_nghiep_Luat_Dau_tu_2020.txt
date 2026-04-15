@@ -1,0 +1,3101 @@
+# Luat_Dau_tu_2020
+================================================================================
+
+--- Trang 1 ---
+Kỹ bởi: Cổng Thông tin điện tử Chính phủ
+› Email: thongtinchinhphu@chinhphu.vn
+1 Cơ quan: Văn phòng Chính phủ
+
+ngsrimtm Thời gian ký: 08.07.2020 15:53:35 +07:00
+
+QUÓC HỘI CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+Độc lập - Tự do - Hạnh phúc
+
+Luật số: 61/2020/QH14
+
+LUẬT
+ĐẦU TƯ
+
+Căn cứ Hiền pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam;
+Quốc hội ban hành Luật Đầu tư.
+
+Chương I
+NHỮNG QUY ĐỊNH CHUNG
+
+Điều 1. Phạm vi điều chỉnh
+
+Luật này quy định về hoạt động đầu tư kinh doanh tại Việt Nam và hoạt
+động đâu tư kinh doanh từ Việt Nam ra nước ngoài.
+
+Điều 2. Đối tượng áp dụng
+
+Luật này áp dụng đối với nhà đầều tư và cơ quan, tổ chức, cá nhân liên
+quan đến hoạt động đầu tư kinh doanh.
+
+Điều 3. Giải thích từ ngữ
+
+Trong Luật này, các từ ngữ dưới đây được hiểu như sau:
+
+1 Chcz4r› thuận chủ m:ơng đầu t là việc cơ quan nhà nước có thẩm quyền
+ủap thuận về mục tiêu, địa điểm, quy mô, tiền độ, thời hạn thực hiện dự án; nhà
+
+đầu tư hoặc hình thức lựa chọn nhà đầu tư và các cơ chế, chính sách đặc biệt
+(nếu có) đ thực hiện dự án đầu tư.
+
+2. Cơ quan đăng ký đầu t là cơ quan nhà nước có thẩm quyền cấp, điều
+chỉnh và thu hồi Giấy dxưng nhận đăng ký đầu tư.
+
+3. Cơ sở dữ liệu quốc gia wz đầu tư là tập hợp dữ liệu về các dự án đầu tư
+trên phạm vi toàn quôc có kết nối với hệ thống cơ sở dữ liệu của các cơ quan
+liên quan.
+
+4. Dự án đầu tư là tập hợp đề xuất bỏ vốn trung hạn hoặc dài hạn để tiền
+hành các hoạt động đầu tư kinh doanh trên địa bàn cụ thể, trong khoảng thời
+gian xác định.
+
+5. Dự án đầu tư mở rộng là dự án đầu tư Wat ư1en dự án đầu tư đang hoạt
+động ủng cách mở rộng quy mô, nâng cao công suất, đổi mới công nghệ, giảm
+ô nhiễm hoặc cải thiện môi trường.
+
+6. Dự án đầu tư mới là dự án đầu tư thực hiện lần đầu hoặc dự án đầu tư
+độc lập với dự án đâu tư đang hoạt động.
+
+
+--- Trang 2 ---
+7. Dự án đầu tư khởi nghiệp sáng tạo là dự án đầu tư thực hiện ý tưởng
+trên cơ sở khai thác tài sản trí tuệ, công nghệ, mô hình kinh doanh mới và có khả
+năng tăng trưởng nhanh.
+
+8. Đầu tư kinh doanh là việc nhà đầu tư bỏ vốn đầu tư để thực hiện hoạt
+động kinh doanh.
+
+9. Điều kiện đầu tư kinh doanh là điều kiện cá nhân, tô chức phải đáp ứng
+khi thực hiện hoạt động đầu tư kinh doanh trong ngành, nghề đâu tư kinh doanh
+có điều kiện.
+
+10. Điều kiện tiếp cận thị trường đối với nhà đầu tư nước ngoài là điều
+kiện nhà đầu tư nước ngoài phải đáp m1g đề đầu tư trong các ngành, r1gl1<ẹ thuộc
+Danh mục ngành, nghề hạn chế tiếp cận thị trường đối với nhà đầu tư nước
+ngoài quy định tại khoản 2 Điều 9 của Luật này.
+
+11. Giấy chứng nhận đăng ký đầu tư là văn ủn ủmg bản giấy hoặc bản
+điện tử ghi nhận thông tin đăng ký của nhà đầu tư về dự án đầu tư.
+
+12. Hệ fflong thông tin q|4t)L’ gia về đầu tư là hệ dmng thông tin nghiệp vụ
+chuyên môn để theo dõi, đánh giá, phân tích tình hình đầu tư trên phạm vi toàn
+quốc nhằm phục vụ cong tác quản lý nhà nước và hỗ trợ nhà đầu tư trong việc
+thực hiện hoạt động đầu tư kinh doanh.
+
+13. Hoạt ả›ng đầu tư ra nước ngoài là việc nhà đầu tư ủuyen vốn đầu tư
+từ Việt Nam ra nước ngoài, sử dụng lợi nhuận thu được từ nguôn vôn đầu tư này
+để thực hiện hoạt động đầu tư kinh doanh ở nước ngoài.
+
+14. Hợp đồng hợp tác kinh doanh ' (Sau đây gọi là hợp đồng BCC) là hợp
+đồng được ký giữa các nhà đầu tư nhằm hợp tác kinh doanh, phân chia kn
+nhuận, phân chia sản phẩm theo quy định của pháp luật mà không thành lập tổ
+chức kinh tế.
+
+15. Khu chế xuất là khu công ựhlep chuyên sản xuất hàng xuất khẩu,
+cung ứng dịch vụ cho sản xuất hàng xuất khâu và hoạt động xuất khâu.
+
+16. K7zu công mghzep là khu vực có ranh giới ffla lý xác định, chuyên sản
+
+. xuất hàng công nghiệp và cung ứng dịch vụ cho sản xuất công nghiệp.
+
+17. K'hukmh#elakhuvmzcoranhg›ơtđnalyxacdmh g(›lJ21ỉ1l1›1è!ll€lĩì~!l
+chức năng, được thành lập ủ thực hiện các mục tiêu thu hút đầu tư, phát triển
+kinh tế - xã hội và bảo vệ quốc phòng, an ninh.
+
+18. Msà đầu tư là tổ chức, cá nhân thực hiện hoạt động đầu tư kinh ủanh
+gồm nhà đầu tư trong nước, nhà đầu tư nước ngoài và tổ chức kinh tế có vốn đầu
+tư nước ngoài.
+
+19. Vhà đầu tư nước ngoài là cá nhân có quốc tịch nước ngoài, tổ chức
+thành lập theo pháp luật nước ngoài thực hiện hoạt động đâu tư kinh doanh tại
+Việt Nam.
+
+20. Vhà đầu tư trong nước là cá nhân có quốc tịch Việt Nam, tổ chức kinh
+
+
+--- Trang 3 ---
+tế không có nhà đầu tư nước ngoài là thành viên hoặc cổ đông.
+21. Tổ chức kinh tế là tổ chức được thành lập và hoạt động theo quy định
+
+của pháp luật Việt Nam, gồm doanh nghiệp, hợp tác xã, liên hiệp hợp tác xã và
+tổ chức khác thực hiện hoạt flong đầu tư kinh doanh.
+
+2 Tổ chức kinh t có vốn đầu tư nước ngoài là tổ chức kinh tế có nhà
+đầu tư nước ngoài là thành viên hoặc cổ đông.
+23. Vốn ảzu ư ht tiền và tài sản khác theo quy định của pháp luật về dân
+sự và điều ước quốc tế mà nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành
+viên để thực hiện hoạt động đầu tư kinh doanh.
+
+Điều 4. Áp dụng Luật Đầu tư và các luật có liên quan
+
+1. Hoạt động đầu tư kinh doanh trên lãnh thổ Việt Nam thực hiện theo
+quy định của Luật Đâu tư và luật khác có liên quan.
+
+2. Trường hợp có quy định khác nhau giữa Luật Đầu tư và luật khac ủ
+được ban hành trước ngày Luật Đầu tư có hiệu lực thỉ hành về ngành, nghề cắm
+
+đầu tư kinh doanh hoặc ganh nghề đầu tư kinh doanh có điều kiện thì thực
+hiện theo quy định của Luật Đầu tư.
+
+Quy định về tên ngành, nghe cấm đầu tư kinh doanh, r›ganh Ẹhe đầu tư
+kinh doanh có điều kiện trong các luật khác phải thống nhất với Điều 6 và các
+Phụ lục của Luật Đầu tư.
+
+3. Trường hợp có quy định khác nhau giữa Luật Đầu tư và luật khác đã
+được ban hành trước ngày Luật Đầu tư có hiệu lực thi hành về trình tự, thủ tục
+đầu tư kinh doanh, bảo đảm đầu tư thì thực hiện theo quy định của Luật Đầu tư,
+trừ các trường hợp sau đây:
+
+a) Việc đầu tư, quản lý, sử dụng vốn đầu tư của Nha nước tại ®anh
+mgtuep thực hiện theo quy định của Luật Quản lý, sử dụng vốn nhà nước đầu tư
+vào sản xuất, kinh doanh tại doanh nghiệp;
+
+b) Thẳm quyền, trình tự, thủ tục đầu tư u›ng và việc quản lý, sử dụng vốn
+đầu tư công thực hiện theo quy định của Luật Đầu tư công;
+
+c) Thẳm quyen trình tự, thủ tục đầu tư, thực hiện dự án; })Ìlẽì,lJ luật điều
+chỉnh hợp đồng đự á; án; bảắo đắm đầu tư, cơ chế quản lý vốn nhã nước áp dụng
+trực tiếp cho dự án đầu tư theo phương thức đối tác công tư thực hiện theo quy
+định của Luật Đầu tư theo phương thức đối tác công tư;
+
+d) Việc triển khai dự án đầu tư xây ùrng, nhà ở, khu đô fi'IỊ thực hiện theo
+quy định của Luật Xây dụng, Luật Nhà ở và Luật Kinh doanh bất động sản sau
+khi đã được cơ quan có thẩm quyền chấp thuận chủ trương đầu tư, chấp thuận
+điều chỉnh chủ trương đầu tư theo quy định tại Luật Đầu tư;
+
+đ) Thẳm <ìuyen, trình tự, thủ tục, điều kiện đầu tư kinh doanh theo quy
+định của Luật Các tổ chức tín dụng, Luật Kinh doanh bảo hiểm, Luật Dầu khí;
+
+e) Thẳm quyền, trình tự, thủ tục, điều kiện đầu tư kinh doanh, hoạt động
+
+
+--- Trang 4 ---
+về chứng khoán và thị trường chứng khoán trên thị trường chứng khoán Việt
+Nam thực hiện theo quy định của Luật Chứng khoán.
+
+4. Trường hợp luật Hxac ban hành sau ngày Luật Đầu tư có hiệu lực thi
+hành cần quy định đặc thù về đầu tư khác với quy định của Luật Đầu tư thì phải
+xác định cụ thể nội dung thực hiện hoặc không thực hiện theo quy định của Luật
+Đầu tư, nội dung thực hiện theo quy định của luật khác đó.
+
+5. Đối với hợp đồng trong đó có ít nhất một bên tham gia là nhà đầu tư
+nước ngoài hoặc tổ chức kinh tế quy định tại khoản 1 Điều 23 của Luật Đầu tư,
+các bên có thể thỏa thuận n-ong hợp đồng việc áp dụng jxap luật nước ngoài
+hoặc tập quán đầu tư quốc tễ nếu thỏa thuận đó không trái với quy định của pháp
+luật Việt Nam.
+
+Điều 5. Chính sách về đầu tư kinh doanh
+
+1. Nhà đầu tư có quyền thực hiện hoạt động đầu tư kinh doanh trong các
+lJgà.1JlC1.,l1\ẹgÌ.ì`Q!Il2l.aI.tlẸzÍ…I1a…y không cấm. Đối xJ«y111gza1111…,;Jglxc: đầu tư kinh doanh có
+điều kiện thì nhà đầu tư phải đáp ứng các điều kiện đầu tư kinh doanh theo quy
+định của pháp luật.
+
+2. Nhà đầu tư được tự quyết định và tự chịu trách nhiệm về hoạt động đầu
+tư kinh doanh the>o quy định của Luật này và quy định khác của pháp luật có liên
+quan; được tiếp cận, sử dụng các nguồn vốn tín dụng, quỹ hỗ trợ, sử dụng đất
+đai và tài nguyên khác theo quy định của pháp luật.
+
+3. Nhà đầu tư bị đình chỉ, ngừng, chấm dứt hoạt động đầu tư kinh doanh
+nếu hoạt động này ạy phương hại hoặc có nguy cơ gây phương hại đến quốc
+phòng, an ninh quốc gia.
+
+4. Nhà nước công nhận và bảo hộ quyen sở hữu về tài sản, vốn đầu tư, thu
+nhập và các quyền, lợi ích hợp pháp khác của nhà đầu tư.
+
+5. Nhà nước đối xử bình fflmg giữa các nhà đầu tư; có chính sách khuyến
+khích và tạo ffleu kiện thuận lợi để nhà ẽLau tư thực hiện hoạt động đầu tư kinh
+doanh, phát triển bền vững các ngành kinh tế.
+
+6. Nhà nước tôn trọng và thực hiện các điều ước quốc tế về đầu tư mà
+nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên.
+
+Điều 6. Ngành, nghề cấm đầu tư kinh doanh
+
+1. Cấm các hoạt động đầu tư kinh doanh sau đây:
+
+a) Kinh doanh các chất ma túy quy định tại Phụ lục I của Luật này;
+
+b) Kinh doanh các loại hóa chất, khoáng vật quy định tại Phụ lục II của
+Luật này;
+
+e) Kinh doanh mẫu vật các loài thực vật, động vật ủ›ang dã có nguon goc
+khai thác từ tự nhiên quy định tại Phụ lục I của Cong ước về buôn bán quốc tế
+
+các loài thực vật, động vật hoang dã nguy cấp; mẫu vật các loài thực vật rừng,
+động vật rừng, thủy sản nguy cấp, quý, hiếm Nhóm I có nguồn gốc khai thác từ
+
+
+--- Trang 5 ---
+tự nhiên quy định tại Phụ lục II của Luật này;
+
+d) Kinh doanh mại dâm;
+
+đ) Mua, bán người, mô, xác, bộ phận cơ thể người, bào thai người;
+
+e) Hoạt động kinh doanh liên quan đến sinh sản vô tính trên người;
+
+g) Kinh doanh pháo nổ;
+
+h) Kinh doanh dịch vụ đòi nợ.
+
+2. Việc sản xuất, sử dụng sản phẩm quy định tại các điểm a, b và e khoản
+1 Điều my trong phân tích, kiểm nghiệm, nghiên cứu khoa học, y tế, sản xuất
+dược ủam điều tra tội phạm, bảo vệ quốc phòng, an ninh thực hiện theo quy
+định của Chính phủ.
+
+Điều 7. Ngành, nghề đầu tư kinh doanh có điều kiện
+
+1. Ngành, nghe đầu tư kinh doanh có điều kiện là ngành, nghề mà việc
+thực hiện ủaatđongđan tư kinh dơanh trong ngành, nghề đó phải đáp ứng điều
+kiện cần thiết vì lý do quốc phòng, an ninh quôc gia, trật tự, an toàn xã hội, đạo
+đức xã hội, sức khỏe của cộng đông.
+
+2. Danh mục ngành, nghề đầu tư kinh doanh có điều kiện được quy định
+tại Phụ lục IV của Luật này.
+
+3. Điều kiện đầu tư kinh doanh đối với ngành, nghề quy định tại khoản 2
+Điều ¡ này được quy định tại luật, nghị quyết của Quốc hội, pháp lệnh, nghị quyet
+của Ủy ban Thường vụ Quốc hội, nghị định của Chính phu và điều ước quốc tế
+mà nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên. Bộ, cơ quan ngang
+Bộ, Hội đồng nhân dân, Ủy ban nhân dân các wp cơ quan, tổ chức, cá nhân
+khác không được ban hành quy định về điều kiện đâu tư kinh doanh.
+
+4. Điều kiện đầu tư kinh doanh phải được quy định phù hợp với lý do quy
+định tại khoản 1 Điều này và phải bảo đảm công khai, minh bạch, khách quan,
+tiết kiệm thời gian, chỉ phí tuân thủ của nhà đầu tư.
+
+5. Quy định về điều kiện đầu tư kinh doanh phải có các nội dung sau đây:
+
+a) Đối tượng và phạm vi áp dụng điều kiện đầu tư kinh doanh;
+
+b) Hinh thức áp dụng điều kiện đầu tư kinh đoanh;
+
+e) Nội dung điều kiện đầu tư kinh doanh;
+
+d) Hồ sơ, trình tự, thủ tục hành chính để tuân thủ điều kiện đầu tư kinh
+doanh (nêu có);
+
+đ) Cơ quan quản lý nhà nước, cơ quan có thẩm quyền giải quyết thủ tục
+hành chính đối với điều kiện đầu tư kinh doanh;
+
+e) Thời hạn có hiệu lực của ;g1ay phép, giấy chứng nhận, chứng chỉ hoặc
+văn bản xác nhận, chấp thuận khác (nếu có).
+
+6. Điều kiện đầu tư kinh doanh được áp dụng theo các hình thức sau đây:
+
+
+--- Trang 6 ---
+a) Giấy phép;
+
+b) Giấy chứng nhận;
+
+c) Chứng chỉ;
+
+d) Văn bản xác nhận, chấp thuận;
+
+đ) Các yeu cầu khác mà cá nhân, tổ ủưc kinh tế phải đáp m1g để thực
+hiện hoạt động đầu tư kinh doanh mà không cần phải có xác nhận bằng văn bản
+của cơ quan có thẩm quyền.
+
+7. Ngành, nghề đầu tư kinh doanh có điều kiện và điều kiện đầu tư kinh
+doanh đối với ngành, nghề đó phải được đăng tải trên Công thông tin quốc gia
+về đăng ký doanh nghiệp.
+
+8. Chính phủ quy định chỉ tiết việc công bố và kiểm soát điều kiện đầu tư
+kinh doanh.
+
+Điều 8. Sửa đối, bố sung ngành, nghề cấm đầu tư kinh doanh, Đanh
+mục ngành, nghề đầu tư kinh doanh có điều kiện, điều kiện đầu tư kinh doanh
+
+1. Căn cứ điều kiện kinh tế - xã hội và yêu pầu quản lý nhà nước trong
+từng thời kỳ, Chính phủ rà soát các ỵanh nghề cấm đầu tư kinh doanh, Danh
+
+mục ựanh nghe đầu tư kinh doanh có điều kiện và trình Quốc hội sửa đổi, bổ
+sung Điều 6, Điều 7 và các Phụ lục của Luật này theo trình tự, thủ tục rút gọn.
+
+2. Việc sửa đổi, bổ sung ngành, nghề đầu tư kinh doanh có điều kiện hoặc
+điều kiện đầu tư kinh doanh phải phù hợp với quy định tại các khoản 1, 3, 4, 5
+và 6 Điều 7 của Luật này.
+
+Điều 9. Ngành, nghề và điều kiện tiếp cận thị trường đối với nhà đầu
+tư nước ngoài
+
+1. Nhà đầu tư nước ngoài được á áp dụng điều kiện tiếp cận thị trường như
+quy định đối với nhà đầu tư trong nước, trừ trường hợp quy định tại khoản 2
+Điều này.
+
+2. Căn cứ luật, nghị quyết của Quốc hội, pháp lệnh, nghị quyet wa Ủy
+ban Thường vụ Quốc hội, nghị định của Chính phủ và điều ước quốc tế mà
+nước Cộng hòa xã hội chủ Ẹhm Việt Nam là thành viên, Chính phủ công bố
+Danh mục nge›.nh nghề hạn chế tiếp cận thị trường đối với nhà đầu tư nước
+ngoài, bao gom
+
+a) Ngành, nghề chưa được tiếp cận thị trường;
+
+b) Ngành, nghề tiếp cận thị trường có điều kiện.
+
+3. Điều kiện tiếp cận thị u~ương đối với nhà đầu tư nước ụoau quy định
+tại Danh mục ngành, nghề hạn chế tiếp cận thị trường đối với nhà đầu tư nước
+ngoài bao gồm:
+
+a) Tỷ lệ sở hữu vốn điều lệ của nhà đầu tư nước ngoài trong tổ chức kinh tế;
+
+
+--- Trang 7 ---
+b) Hình thức đầu tư;
+
+) Phạm vi hoạt động đầu tư;
+
+d) Năng lực của nhà đầu tư; đối tác tham gia thực hiện hoạt động đầu tư;
+đ) Điều lc1en khác theo quy định tại luật, nghị quyết của Quốc hội, pháp
+
+lệnh, nghị ựyet của Ủy ban Thường vụ Quốc hội, nghị định của Chính phu và
+điều ước quốc tế mà nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên.
+
+4. Chính phủ quy định chi tiết Điều này.
+
+Chương H
+BẢO ĐẢM ĐẦU TƯ
+Điều 10. Bảo đảm quyền sở hữu tài sản
+_1. Tài sản hợp pháp của nhà đầu tư không bị quốc hữu hóa hoặc bị tịch
+thu băng biện pháp hành chính.
+2. Trường hợp Nhà nước trưng mua, trưung dụng tài sản vì lý do quốc
+phòng, an ninh hoặc vì lợi ích quốc gia, tình trạng khẩn cấp, fflJong, chống thiên
+
+tai thì nhà đầu tư được thanh toán, bồi thường theo quy định của pháp luật về
+trưng mua, trưng dụng tài sản và quy định khác của pháp luật có liên quan.
+
+Điều 11. Bảo đảm hoạt động đầu tư kinh doanh
+1. Nhà nước không bắt buộc nhà đầu tư phải thực hiện những yêu cầu
+sau đây:
+
+a) Ưu tiên mua, sử dụng hàng hóa, dịch vụ trong nước hoặc phải mua, sử
+dụng hàng hóa, dịch vụ từ nhà sản xuất hoặc cung ứng dịch vụ trong nước;
+
+b) Xuất khẩu hàng hóa hoặc dịch vụ đạt một tỷ lệ nhất định; hạn chế số
+lượng, giá trị, loại hàng hóa và dịch vụ xuất khẩu hoặc sản xuất, cung ứng
+trong nước;
+
+c) Nhập khẩu ì hàng hóa với số lượng và giá trị tương ứng với so lượng và
+giá trị hàng hóa xuất khe1u hoặc phải tự cân đối ngoại tệ từ nguồn xuất khẩu để
+đáp ứng nhu cầu nhập khẩu;
+
+d) Đạt được tỷ lệ nội địa hóa đối với hàng hóa sản xuất trong nước;
+
+đ) Đạt được một mức độ hoặc giá trị nhất định trong hoạt động nghiên
+cứu và phát triên ở trong nước;
+
+e) Cung cấp hàng hóa, dịch vụ tại một địa điểm cụ thể ở trong nước hoặc
+nước ngoài;
+
+g) Đặt trụ sở chính tại địa điểm theo yêu cầu của cơ quan nhà nước có
+thẳẩm quyền.
+
+2. Căn cứ điều kiện phát triển kinh tế - _xã hội và nhu cầu thu hút đầu tư
+trong từng thời kỳ, Thủ tướng Chính phủ quyết định áp dụng các hình thức bảo
+
+
+--- Trang 8 ---
+đảm của Nhà nước để thực hiện dự án đầu tư thuộc thẳm quyền chấp thuận chủ
+trương. ủu tư của Quốc hội, Thủ tướng Chính phủ và những dự án đầu tư phát
+triển kết cầu hạ tằng quan trọng khác.
+
+CChính phủ quy định chỉ tiết khoản này.
+
+Điều 12. Bảo đầm quyền chuyển tài sản của nhà đầu tư nước ngoài ra
+nước ngoài
+
+Sau khi thực hiện đầy đủ nghĩa vụ tài chính đối với Nhà nước Việt Nam
+theo quy định của pháp luật, nhà đầu tư nước ngoài được chuyển ra nước ngoài
+các tài sản sau đây:
+
+1. Vốn đầu tư, các khoản thanh lý đầu tư;
+
+2. Thu nhập từ hoạt động đầu tư kinh doanh;
+
+3. Tiền và tài sản khác thuộc sở hữu hợp pháp của nhà đầu tư.
+
+Điều 13. Bảo đảm đầu tư kinh doanh trong trường hợp thay đỗi pháp luật
+
+1. Trường hợp văn bản pháp luật mới được ban hành quy định ưu đãi đầu
+tư mới, ưu đãi đầu tư cao hơn thì nhà đầu tư được hưởng ưu đãi đầu tư theo quy
+định của văn bản pháp luật mới cho thời gian hưởng ưu đãi còn lại của dự án
+đầu tư, trừ ưu đãi đầu tư đặc biệt đối với dự án đầu tư thuộc trường hợp quy định
+tại điểm a khoản 5 Điều 20 của Luật này.
+
+2. Trường hợp văn bản pháp luật mới được ban hành quy định ưu đãi đầu
+tư thap hơn ưu đãi đầu tư mà nhà đầu tư được hưởng trước đó thì nhà đầu tư
+được tiếp tục áp dụng ưu đãi đầu tư theo quy định trước đó cho thời gian hưởng
+ưu đãi còn lại của dự án đầu tư.
+
+3. Quy định tại khoản 2 Điều r1ay không áp dụng trong mxơng mxp thay
+đổi quy định của văn bản pháp luật vì lý do quốc phòng, an ninh ạxoc gia, trật
+tự, an toàn xã hội, đạo đức xã hội, sức khỏe của cộng đồng, bảo vệ môi trường.
+
+4. Trường hợp nhà đầu tư không được tiếp tục áp dụng ưu đãi đầu tư theo
+quy định tại khoản 3 Điêu này thì được xem xét, giải quyêt băng một hoặc một
+số biện pháp sau đây:
+
+) Khấu trừ thiệt hại thực tế của nhà đầu tư vào thu nhập chịu thuế;
+
+b) Điều chỉnh mục tiêu hoạt động của dự án đầu tư;
+
+c) Hỗ trợ nhà đầu tư khắc phục thiệt hại.
+
+5. Đối với biện pháp bảo đảm đầu tư quy định tại khoản 4 Điều này, nhà
+đầu tư phải có yêu cầu bằng văn bản trong thời hạn 03 năm kể từ ngày văn bản
+pháp luật mới có hiệu lực thi hành.
+
+Điều 14. Giải quyết tranh chấp trong hoạt động đầu tư kinh doanh
+
+1. Tranh chấp liên quan đến hoạt động đầu tư kinh doanh tại Việt Nam
+
+được giải quyết thông qua thương lượng, hòa giải. Trường hợp không thương
+lượng, hòa giải được thì tranh chấp được giải quyết tại Trọng tài hoặc Tòa án
+
+
+--- Trang 9 ---
+theo quy định tại các khoản 2, 3 và 4 Điều này.
+
+2. Tranh chấp giữa các nhà đầu tư trong nước, tổ chức kinh tế có V0r1 đầu
+tư nước Ẹoax hoặc giữa nhà đầu tư trong nước, tổ chức kinh tẾ có vốn đầu tư
+nước ngoài với cơ quan nhà nước cớ thẩm mzycn 11en quan đến hoạt động đầu tư
+kinh doanh trên lãnh thổ Việt Nam được giải quyết thông qua Trọng tài Việt
+Nam hoặc Tòa án Việt Nam, trừ trường hợp quy định tại khoản 3 Điều này.
+
+3. Tranh chấp giữa các nhà ủu tư trong đó có ít nhất một bên là nhà đầu
+tư nước ngoài hoặc tổ chức kinh tế quy định tại các điểm a, b và c khoản 1 Điều
+23 của Luật này được giải quyết thông qua một trong những cơ quan, tổ chức
+sau đây:
+
+a) Tòa án Việt Nam;
+
+b) Trọng tài Việt Nam;
+
+œ) Trọng tài nước ngoài;
+
+d) Trọng tài quốc tế;
+
+đ) Trọng tài do các bên tranh chấp thỏa thuận thành lập.
+
+4. Tranh chap giữa nhà đầu tư nước ngoài với cơ quan nhà nước có thẩm
+quyen liên quan đến hoạt động đầu tư kinh doanh trên lãnh thổ Việt Nam được
+giải quyết thông qua Trọng tài Việt Nam hoặc Tòa á án Việt Nam, trừ trường hợp
+có thỏa thuận khác theo hợp đồng hoặc điều ước quốc tế mà nước Cộng hòa xã
+hội chủ nghĩa Việt Nam là thành viên có quy định khác.
+
+Chương II
+ƯU ĐÃI VÀ HỖ TRỢ ĐẦU TƯ
+
+Điều 15. Hình thức và đối tượng áp dụng ưu đãi đầu tư
+1. Hình thức ưu đãi đầu tư bao gồm:
+
+a) Ưu đãi thuế thu nhập doanh nghiệp, bao g›m áp dụng mức thuế suất
+thuế thu nhập doanh nghiệp thấp hơn mức thuế wat tl1ong thường có thời hạn
+hoặc toàn bộ thời gian thực hiện dự án ủu tư; miễn thuế, giảm thuế và các ưu
+đãi khác theo quy định của pháp luật về thuế thu nhập doanh nghiệp;
+
+b) Miễn thuế nhập khẩu đối với hàng hóa nhập kh†1u để tạo tài sản cố
+định; nguyên liệu, vật nx linh kiện nhập khẩu để sản xuất theo quy định của
+pháp luật về thuế xuất khẩu, thuế nhập khẩu;
+
+e) Miễn, giảm tiền sử dụng đất, tiền thuê đất, thuế sử dụng đất;
+d) Khấu hao nhanh, tăng mức chỉ phí được trừ khi tính thu nhập chịu thuế.
+2. Đối tượng được hưởng ưu đãi đầu tư bao gồm:
+
+_..a) Dự án đầu tư thuộc ngành, nghề ưu đãi đầu tư quy định tại khoản 1
+Điêu 16 của Luật này;
+
+
+--- Trang 10 ---
+10
+
+b) Dự án đầu tư tại địa bàn ưu đãi đầu tư quy định tại khoản 2 Điều 16 của
+Luật này;
+
+9) Dự án đầu tư có quy mô vốn từ 6.000 tỷ &Jng trở lên, thực hiện giải
+ngấn tối thiểu 6.000 tỷ đồng trong thời hạn 03 năm kể từ ngày được cấp Giấy
+chứng nhận đăng ký đầu tư hoặc chấp thufJ.n chủ trương đầu tư, đong thời có một
+trong các tiêu chí sau: có tổng doanh thu tối thiểu đạt 10.000 tỷ đồng mỗi năm
+trong thời gian chậm nhất sau 03 năm kể từ năm có doanh thu hoặc sử dụng trên
+3.000 lao động;
+
+d) Dự án đầu tư xây dựng nhà ở xã hội; dự án đầu tư tại vùng nông thôn
+sử dụng từ 500 lao động trở lên; dự án đầu tư sử dụng lao động là người khuyết
+tật theo quy định của pháp luật về người khuyết tật;
+
+đ) Doanh nghiệp công nghệ cao, doanh mgh1ep khoa học và công nghệ, tổ
+chức khoa học và công nghệ; dự án có chuyển giao u›ng nghệ thuộc Danh mục
+công nghệ khuyến khích chuyển gao theo quy định của pháp luật về chuyển
+giao công nghệ; cơ sở ươm tạo công nghệ, cơ sở ươm tạo doanh nghiệp khoa
+học và cong nghệ theo quy định của ủap luật về công nghệ cao, pháp luật về
+khoa học và công nghệ: doanh ghlep un xuất, cung cấp công nghệ, thiết bị, sản
+phẩm và dịch vụ phục vụ các yêu câu về bảo vệ môi trường theo quy định của
+pháp luật về bảo vệ môi trường;
+
+e) Dự án đầu tư khởi nghiệp sáng tạo, trung tâm đổi mới sáng tạo, trung
+tâm nghiên cứu và phát triển;
+
+g) Đầu tư kinh doanh chuỗi phân phm sản phẩm của doanh nghiệp nhỏ và
+vừa; đầu tư kinh doanh cơ sở kỹ thuật hỗ trợ doanh nghiệp nhỏ và vừa, cơ sở
+ươm tạo doanh nghiệp nhỏ và vừa; đầu tư kinh doanh khu làm việc chung hỗ trợ
+doanh nghiệp nhỏ và vừa khởi nghiệp sáng tạo theo quy định của pháp luật về
+hô trợ doanh nghiệp nhỏ và vừa.
+
+3. Ưu đãi đầu tư được áp dụng đối với dự án đầu tư mới và dự án đầu tư
+mở rộng.
+
+4. Mức ưu đãi cụ thể đối với từng loại ưu đãi đầu tư được áp dụng theo
+quy định của pháp luật về thuê, kê toán và đât đai.
+
+5. Ưu đãi đầu tư quy định tại các điểm b, c và d khoản 2 Điều này không
+áp dụng đôi với các dự án đâu tư sau đây:
+
+a) Dựán đầu tư khai thác khoáng sản;
+
+b) Dự án đầu tư sản xuất, kinh doanh hàng hóa, mch vụ thuộc đối tượng
+chịu thuế mm thụ đặc biệt theo quy định của Luật Thuế tiêu thụ đặc biệt, trừ dự
+án sản xuất ô tô, tàu bay, du thuyền;
+
+„ e)Dựán đầu tư xây dựng nhà ở thương mại theo quy định của pháp luật
+về nhà ở.
+6. Ưu đãi đầu tư được áp dụng có thời hạn và trên cơ sở kết quả thực hiện
+
+
+--- Trang 11 ---
+11
+
+dự án của nhà đầu tư. Nhà đầu tư phải đáp ứng điều kiện hưởng ưu đãi theo quy
+định của pháp luật trong thời gian hưởng ưu đãi đầu tư.
+
+7. Dự án đầu tư đáp ứng điều kiện hưởng các mức ưu đãi đầu tư khác
+nhau, bao gồm cả ưu đãi đầu tư theo quy định tại Điều 20 của Luật này thì được
+áp dụng mức ưu đãi đầu tư cao nhất.
+
+8. Chính phủ quy định chi tiết Điều này.
+
+Điều 16. Ngành, nghề ưu đãi đầu tư và địa bàn ưu đãi đầu tư
+
+1. Ngành, nghề ưu đãi đầu tư bao gồm:
+
+a) Hoạt động wng nghệ cao, sản ủam công nghiệp hỗ trợ công nghệ cao,
+
+hoạt động gluen cứu và phát triển, sản xuất các sản Ẹ›hz1m hình thành từ kết quả
+khoa học và công nghệ theo quy định của pháp luật về khoa học và công nghệ;
+
+b) Sản mat vật heu mới, năng lượng mới, năng lượng sạch, mng lượng
+tái tạo; sản xuất sản jlam có giá trị gia tăng từ 30% trở lên, sản phẩm tiết kiệm
+năng lượng;
+
+c) Sản xuất sản phẩm điện tử, sản phẩm cơ khí trọng điểm, máy nông
+nghiệp, ô tô, phụ tùng ô tô; đóng tàu;
+
+d) Sản xuất sản phẩm thuộc Danh mục sản phẩm công nghiệp hỗ trợ ưu
+tiên phát triên;
+
+đ) Sản xuất sản phẩm công nghệ thông tin, phần mềm, nội dung số;
+
+e) Nuôi trồng, chế biến nông sản, lâm wn, thủy an, trong và bao ve rừng;
+làm mu<›1, khai thác hải sản và dịch vụ hậu cân nghề cá; sản xuất giống cây
+trồng, g1o11g vật nuôi, sản phzìm công nghệ sinh học;
+
+g) Thu gom, xử lý, tái chế hoặc tái sử dụng chất thải;
+
+_.. h) Đầu tư phát triển và vận hành, quản lý công trình kết cấu hạ tằng; phát
+triển vận tải hành khách công cộng tại các đô thị;
+
+i) Giáo dục mầm non, giáo dục phổ thông, giáo dục nghề nghiệp, giáo dục
+đại học;
+
+k) Khám bệnh, chữa bệnh; sản xuất thuốc, guỵen liệu làm thuốc, bảo
+quản thuoc:, nghiên cứu khoa học w. công ghe bào chê, công nghệ sinh học để
+sản xuất các loại thuốc mới; sản xuất trang thiết bị y tế;
+
+1) Đầu tư cơ sở luyện tập, thi đấu thể dục, thể thao cho người khuyết tật
+hoặc chuyên nghiệp; bảo vệ và phát huy giá trị di sản văn hóa;
+
+m) Đầu tư trung tâm lão khoa, tâm thần, ủ:u trị bệnh nhân nhiễm ủat
+độc màu da cam; trung tâm chăm sóc người cao tuổi, người khuyết tật, trẻ mồ
+côi, trẻ em lang thang không nơi nương tựa;
+
+n) Quỹ tín dụng nhân dân, tổ chức tài chính vi mô;
+
+o) Sản xuất hàng hóa, cung cấp dịch vụ tạo ra hoặc tham gia chuỗi giá trị,
+
+
+--- Trang 12 ---
+12
+
+cụm liên kết ngành.
+
+2. Địa bàn ưu đấi đầu tư bao gồm:
+
+a) Địa bàn có điều kiện kinh tế - xã hội khó khăn, địa bàn có điều kiện
+kinh tê - xã hội đặc biệt khó khăn;
+
+b) Khu công nghiệp, khu chế xuất, khu công nghệ cao, khu kinh tế.
+
+3. Căn cứ ngành, nghề, địa bàn ưu đãi đầu tư quy định tại khoản 1 và
+khoản 2 Điều này, Chính phủ ban hành, sửa đm, bổ sung Danh mục ngành, nghề
+
+ưu đãi đầu tư và Danh mục địa bàn ưu đãi đầu tư; xác định ngành, nghề đặc biệt
+ưu đãi đầu tư trong Danh mục ngành, nghề ưu đãi đầu tư.
+
+Điều 17. Thủ tục áp dụng ưu đãi đầu tư
+
+Căn cứ đối tượng quy định tại khoản 2 Điều 15 của Luật này, văn bản
+chấp thuận chủ trương đầu tư (nếu có), Giấy chứng nhận đăng ký đầu tư (neu
+có), quy định khác của pháp luật có liên quan, nhà đầu tư tự xác định ưu đãi đầu
+tư và thực hiện thủ tục hưởng ưu đãi đầu tư tại cơ quan thuế, cơ quan tài chính,
+cơ quan hải quan và cơ quan khác có thẩm quyền tương ứng với từng loại ưu đãi
+đầu tư.
+
+Điều 18. Hình thức hỗ trợ đầu tư
+
+1. Các hình thức hỗ trợ đầu tư bao gồm:
+
+a) Hỗ trợ phát triển hệ thống kết cầu hạ tằng kỹ thuật, hạ tằng xã hội trong
+và ngoài hàng rào dự án đâu tư;
+
+b) Hỗ trợ đào tạo, phát triển nguồn nhân lực;
+
+c) Hỗ trợ tín dụng;
+
+d) Bỗ trợ tiếp cận mặt bằng sản xuất, kinh doanh; hỗ trợ cơ sở sản xuất,
+kinh doanh di dời theo quyết định của cơ quan nhà nước;
+
+đ) Hỗ trợ khoa học, kỹ thuật, chuyển giao công nghệ;
+
+e) Hỗ trợ phát triển thị trường, cung cấp thông tin;
+
+g) Hỗ trợ nghiên cứu và phát triển.
+
+2. Căn cứ định hướng phát triển kinh tế - xã hội và khả  năng cân đối ngân
+sách nhà nước trong từng thời kỳ, Chính phủ quy định chỉ tiết các hình thức hỗ
+trợ đầu tư quy định tại khoản 1 Điều này đối với doanh nghiệp công nghệ cao,
+doanh nghiệp khoa học và công nghệ, tổ chức khoa học và công ghẹ, doanh
+
+r1gh1ep đầu tư vào nông r1ghxẹp, nông thôn, doanh nghiệp đầu tư vào giáo dục,
+phổ biến pháp luật và các đối tượng khác.
+
+Điều 19 Hỗ ượ phát triển hệ thống ket cấu hạ tằng khu công nghiệp,
+khu chế xuất, khu công nghệ cao, khu kinh tế
+
+1. Căn cứ quy hoạch đã được quyết định hoặc phê duyệt theo quy định
+
+
+--- Trang 13 ---
+13
+
+của pháp luật về quy hoạch, các Bộ, cơ ạan ngang Bộ, Ủy ban nhân dân &ỉp
+tỉnh my dựụng kế mạch đầu tư phát triển và tổ chức xây dụng hệ thống kết câu
+
+hạ tầng kỹ thuật, hạ tằng xã hội ngoài hàng rào khu công nghiệp, khu chế xuất,
+khu công nghệ cao, khu chức năng thuộc khu kinh tế.
+
+2. Nhà nước hỗ trợ một Wan V0l'A đầu tư phát triển từ ngein sách nhà
+nước và wn tín dụng ưu đãi để phat triển đồng bộ hệ thống kết cấu hạ tầng kỹ
+thuật, hạ tằng xã hội trong và ngoài hàng rào khu công nghiệp tại địa bàn có
+điều kiện kinh tế - xã hội khó khăn hoặc địa bàn có điều kiện kinh tế - xã hội
+đặc biệt khó khăn.
+
+3. Nhà nước hỗ trợ một phần vốn đầu tư phát triển từ ngân sách nhà mxơc,
+vốn tín dụng ưu đãi và áp dụng các phương thức huy động vôn khác ừ xây
+dựng hệ thống kết cấu hạ tằng kỹ thuật, hạ tằng xã hội trong khu kinh tế, khu
+công nghệ cao.
+
+Điều 20. Ưu đãi và hỗ trợ đầu tư đặc biệt
+
+1. Chính phủ ụxyet định việc áp dụng ưu đãi, hỗ trợ đầu tư đặc biệt nhằm
+
+l<huyzex'A khích phát triển một số dự án đầu tư có tác động lớn đến phát triển kinh
+tế - xã hội.
+
+2. Đối tượng áp dụng ưu đãi, hỗ trợ đầu tư đặc biệt quy định tại khoản 1
+Điều này bao gồm:
+
+a) Dự án đầu tư thành lập mới (bao gồm cả việc mở rộng dự án thành klp
+mới ®J các trung tâm đổi mới sáng tạo, trung tâm ghlen cứu và phát triển có
+tong vốn đầu tư từ 3.000 tỷ C.iong trở lên, thực ủan giải ngân tối thiểu 1.000 tỷ
+đồng trong thời hạn 03 năm kể từ ngày được cấp fflay chứng nhận đăng ký đầu
+tư hoặc chấp thuận chủ trương đầu tư; trung tâm đổi mới sáng tạo quốc gia được
+thành lập theo quyết định của Thủ tướng Chính phủ;
+
+b) Dự án đầu tư thuộc ngành, nghề đặc biệt ưu đãi đầu tư có quy mô vốn
+đầu tư từ 30.000 tỷ đong trở lên, thực hiện giải ngân tối thiểu 10.000 tỷ &mg
+trong thời hạn 03 năm kể từ _ngày được cấp Giấy chứng nhận đăng ký đầu tư
+hoặc chấp thuận chủ trương đầu tư.
+
+3. Mức ưu đãi và thời hạn áp ủng ưu đãi đặc biệt thực hiện theo quy định
+của Luật Thuế thu nhập doanh nghiệp vả phấp luật về đất đai.
+
+4. ffl`› trợ đầu tư đặc biệt được thực hiện theo các hình thức quy định tại
+khoản 1 Điều 18 của Luật này.
+
+5. Ưu đãi, hỗ trợ đầu tư đặc biệt quy định tại Điều này không áp dụng đối
+với các trường hợp sau đây:
+
+a) Dự án đầu tư đã được cấp Giấy chúng nhận đầu tư, Giấy ủung nhận
+đăng ký đầu tư hoặc quyet định chủ trương đầu tư trước ngày Luật này có hiệu
+lực thi hành;
+
+b) Dự án đầu tư quy định tại khoản 5 Điều 15 của Luật này.
+
+
+--- Trang 14 ---
+14
+
+6. Chính phủ trình Quốc hội quyết định áp dụng các ưu đãi đầu tư khác
+với ưu đãi đầu tư được quy định tại Luật này và các luật khác trong trường hợp
+cần khuyến khích phát triển một dự án đầu tư đặc biệt quan trọng hoặc đơn vị
+hành chính - kinh tế đặc biệt.
+
+7. Chính phủ quy định chỉ tiết Điều này.
+
+Chương IV
+HOẠT ĐỘNG ĐẦU TƯ TẠI VIỆT NAM
+
+Mục1
+HÌNH THỨC ĐẦU TƯ
+
+Điều 21. Hình thức đầu tư
+
+1. Đầu tư thành lập tổ chức kinh tế.
+
+2. Đầu tư góp vốn, mua cỗ phần, mua phần vốn góp.
+
+3. Thực hiện dự án đầu tư.
+
+4. Đầu tư theo hình thức hợp đồng BCC.
+
+5. Các hình thức đầu tư, loại hình tổ chức kinh tế mới theo quy định của
+Chính phủ.
+
+Điều 22. Đầu tư thành lập tổ chức kinh tế
+
+1. Nhà đầu tư thành lập tổ chức kinh tế theo quy định sau đây:
+
+a) Nhà đầu tư trong nước thành lập tổ chức kinh tế theo quy định của pháp
+luật về doanh nghiệp và pháp luật tương ứng với từng loại hình tô chức kinh tê;
+
+_.. b) Nhà đầu tư nước ngoài thành lập tổ chức kinh tế phải đáp ứng điều kiện
+tiếp cận thị trường đối với nhà đâu tư nước ngoài quy định tại Điêu 9 của Luật này;
+_ e) Trước khi thành lập tổ chức kinh tế, nhà đầu tư nước ngoài phải có dự
+án đầu tư, thực hiện thủ tục cấp, điều chỉnh Giấy chứng nhận đăng ký đâu tư, trừ
+trường hợp thành lập doanh nghiệp nhỏ và vừa khởi nghiệp sáng tạo và quỹ đầu
+tư khởi nghiệp sáng tạo theo quy định của pháp luật về hỗ trợ doanh nghiệp nhỏ
+và vừa.
+
+2. Kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp hoặc giấy
+tờ khác có giá trị pháp lý tương đương, tô chức kinh tế do nhà đầu tư nước ngoài
+thành lập là nhà đầu tư thực hiện dự án đầu tư theo quy định tại Giây chứng
+nhận đăng ký đâu tư.
+
+Điều 23. Thực hiện hoạt động đầu tư của tổ chức kinh tế có vốn đầu
+tư nước ngoài
+
+1. Tổ chức kinh tế phải đáp ứng điều kiện và thực hiện thủ tục đầu tư theo
+quy định đối với nhà đâu tư nước ngoài khi đầu tư thành lập tô chức Ẹnh tê
+khác; đầu tư góp vốn, mua cổ phần, mua phần vốn góp của tổ chức kinh tê khác;
+
+
+--- Trang 15 ---
+15
+
+đầu tư theo hình thức hợp đồng BCC nếu tổ chức kinh tế đó thuộc một trong các
+trường hợp sau đây:
+
+a) Có nhà đầu tư nước ngoài nắm fflư trên 50% von điều lệ Mac có đa số
+thằnh viên hợp danh là cá nhân nước ngoài đối với tổ chức kinh tế là công ty
+hợp danh;
+
+b) Có tổ chức kinh tẾ quy định tại điểm a khoản này nắm giữ trên 50%
+vốn điều lệ;
+
+.c) Có nhà đầu tư nước ngoài và tổ chức kinh tế quy định tại điểm a khoản
+này nắm giữ trên 50% vốn điều lệ.
+
+2. Tổ chức kinh tế không thuộc n-ương hợp quy định tại các điểm a, b và c
+khoản 1 Điều này thực hiện điều kiện và thủ tục đầu tư theo quy định đối với
+nhà đầu tư n-ong nước khi đầu tư thành lập m chức kinh te khác; đầu tư theo
+hình thức góp vôn, mua cỗ ủan mua phần vốn góp của tổ chức kinh tế khác;
+'đầu tư theo hình thức hợp đồng BCC.
+
+3 Tổ chức kinh tế có vốn đầu tư nước ngoài đã được thành lập tại Việt
+Nam nếu có dự án đầu tư mới thl làm thủ tục thực hiện dự án đầu tư đó mà
+không nhất thiết phải thành lập tổ chức kinh tế mới.
+
+4. Chính phủ quy định chi tiết về trình tự, thủ tục đầu tư thành kap to chức
+kinh m và ve thực hiện hoạt ủng đầu tư của nhà đầu tư nước ngoài, tổ chức
+kinh tẾ có vốn đầu tư nước ngoài.
+
+Điều 24. Đầu tư theo hình thức góp vốn, mua cổ phần, mua phần vốn góp
+
+1. Nhà đầu tư có quyền góp vốn, mua cổ phần, mua phần vốn góp của tổ
+chức kinh tê.
+
+2. Việc nhà đầu tư nước ngoài góp vốn, mua cổ phần, mua phần vốn góp
+của tổ chức kinh tế phải đáp ứng các quy định, điều kiện sau đây:
+
+a) Điều kiện tiếp cận thị trường đối với nhà đầu tư nước ngoài quy định
+tại Điều 9 của Luật này;
+
+b) Bảo đảm quốc phòng, an ninh theo quy định của Luật này;
+
+€} Quy định của pháp luật về đất đại về ủ-.u kiện nhận quyền sử dụng zỉa'c
+điều kiện sử dụng đất tại đảo, xã, phường, thị trấn biên giới, xã, phường, thị trần
+ven biển.
+
+Điều 25. Hình thức góp vốn, mua cổ phần, mua phần vốn góp
+
+1. Nhà đầu tư được góp vần vào tổ chức kinh tế theo các hình thức sau đây:
+
+a) Mua cỗ phần phát hành lần đầu hoặc cổ phần phát hành thêm của công
+ty cổ phần;
+
+b) Góp vốn vào công ty trách nhiệm hữu hạn, công ty hợp danh;
+
+_..e) Góp vốn vào tổ chức kinh tế khác không thuộc trường hợp quy định tại
+điểm a và điềểm b khoản này.
+
+
+--- Trang 16 ---
+16
+
+2. Nhà đầu tư mua cổ phần, mua phần vốn góp của tổ chức kinh tế theo
+các hình thức sau đây:
+
+a) Mua cổ phần của công ty cổ phần từ công ty hoặc cổ đông;
+
+b) Mua phần vốn góp của thành viên công ty trách nhiệm hữu hạn để trở
+thành thành viên của công ty trách nhiệm hữu hạn;
+
+e) Mua phần vốn góp của thành viên góp vốn trong công ty hợp danh để
+trở thành thành viên góp vôn của công ty hợp danh;
+
+d) Mua phần vốn góp của thành viên tổ chức kinh tế khác không thuộc
+trường hợp quy định tại các điêm a, b và c khoản này.
+
+Điều 26. Thủ tục đầu tư theo hình thức góp vốn, mua cổ phần, mua
+phần vốn góp
+
+1. Nhà đầu tư góp vốn, mua cổ phần, mua phần vốn góp của tổ chức kinh
+
+tế phải đáp ứng các điều kiện và thực hiện thủ tục thay clm thành viên, cổ đông
+theo quy định của pháp luật tương ứng với từng loại hình tố chức kinh tễ.
+
+2. Nhà đầu 1:tr nước ngoài thực hiện thủ tục đăng ký góp vốn, mua m
+phần, mua phần vốn góp của tổ chức kinh tế trước khi thay đổi thành viên, cổ
+đông nếu thuộc một trong các trường hợp sau đây:
+
+a) Việc góp vốn, mua cổ ủan mua phần von góp làm tăng tỷ lệ sở hữu
+của các nhà đầu tư nước ngoài tại tổ chức kinh tế kinh doanh ngành, nghề tiếp
+cận thị trường có điều kiện đối với nhà đầu tư nước ngoài;
+
+b) Việc góp vốn, mua cổ phần, mua phần vốn góp dẫn đến việc nhà đầu tư
+nước ngoài, tổ chức kinh tế quy định tại các điểm a, b và c khoản 1 Điều 23 của
+Luật này nắm giữ trên 50% vốn điều lệ của tổ chức kinh tế trong các trường hợp:
+tăng tỷ lệ sở hữu vốn điều lệ của nhà đầu tư nước ngoài từ dưới hoặc bằng 50%
+lên trên 50%; tăng tỷ lệ sở hữu vốn điều lệ của nhà đầu tư nước ngoài khi nhà đầu
+tư nước ngoài đã sở hữu trên 50% vốn điều lệ trong tổ chức kinh tế;
+
+e) Nhà đau tư nước ngoài góp wn, mua cổ ủan, mua phần vốn góp của
+to chức kinh tế có Giấy chứng nhận quyên sử dụng đất tại đảo và xã, phường, thị
+trấn biên giới; xã, phường, thị trấn ven biển; khu vực khác có ảnh hưởng đến
+quốc phòng, an ninh.
+
+3. Nhà đầu tư  không thuộc trường hợp quy định tại khoản 2 Điều này thực
+hiện thủ tục thay đổi cổ ủng, thành viên theo quy định của pháp luật có liên
+quan khi góp vôn, mua cô man, mua phần von góp của tổ chức kinh tế. Trường
+hợp có nhu câu đăng ký việc góp vốn, mua cổ phần, mua phzan vốn góp của tổ
+chức kinh tế, nhà đầu tư thực hiện theo quy định tại khoản 2 Điều này.
+
+4. Chính phủ quy định chỉ tiết hồ sơ, trình tự, thủ tục góp vốn, mua cổ
+phần, mua phần vốn góp của tổ chức kinh tế quy định tại Điều này.
+
+Điều 27. Đầu tư theo hình thức hợp đồng BCC
+1. Hợp đồng BCC được ký kết giữa các nhà đầu tư trong nước thực hiện
+
+
+--- Trang 17 ---
+theo quy định của pháp luật về dân sự.
+
+2. Hợp đồng BCC được ký kết giữa nhà đầu tư trong nước với nhà đầu tư
+nước ngoài hoặc fflưâ các nhà đầu tư nước gozu thực hiện thủ tục cấp fflay
+chứng nhận đăng ký đầu tư theo quy định tại Điêu 38 của Luật này.
+
+3. Các bên tham gia hợp đồng BCC tl1zxnh lập ban điều ủm để thực hiện
+hợp đồng BCC. Chức năng, nhiệm vụ, quyền hạn của ban điều phối do các bên
+thỏa thuận.
+
+Điều 28. Nội dung hợp đồng BCC
+
+1. Hợp đồng BCC bao gồm các nội dung chủ yếu sau đây:
+
+a) Tên, địa chỉ, người đại diện có thẩm quyền wa các bên tham gia hợp
+ủng, địa chỉ giao dịch hoặc địa điểm thực hiện dự án đầu tư;
+
+b) Mục tiêu và phạm vi hoạt động đầu tư kinh doanh;
+
+c Đóng góp của các bên tham gia hợp đồng và phân chia kết quả đầu tư
+kinh doanh giữa các bên;
+
+d) Tiền độ và thời hạn thực hiện hợp đồng:
+
+đ) Quyền, nghĩa vụ của các bên tham gia hợp đồng;
+
+e) Sửa đổi, chuyển nhượng, chấm dứt hợp đồng;
+
+g) Trách nhiệm do vi phạm hợp đồng, phương thức giải quyết tranh chấp.
+
+2. Trong quá trình thực hiện hợp đồng BCC, các bên tham gia hợp đồng
+được thỏa thuận sử dụng tài sản hình thành từ việc hợp tác kinh doanh để thành
+lập doanh nghiệp theo quy định của pháp luật về doanh nghiệp.
+
+3. Các bên tham gia hợp đồng BCC có quyền thỏa thuận những nội dung
+khác không trái với quy định của pháp luật.
+Mục2
+CHÁP THUẬN CHỦ TRƯƠNG ĐẦU TƯ
+VÀ LỰA CHỌN NHÀ ĐẦU TƯ
+Điều 29. Lựa chọn nhà đầu tư thực hiện dự án đầu tư
+1. Lựa chọn nhà đầu tư được tiến hành thông qua một trong các hình thức
+sau đây:
+a)'Đầu giá quyền sử dụng đất theo quy định của pháp luật về đất đai;
+b) Đầu thầu lựa chọn nhà đầu tư theo quy định của pháp luật về đầu thầu;
+c) Chấp thuận nhà đầu tư theo quy định tại khoản 3 và khoản 4 Điều này.
+
+2. Việc lựa chọn nhà đầu tư thực hiện dự án đầu tư theo quy định tại điểm
+a và điểm b khoản 1 Điều này được thực hiện sau khi chấp thuận chủ trương đầu
+
+
+--- Trang 18 ---
+18
+
+tư, trừ trường hợp dự án đầu tư không thuộc diện chấp thuận chủ trương đầu tư.
+
+3. Trường hợp tổ chức đấu giá quyền sử dụng đất mà chỉ có một Ẹưm
+đăng ký tham gia hoặc đấu giá không thành theo quy định của pháp luật vô đất
+đai hoặc trường hợp tổ chức đấu thầu lựa chọn nhà đầu tư mà chỉ có một nhà
+đầu tư đăng ký theo quy định của pháp luật về đấu thalu, cơ quan có thẩm ựyen
+thực hiện thủ tục chap thuận nhà đầu tư khi nhà đầu tư đáp ứng các điều kiện
+theo quy định của pháp luật có liên quan.
+
+4. Đối với dự án đầu tư thuộc diện ủap thuận chủ trư<Jrng đầu tư, cơ quan
+có thẳm quyền ủap thuận chủ trương đầu tư đong thời chấp thuận nhà đầu tư
+không thông qua đấu giá quyền sử dụng đất, đấu thầu lựa chọn nhà đầu tư trong
+các trường hợp sau đây:
+
+a) Nhà ủu tư có quyền sử dụng đất, trừ n'ương hợp Nhà nước thu hồi đất
+vì mục đích quốc phòng, an ninh, thu hồi đất để phát triển kinh tế - xã hội vì lợi
+1cl1£ìu(3cg1a,c£ìng£ầ£pJJgIJJ€0qll}lKìị!1h£ềl1a`}à.l18}3ĂllJ.ệII về đất đai;
+
+b) Nhà đầu tư nhận dluyen r1hlrơxxg, nhận góp vốn, thuê quyền sử dụng đất
+nông nghiệp để thực hiện dự án đầu tư sản xuất, kinh doanh phi nông : nglz1cẹp không
+thuộc trường hợp Nhà nước thu hồi đất theo quy định của pháp luật về đất đại;
+
+e) Nhà đầu tư thực hiện dự án đầu tư trong khu công nghiệp, khu công
+nghệ cao;
+
+d) Trường hợp khác không thuộc diện đấu giá, đấu thầu theo quy định của
+pháp luật.
+
+5. Chính phủ quy định chỉ tiết Điều này.
+
+Điều 30. Thẫm quyền chấp thuận chủ trương đầu tư của Quốc hội
+
+Quốc hội chấp thuận chủ trương đầu tư đối với các dự án đầu tư sau đây:
+
+1. Dự án đầu tư ảnh mxơng lớn đến môi trường hoặc tiềm ẩn khả năng ảnh
+hưởng nghiêm trọng đến môi trường, bao gồm:
+
+a) Nhà máy điện hạt nhân;
+
+b) Dự án đầu tư m yêu cầu chuyển mục đích sử dụng đất rừng đặc dụng,
+rừng phòng hộ đầu nguồn, rừng phòng hộ biên giới từ 50 ha trở lên; rừng phòng
+hộ chắn gió, ửan cát bay và rừng phòng hộ chắn sóng, lắn biển từ 500 ha trở
+lên; rừng sản xuất từ 1.000 ha trở lên;
+
+2. Dự án đầu tư có yêu cầu chuyển mục đích sử dụng đất trồng lúa nước
+từ 02 vụ trở lên với quy mô từ 500 ha trở lên;
+
+3. Dự án đầu tư có yêu cầu di dân tái định cư từ 20.000 người trở lên ở
+miền núi, từ 50.000 người trở lên ở vùng khác;
+
+4. Dự án đầu tư có yêu cầu áp dụng cơ chế, chính sách đặc biệt cần được
+Quốc hội quyết định.
+
+
+--- Trang 19 ---
+19
+
+Điều 31. Thẳẩm quyền chấp thuận chủ trương đầu tư của Thủ tướng
+Chính phủ
+
+Trừ các dự án đầu tư quy định tại Điều 30 của Luật này, Thủ tướng Chính
+phủ chấp thuận chủ trương đầu tư đối với các dự án đầu tư sau đây:
+
+1. Dự án đầu tư không phân biệt r.guổn vốn thuộc một trong các trường
+hợp sau đây:
+
+a) Dự án đầu tư có yêu cầu di dân tái định cư từ 10.000 người trở lên ở
+miền núi, từ 20.000 người trở lên ở vùng khác;
+
+b) Dự án đầu tư xây dựng mới: cảng hàng không, sân bay; đường cất hạ
+mnh của cảng hàng không, sân bay; nhà ga hành khách của mmg hàng không
+
+quoc tế; nhà ga hàng hoá của cảng hàng không, sân bay có công suất từ 01 triệu
+tấn/năm trở lên;
+
+c) Dự ăn đầu tư mởi kình đoanh vận chuyển hành khách bằng đường
+hàng không;
+
+d) Dự án đầu tư my dựng mới: bến amg, khu bến cảng thuộc cảng biển
+đặc biệt; bền w.ng, khu bến cảng có quy mô vốn đầu tư từ 2.300 tỷ đồng trở lên
+thuộc cảng biển loại I;
+
+đ) Dự án đầu tư chế biến dầu khí;
+
+e) Dự án đầu tư có kinh doanh đặt cược, ca-si-nô (casino), trừ kinh doanh
+trò chơi điện tử có thưởng dành cho người nước ngoài;
+
+g) Dự án đầu tư xây dụng nhà ở (để bán, cho thuê, cho thuê mua), khu đô
+thị trong các trường hợp: dự án đầu tư có quy m› sử dụng đất từ 50 ha trở lên
+hoặc có quy mô dưới 50 ha nhưng quy mô dân số từ 15.000 người trở lên tại khu
+vực đô thị; dự án đầu tư có quy mô w dụng đất từ 100 ha trở lên hoặc có quy
+mô dưới 100 ha r1hưng quy mô dân số từ 10.000 người trở lên tại khu vực khong
+phải là đô thị; dự án đầu tư không phaa.n biệt quy mo diện tích đất, dân số thuoc
+phạm vi bảo ve của di tích được cấp có thẳm quyền công nhận là di tích quốc
+gia, di tích quốc gia đặc biệt;
+
+h) Dự án đầu tư xây dựng và kinh doanh kết cầu hạ tầng khu công nghiệp,
+khu chế xuất;
+
+2. Dự án đầu tư của nhà đầu tư nước ngoài trong lĩnh vực kinh doanh dịch
+vụ viễn thông có hạ tằng mạng, u-ồng rừng, xuất bản, báo chí;
+
+3. Dự án đầu tư đồng thời thuộc thẳm quyền chấp thuận chủ trương đầu tư
+của từ 02 Ủy ban nhân dân cấp tỉnh trở lên;
+
+4. Dự án đầu tư khác thuộc thẳm quyền chấp thuận chủ trương đầu tư
+hoặc quyết định đầu tư của Thủ tướng Chính phủ theo quy định của pháp luật.
+
+
+--- Trang 20 ---
+20
+
+Điều 32. Thẫm quyền chấp thuận chủ trương đầu tư của Ủy ban nhân
+dân cấp tĩnh
+
+1. Trừ các dự án đầu tư quy định tại Điều 30 và Đ1eu 31 của Luật my,
+Ủy ban nhân đân cấp tỉnh chấp thuận chủ trương đầu tư đối với các đự án đầu
+tư sau đây:
+
+@ Dự án đầu tư có đề nghị Nhà nước giao đất, cho thuê đất khor1g thông
+qua đấu fgla đấu thầu hoặc nhận chuyen nhượng, dự án đầu tư có đề nghị cho
+phép muyen mục đích sử dụng đất, trừ trường hợp giao đất, cho thuê đất, cho
+phép chuyển mục đích sử dụng đất của hộ gia đình, cá nhân không thuộc diện
+phải có văn bản chấp thuận của Ủy ban nhân dân cấp tỉnh theo quy định của
+pháp luật về đất đai;
+
+b) Dự án đầu tư xây dựng nhà ở (đề bán, cho thuê, cho thuê mua), khu đô
+thị trong các trường hợp: dự án đầu tư có quy mô sử dụng đất dưới 50 ha và có
+-quy mô dân số dưới 15, £l[ì()J.~agxlc.\v1I.'J11lcl1l…1 vực đô thị; dự án đầu tư có quy mô sử
+dụng đất dưới 100 ha và có quy mô dân số dưới 10.000 người tại khu vực khr›x1g
+phải là đô thị; dự án đầu tư không wan biệt quy mô diện tích đất, dân số thuộc
+khu vực hạn chế phát triển hoặc nội đô lịch sử (được xác định trong đồ án quy
+hoạch đô thị) của đô thị loại đặc biệt;
+
+e) Dự án đầu tư xây dựng và kinh doanh sân gôn (golf);
+d) Dự án đầu tư của nhà đầu tư nước ngoài, †.o chức kinh tế có vốn đầu tư
+
+nước goal thực hiện tại đảo và xã, phường, thị n-an biên giới; xã, phường, thị
+trấn ven biển; khu vực khác có ảnh hưởng đến quốc phòng, an ninh.
+
+2. Đối với dự án đầu tư quy định tại các điểm a, b và d khoản 1 ffleu này
+thực hiện tại khu công nghiệp, Ì khu chế xuất, khu công nghệ cao, khu kinh tế phù
+hợp với quy hoạch đã được cấp có thẩm quyền phê duyệt thì Ban quản lý khu
+công nghiệp, khu chế xuất, khu công nghệ cao, khu kinh tế chấp thuận chủ
+trương đầu tư.
+
+3. Chính phủ quy định chỉ tiết Điều này.
+
+Điều 33. Hồ sơ, nội dung thắm định đề nghị chấp thuận chủ trương
+đầu tư
+
+1. Hồ SƠơ đề nghị chấp thuận chủ trương đầu tư dự án đầu tư do nhà đầu tư
+đề xuất bao gồm:
+
+a) Văn bản đề nghị thực hiện dự án đầu tư, gồm cả cam kết chịu mọi chi
+phí, rủi ro nếu dự án không được chấp thuận;
+
+b) Tài liệu về tư cách pháp lý của nhà đầu tư;
+
+e) Tài liệu chứng mình năng lực tài chính mla nhà đầu tư g›m ít nhất n1ọt
+trong các tài liệu sau: báo cáo tài chính 02 năm gần nhất của nhà đầu tư; cam kết
+hỗ trợ tài chính của công ty mẹ; cam kết hỗ trợ tài chính của tổ chức tài chính; bảo
+
+
+--- Trang 21 ---
+21
+
+lãnh về năng lực tài chính của nhà đầu tư; tài liệu khác chứng mình năng lực tài
+chính của nhà đầu tư;
+
+d) Đề xuất dự án đầu tư gồm các nội dung chủ yếu sau: nhà ùau tư hoặc
+hình thức lựa chọn nhà đầu tư, mục tiêu đầu tư, quy mô đầu tư, vốn đầu _tư và
+phương án huy động vốn, địa điểm, thời hạn, tiền độ thực hiện, thông tin về hiện
+trạng sử dụng ủt tại địa điểm tkxư<; hiện dự án và đề xuất nhu cầu sử dụng đất
+(nếu có), nhu cầu về lao động, đề xuất hưởng ưu đãi đầu tư, tác động, hiệu quả
+kinh tế - xã hội của dự án, đánh giá sơ bộ tác động môi trường (nếu có) theo quy
+định của pháp luật về bảo vệ môi trường.
+
+Trường hợp pháp luật về xây dựng quy định lập báo cáo nghiên cứu tlen
+khả thi thì nhà đầu tư được nộp báo cáo nghiên cứu tiền khả thì thay cho đề xuất
+dự án đầu tư;
+
+đ) Trường hợp dự án đầu tư không đề nghị Nhà nước giao đat cho thuê đất,
+cho phép chuyển mục đích sử dụng đất thì nộp bản sao gay tờ về quyền sử dụng
+đất hoặc tải liệu khắc xắc định quyền sử đụng địa điểm để thực hiện đự án đầu tư;
+
+e) Nội dung giải trình về công nghệ sử dụng trong dự án đầu tư đối với dự á án
+thuộc diện thẩm định, lấy ý kiến về công nghệ theo quy định của pháp luật về
+chuyển giao công nghệ;
+
+g) Hợp đồng BCC đối với dự án đầu tư theo hình thức mp đồng BCC;
+
+h) Tài liệu khác liên quan đến dự án đầu tư, yêu cầu về điều kiện, năng
+lực của nhà đầu tư theo quy định của pháp luật (nếu có).
+
+2. Hồ sơ đề nghị chấp fnuan chủ trương đầu tư dự án đầu tư do cơ quan
+nhà nước có thẩm quyền lập bao gồm:
+
+a) Tờ trình chấp thuận chủ trương đầu tư;
+
+b) Đề xuất fflr án đầu tư gom các nội dung chủ yếu sau: mục tiêu đầu tư,
+quy mô ®u tư, vốn đầu tư, địa điểm, thời kAan, tiến độ thực hiện, tác động, hiệu
+quả kinh tế - xã hội của dự án; thông tin về hiện trạng sử dụng đất tại địa điểm
+thực mẹn dự án, điều kiện thu hồi đất đối với dự án thuộc diện thu hồi đất, dự kiến
+nhu cầu sử dụng đất (neu có); đánh giá sơ bộ tác động môi trường (nếu có) theo
+quy định của pháp luật về bảo vệ môi trường: dự k1en hình thức lựa chọn nhà đầu
+tư và điều kiện đối với nhà đầu tư (nếu có); cơ chế, chính sách đặc biệt (nếu có).
+
+Trường hợp pháp luật về xây dựng quy định lập báo cáo nghiên cứu tiền
+khả thi thì cơ quan nhà nước có thâm quyên được sử dụng báo cáo nghiên cứu
+tiền khả thi thay cho đề xuất dự án đầu tư.
+
+3. Nội dung thẳm định đề nghị chấp thuận chủ trương đầu tư bao gồm:
+
+a) Đánh giá sự phù hợp của dự án đầu tư với quy hoạch cấp quốc gia, quy
+ủ›ạchyùng, quy hpạch tỉnh, quy hoạch đô thị và quy hoạch đơn vị hành chính -
+kinh tê đặc biệt (nêu có);
+
+b) Đánh giá nhu cầu sử dụng đất;
+
+
+--- Trang 22 ---
+2
+
+ỌĐanhgxasơbovehleuquakmhte xã hội madưanđautư ửnhgmsơ
+bộ tác động môi trường (nếu có) theo quy định của pháp luật về bảo vệ môi trường;
+
+d) Đánh giá về ưu đãi đầu tư và điều kiện hưởng ưu đãi đầu tư (nếu có);
+
+đ) Đánh giá về mng nghệ sử dụng trong dự án đầu tư đối với đự án thuộc
+diện thắm định hoặc lấy ý kiến về công nghệ theo quy định của pháp luật về
+chuyển giao công nghệ;
+
+e) Đánh giá về sự phù hợp của dự án &.u tư với mục tiêu, định hướng phát
+triển đô thị, chương trình, kế hoạch phát l1'1ex-1 nhà ở; sơ bộ phương án phân kỳ
+đầu tư bảo đảm yêu câu đồng bộ; sơ bộ cơ cầu sản phẩm nhà ở và việc dành quỹ
+đất phát triển nhà ở xã hội; sơ bộ IJÌll!IIllg án đầu tư way dựng, quản lý hạ tằng đô
+thị trong và ngoài phạm vi dự án đối với dự án đầu tư xây dựng nhà ở, khu đô thị.
+
+4. Nội dung thẳm định ủ nghị chấp thuận chủ trương đầu tư đồng thời
+với chấp thuận nhà đầu tư bao gồm:
+
+a) Các nội dụng thẩm định quy định tại khoản 3 Điều này;
+
+b) Khả năng đáp ứng điều kiện giao đất, cho thuê đất đối với ưường hợp
+giao đất, cho thuê đất không thông qua đấu giá ạyen sử dụng đất, đầu thầu lựa
+chọn nhà đầu tư; khả năng đáp ứng điều kiện chuyen mục đích sử dụng đất đối
+với dự án có yêu cầu chuyển mục đích sử dụng đất;
+
+c) Đánh giá việc đáp ứng điều kiện tiếp cận thị trường đối với nhà đầu tư
+nước ngoài (nếu có);
+
+d) Các điều kiện khác đối với nhà đầu tư theo quy định của pháp luật có
+liên quan.
+
+5. Chính phủ quy định chỉ tiết Điều này.
+
+Điều 34. Trình tự, thủ tục chấp thuận chủ trương đầu tư của Quốc hội
+
+1. Hồ SƠ theo quy định tại khoản 1, khoản 2 Điều 33 của Luật này được
+gửi cho Bộ Kê hoạch và Đâu tư.
+
+2. Trong thời hạn 15 ngày kế từ ngày nhận đủ ủỀ_ sơ, Bộ Kế hoạch và Đầu
+tư báo cáo Thủ tướng Chính phủ thành lập Hội đồng thâm định nhà nước.
+
+3. Trong thời hạn 90 ngày kể từ ngày thành lập, Hội đồng thẩm định nhà
+nước tổ chức thẩm định hô sơ và lập báo cáo thâm định gôm các nội dung thâm
+định quy định tại Điều 33 của Luật này đê trình Chính phủ.
+
+4. Chậm nhất là 60 ngày trước ngày khai mạc kỳ họp Quốc hội, Chính
+phủ lập và gửi hô sơ đê nghị chập thuận chủ trương đâu tư đến cơ quan chủ trì
+thâm tra của Quôc hội.
+
+5. Hồ sơ đề nghị chấp thuận chủ trương đầu tư bao gồm:
+
+a) Tờ trình của Chính phủ;
+
+b) Hồ sơ quy định tại khoản 1 Điều này;
+
+
+--- Trang 23 ---
+2”
+
+e) Báo cáo thẳm định của Hội đồng thẳm định nhà nước;
+d) Tài liệu khác có liên quan.
+6. Nội dung thẳm tra đề nghị chấp thuận chủ trương đầu tư bao Ậ›m'
+
+a) Việc đáp ứng tiêu chí xác định dự án đầu tư thuộc thẩm quyền chấp
+thuận chủ trương đầu tư của Quốc hội;
+
+b)S§ự cần thiết thực hiện dự án đầu tư;
+
+c) Sự phù hợp của dự án đầu tư với chiến lược, quy hoạch ẩp quốc gia,
+quy hoạch vùng, quy hoạch tỉnh, quy hoạch đô thị và quy hoạch đơn vị hành
+chính - kinh tế đặc biệt (nếu có);
+
+_d) Mục meu, quy mô, địa điểm, thời gian, tiến độ thực hiện dự án đầu tư,
+
+nhu cầu sử dụng đắt, phương án giải phóng mặt bằng, di dân tái định cư, phương
+án lựa chọn công nghệ chính, giải pháp bảo vệ môi trường;
+
+-đì Tổng vốn đầu tư, nguồn vốn;
+
+e) Đánh giá hiệu quả kinh tế - xã hội, bảo đảm mmc phòng, an ninh và
+phát triển bền vững của dự án đầu tư;
+
+.. g) Cơ chế, chính sách đặc biệt, ưu đãi, hỗ trợ đầu tư và điều kiện áp dụng
+(nêu có).
+
+7. Chính phủ và cơ quan, tổ chức, cá nhân có liên quan có trách nhiệm
+cung ỵ:âp đây đủ thông tin, tài liệu phục vụ cho việc thâm tra; giải trình về những
+vấn đề thuộc nội dung dự án đầu tư khi cơ quan chủ trì thẳm tra của Quốc hội
+yêu cầu.
+
+8. Quốc hội xem xét, thông qua nghị quyet về chấp thuận chủ trương đầu
+tư g›m các nội dung quy định tại khoản 1 Điều 3 của Luật này.
+
+9. Chính phủ quy định chỉ tiết trình tự, thủ tục thực hiện thẩm định của
+Hội đồng thắm định nhà nước.
+
+Điều 35. Trình tự, thủ tục chấp thuận chủ trương đầu tư của Thúủ
+tướng Chính phú
+
+1 ằIồ sơ quy định tại khoản 1, khoản 2 Điều 33 của Luật này được gửi
+cho Bộ Kê hoạch và Đâu tư.
+
+2. Trong thời hạn 03 ngày làm việc kể từ ngày nhận đủ hồ sơ, Bộ Kế
+hoạch và Đầu tư gửi hô sơ lây ý kiến thẳm định của cơ quan nhà nước có liên
+quan đên nội dung thâm định quy định tại Điều 33 của Luật này.
+
+3. Trong thời hạn 15 ngày kể từ ngày nhận được hồ sơ, cơ quan được lấy
+
+ý kiến có ý kiến thẳm định về nội dung thuộc phạm vi quản lý nhà nước của
+mình, gửi Bộ Kế hoạch và Đầu tư.
+
+4. Trong thời hạn 40 ngày kể từ ngày nhận được hồ sơ, _Bộ Kế hoạch và
+Đầu tư tổ chức thẳm định hồ sơ và lập báo cáo thẩm định gồm các nội dung
+
+
+--- Trang 24 ---
+24
+
+thẩm định quy định tại Điều 33 của Luật này, trình Thủ tướng Chính phủ chấp
+thuận chủ trương đâu tư.
+
+5. Thủ tướng Chính phủ xem xét, chấp thuận chủ trương đầu tư gồm các
+nội dung quy định tại khoản 1 Điều 3 của Luật này.
+
+6. Đối với dự án đầu tư quy định tại khoản 3 Điều 31 của Luật này, Thủ
+tướng Chính phủ chỉ định cơ quan đăng ký đầu tư của một tỉnh, thành phố trực
+thuộc trung ương cấp Giấy chứng nhận đăng ký đầu tư cho toàn bộ dự án.
+
+7. Chính phủ quy định chỉ tiết trình tự, thủ tục thực hiện thẳm định đối với
+dựán đau tư do Thủ tướng Chính phủ chấp thuận chủ trương đầu tư.
+
+Điều 36. Trình tự, thủ tục chấp thuận chủ trương đầu tư của Ủy ban
+nhân dân cấp tỉnh
+
+1. Hồ sơ quy định tại khoản 1, khoản 2 Điều 33 của Luật này được gửi
+cho cơ quan đăng ký đầu tư.
+
+Trong thời hạn 35 ngày kể từ ngày nhận được hỗồ sơ, cơ quan đăng ký đầu
+tư phải thông báo kêt quả cho nhà đâu tư.
+
+2. Trong thời hạn 03 ngày làm việc kể từ ngày nhận đủ hồ sơ, cơ quan
+đăng ký đầu tư gửi hồ sơ lấy ý kiến thẳm định của cơ quan nhà nước có liên
+quan đến nội dung thẳm định quy định tại Điều 33 của Luật này.
+
+3. Trong thời hạn 15 ngày kể từ ngày nhận được hồ sơ, cơ quan được ảy
+ý kiến có ý kiến thẩm định về nội dung thuộc phạm vi quản lý nhà nước của
+mình, gửi cơ quan đăng ký đầu tư.
+
+4. Trong thời hạn 25 gaỵ kể từ ngày nhận được hồ sơ, cơ quan đăng ký
+đầu tư lập báo cáo thẳm định gôm các nội dung thẩm định quy định tại Điều 33
+của Luật này, trình Ủy ban nhân dân cấp tỉnh.
+
+5. Trong thời hạn 07 ngày làm việc kể từ ngày nhận được hồ sơ và báo
+cáo thẩm định, Ủy ban nhân dân cấp tỉnh ủap thuận chủ trương đầu tư, trường
+hợp từ chối phải thông báo bằng văn bản và nêu rõ lý do.
+
+6. Ủy ban nhân dân cấp tỉnh xem xét chấp thuận chủ trương đầu tư gồm
+các nội dung quy định tại khoản 1 Điều 3 của Luật này.
+
+Mục3
+THỦ TỤC CÁP, ĐIỀU CHỈNH VÀ THU HÒI
+GIÁY CHỨNG NHẬN ĐĂNG KÝ ĐẦU TƯ
+
+Điều 37. Trường hợp thực hiện thủ tục cấp Giấy chứng nhận đăng ký
+đầu tư
+
+1. Các trường hợp phải thực hiện thủ tục cấp Giấy chứng nhận đăng ký
+đầu tư bao gồm:
+
+a) Dự án đầu tư của nhà đầu tư nước ngoài;
+
+
+--- Trang 25 ---
+25
+
+b) Dự án đầu tư của tổ chức kinh tế quy định tại khoản 1 Điều 23 của Luật này.
+
+2. Các trường `hợp không phải thực hiện thủ tục cấp Giấy chứng nhận
+đăng ký đầu tư bao gồm:
+
+a) Dự án đầu tư của nhã đầu tư trong nước;
+
+b) Dự án đầu tư của tổ chức kinh tẾ quy định tại khoản 2 Điều 23 của Luật này;
+
+9) fflẫlu tư theo hình thức góp vốn, mua cổ phần, mua phần vấn góp của tổ
+chức kinh tê.
+
+3. Đối với dự án ủu tư quy ủJh tại các điều 30, 31 và U của Luật này,
+
+nhà ủu tư trong nước, tổ chức kinh tế quy định ưn khoản 2 Điều 23 của Luật
+này triển khai thực hiện dự án đầu tư sau khi được chấp thuận chủ trương đầu tư.
+
+4. Trường hợp nhà đầu tư có nhu cầu wp Giấy chứng nhận đăng ký đầu tư
+đối với dự án đầu tư quy, định tại điểm a và điểm b khoản 2 Điều này, nhà đầu tư
+thực hiện thủ tục cấp Giấy chứng nhận đăng ký đầu tư quy định tại Điều 38 của
+Luật này.
+
+Điều 38. Thủ tục cấp Giấy chứng nhận đăng ký đầu tư
+1. Cơ quan đăng ký đầu tư cấp Giấy ửưng nhận đăng ký đầu tư đối với
+
+dự án đầu tư thuộc diện chấp thuận chủ trương đầu tư quy định tại các điều 30,
+31 và 32 của Luật này trong thời hạn sau đây:
+
+a) 05 ngày làm việc kể từ ngày nhận được văn bản chap thuận chủ trương
+đầu tư đồng thời với chấp thuận nhà đầu tư đối với dự án đầu tư thuộc diện cấp
+Giấy chứng nhận đăng ký đầu tư;
+
+b) 15 ngày kể từ ngày nhận được đề nghị cấp Giấy chứng nhận đăng ký đầu
+tư của nhà đầu tư đối với dự án đầu tư không thuộc trường hợp quy định tại điểm
+a khoản này.
+
+2. Đối với dự án đầu tư không thuộc diện chấp thuận chủ trương đầu tư
+quy định tại các điều 30, 31 và 32 của Luật này, nhà đầu tư được cấp Giấy
+chứng nhận đăng ký đầu tư nếu đáp ứng các điều kiện sau đây:
+
+a) Dự án đầu tư không thuộc ngành, r1ghs: cấm đầu tư kinh doanh;
+
+b) Có địa điểm thực hiện dự án đầu tư;
+
+e) Dự án đầu tư phù hợp với quy hoạch quy định tại điểm a khoản 3 Điều
+33 của Luật này;
+
+d) Đáp ứng điều kiện về suất đầu tư trên một diện tích đất, số lượng lao
+động sử dụng (nếu có);
+
+đ) Đáp ứng điều kiện tiếp cận thị trường đối với nhà đầu tư nước ngoài.
+
+3. Chính phủ quy định chỉ tiết điều kiện, hồ sơ, trình tự, thủ tục cấp Giấy
+chứng nhận đăng ký đâu tư.
+
+
+--- Trang 26 ---
+26
+
+Điều 39. Thẩm quyền cấp, điều chỉnh và thu hồi Giấy chứng nhận
+đăng ký đầu tư
+
+1, Ban Quản lý khu mng nghiệp, khu chế xuất, khu công nghệ cao, khu
+kinh tế cấp, điều chỉnh, thu hồi Giấy chứng nhận đăng ký đầu tư đối với đdự án
+đầu tư trong khu công nghiệp, khu chế xuất, khu công nghệ cao, khu kinh tế, trừ
+trường hợp quy định tại khoản 3 Điều này.
+
+2. Sở Kế hoạch và Đầu tư mẩp, điều chỉnh, thu hồi Giấy chứng nhận đăng
+ký đầu tư đối với dự án đầu tư ngoài khu công nghiệp, khu ủe xuất, khu công
+nghệ cao, khu kinh tế, trừ trường hợp quy định tại khoản 3 Điều này.
+
+3. Cơ quan đăng ký đầu tư nơi nhà đầu tư thực hiện dự á án đầu tư, đặt hoặc
+dự kiến đặt văn phòng điều hành để thực hiện dự án đầu tư cấp, điều chỉnh, thu
+hồi Giấy chứng nhận đăng ký đầu tư đối với dự án đầu tư sau đây:
+
+a) Dự án đầu tư thực hiện tại 02 đơn vị hành chính cấp tỉnh trở lên;
+b) Dự ấn đầu tư thực hiện ở trong vã ngoãi khu công nghiệp, khu chế
+xuất, khu công nghệ cao và khu kinh tế;
+
+9) Dự án đầu tư trong khu công nghiệp, khu chế xuất, khu công nghệ cao,
+khu kinh tế nơi chưa thành lập Ban quản lý khu công nghiệp, khu chế xuất, khu
+công nghệ cao, khu kinh tế hoz1c: không thuộc phạm vi quản lý của Ban quản lý
+khu công nghiệp, khu chế xuất, khu công nghệ cao, khu kinh tế.
+
+4. Cơ quan tiếp nhận hồ sơ dự án đầu tư là cơ quan có thẳm quyền wp
+Giấy chứng nhận đăng ký đầu tư, trừ trường hợp quy định tại Điều 34 và Điều
+35 của Luật này.
+
+Điều 40. Nội dung Giấy chứng nhận đăng ký đầu tư
+
+1. Tên dự án đầu tư.
+
+2. Nhà đầu tư.
+
+3. Mã số dự án đầu tư.
+
+4. Địa điểm thực hiện dự án đầu tư, diện tích đất sử dụng.
+
+5. Mục tiêu, quy mô dự án đầu tư.
+
+6. Vốn đầu tư của dự án đầu tư (gồm vốn góp của nhà đầu tư và vốn
+huy động).
+
+7. Thời hạn hoạt động của dự án đầu tư.
+
+8. Tiến độ thực hiện dự án đầu tư, bao gồm:
+
+a) Tiến độ góp vốn và huy động các nguồn vốn;
+
+b) Tiến độ thực hiện các mục tiêu hoạt động chủ yếu của dự án đầu tư,
+trường hợp dự án đâu tư chia thành từng giai đoạn thì phải quy định tiến độ thực
+hiện từng giai đoạn.
+
+
+--- Trang 27 ---
+27
+
+9, Hình thức ưu đãi, hỗ trợ đầu tư và căn cứ, điều kiện áp dụng (nếu có).
+
+10. Các điều kiện đối với nhà đầu tư thực hiện dự án đầu tư (nếu có).
+
+Điều 41. Điều chính dự án đầu tư
+
+1. Trong quá trình thực hiện dự án đầu tư, nhà đầu tư có quyền điều chỉnh
+mục tiêu, chuyển nhượng một phần hoặc toàn bộ dự án đầu tư, sáp nhập các dự
+án hoặc chia, tách một dự án thành Mneu dự án, sử dụng quyền sử dụng đất, tài
+sản trên đất thuộc dự án đầu tư để góp vốn thành ủp doanh nghiệp, hợp tác kinh
+doanh hoặc các nội dung khác và phải phù hợp với quy định của pháp luật.
+
+2. Nhà đầu tư thực hiện thủ tục điều ủmh Giấy chứng nhận đăng ký đầu
+tư trong trường hợp việc điều chỉnh dự án đầu tư làm thay đổi nội dung Giấy
+chứng nhận đăng ký đầu tư.
+
+3. Nhà đầu tư có dự án đầu tư đã được chấp thuận chủ n~ương đầu tư phải
+thực hiện thủ tục chấp thuận điều chỉnh chủ trương đầu tư nếu thuộc một trong
+các trường hợp sau đây:
+
+a) Hxay đổi mục tiêu đã được quy định tại văn bản ủap thuận chủ trương
+đầu tư; bổ sung mục tiêu thuộc diện chấp thuận chủ trương đầu tư;
+
+b) Thay. đổi quy mô diện tích đất sử dụng trên 10% hoặc trên 30 ha, thay
+đổi địa điểm đầu tư;
+
+_.. ©) Thay đổi tổng vốn đầu tư từ 20% trở lên làm thay đổi quy mô dự án
+đầu tư;
+
+d) Kéo dài tiền độ thực hiện dự án đầu tư mà mng thời gian đầu tư dự án
+vượt quá 12 tháng so với tiến độ thực hiện dự án đầu tư quy định tại văn bản
+ủap thuận chủ trương đầu tư lần đầu;
+
+đ) Điều chỉnh thời hạn hoạt động của dự án đầu tư;
+
+e) Thay đổi công nghệ đã được thẩm định, lấy ý kiến trong quá trình chấp
+thuận chủ trương đâu tư;
+
+g) Thay đổi nhà đầu tư của dự án đầu tư được chấp thuận chủ trương đầu tư
+®ng thời với ủap thuận nhà đầu tư trước khi dự án khai thác, vận hành hoặc thay
+đềi điều kiện đái với nhà đầu tư (nếu có).
+
+4. Đối với dự án cIau tư được chấp thuận ủu trương đầu tư, nhà đầu tư
+không được điều chỉnh tiến độ thực hiện dự án đầu tư quá 24 tháng so với tiến
+độ thực hiện dự án đầu tư quy định tại văn bản chấp thuận chủ trương đầu tư lằn
+đầu, trừ một trong các trường hợp sau đây:
+
+a) Để kh'ẹ1<> phục hậu quả trong trường hợp bất khả kháng theo quy định
+của pháp luật về dân sự và pháp luật về đất đai;
+
+b) Điều chỉnh tiến độ thực hiện dự án đầu tư do nhà đầu tư chậm được
+Nhà nước giao đất, cho thuê đất, cho phép chuyển mục đích sử dụng đất;
+
+9) Điều chỉnh tiến độ thực hiện dự án đầu tư theo yêu cầu của cơ quan
+
+
+--- Trang 28 ---
+28
+
+quản lý nhà nước hoặc cơ quan nhà nước chậm thực hiện thủ tục hành chính;
+
+) Điều chỉnh dự án đầu tư do cơ quan nhà nước thay đồi quy hoạch;
+
+đ) Thay đổi mục tiêu đã được quy định tại văn bản ủap thuận chủ trương
+đầu tư; bổ sung mục tiêu thuộc điện chấp thuận chủ trương đầu tư;
+
+e) Tăng tổng vốn đầu tư từ 20% trở lên làm thay đổi quy mô dự án đầu tư.
+
+5. Cơ quan nhà nước có thẩm mxyen ủap thuận chủ trương đầu tư thì có
+thẩm quyền chấp thuận điều chỉnh chủ trương đầu tư.
+
+Trường hợp đề nghị điều chỉnh dự án đầu m' dẫn đến dự á án đầu tư thuộc
+thaJ.m quyên chấp thuận chủ trương đầu tư của cấp cao hơn thì, mp đó có thẩm
+quyền chấp thuận điều chỉnh chủ trương đầu tư theo quy định tại Điều này.
+
+6. Trình tự, thủ tục điều chỉnh chủ trương đầu tư thực hiện theo quy định
+tương ứng tại các điều 34, 35 và 36 của Luật này đối với các nội dung điều chỉnh.
+
+7. Trường hợp đề nghị sỉ1t:1.L<:.lJJ.I;Ll1nìl,l án đầu tư dẫn đến dự án đầu tư thuộc
+
+diện phải chấp thuận chủ trương đầu tư thì nhà đầu tư phải thực hiện thủ tục
+chấp thuận chủ trương đầu tư trước khi điều chỉnh dự án đầu tư.
+
+8. Chính phủ quy định chỉ tiết Điều này.
+
+Mục4
+TRIỀN KHAI THỰC HIỆN DỰ ÁN ĐẦU TƯ
+
+Điều 42. Nguyên tắc thực hiện dự án đầu tư
+
+1. Đối với dự án đầu tư thuộc diện chấp thuận chủ trương đầu tư, việc
+chấp thuận chủ trương đầu tư phải được thực hiện trước khi nhà đầu tư thực hiện
+dự án đầu tư.
+
+2. Đối với dự án đầu tư thuộc diện ù'ip ủay chứng nhận đăng ký đầu tư,
+nhà đầu tư có trách nhiệm thực hiện thủ tục cấp Giấy chứng nhận đăng ký đầu tư
+trước khi thực hiện dự án đầu tư.
+
+3. Nhà đầu tư có trách nhiệm tuân thủ quy định của Luật này, pháp luật về
+quy hoạch, đất đai, môi trường, xây dựng, lao động, phòng cháy và chữa cháy,
+quy định khác cu›aphzzỊ› luật có liên qưan, văn |:Ja1I(7Ỉ'Iâ1IJ1'.ỈI!.Iaĩl'ICÌ'[t.ìtI'ìL!Ơl'lg<ÌaYlEì~.l
+(nêu có) và Giấy chứng nhận đăng ký đầu tư (nếu có) trong quá trình triển khai
+thực hiện dự án đầu tư.
+
+Điều 43. Bảo đảm thực hiện dự án đầu tư
+1. Nhà đầu tư phải ký quỹ hoặc _phải có bảo lãnh ngân hàng về ghm vụ
+
+ký quy để bảo đảm thực hiện dự án đầu tư có đề nglx1 Nhà nước giao đất, cho
+thuê đất, cho phép chuyển mục đích sử dụng đất, trừ các trường hợp sau đây:
+
+a) Nhà đầu tư mmg đầu giá quyền sử dụng đất để thực hiện dự án đầu tư
+được Nhà nước giao đất có thu tiền sử dụng đất, cho thuê đất thu tiền thuê đất
+một lằn cho cả thời gian thuê;
+
+
+--- Trang 29 ---
+29
+
+b) Nhà đầu tư trúng đầu thầu thực hiện dự án đầu tư có sử dụng đắt;
+
+c) Nhà đầu tư được Nhà nước giao đất, cho thuê đất trên cơ sở nhận
+ủuyen nhượng dự án cỉau tư đã thực hiện ký quỹ hoặc đã hoàn thành việc góp
+vôn, huy động vốn theo tiến độ quy định tại văn bản chấp thuận chủ trương đầu
+tư, Giấy chứng nhận đăng ký đầu tư;
+
+d) Nhà đầu tư được Nhà nước giao ừ.t, cho thuê đất để thực hiện dự án
+đầu tư trên cơ sở nhận chuyen nhượng quyen sử dụng đất, tài sản gắn liền với
+đất của người sử dụng đất khác.
+
+2. Căn cứ vào quy mô, tính chất và tiền độ thực hiện của từng m: án đầu
+tư, mức ký quỹ để bảo đảm thực hiện dự án &1u tư từ 01% đến 03% vốn đầu tư
+wa dự án đầu tư. Trường hợp dự án đầu tư gồm nhiều giai đoạn đầu tư thì số
+tiền ký quỹ được nộp và hoàn trả theo từng giai đoạn thực hiện dự án đầu tư, trừ
+trường hợp không được hoàn trả.
+
+3. Chính phủ quy định chỉ tiết Điều này.
+
+Điều 44. Thời hạn hoạt động của dự án đầu tư
+
+1. Thời hạn hoạt động của dự án đầu tư trong khu kinh tế không quá 70 năm.
+
+2. Thời hạn hoạt động của dự án đầu tư ngoài khu kinh tế không quá 50
+năm. Dự án đầu tư thực hiện tại địa bàn có điều kiện kinh tế - xã hội khó khăn,
+địa bàn có điều kiện kinh m xã hội đặc biệt khó khăn hoặc dự án đầu tư có vốn
+đầu tư lớn nhưng thu hồi vốn chậm thì thời hạn hoạt động của dự án đầu tư có
+thể dài hơn nhưng không quá 70 năm.
+
+3. Đối với dự án đầu tư được Nhà nước giao đất, cho thuê đất nhưng nhà
+đầu tư chậm được bàn giao đất thì thời gian Nhà nước chậm bàn giao đất không
+tính vào thời hạn hoạt động, tiến độ thực hiện của dự án đầu tư.
+
+4. Khi hết thời hạn hoạt động của dự án đầu tư mà nhà đầu tư có nhu cầu
+tiếp tục thực hiện dự án đầu tư và đáp ứng điều kiện theo quy định của pháp luật
+thì được xem xét gia hạn thời hạn hoạt động của dự án đầu tư nhưng không quá
+thời hạn tối đa quy định tại khoản 1 và khoản 2 Điều này, trừ các dự án đầu tư
+sau đây:
+
+a) Dự án đầu tư sử dụng công nghệ lạc hậu, tiềm ẩn nguy cơ gây ô nhiễm
+môi trường, thâm dụng tài nguyên;
+
+b) Dự án đầu tư thuộc trường hợp nhà đầu tư phải chuyển giao không bồi
+hoàn tài sản cho Nhà nước Việt Nam hoặc bên Việt Nam.
+
+5. Chính phủ quy định chỉ tiết Điều này.
+
+Điều 45. Xác định giá trị vốn đầu tư; giám định giá trị vốn đầu tư;
+giám định máy móc, thiết bị, dây chuyền công nghệ
+
+1. Nhà đầu tư chịu trách nhiệm bảo đảm chất lượng máy móc, thiết bị, dây
+
+
+--- Trang 30 ---
+30
+
+chuyền công nghệ để thực hiện dự án đầu tư theo quy định của pháp luật.
+
+2. Nhà đầu tư tự xác định giá trị vốn đầu tư của dự án đầu tư sau khi dự án
+đầu tư đưa vào khai thác, vận hành.
+
+3. Trong trường hợp cần thiết để bảo đảm thực hiện quản lý nhã nước về
+khoa học, công nghệ hoặc để xác định căn cứ tính thuế, cơ quan ạ1an lý nhà
+nước có thẩm quyền yêu cầu thực hiện giám định độc lập giá trị vốn đầu tư, chất
+lượng và giá trị của máy móc, thiết bị, dây chuyền công nghệ sau khi dự án đầu
+tư đưa vào khai thác, vận hành.
+
+4. Nhà đầu tư phải chịu chỉ phí gam định trong trường hợp kết quả giám
+định dẫn đến làm tăng nghĩa vụ thuế đối với Nhà nước.
+
+5. Chính phủ quy định chỉ tiết Điều này.
+Điều 46. Chuyễn nhượng dự án đầu tư
+
+1. Nhà đầu tư có quyền chuyển nhượng toàn bộ hoặc một phần dự án đầu
+tư cho nhà đầu tư khác khi đáp ứng các điều kiện sau đây:
+
+a) Dự án đầu tư hoặc phần đdự án đầu tư ủuyep nhượng không bị chấm
+dứt hoạt động theo quy định tại khoản 1 và khoản 2 Điều 48 của Luật này;
+
+b) Nhà đầu tư nước ngoài nhận chuyển nhượng dự án đầu tư, một ủan dự
+án đầu tư phải đáp ứng điều kiện quy định tại khoản 2 Điều 24 của Luật này;
+
+ce) Điều kiện theo quy định của pháp luật về đất đai trong trường hợp
+ủuyen r1h1rợng dự án đầu tư gắn với chuyển nhượng quyền sử dụng đất, tài sản
+gắn liền với đất;
+
+g Điều kiện theo quy định của pháp luật về nhà ở, _pháp luật về kinh
+doanh bất động sản trong trường hợp chuyển nhượng dự án đầu tư xây dựng nhà
+ở, dự án bất động sản;
+
+đ) Điều kiện quy định tại văn bản chấp thuận chủ trương đầu tư, Giấy
+chứng nhận đăng ký đầu tư hoặc theo quy định khác của pháp luật có liên quan
+(nếu có);
+
+_) Khi chuyển nhượng dự án đầu tư, ngoài việc thực hiện theo quy định
+tại Điều này, doanh nghiệp nhà nước có trách nhiệm thực hiện theo quy định của
+pháp luật về quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại
+doanh nghiệp trước khi thực hiện việc điều chỉnh dự án đầu tư.
+
+2. Trường hợp đáp ứng điều kiện chuyển nhượng theo quy định tại khoản
+1 Điều này, thủ tục chuyển nhượng toàn bộ hoặc một phần dự án đầu tư thực
+hiện như sau:
+
+a) Đối với dự án đầu tư mà nhà đầu tư được map thuận theo quy định tại
+Điều 29 của Luật này và dự án đầu tư được cấp @ay chứng nhận đăng ký đầu
+tư, nhà đầu tư thực hiện thủ tục điều chỉnh dự án đầu tư theo quy định tại Điều
+41 của Luật này;
+
+
+--- Trang 31 ---
+31
+
+b) Đối với dự án đầu tư không thuộc trường hợp quy định tại điểm a
+khoản my, việc ủuyen nhượng dự án đầu tư hoặc ủuyen quyen sở hữu tài sản
+cho nhà đầu tư tiếp nhận dự án đầu tư sau khi chuyển nhượng thực hiện theo quy
+định của pháp luật về dân sự, doanh nghiệp, kinh doanh bất động sản và quy
+định khác của pháp luật có liên quan.
+
+Điều 47. Ngừng hoạt động của dự án đầu tư
+
+1. Nhà đầu tư ngừng hoạt động của dự án đầu tư phải thông báo ủmg văn
+bản cho cơ quan đăng ký đầu tư. Trường hợp ngừng hoạt động của dự án đầu tư
+v1 lý do bất khả kháng thì nhà đầu tư được Nhà mrơc miễn tiền thuê đất, gam
+tiền sử dụng đất trong thời gian ngừng hoạt động để khắc phục hậu quả do bất
+khả kháng gây ra.
+
+2. Cơ quan quản ly nhà nước về đầu tư quyết định ngừng hoặc ngừng một
+phần hoạt động của dự án đầu tư trong các trường hợp sau đây:
+
+a) Để bảo vệ di tích, di vật, cổ vật, bảo vật ạoc _gia theo quy định của
+Luật Di sản văn hóa;
+
+b) Để khắc phục vi phạm pháp luật về bảo vệ môi trường theo đề nghị của
+cơ quan quản lý nhà nước về môi trường;
+
+e) Để thực hiện các biện pháp bảo đảm an toàn lao động theo đề nghị của
+cơ quan nhà nước quản lý về lao động:
+
+d) Theo bản án, quyết định của Tòa án, phán quỳết trọng tài;
+
+ởđ) Nhà đầu tư không thực hiện đúng nội dung ủap thuận chủ trương đầu
+tư, Giấy ủưng nhận đăng ký đầu tư và đã bị xử phạt vi phạm hành chính nhưng
+tiếp tục vi phạm. ,
+
+3. Thủ tướng Chính phủ quyet định ngừng, ngùng một phần hoạt động
+của dự án đầu tư trong trường hợp việc thực hiện dự án đầu tư gây phương hại
+hoặc có nguy cơ gây phương hại đến quốc phòng, an ninh quốc gia theo đề nghị
+của Bộ Kế hoạch và Đầu tư.
+
+4. Chính phủ quy định chỉ tiết điều kiện, trình tự, thu tục, thời hạn ngừng
+hoạt động của dự án đầu tư quy định tại Điều này.
+
+Điều 48. Chấm dứt hoạt động cũa dự ăn đầu tư
+
+1. Nhà đầu tư chấm dứt hoạt động đầu tư, dự án đầu tư trong các trường
+hợp sau đây: ~
+
+a) Nhà đầu tư quyết định chấm dứt hoạt động của dự án đầu tư;
+
+_.. b) Theo các điều kiện chấm đứt hoạt động được quy định trong hợp đồng,
+
+điều lệ doanh nghiệp;
+
+c) Hết thời hạn hoạt động của dự án đầu tư.
+
+2. Cơ quan đăng ký đầu tư chấm dứt hoặc chấm dứt một phần hoạt động
+của dự án đầu tư trong các trường hợp sau đây:
+
+
+--- Trang 32 ---
+32
+
+a) Dự án đầu tư thuộc một trong các trường hợp quy định tại khoản 2 và
+khoản 3 Điều 47 của Luật này mà nhà đầu tư không có khả năng khắc phục điều
+kiện ngừng hoạt động;
+
+b) Nhà đầu tư không được nep tục sử dụng địa điểm đầu tư và không thực
+hiện thủ tục đxeu chỉnh địa điểm đầu tư trong thời hạn 06 tháng kế từ ngày
+không được tiếp tục sử dụng địa điểm đầu tư, trừ trường hợp quy định tại điểm d
+khoản này;
+
+c) Dự án đầu tư đã ngừng hoạt động và hết thời hạn 12 tháng kể từ ngay
+ngừng hoạt động, cơ quan đăng h' đầu tư không liên lạc được với nhà đầu tư
+hoặc đại diện hợp pháp của nhà đầu tư;
+
+d) Dự án đầu tư thuộc trường hợp bị thu hồi đất do không đưa đất vào sử
+dụng, chậm đưa đất vào sử dụng theo quy định của pháp luật về đắt đai;
+
+đ) Nhà đầu tư không ky quỹ hoặc không có bảo lãnh nghĩa vụ ký quỹ theo
+quy định của pháp luật đối với dự án đầu tư thuộc diện bảo đảm thực hiện dự án
+đầu tư;
+
+e) Nhà đầu tư thực hiện mat động đầu tư trên cơ sở giao dịch dân sự giả
+tạo theo quy định của pháp luật về dân sự;
+
+g) Theo bản án, quyết định của Tòa án, phán quyết trọng tài.
+3. Đối với dự án đầu tư thuộc diện chấp thuận chủ trương đầu tư, cơ quan
+
+đăng ký đầu tư chấm dứt hoạt động của dự án đầu tư sau khi có ý kiến của cơ
+quan chấp thuận chủ trương đầu tư.
+
+4. Nhà đầu tư tự thanh lý dự án đầu tư theo quy định của pháp luật về
+thanh lý tài sản khi dự án đầu tư chấm dứt hoạt động, trừ trường hợp quy định
+tại khoản 5 Điều này.
+
+5. Việc xử lý ạyen sử dụng đất, tài sản gắn liền với đất khi chấm dứt
+hoạt động của dự án đầu tư thực hiện theo quy định của pháp luật về đất đai và
+quy định khác của pháp luật có liên quan.
+
+6. Cơ quan đăng ký đầu tư ạyet định thu hồi Giấy chứng nhận đăng ký
+đầu tư trong trường hợp dự án đầu tư chấm dứt hoạt động theo quy định tại khoản
+2 ủeuftay,trưttươngh<:fpchiaỀtndz1tfnọtpharnhoat<ẩongeuzadarandakuttr
+
+7. Chính phủ quy định chỉ tiết trình tự, thủ tục chấm dứt hoạt động của dự
+án đầu tư quy định tại Điều này.
+
+Điều 49. Thành lập văn phòng điều hành của nhà đầu tư nước ngoài
+trong hợp đồng BCC
+
+1. Nhà đầu tư nước ngoài trong hợp ủng BCC được thành lập văn phòng
+điều hành tại Việt Nam để thực hiện hợp đồng. Địa fflem văn phòng đleu hành
+do nhà đầu tư nước ngoài trong hợp đồng BCC quyết định theo yêu cầu thực
+hiện hợp đồng.
+
+2. Văn phòng điều hành của nhà đầu tư nước ngoài trong hợp đồng BCC
+
+
+--- Trang 33 ---
+33
+có con dấu; được mở tài khoản, tuyển dụng lao động, ký hợp đồng và tiến hành
+các hoạt động kinh doanh trong phạm vi quyền và nghĩa vụ quy định tại hợp
+đồng BCC và Giấy chứng nhận đăng ký thành lập văn phòng điều hành.
+
+3. Nhà đầu tư nước ngoài trong hợp đồng BCC nộp hồ sơ đăng ký thành
+lập văn phòng điều hành tại cơ quan đăng ký đâu tư nơi dự kiên đặt văn phòng
+điều hành.
+
+4. Hồ sơ đăng ký thành lập văn phòng điều hành bao gồm:
+
+a) Văn bản đăng ký thành lập văn phòng điều hành gồm: tên và địa chỉ văn
+phòng đại diện tại Việt Nam (neu có) của nhà đầu tư nước ngoài trong hợp đồng
+BCC; tên, địa chỉ văn phòng điều hành; nội dung, thời hạn, phạm vi hoạt động
+
+của văn phòng điều hành; họ, tên, nơi cư trú, số Glay chứng minh nhân dân, thẻ
+Căn cước công dân hoặc Hộ chiếu của người đứng đầu văn phòng điều hành;
+
+b) Quyết định của nhà đầu tư nước ngoài trong hợp đồng BCC về việc
+thành lập văn phòng điều hành;
+
+c) Bản sao quyết định bổ nhiệm người đứng đầu văn phòng điều hành;
+
+d) Bản sao hợp đồng BCC.
+
+5. Trong thời hạn 15 ngày kể từ ngày nhận được hồ sơ quy định tại khoản
+
+4 Điều mty, quan đăng ký đầu tư cấp Giấy chứng nhận đăng ký hoạt động văn
+phòng điều hành cho nhà đầu tư nước ngoài trong hợp đồng BCC.
+
+Điều 50. Chấm dứt hoạt động văn phòng điều hành của nhà đầu tư
+nước ngoài trong hợp đồng BCC
+
+1. Trong thời hạn 07 ngày làm việc kể từ ngày có quyết định chấm dứt
+hoạt động của văn phòng điều hành, nhà đầu tư nước ngoài gửi hồ sơ thông báo
+cho cơ quan đăng ký đầu tư nơi đặt văn phòng điều hành.
+
+2. Hồ sơ thông báo chấm dứt hoạt động văn phòng điều hành bao gồm:
+
+a) Quyết định chắm đứt hoạt động của văn phòng điều hành trong trường
+hợp văn phòng điều hành chấm dứt hoạt động trước thời hạn;
+
+b) Danh sách chủ nợ và số nợ đã thanh toán;
+
+e) Danh sách người lao động, quyền và lợi ích của người lao động đã
+được giải quyêt;
+
+d) Xác nhận của cơ quan thuế về việc đã hoàn thành nghĩa vụ về thuế;
+
+đ) Xác nhận của cơ quan bảo hiểm xã hội về việc đã hoàn thành nghĩa vụ
+về bảo hiểm xã hội;
+
+e) Giấy chứng nhận đăng ký hoạt động văn phòng điều hành;
+
+g) Bản sao Giấy chứng nhận đăng ký đầu tử;
+
+hb) Bản sao hợp đồng BCC.
+
+
+--- Trang 34 ---
+34
+
+3. Trong thời hạn 15 ngày kể từ ngày nhận được ho sơ quy định tại khoản
+2 Điều này, cơ quan đăng ký đầu tư quyết định thu hồi Giấy chứng nhận đăng ký
+hoạt động văn phòng điều hành.
+Chương V
+HOẠT ĐỘNG ĐẦU TƯ RA NƯỚC NGOÀI
+
+Mục1
+QUY ĐỊNH CHUNG
+
+Điều 51. Nguyên tắc thực hiện hoạt động đầu tư ra nước ngoài
+
+1. Nhà nước khuyến khích đầu tư ra nước ngoài nhằm khai thác, phát
+triển, mở rộng thị trường; tăng khả năng xuất khẩu hàng hóa, dịch vụ, thu ngoại
+tệ; tiếp cận công nghệ hiện đại, nâng cao năng lực quản trị và bổ sung guồn lực
+
+2. Nhà đầu tư thực hiện hoạt động đầu tư ra nước ngoài phải tuân thủ quy
+định của Luật này, quy định khác của pháp luật có liên quan, pháp luật của quốc
+gia, vùng lãnh ’í.l1c› tiếp nhận đầu tư (sau đây gọi ả nước tiếp nhận đầu tư) và
+điều ước quốc tế có liên quan; tự chịu trách nhiệm về hiệu quả hoạt động đầu tư
+ở nước ngoài.
+
+Điều 52. Hình thức đầu tư ra nước ngoài
+
+1. Nhà đầu tư thực hiện hoạt động đầu tư ra nước ngoài theo các hình thức
+sau đây:
+
+a) Thành lập tổ chức kinh tế theo quy định của pháp luật nước tiếp nhận
+đầu tư;
+
+b) Đầu tư theo hình thức hợp đồng ở nước ngoài;
+
+e) Góp vốn, mua cổ wan, mua ủan vốn góp của tổ chức kinh tế ở nước
+ngoài để tham gia quản lý tổ chức kinh tế đó;
+
+_d) Mua, bán chứng khoán, fflay tờ có giá khác hoặc đầu tư thông qua các
+quỹ đầu tư chứng khoán, các định chế tài chính trung gian khác ở nước ngoài;
+
+\ đ) Các hình thức đầu tư khác theo quy định của pháp luật nước tiếp nhận
+đầu tư.
+
+2. Chính phủ quy định chi tiết việc thực hiện hình thức đầu tư quy định tại
+điểm d khoản 1 Điều này.
+
+Điều 53. Ngành, nghề cấm đầu tư ra nước ngoài
+
+1. Ngành, ghe ulm đầu tư kinh doanh quy định tại Điều 6 của Luật này
+và các điều ước quốc tế có liên quan.
+
+2. Ngành, nghề có công nghệ, sản phẩm thuộc đối tượng cấm xuất khẩu
+
+
+--- Trang 35 ---
+35
+
+theo quy định của pháp luật về quản lý ngoại thương.
+_ . 3. Ngành, nghề cấm đầu tư kinh doanh theo quy định của pháp luật nước
+
+tiếp nhận đâu tư.
+
+Điều 54. Ngành, nghề đầu tư ra nước ngoài có điều kiện
+
+1. Ngành, nghề đầu tư ra nước ngoài có điều kiện bao gồm:
+
+a) Ngân hàng;
+
+b) Bảo hiểm;
+
+œ) Chứng khoán;
+
+d) Báo chí, phát thanh, truyền hình;
+
+đ) Kinh doanh bất động sản.
+
+2. Điều kiện đầu tư ra nước ngoài trong ngành, nghề quy định tại khoản 1
+Điều m1y được quy định tại ủạt nghị ựyet của Quốc hội, @áp k;nh, nghị ụyet
+
+của Uy ban Thường vụ Quốc hội, nghị định của Chính phủ và điều ước quốc tế
+về đầu tư mà nước Cộng hòa xã hội chủ nghĩa Việt Nam là thành viên.
+
+Điều 55. NgucĂ>r1 vốn đầu tư ra nước ngoài
+1. Nhà đầu tư chịu trách nhiệm góp vốn và huy động các nguồn vốn đề
+thực hiện hoạt động đâu tư ở nước ngoài.
+
+2. Việc vay vốn bằng ngoại tệ, chuyển vốn đầu tư bằng ngoại tệ Mm tuân
+thủ điều kiện và thủ tục theo quy định của pháp luật về ngân hàng, các tổ chức
+tín dụng, quản lý ngoại hối.
+
+3. Căn cứ mục tiêu chính sách tiền tệ, chính sách r1ua11'1 lý ngoại hối trong
+từng thời kỳ, Ngân hàng Nhà nước Việt Nam quy định việc tổ chức tín dụng, chi
+nhánh ngân hàng nước ngoài tại Việt Nam cho nhà đầu tư vay vốn bằng ngoại tệ
+theo quy định tại khoản 2 Điều này để thực hiện hoạt động đầu tư ra nước ngoài.
+
+Mục2
+THỦ TỤC CHÁP THUẬN CHỦ TRƯƠNG ĐAU TU,
+QUYÉT ĐỊNH ĐẦU TƯ RA NƯỚC NGOÀI
+Điều 56. Thẳm quyền chấp thuận chủ trương đầu tư ra nước ngoài
+_ 1 Quốc hội chấp thuận chủ trương đầu tư ra nước ngoài đối với các dự án
+đầu tư sau đây:
+
+a) Dự án đầu tư có vốn đầu tư ra nước ngoài từ 20.000 tỷ đồng trở lên;
+
+_.. b) Dự án đầu tư có yêu cầu áp dụng cơ chế, chính sách đặc biệt cằn được
+Quốc hội quyêt định.
+
+2. Trừ các dự án đầu tư quy định tại khoản 1 Điều này, Thủ tướng Chính
+
+phủ chấp thuận chủ trương đầu tư ra nước ngoài đối với các dự án đầu tư sau đây:
+
+
+--- Trang 36 ---
+36
+
+a) Dự án đầu tư thuộc lĩnh vực ngân hàng,. bảo hiểm, chứng khoán, báo
+chí, phát thanh, truyền hình, viễn thông có vốn đầu tư ra nước ngoài từ 400 tỷ
+®ng trở lên;
+
+b) Dự án đầu tư khong thuộc trường hợp quy định tại điểm a khoản này có
+vốn đầu tư ra nước ngoài từ 800 tỷ đồng trở lên.
+
+3. Các dự án đầu tư không thuộc trường hợp quy định tại khoản 1 và
+khoản 2 Điều này không phải chấp thuận chủ trương đầu tư ra nước ngoài.
+
+Điều 57. Hồ sơ, trình tự, thủ tục chấp thuận chủ trương đầu tư ra
+nước ngoài của Quốc hội
+
+1. Nhà đầu tư  nộp hồ sơ dự án đầu tư ra nước ngoài cho Bộ Kế hoạch và
+Đầu tư. Hồ sơ bao gồm:
+
+a) Văn bản đăng ký đầu tư ra nước ngoài;
+
+b) Tài liệu về tư cách pháp lý của nhà đầu tư;
+
+c) Đề xuất dự án đầu tư gồm các nội dung chủ yếu sau: hình thức, mục
+tiêu, quy mô, địa đzem ỏau tư; xác định sơ bộ vốn đầu tư, phương án huy động
+vốn, cơ cầu nguồn vồn; tiền độ thực hiện dự án, các giai đoạn đầu tư (nếu có);
+phân tích sơ bộ hiệu quả đầu tư của dự án;
+
+d) Tài liệu chứng mình năng lực tài chính của nhà đầu tư gồm ít nhất một
+trong các tài liệu sau: báo cáo tài chính 02 năm gần nhất của x1hèg đầu tư; cam kết
+hỗ trợ tài chính của công ty mẹ; cam kết hỗ trợ tài chính của tổ chức tài chính;
+bảo lãnh về năng lực tài chính của nhà đầu tư; tài liệu khác chứng minh năng lực
+tài chính của nhà đầu tư;
+
+đ) Cam kết tự cân đối nguồn ngoại tệ hoặc văn bản cam kết thu xếp ngoại
+tệ cho nhà đầu tư của tổ chức tín dụng được phép;
+
+e) Văn bản của cơ quan đại diện chủ sở hữu chấp thuận nhà đầu tư thực
+hiện hoạt động đầu tư ra nước ngoài và báo cáo thẳm định nội bộ về đề xuất đầu
+tư ra nước ngoài của doanh nghiệp nhà nước quy định tại khoản 1 Điều 59 của
+Luật này hoặc quyết định đầu tư ra nước ngoài theo quy định tại khoản 2 Điều
+59 của Luật này;
+
+g) Đối với dự án đầu tư ra nước ngoãi trong các ngănh, nghề quy định tại
+khoản 1 ffleu 54 của Luật này, nhà đầu tư nộp văn bản của cơ quan nhà nước có
+thẩm quyền về việc đáp ứng điều kiện đầu tư ra nước ngoài theo quy định của
+pháp luật có liên quan (nếu có).
+
+2. Trong thời hạn 05 ngày làm việc kể từ ngày nhận đủ hồ sơ, Bộ Kế
+hoạch và Đầu tư trình Thủ tướng Chính phủ quyết định thành lập Hội đồng thắm
+định nhà nước.
+
+3. Trong thời hạn 90 ngày kể từ ngày thành lập, Hội đồng thầm định nhà
+nước tổ chức thẩm định và lập báo cáo thâm định trình Chính phủ. Báo cáo thẳm
+định gồm các nội dung sau đây:
+
+
+--- Trang 37 ---
+37
+
+_a) Điều kiện cấp Giấy chứng nhận đăng ký đầu tư ra nước ngoài quy định
+tại Điêu 60 của Luật này;
+
+b) Tư cách pháp lý của nhà đầu tư;
+
+ce)S§ự cần thiết thực hiện hoạt động đầu tư ở nước ngoài;
+
+d) Sự phù hợp của dự án đầu tư với quy định tại khoản 1 Điều 51 của Luật này;
+
+đ) Hình thức, quy mô, địa điểm và tiền độ thực hiện dự án đầu tư, vốn đầu
+tư ra nước ngoài, nguôn vôn;
+
+e) Đánh giá mức độ rủi ro tại nước tiếp nhận đầu tư.
+
+4. Chậm nhất là 60 ngày trước ngày khai mạc kỳ họp Quốc hội, Chính
+
+phủ gửi hồ sơ đề nghị ủap thuận chủ trương đầu tư ra nước ngoài đến cơ quan
+chủ trì thẳm tra của Quốc hội.
+
+5. Hồ sơ đề nghị chấp thuận chủ trương đầu tư ra nước ngoài bao gồm:
+
+) Tờ trình cửa Chính phử;
+
+b) Hồ sơ quy định tại khoản 1 Điều này;
+
+e) Báo cáo thẳm định của Hội đồng thẳm định nhà nước;
+
+d) Tài liệu khác có liên quan.
+
+_6. Nội dung thẩm tra đề nghị chap thuận chủ trương đầu tư ra nước ngoài
+bao gồm:
+
+a) Việc đáp ứng tiêu chí xác định dự án đầu tư thuộc thẳm quyền chấp
+thuận chủ trương đầu tư của Quốc hội;
+
+b) Sự cần thiết thực hiện hoạt động đầu tư ở nước ngoài;
+
+e) Sự phù hợp của dự án đầu tư với quy định tại khoản 1 Điều 51 của
+Luật này;
+
+d) Hình thức, quy mô, địa điểm và tiền độ thực hiện dự án đầu tư, vốn đầu
+tư ra nước ngoài, nguôn vôn;
+
+đ) Đánh giá mức độ rủi ro tại nước tiếp nhận đầu tư;
+
+_ e)Cơ chế, chính sách đặc biệt, ưu đãi, hỗ trợ đầu tư và điều kiện áp dụng
+(nêu có).
+
+7. Chính phủ và cơ quan, tổ chức, cá nhân có liên quan có trách nhiệm
+cũng ơap đầy đủ t11or1g tin, tài liệu phục vụ cho việc thẩm tra; giải trình về những
+vân ừ, thuộc nội dung dự án đầu tư khi cơ quan chủ trì thẳm tra của Quốc hội
+yêu cầu.
+
+8 Qll('ỄDí3 hội xem xét, thông qua nghị c1uyết về fflấp thuận chủ trương đầu
+tư ra nước ngoài bao gôm các nội dung sau đây:
+
+a) Nhà đầu tư thực hiện dự án;
+b) Mục tiêu, địa điểm đầu tư;
+
+
+--- Trang 38 ---
+38
+
+c) Vốn đầu tư ra nước ngoài, nguồn vốn đầu tư ra nước ngoài;
+
+d) Cơ chế, chính sách đặc biệt, ưu đãi, hỗ trợ đầu tư và điều kiện áp dụng
+(nêu có).
+
+9. Chính phủ quy định chĩ tiết trình tự, thủ tục thực hiện thẩm định hồ sơ
+dự án đầu tư ra nước ngoài của Hội đồng thẳm định nhà nước.
+
+Điều 58. Hồ sơ, trình tự, thủ tục chấp thuận chủ trương đầu tư ra
+nước ngoài của Thủ tướng Chính phủ
+
+1. Hồ sơ dự án đầu tư thực hiện theo quy định tại khoản 1 Điều 57 của
+Luật này.
+
+2. Nhà đầu tư nộp hồ SƠ dự án đầu tư mq Bộ Kế mlạch và Đầu tư. Trong
+ffl`ời ủ.n 03 gày làm việc kê từ ngày nhận đủ hồ sơ, Bộ Kế hoạch và Đầu tư gửi
+hô sơ lây ý kiên thâm định của cơ quan nhà nước có liên quan.
+
+3. Trong thời hạn 15 ngày kể từ ngày. nhận được hồ sơ, cơ quan được hy
+ý kiến có ý kiến thẳm định băng văn bản về những nội dung thuộc thẩm quyền
+quản lý.
+
+_4  Trong thời hạn 30 ngày kể từ ngày nhận được hồ sơ, Bộ Kế hoạch và
+Đầu tư tô chức thâm định và lập báo cáo thâm định trình Thủ tướng Chính phủ.
+Báo cáo thẳm định gồm các nội dung quy định tại khoản 3 Điều 57 của Luật này.
+
+5. Thủ tướng Chính phủ xem xét, dlặp thuận chủ trương đầu tư ra nước
+ngoài theo nội dung quy định tại khoản 8 Điêu 57 của Luật này.
+
+Điều 59. Quyết định đầu tư ra nước ngoài
+
+1, Việc quyết định đầu tư ra nước ngoài của doanh nghiệp nhà nước thực
+hiện theo quy định của pháp luật về quản lý, sử dụng vôn nhà nước đầu tư vào sản
+xuât, kinh doanh tại doanh nghiệp và quy định khác của pháp luật có liên quan.
+
+2. Hoạt động đầu tư ra mrơc ngoài không thuộc trường hợp quy định tại
+khoản 1 Điều này do nhà đầu tư quyết định theo quy định của Luật Doanh nghiệp.
+
+3. Nhà đầu tư, cơ quan quyết định việc cÌau tư ra nước ngoài quy định tại
+khoản 1 và khoản 2 Điều này chịu trách nhiệm về quyết định của mình đối với
+việc đầu tư ra nước ngoài.
+
+Mục3
+THỦ TỤC CÁP, ĐIỀU CHỈNH VÀ CIJIAM DỨT HIỆU LỰC
+CỦA GIÁY CHỨNG NHẬN ĐĂNG KÝ ĐẦU TƯ RA NƯƠC NGOÀI
+Điều 60. Điều kiện cấp Giấy chứng nhận đăng ký đầu tư ra nước ngoài
+_ 1. Hoạt động đầu tư ra nước ngoài phù hợp với nguyên tắc quy định tại
+Điêu 51 của Luật này.
+2. Không thuộc ngành, nghề cấm đầu tư ra nước ngoài quy định tại Điều 53
+
+
+
+--- Trang 39 ---
+39
+
+của Luật này và đáp ứng điều kiện đầu tư ra nước ngoài đối với ngành, nghề đầu
+tư ra nước ngoài có điều kiện quy định tại Điều 54 của Luật này.
+
+_ 3.Nhà đầu tư có cam kết tự thu xếp ngoại tệ hoặc có cam kết thu xếp ngoại
+
+tệ để thực hiện hoạt động đầu tư ra nước ngoài của tô chức tín dụng được phép.
+
+4. Có quyết định đầu tư ra nước ngoài theo quy định tại Điều 59 của Luật này.
+
+5. (Ịó văn bản m'lg cơ quan thuế xác nhận việc ỊLhực hiện nghĩa vụ nộp thuế
+của nhà đâu tư. Thời điềm xác nhận của cơ quan thuê là không quá 03 tháng tính
+đến ngày nộp hồ sơ dự án đầu tư.
+
+Điều 61. Thủ tục cấp Giấy chứng nhận đăng ký đầu tư ra nước ngoài
+
+1. Đối với các dự án đầu tư thuộc diện chấp thuận chủ trương đầu tư ra
+nước goal, Bộ Kế hoạch và Đầu tư cấp Giấy chứng nhận đăng ký đầu tư ra
+nước ngoài cho nhà đầu tư trong thời hạn 05 ngay làm việc kể từ ngày nhận
+
+được văn bản chấp thuận chủ trương đầu tư và wyet định đầu tư ra nước ngoài
+theo quy định tại Điều 59 của Luật này.
+
+2. Đối với dự án đầu tư không thuộc trường hợp quy định tại khoản 1
+Điều này, nhà đầu tư nộp hồ sơ đề  nghị uzp Giấy ủưng nhận đăng ký đầu tư ra
+nước ngoài cho Bộ Kế hoạch và Đầu tư. Hồ sơ bao gồm:
+
+a) Văn bản đăng ký đầu tư ra nước ngoài;
+
+b) Tài liệu về tư cách pháp lý của nhà đầu tư;
+
+c) Quyết định đầu tư ra nước ngoài theo quy định tại Điều 59 của Luật này;
+
+_ . d) Văn bản cam Ịcết tự cân Ổi nguồn ngoại tệ hoặc văn bản cam kết thu
+xếp ngoại tệ cho nhà đâu tư của tô chức tín dụng được phép theo quy định tại
+khoản 3 Điều 60 của Luật này;
+
+đ) Đr;z với dự án đầu tư ra nước ngoài trong các ngành, nghề quy định tại
+khoản 1 Điều 54 của Ụ1ạt my, nhà đầu tư m›p văn bản ửap thuận của cơ quan
+nhà nước có thẩm quyền về việc đáp ứng điều kiện đầu tư ra nước ngoài theo
+quy định của pháp luật có liên quan (nêu có).
+
+3. Trường hợp khoản Ổụ bằng ngoại tệ ®1.lyển ra nước ngoài tương
+đương 20 tỷ đồng trở lên, Bộ Kê hoạch và Đâu tư lây ý kiện băng văn bản của
+Ngân hàng Nhà nước Việt Nam.
+
+4. Trong ủn hạn 15 ngay kể từ Ẹay nhận được hồ sơ quy định tại khoản
+2 Điều này, Bộ Kế hoạch và Đau tư wp Giấy chứng nhận &mg ký đầu tư ra
+
+nước ngoài; trường hợp từ chối wp Glay chứng nhận đăng ký đầu tư ra nước
+ngoài thì phải thông báo cho nhà đầu tư ủng văn bản và nêu rõ lý do.
+
+5. Chính phủ quy, định chỉ tiết trình “tự, thủ tục thực hiện thẳm định dự án
+đầu tư ra nước ngoài; cấp, điều chỉnh, chấm dứt hiệu lực của Giấy chứng nhận
+đăng ký đầu tư ra nước ngoài.
+
+
+--- Trang 40 ---
+40
+
+Điều 62. Nội dung Giấy chứng nhận đăng ký đầu tư ra nước ngoài
+1. Mã số dự án đầu tư.
+
+2. Nhà đầu tư.
+
+3. Tên dự án đầu tư, tên tổ chức kinh tế ở nước ngoài (nếu có).
+
+4. Mục tiêu, địa điểm đầu tư.
+
+5. Hình thức đầu tư, vốn đầu tư, nguồn vốn đầu tư, hình thức vốn đầu tư,
+tiến độ thực hiện hoạt động đầu tư ra nước ngoài.
+
+6. Quyền và nghĩa vụ của nhà đầu tư.
+
+7. Ưu đãi và hỗ trợ đầu tư (nếu có).
+
+Điều 63. Điều chỉnh Giấy chứng nhận đăng ký đầu tư ra nước ngoài
+
+1. Nhà đầu tư thực hiện thủ tục điều chỉnh Giấy chứng nhận đăng ký đầu
+tư ra nước ngoài trong các trường hợp sau đây:
+
+a) Thay đổi nhà đầu tư Việt Nam;
+
+b) Thay đồi hình thức đầu tư;
+
+_ .©) Thay đổi vốn đầu tư ra nước ngoài; nguồn vốn đầu tư, hình thức vốn
+
+đầu tư;
+
+d) Thay đổi địa tì1c=.n1 thực hiện hoạt động đầu tư đối với các dự án đầu tư
+yêu cầu phải có địa điểm đầu tư;
+
+đ) Thay đổi mục tiêu chính của hoạt động đầu tư ở nước ngoài;
+
+_ @) Sử dụng lợi nhuận đầu tư ở nước ngoài theo quy định tại điểm a và
+điệm b khoản 1 Điêu 67 của Luật này.
+
+2. Nhà đầu tư phải cập nhật trên Hệ thống thông tin quốc gia về đầu tư khi
+thay đổi các nội dung khác với quy định tại khoản 1 Điều này.
+
+3. Hồ sơ điều chỉnh Giấy chứng nhận đăng ký đầu tư ra nước ngoài bao gồm:
+
+a) Văn bản đề nghị điều chỉnh Giấy chứng nhận đăng ký đầu tư ra nước ngoài;
+
+b) Tài liệu về tư cách pháp lý của nhà đầu tư;
+
+_.. e) Báo cáo tình hình hoạt động của dự án đầu tư đến thời điểm nộp hồ sơ
+điều chỉnh Giấy chứng nhận đăng ký đầu tư ra nước ngoài;
+
+9 Quyết định điều chỉnh hoạt động đầu tư ra nước ngoài theo quy định tại
+Điêu 59 của Luật này hoặc các văn bản quy định tại điểm e khoản 1 Điều 57 của
+Luật này;
+
+đ) Bản sao Giấy chứng nhận đăng ký đầu tư ra nước ngoài;
+e) Văn bản của cơ quan thuế xác nhận việc thực hiện nghĩa vụ m›p thuế
+
+của nhà đầu tư u-ong trường hợp điều chỉnh tăng vốn đầu tư ra nước goal Thời
+điểm xác nhận của cơ quan thuê là không quá 03 tháng tính đến ngày nộp hồ sơ.
+
+
+--- Trang 41 ---
+4l
+
+4. Bộ Kế hoạch và Đầu tư điều chỉnh Giấy chứng nhận ủng ký đầu tư ra
+nước ngoài trong thời hạn 15 ngày kể từ ngày nhận được hồ sơ quy định tại
+khoản 3 Điều này.
+
+5. Đối với các dự án đầu tư thuộc diện chấp thuận chủ trương. đầu tư ra
+nước ngoài, khi điều chỉnh các nội dung quy định tại khoản 1 Điều này và
+khoản 8 Điều 57 của Luật này, Bộ Kế hoạch và Đầu tư thực hiện thủ tục d1ap
+thuận điều chỉnh chủ trương đầu tư ra nước ngoài trước khi điều chỉnh Giấy
+chứng nhận đăng ký đầu tư ra nước ngoài.
+
+6. Trường hợp đề nghị điều chỉnh Giấy chứng nhận đăng ký đầu tư ra
+nước ngoài dẫn đến dự án đầu tư thuộc điện phải chấp thuận chủ trương đầu tư
+Ta nước ngoài thì phải thực hiện thủ tục chấp thuận chủ trương đầu tư ra nước
+ngoài trước khi điều chỉnh Giấy chứng nhận đăng ký đầu tư ra nước ngoài.
+
+7. Cơ quan, người có thẩm ạyen chấp thuận chủ trương đầu tư ra nước
+ngoài thì có thẩm quyên chấp thuận ùeu chỉnh chủ trương đầu tư ra nước goal
+Cơ quan, ựươl có thắm quyen quyết tỉmh đầu tư ra nước ngoài thì có thẩm
+quyên quyết định điều chỉnh nội dung quyet định đầu tư ra nước ngoài.
+
+8. Trường hợp đề nghị điều chỉnh dự án đầu tư dẫn đến dự án đầu tư thuộc
+thẩm quyền ủap thuận chủ trương đầu tư ra nước ngoài của cấp cao hơn thì cấp
+đó có thẳm quyền chấp thuận điều chỉnh chủ trương đầu tư ra nước ngoài.
+
+Điều 64. Chấm dứt hiệu lực Giấy chứng nhận đăng ký đầu tư ra
+nước ngoài
+
+1. Giấy chứng nhận đăng ký đầu tư ra nước ngoài chắm dứt hiệu lực trong
+trường hợp sau đây:
+
+a) Nhà đầu tư quyết định chấm dứt hoạt động của dự án đầu tư;
+
+b) Hết thời hạn hoạt động của dự án đầu tư theo quy định của pháp luật
+nước tiếp nhận đâu tư;
+
+_.. ©) Theo các điều kiện chấm dứt hoạt động được quy định trong hợp đồng,
+điều lệ doanh nghiệp;
+
+\ d) Nhà đầu tư chuyển nhượng toàn bộ vốn đầu tư ở nước ngoài cho nhà
+đâu tư nước ngoài;
+
+_.. đ) Quá thời hạn 24 tháng kể từ ngày được cấp Giấy chứng nhận đăng ký
+đầu tư ra nước ngoài mà nhà fflìu tư không thực hiện hoặc không có khả năng
+thực hiện dự án đầu tư theo tiến độ &ang ký với cơ quan quản lý nhà nước và
+không thực hiện thủ tục điều chỉnh tiền độ thực hiện dự án đầu tư;
+
+e) Tổ chức kinh tế ở nước ngoài bị giải thể hoặc phá sản theo quy định
+của pháp luật nước tiếp nhận đâu tư;
+
+g) Theo bản án, quyết định của Tòa án, phán quyết trọng tài.
+
+2. Nhà đầu tư có trách nhiệm thực hiện thủ tục chấm dứt hoạt động của
+
+
+--- Trang 42 ---
+42
+
+dự án đầu tư tại nước goal theo quy định của pháp luật nước tiếp nhận đầu tư
+và thực hiện thủ tục chấm dứt hiệu lực của Giấy chứng nhận đăng ký đầu tư ra
+nước ngoài.
+
+3. Bộ Kế hoạch và Đầu tư thực hiện chấm dứt hiệu lực của Giấy chứng
+nhận đăng ký đầu tư ra nước ngoài.
+
+Mục 4
+TRIỄN KHAI HOẠT ĐỘNG ĐẦU TƯ Ở NƯỚC NGOÀI
+
+Điều 65. Mở tài khoản vốn đầu tư ra nước ngoài
+
+1. Nhà đầu tư mở tài khoản vốn đầu tư ra nước ngoài tại một tổ chức tín
+dụng được phép tại Việt Nam theo quy định của pháp luật về quản lý ngoại hồi.
+
+2. Mọi giao dịch ủuyen tiền từ Việt Nam ra nước ngoài và từ nước ngoài
+về Việt Nam liên quan đến hoạt ủng đầu tư ra nước Ẹoal phải thực hiện thông
+qua tài khoản vốn đầu tư quy định tại khoản 1 Điều náy heo quy định của phắp
+luật về quản lý ngoại hồi.
+
+Điều 66. Chuyển vốn đầu tư ra nước ngoài
+
+1. Nhà đầu tư được ủuyen vốn đầu tư ra nước ngoài để thực hiện hoạt
+động đầu tư khi ủp ứng các điều kiện sau đây:
+
+a) Đã được cấp Giấy chứng nhận đăng ký đầu tư ra nước ngoài, trừ trường
+hợp quy định tại khoản 3 Điều này;
+
+b) Hoạt động đầu tư đã được cơ quan có thẩm quyền của nước tiếp nhận
+đầu tư chấp thuận hoặc map phép. Trường hợp pháp luật của nước tiếp nhận đầu
+tư không quy định về việc cấp ffl1ep đầu tư hoặc chấp thuận ủu tư, nhà đầu tư
+phải có tài liệu chứng mình quyền hoạt động đầu tư tại nước tiếp nhận đầu tư;
+
+e) Có tài khoản vốn theo quy định tại Điều 65 của Luật này.
+
+2- Việc chuyển vốn ửxu tư ra nước ngoài phải tuân thủ quy định của pháp
+luật về quản lý ngoại hối, xuất khẩu, chuyên giao công nghệ và quy định khác
+của pháp luật có liên quan.
+
+3. b]hađautưđuơcchuyẻnngomtehoạchanghoa máy mớc, thiết bị ra
+nước ngoài để phục vụ cho hoạt động khảo sát, nghiên cứu, thăm dò thị trường
+và thực hiện hoạt động chuẩn bị đầu tư khác theo quy định của Chính phủ.
+
+Điều 67. Sử dụng lợi nhuận ở nước ngoài
+
+1. Nhà đầu tư được giữ lại lợi nhuận thu từ đầu tư ở nước ngoài để tái đầu
+tư trong trường hợp sau đây:
+
+m Tiếp tục góp vốn đầu tư ở nước ngoài trong trường hợp chưa góp đủ
+vôn theo đăng ký;
+
+b) Tăng vốn đầu tư ra nước ngoài;
+
+
+--- Trang 43 ---
+43
+
+c) Thực hiện dự án đầu tư mới ở nước ngoài.
+
+2. Nhà đầu tư thực hiện thủ tục điều chỉnh fflay chứng nhận đăng ký đầu
+tư ra nước ngoài theo quy định tại Điều 63 của Luật này đối với các u…mg hợp
+quy định tại điểm a và điểm b khoản 1 Điều này; thực hiện thu tục mìp fflay
+ủưng nhận đăng ký đầu tư ra nước ngoài theo quy định tại Điều 61 của Luật
+này đối với trường hợp quy định tại điểm c khoản 1 Điều này.
+
+Điều 68. Chuyễn lợi nhuận về nước
+
+1. Trừ trường hợp giữ lại lợi nhuận theo quy định tại Điều 67 của Luật
+này, trong thời hạn 06 tháng kể từ ngày có báo cáo quyết toán thuế ủ›ac văn bản
+có giá trị pháp lý tương đương theo quy định của pháp luật nước tiếp nhận đầu
+tư, nhà đầu tư phải chuyển toàn bộ lợi nhuận thu được và các khoản thu nhập
+khác từ đầu tư ở nước ngoài về Việt Nam.
+
+2. Trong thời hạn quy định tại khoản 1 Điều này mà không chuyển lợi
+nhuận và các khoản thu nhập khác về Việt Nam thì nhà đầu tư phải thông báo
+trước bằng văn bản cho Bộ Kế hoạch và Đầu tư và Ngân hàng Nhà nước Việt
+Nam. Thời hạn chuyen lợi nhuận về nước được kéo dài không quá 12 tháng kếể
+từ ngày hết thời hạn quy định tại khoản 1 Điều này.
+
+3. Trường hợp quá thời hạn quy định tại khoản 1 Điều này mà chưa
+chuyển lợi nhuận về nước và không ũmng báo hoặc mrơng hợp quá thời hạn
+được kéo dài quy định tại khoản 2 Điều này mà nhà đầu tư chưa chuyển lợi
+nhuận về nước thì bị xử lý theo quy định của pháp luật.
+
+Chương VI
+QUẢN LÝ NHÀ NƯỚC VỀ ĐẦU TƯ
+Điều 69. Trách nhiệm quản lý nhà nước về đầu tư
+1. Chính phủ thống nhất quản lý nhà nước về đầu tư tại Việt Nam và đầu
+tư từ Việt Nam ra nước ngoài.
+2. Bộ Kế hoạch và Đầu tư giúp Chính phủ thống nhất quản lý nhà nước ve
+
+đầu tư tại Việt Nam và đầu tư từ Việt Nam ra nước ngoài và có nhiệm vụ, quyền
+hạn sau đây:
+
+a) Trình Chính phủ, Thủ tướng Chính phủ phê duyệt chiến lược, kế hoạch,
+chính sách về đầu tư tại Việt Nam và đầu tư từ Việt Nam ra nước ngoài;
+
+b) Ban hành hoặc trình cơ quan có thẩm quyền ban hành văn bản quy
+phạm pháp luật về đầu tư tại Việt Nam và đầu tư từ Việt Nam ra nước ngoài;
+
+) Ban hành biếu mẫu thực hiện thủ tục đầu tư tại Việt Nam và đầu tư từ
+Việt Nam ra nước ngoài;
+
+d) Hướng dẫn, ủo biến, tổ chức †.hực hiện, theo đõi, kiểm tra, đánh giá
+việc thực hiện văn bản quy phạm pháp luật về đầu tư;
+
+đ) Xây dựng và trình cơ quan có thẩm quyền ban hành cơ chế giải quyết
+
+
+--- Trang 44 ---
+44
+
+vướng mắc của nhà đầu tư, phòng ngừa tranh chấp giữa Nhà nước và nhà đầu tư;
+
+e) Tổng hợp, đánh giá, báo cáo tình hình đầu tư tại Việt Nam và đầu tư từ
+Việt Nam ra nước ngoài;
+
+g) Xây dựng, quản lý và vận hành Hệ thống thông tin quốc gia về đầu tư,
+cơ sở dữ liệu quốc gia về đầu tư;
+
+h) Cấp, điều chỉnh, chấm dứt hiệu lực Giấy chứng nhận đăng ký đầu tư ra
+nước ngoài;
+
+i) Quản lý nhà nước về khu công nghiệp, khu chế xuất, khu kinh tế;
+
+_ ..k) Quản lý nhà nước về xúc tiến đầu tư và điều phối hoạt động xúc tiến
+
+đâu tư tại Việt Nam và ở nước ngoài;
+
+]) Kiểm tra, thanh tra, _giám sát, đánh ffla hoạt động đầu tư, quản lý và
+phối hợp quản lý hoạt động đầu tư theo thắm quyền;
+
+m) Đàm phán, ký kết điều ước quốc tế liẠezxJ:;;.laazag=I4.aẹxaL°!ẫuJtLzỊla«e<Jz1l1zẨ1la1;1x.tyỊ_Ầer1;
+
+n) Nhiệm vụ, quyền hạn khác về quản lý nhà nước về đầu tư theo phân
+công của Chính phủ và Thủ tướng Chính phủ.
+
+3. Các Bộ, cơ quan ngang Bộ, trong phạm vi nhiệm vụ, quyền hạn của
+mình, có trách nhiệm phc›x hợp với Bộ Kế hoạch và Đầu tư thực hiện nhiệm vụ
+quản lý nhà nước về đầu tư tại Việt Nam và đầu tư từ Việt Nam ra nước ngoài,
+bao gồm:
+
+a) Phối hợp với Bộ Kế hoạch và Đầu tư, các Bộ, cơ quan ngang Bộ trong
+việc xây dựng pháp luật, chính sách liên quan đên đâu tư;
+
+b) Chủ trì, phối hợp với các Bộ, cơ quan ngang Bộ trong việc xây dựng và
+ban hành pháp luật, chính sách, tiêu chuẩn, quy chuẩn kỹ thuật và hướng dẫn
+thục hiện;
+
+e) Trình Chính phủ ban hành theo thẳm quyền điều kiện đầu tư kinh
+doanh đối với ngành, nghề quy định tại Điều 7 của Luật này;
+
+d) Chủ trì, phối hợp với Bộ Kế hoạch và Đầu tư xây dựng quy hoạch, ke
+hoạch, danh mục dự án thu hút vốn đầu tư của ngành; tổ chức vận động, xúc tiến
+đầu tư chuyên ngành;
+
+đ) Tham gia thẳm định các dự án đầu tư thuộc trường ủ;p chấp thuận chủ
+trương đầu tư theo quy định của Luật này và chịu trách nhiệm về nội dung thẳm
+định thuộc chức năng, nhiệm vụ của mình;
+
+e) Giám sát, đánh giá, thanh tra chuyên ngành việc đáp ứng điều kiện đầu
+tư và quản lý nhà nước đối với dự án đầu tư thuộc thẩm quyền;
+
+g) Chủ trì, pht›1 hợp với Ủy ban nhân dân cấp tỉnh và các Bộ, cơ quan
+ngang Bộ gal quyết khó khăn, vướng matc của dự án đầu tư n-ong lĩnh vực quản
+lý nhà nước; hướng dẫn việc phân cấp, ủy quyền cho Ban quản lý khu công
+nghiệp, khu chế xuất, khu công nghệ cao, khu kinh tế thực hiện nhiệm vụ quản lý
+
+
+--- Trang 45 ---
+45
+
+nhà nước trong khu công nghiệp, khu chế xuất, khu công nghệ cao, khu kinh t;
+h) Định kỳ đánh giá hiệu quả kinh tế - xã hội của dự án đầu tư thuộc phạm
+vi quản lý nhà nước và gửi Bộ Kế hoạch và Đầu tư;
+
+i) Cung cấp thông tin liên quan để xây dựng cơ sở dữ liệu quốc gia về đầu
+tư; duy trì, wp nhật hệ thống thông tin quản lý đầu tư đối với lĩnh vực được
+phân công và tích hợp vào Hệ 1zl1<›1'ng thông tin quốc gia về đầu tư.
+
+4. Ủy ban nhân dân cấp tỉnh, cơ quan đăng ký đầu tư, trong phạm vi
+nhiệm vụ, quyền hạn của mình, có trách nhiệm thực hiện nhiệm vụ quản lý nhà
+nước về hoạt động đầu tư tại Việt Nam và đầu tư từ Việt Nam ra nước ngoài,
+bao gồm:
+
+a) Phối hợp với các Bộ, cơ quan ngang Bộ lập và công bố Danh mục dự
+án thu hút đầu tư tại địa phương:
+
+b) Chủ trì hoặc tham gia thẩm định các dự án đầu tư thuộc trường ủp
+chấp thuận chủ trương đầu tư theo quy định của ïuật này và chịu trách nhiệm về
+nội ủng thẩm định thuộc ủưc năng, nhiệm vụ của mnh chủ trì thực hiện thủ
+tục cấp, điều chỉnh và thu hồi Giấy chứng nhận đăng ký đầu tư;
+
+) Thực hiện chức năng quản lý nhà nước đối với dự án đầu tư tại địa phương;
+
+d) Giải ạ1yet theo thắm quyen hoặc trình cấp có thẳm quyền giải quyết
+khó khăn, vướng măc của nhà đầu tư;
+
+đ) Định kỳ đánh giá hiệu quả hoạt động đầu tư trên địa bàn và báo cáo Bộ
+Kế hoạch và Đầu tư;
+
+e) Cung cấp thông tin liên quan để my dựng cơ sở dữ liệu quốc gia về đầu
+tư; duy trì, cập nhật Hệ thống thông tin quốc gia về đầu tư;
+
+\ ) Chỉ đạo việc tổ chức, giám sát và đánh giá thực hiện chế độ báo cáo
+đầu tư.
+
+5. Cơ quan đại diện Việt Nam ở nước ngoài có trách nhiệm theo dõi, hỗ
+trợ hoạt ùmg đầu tư và bảo vệ quyền, lợi ích hợp pháp của nhà đầu tư Việt Nam
+tại nước t1ep nhận đầu tư.
+
+Điều 70. Giám sát, đánh giá đầu tư
+
+1. Hoạt động giám sát, đánh giá đầu tư bao gồm:
+
+a) Giám sát, đánh giá dự án đầu tư;
+
+b) Giám sát, đánh giá tổng thể đầu tư.
+
+2. Trách nhiệm giám sát, đánh gả đầu tư bao gồm:
+
+a) Cơ quan quản lý nhà nước ve đầu tư, cơ quan quản lý nhà nước ủuyen
+
+ngành thực hiện gam sát, đánh giá tổng thể đầu tư và giám sát, đánh giá dự án
+đâu tư thuộc phạm vi quản lý;
+
+b) Cơ quan đăng ký đầu tư giám sát, đánh giá dự án đầu tư thuộc thẩm
+
+
+--- Trang 46 ---
+46
+
+quyền cấp Giấy chứng nhận đăng ký đầu tư.
+
+3. Nội dung giám sát, đánh giá dự án đầu tư bao gồm:
+
+a) Đối với dự án đầu tư sử dụng vốn nhà nước để đầu tư kinh doanh, cơ
+quan quản lý nhà nước về đâu tư, cơ quan quắn lý nhà nước chuyên ngành thực
+hiện giám sát, đánh giá dự án đâu tư theo nội dung và tiêu chí đã được phê duyệt
+tại quyêt định đâu tư;
+
+b) Đ_ối với dự án đầu tư sử dụng nguồn vốn khác, cơ quan quản lý nhà
+nước về đầu tư, cơ quan quản lý nhà nước chuyên ngành thực hiện giám sát,
+đánh giá mục tiêu, sự phù hợp của dự án đâu tư với quy hoạch và chủ trương
+đầu tư đã được cấp có thẳm quyền chấp thuận, tiền độ thực hiện, việc thực hiện
+các yêu câu về bảo vệ môi trường, công nghệ, sử dụng đất đại, tài nguyên khác
+theo quy định của pháp luật;
+
+c) Cơ quan đăng ký đầu tư thực hiện giám sát, đánh giá các nội dung quy
+'định tại Giấy chứng nhận đăng ký đầu tư, văn bản chấp thuận chủ trương đầu tư„
+
+4. Nội dung giám sát, đánh giá tổng thể đầu tư bao gồm:
+
+a) Việc ban hành văn bản quy phạm pháp luật quy định chỉ tiết và hướng
+dẫn thi hành; việc thực hiện quy định của pháp luật vê đâu tư;
+
+b) Tình hình thực hiện các dự án đầu tư;
+
+c) Đánh giá kết quả thực fflện đầu tư của cả nước, các Bộ, cơ quan ngang
+Bộ và các địa phương, các dự án đâu tư theo phân câp;
+
+d &en nghị cơ quan quản lý nhà nước cùng cấp, cơ quan quản lý nhà
+nước về ỏau tư cấp trên về kết quả đánh giá đầu tư và biện pháp xử lý những
+vướng mắc và vi phạm pháp luật về đầu tư.
+
+5. Cơ quan, tổ chức thực hiện đánh giá tự thực hiện hoặc thuê chuyên gia,
+tổ chức tư vấn có đủ điều kiện, năng lực để đánh giá đầu tư.
+
+6. Chính phủ quy định chỉ tiết Điều này.
+
+Điều 71. Hệ thống thông tin quốc gia về đầu tư
+
+1. Hệ thống thông tin quốc gia về đầu tư bao gồm:
+
+a) Hệ thống thông tin quốc gia về đầu tư trong nước;
+
+b) Hệ thống thông tin quốc gia về đầu tư nước ngoài vào Việt Nam;
+
+c) Hệ thống thông tin quốc gia về đầu tư của Việt Nam ra nước ngoài;
+
+d) Hệ thống thông tín quốc gia về xúc tiền đầu tư;
+
+đ) Hệ thống thông tin quốc gia về khu công nghiệp, khu kinh tế.
+
+2. Bộ Kế hoạch và Đầu tư chủ trì, ph<Ấ›Ii hợp với các cơ quan có liên quan
+
+xây dựng và vận hành Hệ thống thông tin quốc gia về Clầu tư; xây dựng cơ sở dữ
+liệu quốc gia về đầu tư; đánh giá việc vận hành hệ thống của cơ quan quản lý
+
+
+--- Trang 47 ---
+47
+
+nhà nước về đầu tư ở trung ương và địa phương.
+3. Cơ quan quản lý nhà nước về đầu tư và nhà đầu tư có trách nhiệm cập
+
+nhat đdầy đủ, kịp thời, chính xác các thông tin liên quan vào Hệ thống thông tin
+CIUOC gia về đầu tư.
+
+4. Thông tin về dự án đầu tư lưu trữ tại Hệ thống thông tin quốc gia về
+đầu tư có giá trị pháp lý là thông tin gốc về dự án đầu tư.
+
+Điều 72. Chế độ báo cáo hoạt động đầu tư tại Việt Nam
+
+1. Đối tượng thực hiện chế độ báo cáo bao gỀm:
+
+a) Bộ, cơ quan ngang Bộ, Ủy ban nhân dân cấp tỉnh;
+
+b) Cơ quan đăng ký đầu tư;
+
+e) Nhà đầu tư, tổ chức kinh tế thực hiện dự án đầu tư theo quy định của
+Luật này.
+
+2. Chế độ báo cắo định kỹ được thực hiện như sau:
+
+a) Hằng quý, hằng năm, nhà đầu tư, tổ chức kinh tế thực hiện dự án đầu tư
+báo cáo cơ quan ởa.ng ký đầu tư và cơ quan thc›ng kê trên địa bàn về tình hình
+thực hiện dự án đầu tư, gồm các nội dung sau: vốn đầu tư thực hiện, kết fflla hoạt
+động đầu tư kinh doanh, thong tin về lao động, m›p ngân sách nhà nước, đầu tư
+
+cho nghiên cứu và phát triển, xử lý và bảo vệ môi trường, các chỉ tiêu chuyên
+ngành theo lĩnh vực hoạt động;
+
+b) fflmg quý, hằng năm, cơ quan đăng ký &lu tư báo cáo Bộ &a hoạch và
+Đầu tư và Ủy ban nhân dân cấp tỉnh về tình hình tiếp nhận, cấp, điều chỉnh, thu
+hồi Giấy ủưng nhận đăng ký đầu tư, tình hình hoạt động của các dự án đầu tư
+thuộc phạm vi quản lý;
+
+c) Hằng quý, Mng năm, U)' ban nhân dân cấp tỉnh tổng hợp, báo cáo Bộ
+Kế hoạch và Đầu tư về tình hình đầu tư trên địa bàn;
+
+d) Hằng quý, mng năm, các Bộ, cơ quan ngang Bộ báo cáo w tình hình
+cấp, điều chỉnh, thu hồi Giấy chứng nhận ửng ký đầu tư hoặc các giấy tờ có giá
+trị pháp lý tương đương khác thuộc phạm vi quản lý (nếu có); báo mm về hoạt
+động đầu tư liên quan đến phạm vi quản lý của ngành và gửi Bộ Kế hoạch và
+Đầu tư để tổng hợp báo cáo Thủ tướng Chính phủ;
+
+đ) fflmg năm, Bộ Kế hoạch và Đầu tư báo cáo Thủ nrơng Chính phủ về
+tình hình đầu tư trên phạm vi cả nước và báo cáo đánh giá về tình hình thực hiện
+chế độ báo cáo đầu tư của các cơ quan quy định tại khoản 1 Điều này.
+
+3. Cơ quan, nhà đầu tư và tổ ủưc kinh tế thực hiện báo cáo bằng văn bản
+và thông qua Hệ thống thông tin quốc gia về đầu tư.
+
+4. Cơ quan, nhà àlu tư, tổ chức kinh tế quy định tại khoản 1 Điều này
+thực hiện báo cáo đột xuất khi có yêu cầu của cơ quan nhà nước có thẩm quyền.
+
+5. Đối với các dự án đầu tư không thuộc diện cấp Giấy chứng nhận đăng
+
+
+--- Trang 48 ---
+48
+
+ký đầu tư, nhà đầu tư báo cáo cơ quan đăng ký đầu tư trước khi thực hiện dự án
+đâu tư.
+
+Điều 73. Chế độ báo cáo hoạt động đầu tư ở nước ngoài
+
+1. Cơ quan, tổ chức, cá nhấn thực hiện chế độ báo cáo bao gồm:
+
+a) Bộ, cơ quan ngang Bộ có nhiệm vụ quản lý hoạt động đầu tư ra nước
+ngoài theo quy định của pháp luật, cơ quan đại diện vôn nhà nước tại doanh nghiệp;
+
+b) Nhà đầu tư thực hiện dự án đầu tư ra nước ngoài theo quy định của
+Luật này.
+
+2. Chế độ báo cáo đối với các đối tượng quy định tại điểm a khoản 1 Điều
+này thực hiện như sau:
+
+a) Định ky hằng năm, có báo cáo tình hình quản lý đối với hoạt ủng đầu
+tư ra nước ngozJ.1 theo chức năng, nhiệm vụ của mình gửi Bộ Kế hoạch và Đầu tư
+tổng hợp, báo cáo Thủ tướng Chính phủ;
+
+_b) Định kỳ ựmg năm, Bộ Kế hoạch và Đầu tư báo cáo Thủ tướng Chính
+phủ về tình hình đâu tư ra nước ngoài.
+
+3. Chế độ báo cáo của nhà đầu tư được thực hiện như sau:
+
+a) Trong thời hạn 60 ngày kể từ ngày dự án đầu tư được chap thuận hoặc
+cấp phép theo quy định của wáp luật nước tiếp nhận đầu tư, nhà đầu tư phải gửi
+thông báo Mng văn bản về việc thực hiện hoạt động đầu tư ở nước ngoài kèm
+theo bản sao văn bản chấp thuận dự án đầu tư hoặc tài liệu chứng minh quyền
+hoạt động đầu tư tại nước tiếp nhận đầu tư cho Bộ Kế hoạch và Đầu tư, Ngân
+hàng Nhà nước Việt Nam, Cơ quan đại diện Việt Nam tại nước tiếp nhận đầu tư;
+
+b) Định kỳ mmg quý, ủng năm, nhà đầu tư gửi báo cáo tình hình hoạt
+động của dự án đầu tư cho Bộ Kế hoạch và Đầu tư, Ngan hàng Nhà nước Việt
+Nam, Cơ quan đại diện Việt Nam tại nước nep nhận đầu tư;
+
+e) Trong thời hạn 06 tháng kể từ ngày có báo cáo quyết toán thuế hoặc
+văn bản có giá trị pháp lý tương đương theo quy định của pháp luật nước tiếp
+nhận đầu tư, nhà đầu tư báo cáo tình hình hoạt động của dự án đầu tư kèm theo
+báo cáo tài chính, báo cáo quyết toán thuế hoặc văn bản có giá trị ỵJhaLp lý tương
+đương theo quy định của pháp luật nước tiếp nhận đầu tư gửi Bộ Kế hoạch và
+Đầu tư, Ngân hàng Nhà nước Việt Nam, Bộ Tài chính, Cơ quan đại diện Việt
+Nam tại nước tiếp nhận đầu tư và cơ quan quản lý nhà nước có thẩm quyền theo
+quy định của Luật này và quy định khác của pháp luật có liên quan;
+
+d) Đối với dự án đầu tư ra nước ngoài có sử dụng vốn nhà nước, ngoài
+việc thực hiện chế độ báo cáo quy định tại các điểm a, b và c khoản này, nhà đầu
+tư phải thực hiện chế ủ báo cáo đầu tư theo quy định của pháp luật về quản lý,
+sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp.
+
+4. Báo cáo quy định tại khoản 2 và khoản 3 ĐJeu` này được thực hiện bằng
+văn bản và thông qua Hệ thông thông tin quốc gia về đâu tư.
+
+
+--- Trang 49 ---
+49
+
+5. Cơ quan và nhà đầu tư quy định tại khoản 1 Điều này thực hiện báo cáo
+đột xuất theo yêu cầu của cơ quan nhà nước có ửnam quyêền khi có yêu cầu liên
+quan đến công tác quản lý nhà nước hoặc những vấn đề phát sinh liên quan đến
+dự án đầu tư.
+
+Điều 74. Hoạt động xúc tiến đầu tư
+
+.1. Chính phủ chỉ đạo xây dựng, tổ chức thực hiện chính sách, định hướng
+xúc tiến đầu tư nhằm thúc đẩy, tạo thuận lợi cho hoạt động đầu tư theo ngành,
+vùng và đox tác phù hợp với chiến lược, quy hoạch, kế hoạch và mục tiêu phát
+triển kinh tế - xã hội trong từng thời kỳ; bảo đảm thực hiện các r,hương trình,
+hoạt động xúc tiến &lu tư có tính liên vùng, liên ngành, gắn kết với xúc tiến
+thương mại và xúc tiền du lịch.
+
+2. Bộ Kế hoạch và Đầu tư xay dựng và tổ chức thực hiện ỏ hoạch,
+Chương trình xúc tiền đầu tư ựoc gìa; điều phối các hoạt động xúc tiến đầu tư
+liên vùng, liên tỉnh; theo dõi, giám sát và đánh giá hiệu quả xúc tiến đầu tư trên
+địa bàn cả nước.
+
+3. Bộ, cơ quan ngang Bộ, Ủy ban nhân dân cấp tỉnh, trong phạm vi nhiệm
+vụ, quyen hạn của mình, xây dựng và tổ chức thực hiện kế hoạch, chương trình
+xúc tiễn đầu tư trong các lĩnh vực, địa bàn thuộc phạm vi ạan lý phù hợp với
+ủ1en lược, quy hoạch, kế hoạch phát triển kinh tế - xã hội và Chương trình xúc
+tiến đầu tư quốc gia.
+
+4. Kinh phí xây dựng và tổ chức thực _hiện chương trình xúc tiến đầu tư
+được bố trí từ ngân sách nhà nước và các nguồn hỗ trợ hợp pháp khác.
+
+5. Chính phủ quy định chỉ tiết Điều này.
+
+Chương VIH
+ĐIỀU KHOẢN THỊ HÀNH
+Điều 75. Sửa đối, bổ sung một số điều của các luật có liên quan đến
+đầu tư kinh doanh
+
+1. Sửa đổi, bổ sung một số điều wa Luật Nhà ở số 65/2014/QH13 đã được
+sửa đổi, bổ sung một số điều theo Luật số 40/2019/QH14 như sau:
+
+a) Sửa đối, bổ sung khoản 2 Điều 21 như sau:
+
+“2. Có vốn ký ạy hoặc bảo lãnh ngân hàng ve nghĩa vụ ky quỹ để thực
+hiện đối với từng dự án theo quy định của pháp luật về đầu tư.”
+
+b) Sửa đổi, bồ sung điểm c khoản 2 Điều 22 như sau:
+
+“c) CỄÌìal2ì thuận nhà đầu tư theo quy định của Luật Đầu tư. Trường hợp có
+nhiều nhà đầu tư được chấp thuận thì việc xác định chủ đầu tư theo quy định của
+Luật Xây dựng.
+
+Chính phủ quy định chỉ tiết điểm này.”;
+
+
+--- Trang 50 ---
+50
+
+c) Sửa đổi, bổ sung khoản 1 Điều 23 như sau:
+
+“1. Có ạyen sử dụng đất ở hợp pháp và các loại đất khác được cơ ụxan
+nhà nước có thầm quyền cho phép chuyển mục đích sử dụng đất sang làm đất ở.”
+
+d) Sửa đồi, bổ sung khoản 2 Điều 170 như sau:
+
+*2, Đối với dự án xây dựng nhà ở khác thuộc diện chấp thuận chủ trương đầu
+tư theo quy định của Luật Đâu tư thì thực hiện theo quy định của Luật Đâu tư.”;
+
+đ) Sửa đồi, bổ sung khoản 7 Điều 175 như sau:
+
+“7. Tổ chức đào tạo, bồi dưỡng chuyên môn, nghiệp vụ về phát triển và
+quản lý nhà ở; quy định việc cấp giấy chứng nhận hoàn thành khóa đào tạo về
+quản lý vận hành nhà chung cư; quy định và công nhận việc phân hạng nhà
+chung cư.”;
+
+e) Bãi bỏ khoản 3 Điều 22 và Điều 171.
+
+2. Sửa đổi, bổ sung một số điều của Luật Kinh doa.nh bất động sản số
+66/2014/QH13 như sau:
+
+a) Sửa đổi, bổ sung khoản 1 Điều 10 như sau:
+
+“1, Tổ chức, cá nhân kinh doanh bất động sản phải thành lập doanh
+nghiệp hoặc hợp tác xã (sau đây gọi chung là doanh nghiệp), trừ trường hợp quy
+định tại khoản 2 Điều này.”;
+
+b) Sửa đổi, bồ sung Điều 50 như sau:
+
+“Điều 50. Thẩm quyền cho phép chuyển nhượng toàn bộ hoặc một
+phần dự án bất động sản
+
+1. Đối với dự án bất động sản được chấp thuận nhà đau tư hoặc được ơap
+Giấy chứng nhận đăng ký đầu tư theo quy định của Luật Đầu tư, thẩm quyền,
+thủ tục ừuyen nhượng toàn bộ hoặc một phần dự án thực hiện theo quy định
+của Luật Đầu tư.
+
+2. Đối với dự á án bất động sản không thuộc trường hợp quy định tại khoản
+1 Điều nay, thấm quyền cho phép chuyển nhượng toàn bộ hoặc một phần đự án
+bắt động sản thực hiện như sau:
+
+a) Ủy ban nhân dân tỉnh, thành phổ trực thuộc mmg ương (sau đây gọi là
+Ủy ban nhân dân ơap tỉnh) quyet định cho phép chuyển nhượng toàn bộ hoặc
+một lJÌ'lz:ì.ĩ1 dự án bất động sản đối với dự án do Ủy ban nhân dân cấp tỉnh quyết
+định việc đầu tư;
+
+b) Thủ tướng Chính phủ quyet định cho phép chuyển nhượng toàn bộ
+hoặc một l>h'cxn dự án bất động sản đối với dự án do Thủ tướng Chính phủ quyết
+định việc đầu tư.”;
+
+e) Bổ sung đoạn mở đầu vào trước khoản 1 Điều 51 như sau:
+
+“Thủ tục chuyển nhượng toàn bộ hoặc một phần dự án bất động sản quy
+định tại khoản 2 Điêu 50 của Luật này thực hiện như sau:”.
+
+
+--- Trang 51 ---
+51
+
+3. Sửa (Ì0l bổ sung một số điểm của khoản 2 Điều 25 của Luật Bảo vệ
+môi trường số ỏ/2014/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số
+35/2018/QH14 và Luật số 39/2019/QH14 như sau:
+
+) Sửa đổi, bố sung điểm a khoản 2 Điều 25 như sau:
+
+“a) Đối với các đối tượng quy định tại Điều 18 của Luật này, cấp có thẳm
+quyền căn cứ đánh giá sơ bộ tác động môi trường đềể chấp thuận chủ trương đầu
+tư; nhà đầu tư chỉ được thực hiện dự án sau khi báo cáo đánh giá tác động môi
+trường được phê duyệt.
+
+Đối với dự án &ìu tư công, cấp có thẳm quyền căn cứ đánh giá sơ bộ tác
+động môi trường để quyet định chủ mrơng đầu tư; căn cứ đánh giá tác động môi
+trường để quyết định đâu tư đối với các đôi tượng quy định tại Điều 18 của Luật
+này. Chính phủ quy định chỉ tiết đối tượng, nội dung đánh giá sơ bộ tác động
+môi trường;”;
+
+b) Sửa đổi, bổ sung điểm đ khoản 2 Điều 25 như sau:
+
+“đ) Đối với dự án không thuộc đối m'ơng quy định tại các điểm a, b, c và
+d khoản này, cấp có thẳm quyên căn cứ đánh giá sơ bộ tác động môi trường để
+cấp &ay chứng nhận đăng ký đầu tư, trừ trường hợp cấp Giấy chứng nhận đăng
+ký đầu tư theo yêu cầu của nhà đầu tư; nhà đầu tư chỉ được thực hiện dự án sau
+khi báo cáo đánh giá tác động môi trường được phê duyệt.”.
+
+4. Sửa đổi, bổ sung một số điều của Luật Thuế thu nhập doanh nghiệp số
+14/2008/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 32/2013/QH13
+và Luật số 71/2014/QH13 như sau:
+
+a) Bổ sung khoản 5a vào sau khoản 5 Điều 13 như sau:
+
+“5a. Đối với các dự án ủu tư quy định tại khoan 2 Điều 20 của Luật Đầu
+tư, Thủ tl1ơt1g Chính phủ quyết định áp dụng thuế wat ưu đãi gam không quá
+50% so với thuế suất ưu đãi quy định tại khoản 1 Điều này; thời gian áp dụng
+thuế suất ưu đãi không quá 1,5 lần so với thời gian áp dụng thuế suất ưu đãi quy
+định tại khoản 1 Điều này và được kéo dài thêm không quá 15 năm và không
+vượt quá thời hạn của dự án đầu tư.”;
+
+b) Bổ sung khoản 1a vào sau khoản 1 Điều 14 như sau:
+
+“]a. Đối với các dự án ửau tư quy định uu khoản 2 Điều 20 của Luật Đầu
+tư, Thủ tướng Chính phủ quyet định áp dụng miễn thuế m1 đa Uu›ng quá 06 năm
+và giảm 50% số thuế phải nộp tối đa không quá 13 năm mp theo.”
+
+5 &Ia đổi, bổ sung một m› điều của Luật Điện ảnh số 62/2006/QH11 đã
+được sửa đổi, bổ sung một số điều theo Luật số 31/2009/QH12 và Luật số
+35/2018/QH14 như sau:
+
+a) Bãi bỏ Điều 14, Điều 15 và khoản 3 Điều 30;
+b) Bỏ số “14” và dầu “” ngay sau số “14” tại Điều 55.
+6. Bãi bỏ Điều 10 và điểm a khoản 2 Điều 43 của Luật Quy hoạch đô thị số
+
+
+--- Trang 52 ---
+52
+
+30/2009/QH12 đã được sửa đồi, bổ sung một số điều theo Luật số 77/2015/QH13,
+Luật số 35/2018/QH14 và Luật số 40/2019/QH14.
+
+Điều 76. Điều khoản thi hành
+
+1. Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2021, trừ quy
+định tại khoản 2 Điều này.
+
+2. Quy định tại khoản 3 Điều 75 của Luật này có hiệu lực thi hành từ ngày
+01 tháng 9 năm 2020.
+
+3. Luật Đầu tư số 67/2014/QH14 đã được sửa đổi, bỗ sung một số điều
+theo Luật số 90/2015/QH13, Luật số 03/2016/QH14, Luật sô 04/2017/QH14,
+Luật số 28/2018/QH14 và Luật số 42/2019/QH14 hết hiệu lực kể từ ngày Luật
+này có hiệu lực thi hành, trừ Điều 75 của Luật Đầu tư số 67/2014/QH14.
+
+4 Cá nhân là công dân Việt Nam được sử dụng số định danh cá nhân
+ủay thê cho bản sao Giây chứng minh nhân dân, thẻ Căn cước công dân, Hộ
+chiếu và các giây tờ chứng thực cá nhân khác khi thực hiện thủ tục hành chính
+quy định tại Luật Đầu tư w1 Luật Doanh nghiệp trong trường hợp cơ sở dữ liệu
+quốc gia về dân cư kết nối với cơ sở dữ liệu quốc gia về đăng ký đầu tư, đăng
+ký doanh nghiệp.
+
+5. Trường hợp văn bản quy phạm pháp luật dẫn chiếu đến quy định về
+quyết định phê duyệt dự án, quyết định chủ trương đầu tư theo quy định của
+Luật Đầu tư thì thực hiện theo quy định về chấp thuận chủ trương đầu tư theo
+quy định của Luật này.
+
+Điều 77. Quy định chuyển tiếp
+
+1. Nhà đầu tư đã được mp Giấy phép đầu tư, Giấy c…hưng nhận ưu đãi đầu
+tư, Giấy chứng nhận đầu tư, Giấy chứng nhận đăng ký đầu tư trước ngày Luật
+này có hiệu lực thi hành được thực hiện dự án đầu tư theo Giấy phép đầu tư,
+Glay chứng nhận ưu đãi đầu tư, Giấy chứng nhận đầu tư, Giấy chứng nhận đăng
+ký đầu tư đã được cấp.
+
+2. Nhà đầu tư không Ị)Ì1a.1 thực hiện thủ tục chấp thuận chủ trương đầu tư
+theo quy định tại Luật này đối với dự án đầu tư thuộc một trong các trường hợp
+sau đây:
+
+a) Nhà đầu tư được cơ quan nhà nước có thẩm quyền Ệyet định chủ
+trương đầu tư, ủap thuận chủ trương đầu tư hoặc chấp thuận đầu tư theo quy
+định pháp luật về đầu tư, nhà ở, đô thị và xây dựng trước ngày Luật này có hiệu
+lực thi hành;
+
+b) Dự án đầu tư không thuộc diện chap thuận chủ trương đầu tư, ạyet
+định chủ trương đầu tư, chấp thuận đầu tư, cấp Giấy chứng nhận đăng ký đầu tư
+theo quy định của pháp luật về đầu tư, nhà ở, đô thị, xây dựng và nhà đầu tư đã
+triển khai thực hiện dự án đầu tư theo quy định của pháp luật trước ngày Luật
+này có hiệu lực thi hành;
+
+
+--- Trang 53 ---
+53
+
+) Nhà đầu tư đã trúng đấu d1ầu`lựa chọn nhà đầu tư, trúng đầu giá quyền
+sử dụng đất trước ngày Luật này có hiệu lực thi hành;
+
+d) Dự án được cấp G1ziy chứng nhận ưu đãi đầu tư, Giấy phép đầu tư,
+Giấy chứng nhận đầu tư, Giấy chứng nhận fflmg ký đầu tư trước ngày Luật này
+có hiệu lực thi hành.
+
+3. h'ương hợp điều chỉnh đự án &lu.tư quy định ùn khoản 2 Điều này và
+nội dung điều chỉnh thuộc diện chấp thuận chủ trương đầu tư theo quy định tại
+Luật này thì phải thực hiện thủ tục chấp thuận chủ trương đầu tư hoặc điều chỉnh
+chủ trương đầu tư theo quy định của Luật này.
+
+4. Dự án đầu tư đã thực hiện hoặc được chấp d1uan, cho phép thực hiện
+theo quy định của pháp luật trước ngày 01 tháng 7 năm 2015 mà thuộc diện bảo
+đảm thực hiện dự án đầu tư theo quy định của Luật này thì không ủa.l ký quỹ
+hoặc bảo lãnh ngân hàng về nghĩa vụ ký quỹ. Trường hợp nhà đầu tư điều chính
+mục tiêu, tiến độ thực hiện dự án đầu tư, chuyển mục đích sử dụng đất sau khi
+hxat này có hiệu lực thì phải thực hiện ký quỹ hoặc phải có bảo lãnh ngân hàng
+về nghĩa vụ ký quỹ theo quy định của Luật này.
+
+5. Hợp đong cung cấp địch vụ đòi nợ ký kết trước Ẹay Luật này có hiệu
+lực thi hành chấm dứt hiệu lực kể từ ngày Luật mly có hiệu lực thi ủnh, các ben
+tham gia hợp đồng được thực hiện các hoạt động để thanh lý hợp đồng cung cấp
+dịch vụ đòi nợ theo quy định của I)Ì1ẽì.l) luật về dân sự và quy định khác của pháp
+luật có liên quan.
+
+6. Tổ chức kinh tế có vốn đầu tư nước ngoài được áp dụng điều kiện tiếp
+cận thị trường thuận lợi hơn điều kiện quy định tại Danh mục ban hành theo quy
+định tại Điều 9 của Luật này thì được tiếp tục áp dụng điều kiện theo quy định
+tại Giấy chứng nhận đăng ký đầu tư đã được cấp..
+
+7. Quy định tại khoản 3 Điều 44 của Luật này áp dụng đối với cả các dự
+án đầu tư được bàn giao đất trước ngày Luật này có hiệu lực thi hành và các dự
+án đầu tư chưa được bàn giao đất.
+
+8. Trường hợp pháp luật quy định thành phần bồ sơ thực hiện thủ tục hành
+chính phải có Giây chứng nhận đăng ký đầu tư, văn bản dJap thuận chủ trương
+đầu tư, nhưng dự án đầu tư không Ỉ.hUỌC trường hợp cấp Giấy ủưng nhận õIang
+ký đầu tư, chấp thuận chủ trương đầu tư theo quy định của Luật này thì nhà đầu
+tư không phải nộp Giấy chứng nhận đăng ký đầu tư, văn bản chấp thuận chủ
+trương đầu tư.
+
+9, Đối với địa phương gặp khó khăn trong bố trí ạy'đat ỵ›ha.t triển nhà ở,
+công trình dịch vụ, tiện ích công cọng cho gươx lao động làm việc trong khu -
+công nghiệp, cơ quan nhà nước có thẩm c;uye11 được điều chỉnh quy hoạch xây
+dựng khu công mgh.lỉp (đối với các khu công 11gl11s:1'› thành lập trước ngày 01
+tháng 7 năm 2014) đề dành một phần diện tích đất phát triển nhà ở, công trình
+dịch vụ, tiện ích công cộng cho người lao động làm việc trong khu công nghiệp.
+
+Phần diện tích đất phát triển nhà ở, công trình dịch vụ, tiện ích công cộng
+
+
+--- Trang 54 ---
+54
+
+cho người lao động làm việc trong khu công gh…v.ep sau khỉ 'điều ủmh quy
+hoạch phải nằm ngoài ủam vi ranh giới địa lý của khu công nghiệp và bảo đảm
+khoảng cách an toàn môi u~ương theo quy định của fflmp luat ve my ủmg và quy ,
+định khác của pháp luật có liên quan..
+
+10. Việc chuyển tiếp đối với hoạt động đầu ur Ta nước. ngc›a1 thực hiện
+theo quy định sau ủy ư n
+
+a) Quy định về thời hạn hoạt động của ùr án đầu tư ra nước ngoài tại Giấy
+phép, Giấy chứng nhận đầu tư ra nước ngoài đã được cấp trước ngày 01 tháng 7
+năm 2015 thì hết hiệu lực;
+
+b) Nhà đầu tư được cấp G1a.y phep, Giấy dumg nhận đầu tư ra nước
+ngoài, Giấy chứng nhận đăng ký đầu tư ra hước ngc›zì1 để thực hiện đầu tư ra
+nước ngoài thuộc ngành, ng11e đầu tư ra nước ngoài có điều kiện theo quy định
+của Luật này thì được tiếp tục thực hiện theo Giấy phép, Giấy chứng nhận đầu
+tư ra nước ngoài, Giấy chứng nhận đăng ký đầu tư ra nước ngoài đã được cấp.
+
+11. Kể từ ngzìy Luật này có hiệu lực thi hành, hồ sơ hợp lệ đã tiếp nhận và
+quá thời hạn giải quyết nhưửng chưa trả kết qu.'1 theo quy định m1a Luật Đầu tư số
+67/2014/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 90/2015/QH13,
+Luật số 03/2016/QH14, Luật số 04/2017/QH14, Luật số 28/2018/QH14. và Luật
+số 42/2019/QH14 thì tiếp tục áp dụng theo quy định của Luật Đầu tư số
+67/2014/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 90/2015/QH13,
+Luật số 03/2016/QH14, Luật số 04/2017/QH14, Luật số 28/2018/QH14. và Luật
+số 42/2019/QH14.
+
+12. Chính phủ quy định chi tiết Điều này.
+
+Luật này được Quz3'c hội nước Cộng hòa xã hội chủ nghĩa Việt Ñam khóa XIV,
+kỳ họợp thứ 9 thông qua ngày 17 tháng 6 năm 2020.
+
+CHỦ TỊCH QUÓC HỘI
+Đã ký: Nglxyễ1l Thị Kim Ngân
+
+VĂN PHÒNG
+CHỦ TỊCH NƯỚC
+
+Số: 07 /SY-VPCTN
+
+
+

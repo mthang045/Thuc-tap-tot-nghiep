@@ -1,0 +1,1549 @@
+# Luat_An_toan_thong_tin_mang_2015
+================================================================================
+
+--- Trang 1 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 3
+
+QUỐC HỘI CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+Độc lập - Tự do - Hạnh phúc
+
+Luật số: 86/2015/QH13
+
+LUẬT
+AN TOÀN THÔNG TIN MẠNG
+
+Căn cứ Hiến pháp nước Cộng hòa xã hội chủ nghĩa Việt Nam;
+
+Quốc hội ban hành Luật an toàn thông tin mạng.
+
+Chương I
+NHỮNG QUY ĐỊNH CHUNG
+
+Điều 1. Phạm vi điều chính
+
+Luật này quy định về hoạt động an toàn thông tin mạng, quyền, trách nhiệm
+của cơ quan, tổ chức, cá nhân trong việc bảo đảm an toàn thông tin mạng; mật mã
+dân sự; tiêu chuân, quy chuân kỹ thuật vê an toàn thông tin mạng; kinh doanh
+trong lĩnh vực an toàn thông tin mạng; phát triển nguồn nhân lực an toàn thông tin
+mạng; quản lý nhà nước về an toàn thông tin mạng.
+
+Điều 2. Đồi tượng áp dụng
+
+Luật này áp dung đối với cơ quan, tổ chức, cá nhân Việt Nam, tổ chức, cá nhân
+nước ngoài trực tiếp tham gia hoặc có liên quan đến hoạt động an toàn thông tin
+mạng tại Việt Nam.
+
+Điều 3. Giái thích từ ngữ
+
+Trong Luật này, các từ ngữ dưới đây được hiểu như sau:
+
+1. An toàn thông tin mạng là sự bảo vệ thông tin, hệ thống thông tin trên mạng
+tránh bị truy nhập, sử dụng, tiêt lộ, gián đoạn, sửa đôi hoặc phá hoại trái phép
+nhằm bảo đảm tính nguyên vẹn, tính bảo mật và tính khả dụng của thông tin.
+
+2. Mạng là môi trường trong đó thông tin được cung cấp, truyền đưa, thu thập,
+xử lý, lưu trữ và trao đồi thông qua mạng viễn thông và mạng máy tính.
+
+3. Hệ thống thông tin là tập hợp phzìn cứng, phan mềm và cơ sở dữ liệu được
+thiết lap phục vụ mục đích tạo lập, cung cấp, truyền đưa, thu thập, xử lý, lưu trữ và
+trao đồi thông tin trên mạng.
+
+4. Hệ thống thông tin quan trọng quốc gia là hệ thống thông tin mà khi bị phá
+hoại sẽ làm tôn hại đặc biệt nghiêm trọng tới quộc phòng, an ninh quôc gia.
+
+5. Chủ quản hệ thống thông tin là cơ quan, tổ chức, cá nhân có thẳm quyền
+quản lý trực tiêp đôi với hệ thông thông tin.
+
+
+--- Trang 2 ---
+4 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+6. Xâm phạm an toàn thông tin mạng là hành v truy nhập, sử dụng, tiết lộ, làm
+gián đoạn, sửa đôi, phá hoại trái phép thông tin, hệ thông thông tin.
+
+7. Sự cổ an toàn thông tin mạng là việc thông tin, hệ thống thông tin bị gây
+nguy hại, ảnh hưởng tới tính nguyên vẹn, tính bảo mật hoặc tính khả dụng.
+
+8. Rủi ro an toàn thông tỉn mạng là những nhân tố chủ quan hoặc khách quan
+có khả năng ảnh hưởng tới trạng thái an toàn thông tin mạng.
+
+9. Đánh giá rủi ro an toàn thông tỉn mạng là việc phát hiện, phân tích, ước
+lượng mức độ tôn hại, môi đe dọa đôi với thông tin, hệ thông thông tin.
+
+10. Quản lý rủi ro an toàn thông tin mạng là việc đưa ra các biện pháp nhằm
+giảm thiêu rủi ro an toàn thông tin mạng.
+
+11. Phần mềm độc hại là phần mềm có khả năng gây ra hoạt động không bình
+thường cho một phân hay toàn bộ hệ thông thông tin hoặc thực hiện sao chép, sửa
+đổi, xóa bỏ trái phép thông tin lưu trữ trong hệ thống thông tin.
+
+12. Hệ thông lọc phần mềm độc hại là tập hợp phần cứng, phần mềm được kết
+nôi vào mạng đề phát hiện, ngăn chặn, lọc và thông kê phân mêm độc hại.
+
+13. Địa chỉ điện tử là địa chỉ được sử dụng để gửi, nhận thông tin trên mạng
+bao gôm địa chỉ thư điện tử, sô điện thoại, địa chỉ Internet và hình thức tương tự khác.
+
+14. Xung đột thông tin là việc hai hoặc nhiều tổ chức trong nước và nước ngoài
+sử dụng biện pháp công nghệ, kỹ thuật thông tin gây tôn hại đên thông tin, hệ
+thông thông tin trên mạng.
+
+15. Thông tin cá nhân là thông tin gắn với việc xác định danh tính của một
+người cụ thê.
+
+16. Chủ thể thông tin cá nhân là người được xác định từ thông tin cá nhân đó.
+
+17. Xử lý thông tin cá nhân là việc thực hiện một hoặc một số thao tác thu
+thập, biên tập, sử dụng, lưu trữ, cung câp, chia sẻ, phát tán thông tin cá nhân trên
+mạng nhăm mục đích thương mại.
+
+18. Mật mã dân sự là kỹ thuật mật mã và sản phẩm mật mã được sử dụng để
+bảo mật hoặc xác thực đôi với thông tin không thuộc phạm vi bí mật nhà nước.
+
+19. Sản phẩm an toàn thông tin mạng là phần cứng, phần mềm có chức năng
+bảo vệ thông tin, hệ thông thông tin.
+
+20. Dịch vụ an toàn thông tin mạng là dịch vụ bảo vệ thông tin, hệ thống thông tin.
+
+Điều 4. Nguyên tắc bảo đảm an toàn thông tin mạng
+
+1. Cơ quan, tổ chức, cá nhân có trách nhiệm bảo đảm an toàn thông tin mạng.
+Hoạt động an toàn thông tin mạng của cơ quan, tô chức, cá nhân phải đúng quy
+định của pháp luật, bảo đảm quộc phòng, an ninh quôc gia, bí mật nhà nước, giữ
+vững ồn định chính trị, trật tự, an toàn xã hội và thúc đầy phát triển kinh tế - xã hội.
+
+
+--- Trang 3 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 5
+
+2. Tổ chức, cá nhân không được xâm phạm an toàn thông tin mạng của tổ chức, cá
+nhân khác.
+
+3. Việc xử lý sự cố an toàn thông tin mạng phải bảo đảm quyền và lợi ích hợp
+pháp của tổ chức, cá nhân, không xâm phạm đến đời sống riêng tư, bí mật cá nhân,
+bí mật gia đình của cá nhân, thông tin riêng của tổ chức.
+
+4. Hoạt động an toàn thông tin mạng phải được thực hiện thường xuyên, liên
+tục, kịp thời và hiệu quả.
+
+Điều 5. Chính sách của Nhà nước về an toàn thông tin mạng
+
+1. Đầẩy mạnh đào tạo, phát triển nguồn nhân lực và xây dựng cơ sở hạ tầng, kỹ
+thuật an toàn thông tin mạng đáp ứng yêu cầu ồn định chính trị, phát triển kinh tế -
+xã hội, bảo đảm quốc phòng, an ninh quốc gia, trật tự, an toàn xã hội.
+
+2. Khuyến khích nghiên cứu, phát triển, áp dung biện pháp kỹ thuật, công
+nghệ, hỗ trợ xuất khẩu, mở rộng thị trường cho sản pham dịch vụ an toàn thông tin
+mạng do tổ chức, cá nhân trong nước sản xuất, cung cấp; tạo điều kiện nhập khẩu
+sản phẩm, công nghệ hiện đại mà tổ chức, cá nhân trong nước chưa có năng lực
+sản xuất, cung cấp.
+
+3. Bảo đảm môi trường cạnh tranh lành mạnh trong hoạt động kinh doanh sản
+phẩm, dịch vụ an toàn thông tin mạng; khuyến khích, tạo điều kiện cho tổ chức, cá
+nhân tham gia đầu tư, nghiên cứu, phát triển và cung cấp sản phẩm, dịch vụ an
+toàn thông tin mạng.
+
+4. Nhà nước bố trí kinh phí để bảo đảm an toàn thông tin mạng wa cơ quan
+nhà nước và an toàn thông tin mạng cho hệ thống thông tin quan trọng quốc gia.
+
+Điều 6. Hợp tác quốc tế về an toàn thông tin mạng
+
+1. Hợp tác quốc tế về an toàn thông tin mạng phải tuân thủ các nguyên tắc sau đây:
+
+a) Tôn trọng độc lập, chủ quyền và toàn vẹn lãnh thổ quốc gia, không can thiệp
+vào công việc nội bộ của nhau, bình đẳng và các bên cùng có lợi;
+
+b) Phù hợp với quy định của pháp luật Việt Nam, điều ước quốc tế mà Cộng
+hòa xã hội chủ nghĩa Việt Nam là thành viên.
+
+2. Nội dung hợp tác quốc tế về an toàn thông tin mạng gồm:
+
+a) Hợp tác quốc tế trong đào tạo, nghiên cứu và ứng dụng khoa học, kỹ thuật,
+công nghệ về an toàn thông tin mạng:
+
+b) Hợp tác quoc tế trong phonzc,f, chống hành vi vi phạm pháp luật về an toàn
+thông tin mạng; điều tra, xử lý sự có an toàn thông tin mạng, ngăn chặn hoạt động
+lợi dụng mạng đề khủng bố;
+
+c) Hoạt động hợp tác quốc tế khác về an toàn thông tin mạng.
+
+
+--- Trang 4 ---
+6 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+Điều 7. Các hành vi bị nghiêm cấm
+
+1. Ngăn chặn việc truyền tải thông tin trên mạng, can thiệp, truy nhập, gây
+nguy hại, xóa, thay đồi, sao chép và làm sai lệch thông tin trên mạng trái pháp luật.
+
+_ 2. Gây ảnh hưởng, cản trở trái pháp luật tới hoạt động bình thường của hệ
+thông thông tin hoặc tới khả năng truy nhập hệ thông thông tin của người sử dụng.
+
+3. Tắn công, vô hiệu hóa trái pháp luật làm myất tác dụng của biện pháp bảo vệ
+an toàn thông tin mạng của hệ thông thông tin; tân công, chiêm quyên điều khiên,
+phá hoại hệ thống thông tin.
+
+4. Phát tán thư rác, phần mềm độc hại, thiết lập hệ thống thông tin giả mạo, lừa đảo.
+
+5. Thu thập, sử dụng, phát tán, kinh doanh trái pháp luật thông tin cá nhân của
+người khác; lợi dụng sơ hở, điêm yêu của hệ thông thông tin đề thu thập, khai thác
+thông tin cá nhân.
+
+6. Xâm nhập trái pháp luật bí mật mật mã và thông tin đã mã hóa hợp pháp của
+cơ quan, tổ chức, cá nhân; tiết lộ thông tin về sản phẩm mật mã dân sự, thông tin
+về khách hàng sử dụng hợp pháp sản 1')hẽìm mật mã dân sự; sử dụng, kinh doanh
+các sản phẩm mật mã dân sự không rõ nguồn gốc.
+
+Điều 8. Xử lý vi phạm pháp luật về an toàn thông tin mạng
+
+Người nào có hành vi vi phạm quy định của Luật này thì tùy theo tính chất,
+mức độ vi phạm mà bị xử b'J kỷ luật, xử phạt vi phạm hành chính hoặc bị truy
+cứu trách nhiệm hình sự; nêu gây thiệt hại thì phải bôi thường theo quy định của
+pháp luật.
+
+Chương II
+BẢO ĐẮM AN TOÀN THÔNG TIN MẠNG
+
+Mục1
+BẢO VỆ THÔNG TIN MẠNG
+
+Điều 9. Phân loại thông tin
+_ 1.Cơ quan, tổ chức sở hữu thông tin phân loại thông tin theo thuộc tính bí mật
+đề có biện pháp bảo vệ phù hợp.
+
+2. Thông tin thuộc phạm vi bí mật nhà nước được phân loại và bảo vệ theo quy
+định của pháp luật về bảo vệ bí mật nhà nước.
+
+Cơ quan, tổ chức sử dụng thông tin đã phân loại và chưa phân loại trong hoạt
+động thuộc lĩnh vực của mình phải có trách nhiệm xây dựng quy định, thủ tục đê
+xử lý thông tin; xác định nội dung và phương pháp ghi truy nhập được phép vào
+thông tin đã được phân loại.
+
+
+--- Trang 5 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 7
+
+Điều 10. Quần lý gửi thông tin
+
+1. Việc gửi thông tin trên mạng phải bảo đảm các yêu cầu sau đây:
+
+a) Không giả mạo nguồn gốc gửi thông tin;
+
+b) Tuân thủ quy định của Luật này và quy định khác của pháp luật có liên quan.
+
+2. Tổ chức, cá nhân thông được gửi thông tin mangytính mươpg mại vào địa
+hỉ Cliệnytủ' của người tiếp nhận khi chưa được I1gll'IÊ!Ỉ tiệp nhận đông ý hoặc khi
+gười tiệp nhận đã từ chôi, trừ trường hợp người tiệp nhận có nghĩa vụ phải tiêp
+hận thông tin theo quy định của pháp luật.
+
+E..Zo
+
+3. Doanh nghiệp viễn thông, doanh nghiệp cung cấp dịch vụ ứng dụng viễn
+thông và doanh nghiệp cung cấp dịch vụ công nghệ thông tin gửi thông tin có trách
+nhiệm sau đây:
+
+a) Tuân thủ quy định của pháp luật về lưu trữ thông tin, bảo vệ thông tin cá
+nhân, thông tin riêng của tổ chức, cá nhân;
+
+b) Áp dụng biện pháp ngăn chặn, xử lý khi nhận được thông báo của tổ chức,
+cá nhân về việc gửi thông tin vi phạm quy định của pháp luật;
+
+c) Có phương thức để người tiếp nhận thông tin có khả năng từ chối việc tiếp
+hận thông tin;
+
+5
+
+. d) Cung cấp điều kiện kỹ thuật và nghiệp vụ cần thiết để cơ quan nhà nước có
+thẩm quyền thực hiện nhiệm vụ quản lý, bảo đảm an toàn thông tin mạng khi có
+yêu cầu.
+
+Điều 11. Phòng ngừa, phát hiện, ngăn chặn và xử lý phàằn mềm độc hại
+
+1. Cơ quan, tổ chức, cá nhân có trách nhiệm thực hiện phòng ngừa, ngăn chặn
+phần mềm độc hại theo hướng dẫn, yêu cầu của cơ quan nhà nước có thầm quyền.
+
+2. Chủ quản hệ thống thông tin quan trọng quốc gia triển khai hệ thống kỹ
+thuật nghiệp vụ nhằm phòng ngừa, phát hiện, ngăn chặn và xử lý kịp thời phần
+mềm độc hại.
+
+3. Doanh nghiệp cung mẳp dịch vụ thư điện tử, truyền đưa, lưu trữ thông tin
+phải có hệ thống lọc phần mềm độc hại trong quá trình gửi, nhận, lưu trữ thông tin
+trên hệ thống của mình và báo cáo cơ quan nhà nước có thẩm quyền theo quy định
+của pháp luật.
+
+4. Doanh nghiệp cung cấp dịch vụ Internet có biện pháp quản ly, phòng ngừa,
+hát hiện, mga.n chặn phat tán phần mềm độc hại và xử lý theo yêu cầu của cơ quan
+hà nước có thẳm quyền.
+
+5.*”
+
+5. Bộ Thông tin và Truyền thông chủ trì, phối hợp với Bộ Quốc phòng, Bộ Công
+an và Bộ, ngành có liên quan tổ chức phòng ngừa, phát hiện, ngăn chặn và xử lý
+hần mềm độc hại gây ảnh hưởng đến quốc phòng, an ninh quốc gia.
+
+o)
+
+
+--- Trang 6 ---
+l CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+Điều 12. Bảo đảm an toàn tài nguyên viễn thông
+1. Cơ quan, tổ chức, cá nhân sử dụng tài nguyên viễn thông có trách nhiệm
+sau đây:
+
+a) Ap dụng biện pháp quản lý và kỹ thuật đề ngăn chặn mắt an toàn thông tin
+mạng xuất phát từ tần số, kho số, tên miền và địa chỉ Internet của mình;
+
+b) th hợp, cung cấp thông tin liên quan Clen an toàn tài nguyên viễn thông
+theo yêu cầu của cơ quan nhà nước có thẩm quyền.
+
+2. Doanh nghiệp cung cấp dịch vụ trên Internet có trách nhiệm quản lý, phối
+hợp ngăn chặn mât an toàn thông. tiín mạng xuất phát từ tài nguyên Internet, từ
+khách hàng của mình; cung cấp đay đủ thông tin theo yêu câu của cơ quan nhà
+nước có Iham quyền; phối hợp kết nối, định tl1yen đề bảo đảm hệ thống máy chủ
+tên miền quốc gia Việt Nam hoạt động an toàn, ồn định.
+
+3. Bộ Thông tin và Truyền thông có trách nhiệm thực hiện bảo đảm an toàn thông
+tin mạng cho hệ thống máy chủ tên miền quốc gia Việt Nam.
+
+Điều 13. Ứng cứu sự cổ an toàn thông tin mạng
+
+1 Ứng cứu sự cố an toàn thông tin mạng là hoạt động nhằm xử lý, khắc phục
+sự cô gây mât an toàn thông tin mạng.
+
+2. Ứng cứu sự có an toàn thông tin mạng phải tuân thủ các nguyên tắc sau đây:
+
+a) Kịp thời, nhanh chóng, chính xác, đồng bộ và hiệu quả;
+
+b) Tuân thủ quy định của pháp luật về điều phối ứng cứu sự cố an toàn thông
+tin mạng:
+
+c) Có sự phối hợp giữa cơ quan, tổ chức, doanh nghiệp trong nước và nước ngoểzi
+
+3. Bộ, cơ quan ngang bộ, cơ quan thuộc Chính phủ, Ủy ban nhân dân ủp tỉnh,
+
+doanh nghiệp viễn thông, chủ quản hệ thống thông tin quan trọng quốc gia phải
+thành lập hoặc chỉ định bộ phận chuyên trách ứng cứu sự cô an toàn thông tin mạng.
+
+4. Bộ Thông tin và Truyền thông có trách nhiệm Clleu phm ứng cứu sự m an
+toàn thông tin mạng trên toàn quốc; quy định chỉ tiết về điều phối ứng cứu sự có an
+toàn thông tin mạng.
+
+Điều 14. Ứng cứu khẩn cấp bảo đảm an toàn thông tin mztng quốc gia
+1.Ứng cứu khẩn cấp bảo đảm an toàn thông tin mạng quốc gia là hoạt động
+
+ứng cứu sự w trong tình huống thảm họa hoặc theo yêu câu của cơ quan nhà nước
+có thẩm quyền nhằm bảo đảm an toàn thông tin mạng quốc gia.
+
+2. Ứng cứu khẩn cấp bảo đảm an toàn thông tin mạng quốc gia phải tuân thủ
+các nguyên tặc sau đây:
+
+a) Tổ chức thực hiện theo phân cấp;
+
+b) Thực hiện tại chỗ, nhanh chóng, nghiêm ngặt, phối hợp chặt chẽ;
+
+c) Áp dụng các biện pháp kỹ thuật, bảo đảm hiệu quả, khả thi.
+
+
+--- Trang 7 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 9
+
+3. Hệ thống phương án ứng cứu khẩn cấp bảo đảm an toàn thông tin mạng
+quôc gia gôm:
+
+a) Phương án ứng cứu khẩn cấp bảo đảm an toàn thông tin mạng quốc gia;
+
+b) Phương án ứng cứu khẩn cấp bảo đảm an toàn thông tin mạng của cơ quan
+nhà nước, tổ chức chính trị, tổ chức chính trị - xã hội;
+
+c) Phương án ứng cứu khẩn cấp bảo đầm an toàn thông tin mạng của địa phương;
+
+d) Phương án ứng cứu khẩn cấp bảo đảm an toàn thông tin mạng của doanh
+nghiệp viễn thông.
+
+4. Trách nhiệm bảo đảm an toàn thông tin mạng quốc gia được quy định như sau:
+
+a) Thủ tướng Chính phủ quyết định hệ thống phương án ứng cứu khẩn cấp bảo
+đảm an toàn thông tin mạng quốc gia;
+
+b) Bộ Thông tin và Truyền thông có trách nhiệm chủ trì điều phối công tác ứng
+cứu khẩn cấp bảo đảm an toàn thông tin mạng quốc gia;
+
+c) Bộ, ngành, Ủy ban nhân dân các cấp và cơ quan, tổ chức có liên quan trong
+phạm vi nhiệm vụ, quyên hạn của mình có trách nhiệm phôi hợp, chỉ đạo ứng cứu
+khẩn cấp bảo đảm an toàn thông tin mạng quốc gia;
+
+d) Doanh nghiệp viễn thông có trách nhiệm thực hiện biện pháp ứng cứu khẩn
+mp, phối hợp với Bộ Thông tin và Truyền thông, bộ, ngzi.t1h Ủy ban nhân dân các
+cấp có liên quan để bảo đảm an toàn thông tin mạng quốc gia.
+
+Điều 15. Trách nhiệm của cơ quan, tổ chức, cá nhân trong bảo đảm an toàn
+thông tin mạng
+
+1. Cơ quan, tổ chức, cá nhân tham gia hoạt động an toàn thông tin mạng có
+trách nhiệm phối hợp với cơ quan nhà nước có thẩm quyền và tổ chức, cá nhân
+khác trong việc bảo đảm an toàn thông tin mạng.
+
+2. Cơ quan, tổ chức, cá nhân sử dụng dịch vụ trên mạng có trách nhiệm thông
+báo kịp thời cho doanh nghiệp cung cấp dịch vụ hoặc bộ phận chuyên trách ứng
+cứu sự cô khi phát hiện các hành vi phá hoại hoặc sự cô an toàn thông tin mạng.
+
+Mục2
+BẢO VỆ THÔNG TIN CÁ NHÂN
+
+Điều 16. Nguyên tắc bảo vệ thông tin cá nhân trên mạng
+
+1. Cá nhân tự bảo vệ thông tin cá nhân của mình và tuân thủ quy định của pháp
+luật về cung cấp thông tin cá nhân khi sử dụng dịch vụ trên mạng.
+
+2. Cơ quan, tổ chức, cá nhân xử lý thông tin cá nhân có trách nhiệm bảo đảm
+an toàn thông tin mạng đôi với thông tin do mình xử lý.
+
+
+--- Trang 8 ---
+10 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+3. Tổ chức, cá nhân xử lý thông tin cá nhân phải xây dựng và công bố công
+khai biện pháp xử lý, bảo vệ thông tin cá nhân của tô chức, cá nhân mình.
+
+4. Việc bảo vệ thông tin cá nhân thực hiện theo quy định của Luật này và quy
+định khác của pháp luật có liên quan.
+
+5. Việc xử lý thông tin cá nhân phục vụ mục đích bảo đảm quốc phòng, an
+ninh quôc gia, trật tự, an toàn xã hội hoặc không nhăm mục đích thương mại được
+thực hiện theo quy định khác của pháp luật có liên quan.
+
+Điều 17. Thu thập và sử dụng thông tin cá nhân
+
+1. Tổ chức, cá nhân xử lý thông tin cá nhân có trách nhiệm sau đây:
+
+a) Tiến hành thu thập thông tin cá nhân sau khi có sự đồng ý của chủ thể thông
+tin cá nhân về phạm vi, mục đích của việc thu thập và sử dụng thông tin đó;
+
+_..b) Chỉ sử dụng thông tin cá nhân đã thu thập vào mục đích khác mục đích ban
+đâu sau khi có sự đông ý của chủ thê thông tin cá nhân;
+
+€) Không được cung cấp, chia sẻ, phát tán thông tin cá nhân mà mình đã thu
+thập, tiếp cận, kiểm soát cho bên thứ ba, trừ trường hợp có sự đong ý của chủ thể
+thông tin cá nhân đó hoặc theo yêu cầu của cơ quan nhà nước có thâm quyền.
+
+2. Cơ quan nhà nước chịu trách nhiệm bảo mật, lưu trữ thông tin cá nhân do
+mình thu thập.
+
+3. Chủ thể thông tin cá nhân có quyền yêu cầu tổ chức, cá nhân xử lý thông tin
+cá nhân cung câp thông tin cá nhân của mình mà tô chức, cá nhân đó đã thu thập,
+lưu trữ.
+
+Điều 18. Cập nhật, sửa đổi và húy bỏ thông tin cá nhân
+
+1. Chủ thể thông tin cá nhân có quyền yêu cầu tổ chức, cá nhân xử lý thông tin
+cá nhân cập nhật, sửa đôi, hủy bỏ thông tin cá nhân của mình mà tô chức, cá nhân
+đó đã thu thập, lưu trữ hoặc ngừng cung câp thông tin cá nhân của mình cho bên
+thứ ba.
+
+2. Ngay khi nhận được yêu cầu của chủ thể thông tin cá nhân về việc cập nhật,
+sửa đổi, hủy bỏ thông tin cá nhân hoặc đề nghị ngừng cung cấp thông tin cá nhân
+cho bên thứ ba, tổ chức, cá nhân xử lý thông tin cá nhân có trách nhiệm sau đây:
+
+„ a) Thực hiện yêu cầu và thông báo cho chủ thểỹ thông tin cá nhân hoặc cung
+câp cho chủ thê thông tin cá nhân quyên tiêp cận đê tự cập nhật, sửa đôi, hủy bỏ
+thông tin cá nhân của mình;
+
+b) Áp dụng biện pháp phù hợp đề bảo vệ thông tin cá nhân; thông báo cho chủ
+thể thông tin cá nhân đó trong trường hợp chưa thực hiện được yêu cầu do yếu tố
+kỹ thuật hoặc yếu tố khác.
+
+3. Tổ chức, cá nhân xử lý thông tin cá nhân phải hủy bỏ thông tin cá nhân đã được
+lưu trữ khi đã hoàn thành mục đích sử dụng hoặc hêt thời hạn lưu trữ và thông báo
+cho chủ thê thông tin cá nhân biêt, trừ trường hợp pháp luật có quy định khác.
+
+
+--- Trang 9 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 11
+
+Điều 19. Bảo đảm an toàn thông tin cá nhân trên mạng
+
+1. Tổ chức, cá nhân xử lý thông tin cá nhân phải áp dụng biện pháp quản lý, kỹ
+thuật phù hợp Cle bảo vệ thông tin cá nhân do mình thu thập, lưu trữ; tuân thủ các
+tiêu chuẩn, quy chuẩn kỹ thuật về bảo đảm an toàn thông tin mạng.
+
+2. Khi xảy ra hoặc có nguy cơ xảy ra sự cổ an toàn thông tin mạng, tổ chức, cá
+nhân xử lý thông tin cá nhân cần áp dụng biện pháp khắc phục, ngăn chặn trong
+thời gian sớm nhất.
+
+Điều 20. Trách nhiệm của cơ quan quần lý nhà nước trong bảo vệ thông
+tin cá nhân trên mạng
+
+1. Thiết lập kênh thông tin trực tuyến đề tiếp nhận kiến nghị, phản ánh của tổ
+chức, cá nhân liên quan đên bảo đảm an toàn thông tin cá nhân trên mạng.
+
+2. Dịnh kỳ hàng năm tổ chức thanh tra, kiểm ưra đối với tổ chức, cá nhân xử lý
+thông tin cá nhân; tô chức thanh tra, kiêm tra đột xuât trong trường hợp cân thiêt.
+
+Ñ Mục3 Ñ
+BẢO VỆ HỆ THÔNG THÔNG TIN
+
+Điều 21. Phân loại cấp độ an toàn hệ thống thông tin
+
+1. Phân loại ảp độ an toàn hệ mống thông tin là việc xác định ập độ an toàn
+thông tin của hệ thông thông tin theo cập độ tăng dân từ 1 đên 5 đề áp dụng biện
+pháp quản lý và kỹ thuật nhăm bảo vệ hệ thông thông tin phù hợp theo cấp độ.
+
+2. Hệ thống thông tin được phân loại theo cấp độ an toàn như sau:
+
+a) Cấp độ I là cấp độ mà khi bị phá hoại sẽ làm tồn hại tới quyền và lợi ích
+hợp pháp của tô chức, cá nhân nhưng không làm tôn hại tới lợi ích công cộng, trật
+tự, an toàn xã hội, quộc phòng, an ninh quôc gia;
+
+b) Cấp độ 2 là cấp độ mà khi bị phá hoại sẽ làm Ổn hại nghiêm trọng tới quyền
+và lợi ích hợp pháp của tổ chức, cá nhân hoặc làm ton hại tới lợi ích công cộng
+nhưng không làm tồn hại tới trật tự, an toàn xã hội, quốc phòng, an ninh quốc gia;
+
+c) Cấp độ 3 là cấp độ mà khi bị phá hoại sẽ làm tồn hại nghiêm trọng tới sản
+xuất, lợi Ích công cộng và trật tự, an toàn xã hội hoặc làm tồn hại tới quốc phòng,
+an ninh quốc gia;
+
+d) Cấp độ 4 là cấp độ mà khi bị phá hoại sẽ làm tồn hại đặc biệt nghiêm trọng
+tới lợi ích công cộng và trật tự, an toàn xã hội hoặc làm tôn hại nghiêm trọng tới
+quốc phòng, an ninh quôc gia;
+
+đ) Cấp độ 5 là cấp độ mà khi bị phá hoại sẽ làm tồn hại đặc biệt nghiêm trọng
+tới quộc phòng, an ninh quộc gia.
+
+3. Chính phủ quy định chỉ tiết về tiêu chí, thẩm quyền, trình tự, thủ tục xác
+định câp độ an toàn hệ thông thông tin và trách nhiệm bảo đảm an toàn hệ thông
+thông tin theo từng cập độ.
+
+
+--- Trang 10 ---
+12 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+Điều 22. Nhiệm vụ bảo vệ hệ thống thông tin
+
+1. Xác định cấp độ an toàn thông tin của hệ thống thông tin.
+
+2. Đánh giá và quản lý rủi ro an toàn hệ thống thông tin.
+
+3. Đôn đốc, giám sát, kiểm tra công tác bảo vệ hệ thống thông tin.
+
+4. Tổ chức triển khai các biện pháp bảo vệ hệ thống thông tin.
+
+5. Thực hiện chế độ báo cáo theo quy định.
+
+6. Tổ chức tuyên truyền, nâng cao nhận thức về an toàn thông tin mạng.
+
+Điều 23. Biện pháp báo vệ hệ thống thông tin
+
+1. Ban hành quy định về bảo đảm an toàn thông únymạng trong thiết kế, xây
+dựng, quản lý, vận hành, sử dụng, nâng câp, hủy bỏ hệ thông thông tin.
+
+2. Áp dụng biện pháp quản lý, kỹ thuật theo tiêuy chuẩn, quy V<:huấn kỹ thuật
+an toàn thông tin mạng đê phòng, chông nguy cơ, khắc phục sự cô an toàn thông
+tin mạng.
+
+3. Kiểm tra, giám sát việc tuân thủ quy định và đánh giá hiệu quả của các biện
+pháp quản lý và kỹ thuật được áp dụng.
+
+4. Giám sát an toàn hệ thống thông tin.
+
+Điều 24. Giám sát an toàn hệ thống thông tin
+
+1. Giám sát an toàn hệ thống thông tin là ủạ động lựa chọn fflổi}u'ợng giám
+sát, thu thập, phân tích trạng thái thông tin của đôi tượng giám sát nhăm xác định
+những nhân tô ảnh hưởng đên an toàn hệ thông thông tin; báo cáo, cảnh báo hành
+vi xâm phạm an toàn thông tin mạng hoặc hành viy có khả năng gây ra sự cô an
+toàn thông tin mạng đôi với hệ thông thông tin; tiễn hành phân tích yêu tô then
+chôt ảnh hưởng tới trạng thái an toàn thông tin mạng: đề xuât thay đôi biện pháp
+kỹ thuật.
+
+2. Đối tượng giám sát an toàn hệ thống thông tin gồm tường lửa, kiểm soát
+truy nhập, tuyên thông tin chủ yêu, máy chủ quan trọng, thiệt bị quan trọng hoặc
+thiêt bị đâu cuôi quan trọng.
+
+3. Doanh nghiệp viễn Ihong, doanh nghiệp cung cấp dịch vụ công nghệ thong
+tin, doanh nghiệp cung cấp dịch vụ an toàn thông tin mạng có trách nhiệm phối
+hợp với chủ quản hệ thống thông tin trong việc giám sát an toàn hệ thống thông tin
+theo yêu câu của cơ quan nhà nước có thâm quyên.
+
+Điều 25. Trách nhiệm của chủ quán hệ thống thông tin
+
+1. Chủ quản hệ thống thông tin có trách nhiệm thực hiện bảo vệ hệ thống thông
+tin theo quy định tại các điều 22, 23 và 24 của Luật này.
+
+2. Chủ quản hệ thống thông tin sử dụng ngân sách nhà nước thực hiện trách
+nhiệm quy định tại khoản 1 Điềêu này và có trách nhiệm sau đây:
+
+
+--- Trang 11 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 13
+
+..a) Có phương án bảo đảm an toàn thông tin mạng được cơ quan nhà nước có
+thẩm quyền thầm định khi thiết lập, mở rộng hoặc nâng cấp hệ thống thông tin;
+
+b) Chỉ định cá nhân, bộ phận phụ trách về an toàn thông tin mạng.
+
+Điều 26. Hệ thống thông tin quan trọng quốc gia
+
+1. Khi thiết lập, mở rộng và nâng cấp hệ thống thông tin quan trọng quốc gia
+phải thực hiện kiêm định an toàn thông tin trước khi đưa vào vận hành, khai thác.
+
+2. Bộ Thông tin và Truyền thông chủ trì, phối hợp với Bộ Quốc phòng, Bộ
+Công an và Bộ, ngành có liên quan xây dựng Danh mục hệ thông thông tin quan
+trọng quôc gia trình Thủ tướng Chính phủ ban hành.
+
+Điều 27. Trách nhiệm bảo đầm an toàn thông tin mạng cho hệ thống thông tin
+quan trọng quốc gia
+
+1. Chủ quản hệ thống thông tin quan trọng quốc gia có trách nhiệm sau đây:
+
+a) Thực hiện quy định tại khoản 2 Điều 25 của Luật này;
+
+b) Định kỳ đánh giá rủi ro an toàn thông tin mạng. Việc đánh giá rủi ro an toàn
+thông tin mạng phải do tổ chức chuyên môn được cơ quan nhà nước có thẩm
+quyên chỉ định thực hiện;
+
+c) Triển khai biện pháp dự phòng cho hệ thống thông tin;
+
+d) Lập kế hoạch bảo vệ, lập phương án và diễn tập phương án bảo vệ hệ thống
+thông tin quan trọng quôc gia.
+
+2. Bộ Thông tin và Truyền thông có trách nhiệm sau đây:
+
+a) Chủ trì, phối hợp với chủ quản hệ thong thông tin quan trọng quoc gia, Bộ
+Công an và bộ, ngành có liên quan hucrng dẫn, đôn đốc, thanh tra, kiểm tra công
+tác bảo vệ an toàn thông tin mạng đối với hệ thống thông tin quan trọng quốc gia,
+trừ hệ thống thông tin quy định tại khoản 3 và khoản 4 Điều này;
+
+b) Yêu cầu doanh nghiệp viễn thông, doanh nghiệp cung cấp dịch vụ công
+nghệ thông tin, doanh nghiệp cung cấp dịch vụ an toàn thông tin mạng tham gia tư
+vấn, hỗ trợ kỹ thuật, ứng cứu sự cô an toàn thông tin mạng cho hệ thống thông tin
+quan trọng quốc gia.
+
+3. Bộ Công an chủ trì hướng dẫn, đôn đốc, thanh tra, kiểm tra công tác bảo vệ
+an toàn thông tịn mạng đối với hệ thống thông tin quan trọng quốc gia do Bộ Công
+an quản lý; phôi hơp với Bộ Thông tin và Truyên thông, chủ quản hệ thông thông
+tin quan trọng quc gia, bộ, ngành, Ủy ban nhân dân các cấp có liên quan trong
+việc bảo vệ hệ thong thông tin quan trọng quốc gia khác khi có yêu cầu của cơ
+quan nhà nước có thầm quyền.
+
+4. Bộ Quốc phòng chủ trì hướng dẫn, đôn đốc, thanh tra, kiểm tra công tác bảo
+vệ an toàn thông tin mạng đối với hệ thống thông tin quan trọng quốc gia do Bộ
+Quốc phòng quản lý.
+
+
+--- Trang 12 ---
+14 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+5. Ban Cơ yếu Chính phủ chủ trì tổ chức triển khai giải phzìp dùng mật mã đề
+bảo vệ thông tin trong hệ thống thông tin quan trọng quốc gia của cơ quan nhà
+nước, tổ chức chính trị, tổ chức chính trị - xã hội; phối hợp với chủ quản hệ thống
+thông tin quan trọng quốc gia trong việc giám sát an toàn thông tin mạng theo quy
+định của pháp luật.
+
+Mục 4
+NGĂN CHẶN XUNG ĐỘT THÔNG TIN TRÊN MẠNG
+
+Điều 28. Trách nhiệm của tổ chức, cá nhân trong việc ngăn chặn xung đột
+thông tin trên mạng
+
+1. Tổ chức, cá nhân trong phạm vi nhiệm vụ, quyền hạn của mình có trách nhiệm
+sau đây:
+
+a) Ngăn chặn thông tin phá hoại xuất phát từ hệ thong thông tin của mình; hợp
+tác xác định nguôn, đầy lùi, kha<: phục hậu quả tấn công mạng được thực hiện
+thông qua hệ thống thông tin của tổ chức, cá nhân trong nước và nước ngoài;
+
+b) Ngăn chặn hành động của tổ chức, cá nhân trong nước và nước ngoài có
+mục đích phá hoại tính nguyên vẹn của mạng:
+
+c) Loại trừ việc tổ chức thực hiện hoạt động trái pháp luật trên mạng có ảnh
+hưởng nghiêm trọng đến quốc phòng, an ninh quốc gia, trật tự, an toàn xã hội của
+tô chức, cá nhân trong nước và nước ngoài.
+
+2. Chính phủ quy định chi tiết về ngăn chặn xung đột thông tin trên mạng.
+Điều 29. Ngăn chặn hoạt động sử dụng mạng để khủng bố
+
+1. Các biện pháp ngăn chặn hoạt động sử dụng mạng đềể khủng bố gồm:
+a) Vô hiệu hóa nguồn Internet sử dụng đề thực hiện hành vi khủng bố;
+
+„_b) Ngăn chặn việc thiết lập và mở rộng trao đổi thông tin về các tín hiệu, nhân
+tô, phương pháp và cách sử dụng Internet đề thực hiện hành vi khủng bô, vê mục
+tiêu và hoạt động của các tô chức khủng bô trên mạng;
+
+_ ©) Trao đổi kinh nghiệm và thực tiễn kiểm soát các ngVuồn Internet, tìm và
+kiêm soát nội dung của trang tin điện tử có mục đích khủng bô.
+2. Chính phủ quy định chi Qếl về trách nhiệm thực hiện và các biện pháp ngăn
+chặn hoạt động sử dụng mạng đê khủng bô quy định tại khoản 1 Điêu này.
+
+Chương III
+MẬT MÃ DÂN SỰ
+
+Điều 30. Sản phẩm, dịch vụ mật mã dân sự
+1, Sản phẩm mật mã dân sự là các tài liệu, trang thiết bị kỹ thuật và nghiệp vụ
+mật mã đê bảo vệ thông tin không thuộc phạm vi bí mật nhà nước.
+
+
+--- Trang 13 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 15
+
+2. Dịch vụ mật mã dân sự gồm dịch vụ bảo vệ thông tin sử dụng sản phẩm mật
+mã dân sự; kiêm định, đánh giá sản phâm mật mã dân sự; tư vân bảo mật, an toàn
+thông tin mạng sử dụng sản phâm mật mã dân sự.
+
+Điều 31. Kinh doanh sản phẩm, dịch vụ mật mã dân sự
+
+1. Doanh nghiệp phải có Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân
+sự khi kinh doanh sản phẩm, dịch vụ mật mã dân sự thuộc Danh mục sản phẩm,
+dịch vụ mật mã dân sự.
+
+2. Doanh nghiệp được qấp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã
+dân sự khi đáp ứng đủ các điều kiện sau đây:
+
+a) Có đội ngũ quản lý, điều hành, kỹ thuật đáp ứng yêu cầu chuyên môn về bảo
+mật, an toàn thông tin;
+
+_b) Có hệ thống trang thiết bị, cơ sở vật chất phù hợp với quy mô cung cấp sản
+
+phâm, dịch vụ mật mã dân sự;
+
+) Có phương án kỹ thuật phù hợp với tiêu chuẩn, quy chuẩn kỹ thuật;
+
+d) Có phương án bảo mật và an toàn thông tin mạng trong quá trình quản lý và
+cung cấp sản phẩm, dịch vụ mật mã dân sự;
+
+đ) Có phương án kinh doanh phù hợp.
+
+3. Sản phẩm mật mã dân sự phải được kiểm định, chứng nhận hợp quy trước
+khi lưu thông trên thị trường.
+
+4. Doanh nghiệp được cấp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã
+dân sự phải nộp phí theo quy định của pháp luật về phí và lệ phí.
+
+5. Chính phủ ban hành Danh mục sản phẩm, dịch vụ mật mã dân sự và quy
+định chi tiết Điều này.
+
+Điều 32. Trình tự, thú tục đề nghị cấp Giấy phép kinh doanh sản phẩm,
+dịch vụ mật mã dân sự
+
+1. Doanh nghiệp đề nghị ủp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã
+dân sự nộp hồ sơ đề nghl cấp Giấy phép tại Ban Cơ yếu Chính phủ.
+
+2. Hồ sơ đề nghị mp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự
+được lập thành hai bộ, gôm:
+
+a) Đơn đề nghị cấp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự;
+
+b) Bản sao Giấy chứng nhận đăng ký doanh nghiệp hoặc Giấy chứng nhận
+đăng ký đâu tư hoặc giây tờ khác có giá trị tương đương:
+
+e) Bản sao văn Ựăng hoặc chứng chỉ chuyên môn về bảo mật, an toàn thông tin
+của đội ngũ quản lý, điều hành, kỹ thuật;
+
+d) Phương án kỹ thuật gom tài liệu về đặc tính kỹ thuật, tham số kỹ thuật của
+sản phẩm; tiêu chuẩn, quy chuẩn kỹ thuật của sản phẩm; tiêu chuẩn, chất lượng
+dịch vụ; các biện pháp, giải pháp kỹ thuật; phương án bảo hành, bảo trì sản phẩm;
+
+
+--- Trang 14 ---
+16 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+đ) Phương án bảo mật và an toàn thông tin mạng trong quá trình quản lý và
+cung cập sản phâm, dịch vụ mật mã dân sự;
+
+€) Phương án kinh doanh gồm phạm vi, đối tượng cung cấp, quy mô số lượng
+sản phâm, dịch vụ hệ thông phục vụ khách hàng và bảo đảm kỹ thuật.
+
+_ 3. Trong thời hạn 30 ngày kể từ ngày nhận đủ hồ sơ, Ban Cơ yếu Chính phủ
+thâm định và cập Giây phép kinh ủanh sản phâm, dịch vụ mật mã dân sự; trường
+hợp từ chôi câp thì phải thông báo băng văn bản và nêu rõ lý do.
+
+4. Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự có thời hạn 10 năm.
+
+Điều 33. Sửa đổi, bổ sung, cấp lại, gia hạn, tạm đình chỉ và thu hồi Giấy phép
+kinh doanh sản phẩm, dịch vụ mật mã dân sự
+
+1. Việc sửa đồi, bồ sung Giấy phép kinh doanh sản phảm dịch vụ mật mã dân
+sự được thực hiện trong trường hợp doanh nghiệp đã được cấp Giấy phép thay đổi
+tên, thay đồi người đại diện theo pháp luật hoặc thay đồi, bồ sung sản phẩm, dịch
+vụ mật mã dân sự.
+
+Doanh nghiệp có trách nhiệm nộp hồ sơ đề nghị sửa đổi, bồ sung Giấy phép tại
+Ban Cơ yêu Chính phủ. Hô sơ được lập thành hai bộ, gôm:
+
+a) Đơn đề nghị sửa đồi, bổ sung Giấy phép;
+
+b) Bản sao Giấy chứng nhận đăng ký doanh nghiệp hoặc Giấy chứng nhận
+đăng ký đâu tư hoặc giây tờ khác có giá trị tương đương:
+
+c) Giấy phép kinh doanh sản phẩm, địch vụ mật mã dân sự đã được cấp;
+
+d) Phương án kỹ thuật, phương án bảo mật và an toàn thông tin mạng, phương
+án kinh doanh đôi với sản phâm, dịch vụ bô sung theo quy định tại các điêm d, đ
+và e khoản 2 Điều 32 của Luật này trong trường hợp doanh nghiệp đê nghị bô sung
+sản phâm, dịch vụ mật mã dân sự, ngành, nghê kinh doanh;
+
+Trong thời hạn 10 ngày làm việc Kể từ ngày nhận đủ hồ sơ, Ban Cơ yếu Chính
+phủ thâm định, sửa đôi, bô sung và cấp lại Giây phép cho doanh nghiệp; trường
+hợp từ chôi câp thì phải thông báo băng văn bản và nêu rõ lý do.
+
+2. Trường hợp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự bị
+mất hoặc bị hư hỏng, doanh nghiệp gửi đơn đề nghị cấp lại Giấy phép, trong đó
+nêu rõ lý do, tới Ban Cơ yếu Chính phủ. Trong thời hạn 05 ngày làm việc kể từ
+ngày nhận được đơn đề nghị, Ban Cơ yếu Chính phủ xem xét và cấp lại Giấy
+phép cho doanh nghiệp.
+
+_3. Doanh nghiệp không vi phạm các quy định của pháp luật về kinh doanh sản
+phâm, dịch vụ mật mã dân sự được gia hạn Giây phép kinh doanh sản phâm, dịch
+vụ mật mã dân sự một lân với thời gian gia hạn không quá 01 năm.
+
+Hồ u đề nghị gia hạn Giấy phép phải được gửi tới Ban Cơ yếu Chính phủ
+chậm nhât là 60 ngày trước ngày Giây phép hệt hạn. Hô sơ đê nghị gia hạn Giây
+phép được lập thành hai bộ, gôm:
+
+
+--- Trang 15 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 17
+
+a) Đơn đề nghị gia hạn Giấy phép;
+
+b) Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự đang có hiệu lực;
+
+c) Báo cáo hoạt động của doanh nghiệp trong 02 năm gần nhất.
+
+Trong thời hạn 20 ngày kể từ ngày nhận đủ hồ sơ, Ban Cơ yếu Chính phủ thầm
+định, quyết định gia hạn và cấp lại Giây phép cho doanh nghiệp; trường hợp từ
+chôi câp thì phải thông báo băng văn bản và nêu rõ lý do.
+
+4. Doanh nghiệp bị tạm đình chỉ hoạt động kinh doanh sản phẩm, dịch vụ mật
+mã dân sự có thời hạn không quá 06 tháng trong các trường hợp sau đây:
+
+a) Cung cấp sản phẩm, dịch vụ không đúng với nội dung ghi trên Giấy phép;
+
+b) Không đáp ứng được một trong các điều kiện quy định tại khoán 2 Điều 31
+của Luật này;
+
+©) Các trường hợp khác theo quy định của pháp luật.
+
+5. Doanh nghiệp bị thu hồi Giấy phép kinh doanh sản phẩm, dịch vụ mật mã
+dân sự trong các trường hợp sau đây:
+
+„ a) Không triển khai cung cấp dịch vụ trong thời hạn 01 năm kể từ ngày được
+cập Giây phép mà không có lý do chính đáng;
+
+b) Giấy phép đã hết hạn;
+
+c) Hết thời hạn tạm `đinh chỉ mà doanh nghiệp không khắc phục được các lý do
+quy định tại khoản 4 Điêu này.
+
+Điều 34. Xuất khẩu, nhập khẩu sản phẩm mật mã dân sự
+
+_1. Khi xuất khẩu, nhập Khẩu sản phấWm mật mã dân sự thuộc Danh mục sản
+phậm mật mìIdân sự xuất khâu, nhập Ụìâu theo giây phép, doanh nghiệp phải có
+fflãây phe'1:`> mật khâu, nhập khâu sản phâm mật mã dân sự do cơ quan nhà nước có
+thâm quyên câp.
+
+2. Doanh nghiệp được dịp Giầấy phép xuất khẩu, nhập khẩu sản phẩm mật mã
+dân sự khi đáp ứng đủ các điều kiện sau đây:
+
+a) Có Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự;
+
+b) Sản phẩm mật mã dân sự nhập khẩu phải được chứng nhận, công bố hợp
+quy theo quy định tại Điêu 39 của Luật này;
+
+) Đối tượng và mục đích sử dụng sản phẩm mật mã dân sự không gây phương
+hại đên quộc phòng, an ninh quôc gia và trật tự, an toàn xã hội.
+
+3. Hồ sơ đề nghị cấp Giấy phép xuất khẩu, nhập khẩu sản phẩm mật mã dân sự gồm:
+
+a) Đơn đề nghị cấp Giấy phép xuất khẩu, nhập khẩu sản phẩm mật mã dân sự;
+
+b) Bản sao Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự:
+
+c) Bản sao Giấy chứng nhận hợp quy đối với sản phẩm mật mã dân sự nhập khẩu.
+
+
+--- Trang 16 ---
+18 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+4. Trong thời hạn 10 ngày làm việc ổytừ ngày nhận đủ hồ sơ, Ban Cơ yếu
+Chính phủ thâm định và cập Giây phép xuất khâu, nhập khâu sản phâm mật mã
+dân sự cho doanh nghiệp; trường hợp từ chôi câp thì phải thông báo băng văn bản
+và nêu rõ lý do.
+
+5 (;hínl1 phủ ban hành Danh mục sản phẩm mật mã dân sự xuất khẩu, nhập khẩu
+theo giây phép và quy định chỉ tiêt Điêu này.
+
+Điều 35. Trách nhiệm của doanh nghiệp kinh doanh sản phẩm, dịch vụ mật
+mã dân sự
+
+1. Quản lý hồ sơ, tài liệu về giải pháp kỹ thuật, công nghệ của sản phẩm.
+
+2. Lập, lưu giữ và bảo mật thông tin của khách hàng, tên, loại hình, số lượng
+và mục đích sử dụng của sản phâm, dịch vụ mật mã dân sự.
+
+_ 3. Định kỳ hàng năm báo cáo Ban Cơ yếu Chính phủ về tình hình kinh doanh,
+xuât khâu, nhập khâu sản phâm, dịch vụ mật mã dân sự và tôổng hợp thông tin
+khách hàng trước ngày 31 tháng 12.
+
+4. Có các biện pháp bảo đảm an ninh, an toàn trong vận chuyển và bảo quản
+sản phâm mật mã dân sự.
+
+5. Từ chối cung cấp sản phẩm, dịch vụ mật mã dân sự khi phát hiện tổ chức, cá
+hân vi phạm pháp luật về sử dụng sản phẩm, dịch vụ mật mã dân sự, vi _phạm cam
+ết đã thỏa thuận về sử dụng sản pham dịch vụ do doanh nghiệp cung câp.
+
+5E
+
+6. Tạm ngừng hoặc ngừng cung cấp sản phẩm, dịch vụ mật mã dân sự để bảo
+âm quốc phòng, an ninh quôc gia, trật tự, an toàn xã hội theo yêu cầu của cơ quan
+nhà nước có thầm quyền.
+
+s
+
+7. Phối hợp, tạo điều kiện cho cơ quan nhà nước có thẩm quyền thực hiện các
+biện pháp nghiệp vụ khi có yêu câu.
+
+Điều 36. Trách nhiệm của tổ chức, cá nhân sử dụng sản phẩm, dịch vụ mật
+mã dân sự
+
+1. Tuân thủ các quy định đã cam kết với doanh nghiệp cung cấp sản phẩm mật
+mã dân sự vê quản lý sử dụng khóa mã, chuyên nhượng, sửa chữa, bảo dưỡng, bỏ,
+tiêu hủy sản phẽ”ìm mật mã dân sự và các nội dung khác có liên quan.
+
+2. Cung cấp các thông tin mn thiết liên quan tới khóa mã cho cơ quan nhà
+nước có thẩm quyền khi có yêu cầu.
+
+3. Phối hợp, tạo điều kiện cho cơ quan nhà nước có thẩm quyền thực hiện các
+biện pháp ngăn ngừa tội phạm đánh cắp thông tin, khóa mã và sử dụng sản phẩm
+mật mã dân sự vào những mục đích không hợp pháp.
+
+4. Tổ chức, cá nhân sử dụng sản phẩm mật mã dân sự không do doanh nghiệp
+được cấp phép kinh doanh sản phẩm mật mã dân sự cung cấp phải khai báo với
+Ban Cơ yếu Chính phủ, trừ cơ quan đại diện ngoại giao, cơ quan lãnh sự của nước
+ngoài và cơ quan đại diện của tổ chức quốc tế liên Chính phủ tại Việt Nam.
+
+
+
+--- Trang 17 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 19
+
+Ñ \ \ Chương IV : Ñ
+TIÊU CHUẨN, QUY CHUẨN KỸ THUẬT AN TOÀN THÔNG TIN MẠNG
+
+Điều 37. Tiêu chuẩn, quy chuẩn kỹ thuật an toàn thông tin mạng
+
+1. Tiêu chuẩn an toàn thong tin mạng gom tiêu chuẩn quoc tế, tiêu chuẩn khu
+vực, tiêu chuẩn nước ngoài, tiêu ủuan quốc gia và tiêu chuẩn cơ sở đối với hệ
+thống thông tin, phần cứng, phần mềm, hệ thống quản lý, vận hành an toàn thông
+tin mạng được công bô, thừa nhận áp dụng tại Việt Nam.
+
+2. Quy chuẩn kỹ thuật an toàn thông tin mạng gom quy chuẩn kỹ thuật quoc
+gia và quy chuẩn kỹ thuật địa phương đôi với hệ thồng thông tin, phần cứng, phần
+mềm, hệ thống quản lý, vận hành an toàn thông tin mạng được xây dựng, ban hành
+và áp dụng tại Việt Nam.
+
+Điều 38. Quán lý tiêu chuẩn, quy chuẩn kỹ thuật an toàn thông tin mạng
+
+1. Chứng nhận hợp quy về an toàn thông tin mạng là việc tổ chức chứng nhận sự
+phù hợp chứng nhận hệ thông thông tin, phân cứng, phân mêm, hệ thông quản lý, vận
+hành an toàn thông tin mạng phù hợp với quy chuân kỹ thuật an toàn thông tin mạng.
+
+2. Công bố hợp quy về an toàn thông tin mạng là việc tổ chức, doanh nghlep công
+bồ về sự phù hợp của hệ thống thông tin, phzìn cứng, phần mềm, hệ thống quản lý,
+vận hành an toàn thông tin mạng với quy chuẩn kỹ thuật an toàn thông tin mạng.
+
+3. Chứng nhận hợp ủuẳq về an toàn thông tin mạng là việc tổ chức chứng nhận
+sự phù hợp chứng nhận hệ thông thông tin, phân cứng, phân mêm, hệ thông quản lý,
+vận hành an toàn thông tin mạng phù hợp với tiêu chuân an toàn thông tin mạng.
+
+4. Công bố hợp chuẩn về an toàn thông tin mạng là việc tổ chức, doanh nghiệp
+công bô về sự phù hợp của hệ thông thông tin, phân cứng, phân mềm, hệ thông
+quản lý, vận hành an toàn thông tin mạng với tiêu chuân an toàn thông tin mạng.
+
+5. Bộ Khoa học và Công nghệ chủ trì, phm hợp với cơ quan có liên quan tổ
+chức thầm định và công bố tiêu chuần quoc gia về an toàn thông tin mạng theo quy
+định của pháp luật về tiêu chuẩn, quy chuần kỹ thuật.
+
+6. Bộ Thông tin và Truyền thông có trách nhiệm sau đây:
+
+a) Xây fflmg dự thảo tiêu chuẩn quoc gia an toàn thông tin mạng, trừ tiêu
+chuẩn quốc gia quy định tại khoản 7 Điều mìy,
+
+b) Ban hành quy chuẩn kỹ thuật quo<: gia an toàn thông tin mạng, trừ quy
+chuẩn quốc gia quy định tại khoản 7 Điều này; quy định về đánh giá hợp quy về an
+toàn thông tin mạng;
+
+c) Quản lý chất lượng sản phẩm, dịch vụ an toàn thông tin mạng, trừ sản phẩm,
+dịch vụ mật mã dân sự;
+
+ĩ d) Đăng ký, chỉ định và quản lý hoạt động của tổ chức chứng nhận sự phù hợp
+về an toàn thông tin mạng, trừ tổ chức chứng nhận sự phù hợp đối với sản phẩm,
+dịch vụ mật mã dân sự.
+
+
+--- Trang 18 ---
+20 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+7. Ban Cơ yếu Chính phVl“1 có trách nhiệm giúp Bộ trưởng Bộ Quốc phòng xây
+dụng dự thảo tiêu chuân quốc gia đôi với sản phâm, dịch vụ mật mã dân sự trình
+cơ quan nhà nước có thẩm quyền công bố và hướng dẫn thực hlen xây fflmg, trình
+Bộ trưởng Bộ Quốc phòng ban hành quy chuẩn kỹ thuật quốc gia đối với sản
+phẩm, dịch vụ mật mã dân sự, chỉ định và quản lý hoạt động của tổ chức chứng
+nhận sự phù hợp đôi với sản phâm, dịch vụ mật mã dân sự; quản lý chât lượng sản
+phâm, dịch vụ mật mã dân sự.
+
+8. Ủy ban nhân dân cấp tỉnh xây dựng, ban hành và hướng dẫn thực hiện quy
+chuân kỹ thuật địa phương về an toàn thông tin mạng; quản lý chât lượng sản
+phâm, dịch vụ an toàn thông tin mạng trên địa bàn.
+
+Điều 39. Đánh giá hợp chuẩn, hợp quy về an toàn thông tin mạng
+
+1. Việc đánh giá hợp chuẩn, hợp quy về an toàn thông tin mạng được thực hiện
+trong các trường hợp sau đây:
+
+a) Trước khi tổ chức, cá nhân đưa sản phẩm an toàn thông tin mạng vào lưu
+thông trên thị trường phải thực hiện chứng nhận hợp quy hoặc công bô hợp quy và
+sử dụng dâu hợp quy;
+
+b) Phục vụ hoạt động quản lý nhà nước về an toàn thông tin mạng.
+
+2. Việc đánh giá hợp fflua.n hợp quy về an toàn thông tin mạng phục vụ hệ
+thống thông tin quan trọng quốc gia và phục vụ hoạt động quản lý nhà nước về an
+toàn thông tin mạng được ử3ục hiện tại tổ chức chứng nhận sự phù hợp do Bộ
+trưởng Bộ Thông tin và Truyên thông chỉ định.
+
+3. Việc đánh giá hợp chuần, hợp quy đối với sản phẩm, dịch vụ mật mã dân sự được
+thực hiện tại tô chức chứng nhận sự phù hợp do Bộ trưởng Bộ Quôc phòng chỉ định.
+
+4. Việc thừa nhận ỏt quả đánh giá hợp chuẩn, hợp quy về an toàn thông tin mạng
+giữa Việt Nam với quoc gia, vùng lãnh thổ khác, giữa tổ chức chứng nhận sự phù
+hợp của Việt Nam với tổ chức chứng nhận sự phù hợp của quo<: gia, vùng lãnh thổ
+khác được thực hiện theo quy định của pháp luật về tiêu chuần, quy chuần kỹ thuật.
+
+Chương V
+KINH DOANH TRONG LĨNH VỰC AN TOÀN THÔNG TIN MẠNG
+
+Mục1
+CÁP GIÁY PHÉP KINH DOANH SẢN PHẮM, DỊCH VỤ AN TOÀN
+THÔNG TIN MẠNG
+
+Điều 40. Kinh doanh trong lĩnh vực an toàn thông tin mạng
+
+1. Kinh doanh trong lĩnh vực an toàn thông tin mạng là ngành, mghề kinh doanh
+có điều kiện. Kinh doanh trong lĩnh vực an toàn thông tin mạng gôm kinh doanh
+sản phâm an toàn thông tin mạng và kinh doanh dịch vụ an toàn thông tin mạng.
+
+
+--- Trang 19 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 21
+
+2. D0ẽì.ẺìÌ`l nghiệp kinh doanh sản phẩIm, dịch vụ an toàn thôngq tin mạng quy
+định tại Điều 41 của Luật này phải có Giây phe'pq kinh lJ.f)aI1Ỉ`lV sản phâm, dịch vụ an
+toàn thông tin mạng do _cơ quan nhà nước có thâm quyên câp. Thời hạn của Giây
+phép kinh doanh sản phâm, dịch vụ an toàn thông tin mạng là 10 năm.
+
+3. Việc kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng phải tuân thủ
+quy định của Luật này và quy định khác của pháp luật có liên quan.
+
+Điều kiện kinh doanh, MnhI tự ựìủ tục cấp ỹyiấy phe'ỵq> kinh doanh sản phẩm,
+dịch vụ mật mã dân sự, việc xuât khâu, I1Ỉ`lẽ_hìỊW) khâu sản phâm mật mã dân sự, trách
+nhiệm của CÌf)ẽình nghiệp kinh doanh sản phâm, dịch vụ mật mã dân sự và việc sử
+dụng sản phâm, dịch vụ mật mã dân sự thực hiện theo quy định tại Chương III của
+Luật này.
+
+Điều kiện kinh doanh, trình tự, thủ tục cấp Giấy phép kinh đoanh dịch vụ chứng
+thực chữ ký điện tử thực hiện theo quy định của pháp luật về giao dịch điện tử.
+
+Điều 41. Sản phẩm, dịch vụ trong lĩnh vực an toàn thông tin mạng
+
+1. Dịch vụ an toàn thông tin mạng gồm:
+
+a) Dịch vụ kiểm tra, đánh giá an toàn thông tin mạng;
+
+b) Dịch vụ bảo mật thông tin không sử dụng mật mã dân sự;
+
+c) Dịch vụ mật mã dân sự;
+
+d) Dịch vụ chứng thực chữ ký điện tử;
+
+đ) Dịch vụ tư vấn an toàn thông tin mạng:
+
+e) Dịch vụ giám sát an toàn thông tin mạng;
+
+g) Dịch vụ ứng cứu sự cố an toàn thông tin mạng:
+
+h) Dịch vụ khôi phục dữ liệu;
+
+i) Dịch vụ phòng ngừa, chống tấn công mạng;
+
+k) Dịch vụ an toàn thông tin mạng khác.
+
+2. Sản phẩm an toàn thông tin mạng gồm:
+
+a) Sản phẩm mật mã dân sự;
+
+b) Sản phẩm kiểm tra, đánh giá an toàn thông tin mạng:
+
+c) Sản phẩm giám sát an toàn thông tin mạng;
+
+d) Sản phẩm chồng tấn công, xâm nhập;
+
+đ) Sản phẩm an toàn thông tin mạng khác.
+
+3. Chính phủ quy định chỉ tiết ủnhq mục sản phấm,` dịch vụ an toàn thông tin
+mạng quy định tại điêm k khoản 1 và điêm đ khoản 2 Điêều này.
+
+
+--- Trang 20 ---
+22 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+Điều 42. Điều kiện cấp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn
+thông tin mạng
+1. Doanh nghiệp được mp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn
+thong tin mạng, trừ sản phẩm, dịch vụ quy định tại các điểm a, b, c, d khoản 1 và
+điểm a khoản 2 Điều 41 của Luật này, khi đáp ứng đủ các điều kiện sau đây:
+a) Phù hợp với chiến lược, quy hoạch, kế hoạch phát triển an toàn thông tin
+mạng quôc gia;
+_b)Có hệ thống trang thiết bị, cơ sở vật chất phù hợp với quy mô cung cấp sản
+phâm, dịch vụ an toàn thông tin mạng;
+\ c) Có đội ngũ quản lý, điều hành, kỹ thuật đáp ứng được yêu cầu chuyên môn
+vÊ an toàn thông tin;
+d) Có phương án kinh doanh phù hợp.
+2. Doanh nghiệp được cấp Giấy phép Ịcinh doanh dịch vụ kiểm tra, đánh giá an
+toàn thông tin mạng khi đáp ứng đủ các điêu kiện sau đây:
+a) Các điều kiện quy định tại khoản 1 Điều này;
+b) Là doanh nghiệp được thành lập và hoạt động hợp pháp trên lãnh thổ Việt
+Nam, trừ doanh nghiệp có vốn đầu tư nước ngoài;
+c) Người đại diện theo pháp luật, đội ngũ quản lý, điều hành, kỹ thuật là công
+dân Việt Nam thường trú tại Việt Nam;
+d) Có phương án kỹ thuật phù hợp với tiêu chuẩn, quy chuẩn kỹ thuật;
+đ) Có phương án bảo mật thông tin khách hàng trong quá trình cung cấp dịch vụ;
+9) `Độiq ngũ quản lý, điều hành, kỹ thuật có văn bằng hoặc chứng chỉ chuyên
+môn về kiêm tra, đánh giá an toàn thông tin.
+3. Doanh nghiệp được cấp Giấy phép kinh ủa`nh dịch vụ bảo mật thông tin
+không sử dụng mật mã dân sự khi đáp ứng đủ các điều kiện sau đây:
+a) Các điều kiện quy định tại các điểm a, b, c, d và đ khoản 2 Điều này;
+b) Đội ngũ quản lý điều hành, kỹ thuật có văn bằng hoặc chứng chỉ chuyên
+môn vê bảo mật thông tin.
+4. Chính phủ quy định chỉ tiết Điều này.
+Điều 43. Hồ sơ đề nghị cấp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn
+thông tin mạng
+1. Doanh nghiệp đề nghl cấp G1zìy phep kinh doanh sản phẩm, dịch vụ an toàn
+thông tin mạng nộp hồ sơ đề nghị cấp Giấy phép tại Bộ Thông tin và Truyền thông.
+
+2. Hồ sơ đề nghị cấp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông
+tin mạng được lập thành năm bộ, zgồm:
+
+
+--- Trang 21 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 23
+
+a) Đơn đề nghị cấp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông
+tin mạng, trong đó nêu rõ loại hình sản phẩm, dịch vụ an toàn thông tin mạng sẽ
+kinh doanh;
+
+b) Bản sao Giấy chứng nhận đăng ký doanh nghiệp, Giấy chứng nhận đăng ký
+đầu tư hoặc giấy tờ khác có giá trị tương đương:
+
+c) Bản thuyết minh hệ thống thiết bị kỹ thuật bảo đảm phù hợp với quy định
+của pháp luật;
+
+d) Phương án kinh doanh gồm phạm vi, đối tượng cung cấp sản phẩm, dịch vụ,
+tiêu chuẩn, chất lượng sản phẩm, dịch vụ;
+
+đ) Bản sao văn bằng hoặc chứng chỉ chuyên môn về an toàn thông tin của đội
+ngũ quản lý, điều hành, kỹ thuật.
+
+3. Ngoài giấy tờ, tài liệu quy định tại khoản 2 Điều này, hồ sơ đề nghị cấp
+Giấy phép kinh doanh dịch vụ kiểm tra, đánh giá an toàn thông tin hoặc dịch vụ
+bảo mật thông tin không sử dụng mật mã dân sự còn phải có:
+
+a) Phiếu lý lịch tư pháp của người đại diện theo pháp luật và đội ngũ quản lý,
+điều hành, kỹ thuật;
+
+b) Phương án kỹ thuật;
+
+c) Phương án bảo mật thông tin khách hàng trong quá trình cung cấp dịch vụ.
+
+Điều 44. Thắm định hồ sơ và cấp Giấy phép kinh doanh sản phẩm, dịch
+vụ an toàn thông tin mạng
+
+1. Trong thời hạn 40 ngày kể từ ngày nhận đủ hồ sơ, Bộ Thông tin và Truyền
+thông chủ trì, phối hợp với bộ, ngành có liên quan thẩm định và cấp Giấy phép
+kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng, trừ kinh doanh sản phẩm,
+dịch vụ quy định tại điểm c, điểm d khoản 1 và điểm a khoản 2 Điều 41 của Luật
+này; trường hợp từ chối cấp thì phải thông báo bằng văn bản và nêu rõ lý đo.
+
+2. Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng có nội
+dung chính sau đây:
+
+a) Tên doanh nghiệp, tên giao dịch của doanh nghiệp bằng tiếng Việt và tiếng
+nước ngoài (nếu có); địa chỉ trụ sở chính tại Việt Nam;
+
+b) Tên của người đại diện theo pháp luật;
+
+c) Số giấy phép, ngày cấp giấy phép, ngày hết hạn giấy phép;
+
+d) Sản phẩm, dịch vụ an toàn thông tin mạng được phép kinh doanh.
+
+3. Doanh nghiệp được cấp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn
+thông tin mạng phải nộp phí theo quy định của pháp luật về phí và lệ phí.
+
+
+--- Trang 22 ---
+24 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+Điều 45. Sửa đổi, bỗ sung, gia hạn, tạm đình chỉ, thu hồi và cấp lại Giấy
+phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng
+
+1. Việc sửa đồi, bổ sung Giấy phép kinh doanh sản phẩm, dịch vụ an toàn
+thông tin mạng được thực hiện trong trường hợp doanh nghiệp đã được cấp Giấy
+phép thay đổi tên, thay đồi người đại diện theo pháp luật hoặc thay đồi, bổ sung
+sản phẩm, dịch vụ an toàn thông tin mạng mà mình cung cấp.
+
+Doanh nghiệp có trách nhiệm nôp hồ sơ đề nghị sửa đổi, bổ sung nội dung
+Giấy phep tại Bộ Thong tin và Truyền thong Hồ sơ được lập thành hai bộ, gồm
+đơn đề nghị sửa đồi, bồ sung nội dung Giấy phép, báo cáo mô tả chỉ tiết nội dung
+đề nghị sửa đồi, bồ sung và các tài liệu khác có liên quan.
+
+Trong thời hạn 10 ngày làm việc kể từ ngày nhận đủ hồ sơ, Bộ Thông tin và
+Truyền thông thẩm định, sửa đổi, bồ sung và cấp lại Giấy phép cho doanh nghiệp;
+trường hợp từ chối cấp thì phải thông báo bằng văn bản và nêu rõ lý do.
+
+2. Trường hợp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin bị
+mất hoặc bị hư hỏng, doanh nghiệp gửi đơn đề nghị cấp lại Giấy phép, trong đó
+nêu rõ lý do, tới Bộ Thông tin và Truyền thông. Trong thời hạn 05 ngày làm việc
+kể từ ngày nhận được đơn đề nghị, Bộ Thông tin và Truyền thông xem xét và cấp
+lại Giấy phép cho doanh nghiệp.
+
+3. Doanh nghiệp không vi phạm quy định của pháp luật về kinh doanh sản
+phẩm, dịch vụ an toàn thông tin mạng được gia hạn Giấy phép kinh doanh sản
+phẩm, dịch vụ an toàn thông tin mạng một lần với thời gian gia hạn không quá 01
+năm. Hồ sơ đề nghi gia hạn Giấy phép phải được g"xi tới Bộ Thông tin và Truyền
+thông chậm nhất là 60 ngày trước ngày Giấy phép hết hạn. Hồ sơ đề nghị gia hạn
+Giấy phép được lập thành hai bộ, gồm:
+
+a) Đơn đề nghị gia hạn Giấy phép;
+
+b) Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng đang có
+hiệu lực;
+
+c) Báo cáo hoạt động của doanh nghiệp trong 02 năm gần nhất.
+
+_ Trong thời hạn 20 ngày kể từ ngày nhận đủ hồ sơ, Bộ Thông tin và Truyền thông
+thầm định, quyết định gia hạn và cấp lại Giấy phép cho doanh nghiệp; trường hợp
+từ chối cấp thì phải thông báo bằng văn bản và nêu rõ lý do.
+
+4. Doanh nghiệp bị tạm đình chỉ hoạt động kinh doanh sản phẩm, dịch vụ an
+toàn thông tin mạng có thời hạn không quá 06 tháng trong các trường hợp sau đây:
+
+a) Cung cấp dịch vụ không đúng với nội dụng ghi trên Giấy phép;
+
+b) Không đáp ứng được một trong các điều kiện quy định tại Điều 42 của Luật này;
+
+©) Các trường hợp khác theo quy định của pháp luật.
+
+
+--- Trang 23 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 25
+
+5. Doanh nghiệp bị thu hồi Giấy phép kinh doanh sản phẩm, dịch vụ an toàn
+thông tin mạng trong các trường hợp sau đây:
+
+„ a) Không triển khai cung cấp dịch vụ trong thời hạn 01 năm kể từ ngày được
+cập Giây phép mà không có lý do chính đáng;
+
+b) Giấy phép đã hết hạn;
+
+c) Hết thời hạn tạm đình chỉ mà doanh nghiệp không khắc phục được các lý do
+quy định tại khoản 4 Điêu này.
+
+Điều 46. Trách nhiệm của doanh nghiệp kinh doanh sản phẩm, dịch vụ an
+toàn thông tin mạng
+
+1. Quản lý hồ sơ, tài liệu về giải pháp kỹ thuật, công nghệ của sản phẩm.
+
+2. Lập, lưu giữ và bảo mật thông tin của khách hàng.
+
+3. Định kỳ hàng năm báo cáo Bộ Thông tin và Truyền thông về tình hình kinh
+doanh, xuât khâu, nhập khâu sản phâm, dịch vụ an toàn thông tin mạng trước ngày 31
+tháng 12.
+
+4. Từ chối cung cấp sản phẩm, dịch vụ an toàn thông tin mạng khi phát hiện tổ
+chức, cá nhân vi phạm pháp luật về sử dụng sản phẩm, dịch vụ an toàn thông tin
+mạng, vi phạm cam kết đã thỏa thuận về sử dụng sản phẩm, dịch vụ do doanh
+nghiệp cung câp.
+
+5. Tạm ngừng hoặc ngừng cung mp sản phẩm, dịch vụ an toàn thông tin ¡ mạng
+để bảo đảm quốc phòng, an ninh quộc gia, trật tự, an toàn xã hội theo yêu cầu của
+cơ quan nhà nước có thẩm quyền.
+
+6. Phối hợp, tạo điều kiện cho cơ quan nhà nước có thẩm quyền thực hiện các
+biện pháp nghiệp vụ khi có yêu câu.
+
+Mục2
+QUẢN LÝ NHẬP KHẨU SẢN PHẲM AN TOÀN THÔNG TIN MẠNG
+
+Điều 47. Nguyên tắc quản lý nhập khẩu sản phẩm an toàn thông tin mạng
+
+1. Việc quản lý nhập khẩu đối với sản phẩm an toàn thông tin mạng được thực
+hiện theo quy định của Luật này và quy định khác của pháp luật có liên quan.
+
+2. Việc nhập l(Ỉ`lẽìll sản phẩm an toàn thông tin mạng của cơ quan, tổ chức, cá
+nhân được hưởng quyền ưu đãi, mlen trừ ngoal _giao thực hiện theo quy định của
+pháp luật về hải quan, pháp luật về ưu đãi, miễn trừ dành cho cơ quan đại diện
+ngoại giao, cơ quan lãnh sự của nước ngoài và cơ quan đại diện của tô chức quốc
+tê liên Chính phủ tại Việt Nam.
+
+3. Trong trường hợp Việt Nam chưa có quy chuẩn kỹ thuật an toàn thông tin
+mạng tương ứng CI01 với sản phẩm an toàn thông tin mạng nhập khẩu thì áp dụng
+theo thỏa thuận quốc tế, điều ước quốc tế mà Cộng hòa xã hội chủ nghĩa Việt Nam
+là thành viên.
+
+
+--- Trang 24 ---
+26 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+Điều 48. Sán phẩm nhập khẩu theo giấy phép trong lĩnh vực an toàn thông tin
+mạng
+
+1. Khi nhập khẩu sản phẩm an toàn thông tin mạng thuộc Danh mục sản phẩm
+an toàn thông tin mạng nhập khzẨ1uW theo gấỵ phép do Chính phủ quy định, doanh
+nghiệp phải có Giây phép nhập khâu sản phâm an toàn thông tin mạng do cơ quan
+nhà nước có thẩm quyền cấp.
+
+2. Tổ chức, doanh nghlep nhập khẩu sản phẩm an toàn thông tin mạng 1')Ỉ`lẽì1
+thực hiện chứng nhận, công bố hợp quy trước khi nhập khẩu theo quy định tại Điều
+39 của Luật này.
+
+3. Tổ chức, doanh nghiệp được `cấp Giấy phép nhập khẩu sản phẩm an toàn
+thông tin mạng khi đáp ứng đủ các điều kiện sau đây:
+
+a) Có Giấy phép kinh doanh sản phẩm an toàn thông tin mạng;
+
+b) Sản phẩm an toàn thông tin mạng phải thực hiện chứng nhận, công bố hợp
+quy theo quy định tại Điêu 39 của Luật này;
+
+c) Đồi tượng w1 mục đích sử dụng mn phẩm an toàn thông tin mạng không gây
+phương hại đến quốc phòng, an ninh quốc gia và trật tự, an toàn xã hội.
+
+4. Bộ Thông tin và ữuyen thông quy định chỉ tiết về trình tự, thủ tục, hồ sơ cấp
+Giầấy phép nhập khẩu sản phẩm an toàn thông tin mạng theo giấy phép.
+
+. \ Chương VI
+PHÁT TRIỀN NGUỒN NHÂN LỰC AN TOÀN THÔNG TIN MẠNG
+
+Điều 49. Đào tạo, bồi dưỡng nghiệp vụ về an toàn thông tin mạng
+
+1. Chủ quản hệ thống thông tin có trách nhiệm đào tạo và bồi dưỡng kiến thức,
+nghiệp vụ cho cán bộ quản lý, kỹ thuật về an toàn thông tin mạng.
+
+2. Cán bộ chuyên trách về an toàn thông tin mạng được bố trí, tạo điều kiện
+làm việc phù hợp với chuyên môn, được ưu tiên bôi dưỡng nghiệp vụ về an toàn
+thông tin mạng.
+
+3. Nhà nước khuyến khích tổ chức, cá nhân đầu tư, liên doanh, liên kết với tổ
+chức khác đề đâu tư xây dựng cơ sở giáo dục đại học, cơ sở giáo dục nghề nghiệp
+nhăm đào tạo nhân lực trong lĩnh vực an toàn thông tin mạng.
+
+4. Bộ Nội vụ chủ trì, phối hợp với Bộ Thông tin và Truyền thông, bộ, ngành có
+liên quan xây dựng kê hoạch và tô chức thực hiện đào tạo, bôi dưỡng kiên thức,
+nghiệp vụ vê an toàn thông tin mạng cho cán bộ, công chức, viên chức.
+
+Điều 50. Văn bằng, chứng chí đào tạo về an toàn thông tin mạng
+
+1, Cơ sở giáo dục đại học, cơ sở giáo dục nghề nghlep trong phạm vi nhiệm vụ,
+quyền hạn của mình cấp văn bằng, chứng chỉ đào tạo về an toàn thông tin mạng.
+
+
+--- Trang 25 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 27
+
+2. Bộ Giáo dục và Đào tạo chủ trì, phối hợp với Bộ Thong tin và Truyền thông, bộ,
+ngành có liên quan công nhận văn bằng giáo dục đại học về an toàn thông tin mạng
+do tổ chức nước ngoài cấp.
+
+3. Bộ Lao động - Thương binh và Xã hội chủ trì, phối hợp với Bộ Thông tin và
+Ủ'uyen thong, Bộ, ngành có liên quan wng nhận văn bằng, ủung chỉ giáo dục
+nghề nghiệp về an toàn thông tin mạng do tổ chức nước ngoài cấp.
+
+Chương VII
+QUẢN LÝ NHÀ NƯỚC VỀ AN TOÀN THÔNG TIN MẠNG
+
+Điều 51. Nội dung quần lý nhà nước về an toàn thông tin mạng
+
+1. Xây dựng chiến lược, quy hoạch, kế hoạch và chính sách trong lĩnh vực an
+toàn thông tin mạng; xây dựng và chỉ đạo thực hiện chương trình quộc gia về an
+toàn thông tin mạng.
+
+2. Ban hành và tổ chức thực hiện văn bản quy phạm pháp luật về an toàn thông
+tin mạng; xây dựng, công bồ tiêu chuẩn quốc gia, ban hành quy chuẩn kỹ thuật về
+an toàn thông tin mạng.
+
+3. Quản lý nhà nước về mật mã dân sự.
+
+4. Quản lý công tác đánh giá, công bồ hợp chuẩn, hợp quy về an toàn thông tin mạng.
+
+5. Quản lý công tác giám sát an toàn hệ thống thông tin.
+
+6. Thẩm định về an toàn thông tin mạng trong hồ sơ thiết kế hệ thống thông tin.
+
+7. Tuyên truyền, phổ biến pháp luật về an toàn thông tin mạng.
+
+8. Quản lý hoạt động kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng.
+
+9, Tổ chức nghiên cứu, ứng dụng khoa học và công nghệ về an toàn thông tin
+mạng; phát triên nguôn nhân lực an toàn thông tin mạng; đào tạo cán bộ chuyên
+trách vê an toàn thông tin mạng.
+
+10. Kiểm tra, thanh tra, giải quyết khiều nại, t cáo, xử lý vi phạm pháp luật về
+an toàn thông tin mạng.
+
+11. Hợp tác quốc tế về an toàn thông tin mạng.
+
+Điều 52. Trách nhiệm quản lý nhà nước về an toàn thông tin mạng
+
+1. Chính phủ thống nhất quản lý nhà nước về an toàn thông tin mạng.
+
+2. Bộ Thông tin và Truyền thông chịu trách nhiệm trước ỄÌhính phủ thực hiện
+quản lý nhà nước vê an toàn thông tin mạng, có nhiệm vụ, quyên hạn sau đây:
+
+a) Ban hành hoặc xây dựng, trình ủp có thẩm quyền ban hành văn bản quy
+
+phạm pháp luat chlen lược, quy hoạch, kế hoạch, tiêu chuần quốc gia, quy chuẩn
+kỹ thuật quốc gia về an toàn thông tin mạng:
+
+
+--- Trang 26 ---
+28 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+b) Thẩm định về an toàn thông tin mạng trong hồ sơ thiết kế hệ thống thông tin;
+
+c) Quản lý công tác giám sát an toàn hệ thống thông tin trên toàn quốc, trừ hệ
+thống thông tin quy định tại điểm c khoản 3 và điểm b khoản 5 Điều này;
+
+d) Quản lý công tác đánh giá về an toàn thông tin mạng:
+
+đ) Cấp Giấy phép kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng, Giấy
+phép nhập khẩu sản phẩm an toàn thông tin, trừ sản phẩm, dịch vụ mật mã dân sự;
+
+e) Nghiên cứu, ứng dụng khoa học và công nghệ về an toàn thông tin mạng;
+đào tạo, bồi dưỡng, phát triển nguồn nhân lực;
+
+g) Quần lý và thực hiện hợp tác quốc tế về an toàn thông tin mạng;
+
+h) Kiểm tra, thanh tra, giải quyết khiều nại, tố cáo và xử lý vi phạm pháp luật
+về an toàn thông tin mạng;
+
+1) Chủ trì, phối hợp với bộ, ngành, Ủy ban nhân dân cấp tỉnh và doanh nghiệp
+có liên quan trong việc bảo đảm an toàn thông tin mạng;
+
+k) Tổ chức tuyên truyền, phỗ biến pháp luật về an toàn thông tin mạng;
+
+I) Định kỳ hàng năm báo cáo Chính phủ về hoạt động an toàn thông tin mạng.
+
+3. Bộ Quốc phòng có nhiệm vụ, quyền hạn sau đây:
+
+a) Ban hành hoặc xây dựng, trình cấp có thắm quyền ban hành văn bản quy
+phạm pháp luật, chiến lược, quy hoạch, kế hoạch, tiêu chuần quốc gia, quy chuẩn
+kỹ thuật quốc gia về an toàn thông tin mạng thuộc lĩnh vực do Bộ Quốc phòng
+quản lý;
+
+b) Kiểm tra, thanh tra, giải quyết khiểu nại, tỐ cáo và xử lý vi phạm pháp luật
+trong hoạt động bảo đảm an toàn thông tin mạng thuộc lĩnh vực do Bộ Quốc phòng
+quản lý;
+
+c) Thực hiện quản lý công tác giám sát an toàn hệ thống thông tin thuộc Bộ
+Quốc phòng.
+
+4. Ban Cơ yếu Chính phủ giúp Bộ trưởng Bộ Quốc phòng thực hiện quản lý
+nhà nước về mật mã dân sự, có nhiệm vụ sau đây:
+
+a) Xây dựng, trình cấp có thẩm quyền ban hành văn bản quy phạm pháp luật
+về quản lý mật mã dân sự;
+
+b) Chủ trì, phối hợp với bộ, ngành có liên quan xây dựng, trình cơ quan nhà
+nước có thẩm quyền ban hành tiêu chuẩn quốc gia, quy chuẩn kỹ thuật quốc gia
+đối với sản phẩm, dịch vụ mật mã dân sự;
+
+e) Quản lý hoạt động kinh doanh, sử dụng mật mã dân sự; quản lý chất lượng
+sản phẩm, dịch vụ mật mã dân sự; quản lý công tác đánh giá, công bố hợp chuẩn,
+hợp quy đối với sản phẩm, dịch vụ mật mã dân sự;
+
+
+--- Trang 27 ---
+CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015 29
+
+d) Xây dựng, trình cấp có thẩm quyền ban hành Danh mục sản phẩm, dịch vụ
+mật mã dân sự và Danh mục sản phẩm mật mã dân sự xuất khẩu, nhập khẩu theo
+giấy phép;
+
+đ) Cấp Giấy phép kinh doanh sản phẩm, dịch vụ mật mã dân sự, Giấy phép
+xuất khẩu, nhập khẩu sản phẩm mật mã dân sự;
+
+e) Kiểm tra, thanh tra, giải quyết khiều nại, tố cáo và xử lý vi phạm pháp luật
+trong hoạt động kinh doanh, sử dụng mật mã dân sự;
+
+g) Hợp tác quốc tế về mật mã dân sự.
+
+5. Bộ Công an có nhiệm vụ, quyền hạn sau đây:
+
+a) Chủ trì, phối hợp với bộ, ngành có liên quan xây dựng và trình cấp có thầm
+quyền ban hành hoặc ủn hành theo thẩm quyền và hướng dẫn thực hiện văn bản
+quy phạm pháp luật về bảo vệ bí mn nhà nước, phòng, chống tội phạm mạng, lợi
+dụng mạng đề xâm phạm an ninh quốc gia, trật tự, an toàn xã hội;
+
+b) Thực hiện quản lý công tác giám sát an toàn hệ thống thông tin thuộc Bộ
+Công an;
+
+c) Tổ chức, chỉ đạo, triển khai công tác phòng, chống tội phạm, tổ chức điều
+tra tội phạm mạng và hành vi vi phạm pháp luật khác trong lĩnh vực an toàn thông
+tin mạng:
+
+d) Phối hợp với Bộ Thông tin và Truyền thông, bộ, ngành có liên quan kiểm
+tra, thanh tra về an toàn thông tin mạng, xử lý vi phạm pháp luật về an toàn thông
+tin mạng theo thẩm quyền.
+
+6. Bộ Nội vụ có trách nhiệm tổ chức đào tạo, bồi dưỡng kiến thức, nghiệp vụ
+an toàn thông tin mạng cho cán bộ, công chức, viên chức.
+
+7. Bộ Giáo dục và Đào tạo có trách nhiệm tổ chức đào tạo, phổ biến kiến thức
+về an toàn thông tin mạng trong cơ sở giáo dục đại học.
+
+8. Bộ Lao động - Thương binh và Xã hội có trách nhiệm tổ chức đào tạo,
+bồi dưỡng, phổ biến kiến thức về an toàn thông tin mạng trong cơ sở giáo dục
+nghề nghiệp.
+
+9, Bộ Tài chính có trách nhiệm hướng dẫn, bố trí kinh phí thực hiện nhiệm vụ
+bảo đảm an toàn thông tin mạng theo quy định của pháp luật.
+
+10. Bộ, cơ quan ngang bộ trong phạm vi nhiệm vụ, quyền hạn của mình có
+trách nhiệm quán lý an toàn thông tin mạng của ngành mình và phối hợp với Bộ
+Thông tin và Truyền thông thực hiện quản lý nhà nước về an toàn thông tin mạng.
+
+11. Ủy ban nhân dân cấp tỉnh trong phạm vi nhiệm vụ, quyền hạn của mình
+thực hiện quản lý nhà nước về an toàn thông tin mạng ở địa phương.
+
+
+--- Trang 28 ---
+30 CÔNG BÁO/Số 1239 + 1240/Ngày 28-12-2015
+
+.. Chương VIII
+ĐIỀU KHOẢN THỊ HÀNH
+
+Điều 53. Hiệu lực thi hành
+
+Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2016.
+
+Điều 54. Quy định chỉ tiết
+
+Chính phủ, cơ quan nhà nước có thẩm quyền quy định chỉ tiết các điều, khoản
+được giao trong Luật.
+
+Luật này đã được QLtc3VL~ hội nước Cộng hỏa xã hội chủ nghĩa Việt Nam khóa X1H,
+kỳ họp thứ 10 thông qua ngày 19 tháng 1] năm 2015./.
+
+CHỦ TỊCH QUÓC HỘI
+
+Nguyễn Sinh Hùng
+
+
