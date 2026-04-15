@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử phân tích - GenZ Legal AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Header (same as index.html) -->
+    <header class="relative z-20 border-b border-slate-700/50 backdrop-blur-xl bg-slate-900/50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full blur-lg opacity-40"></div>
+                        <div class="relative bg-white p-2 rounded-full shadow-lg shadow-cyan-500/30">
+                            <i class="fas fa-scale-balanced text-3xl text-purple-600"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 text-xl font-bold">
+                            GenZ Legal AI
+                        </h1>
+                        <p class="text-slate-500 text-xs">Giải pháp pháp lý thông minh</p>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-2">
+                    <a href="/" class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800">
+                        <i class="fas fa-home w-4"></i>
+                        Trang chủ
+                    </a>
+                    <a href="/history" class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all bg-cyan-600/20 text-cyan-300 border border-cyan-500/30">
+                        <i class="fas fa-history w-4"></i>
+                        Lịch sử
+                    </a>
+                    <a href="/pricing" class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800">
+                        <i class="fas fa-crown w-4"></i>
+                        Gói dịch vụ
+                    </a>
+                </nav>
+
+                <div id="user-menu" class="relative">
+                    <button id="user-menu-btn" class="flex items-center gap-3 px-4 py-2 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 rounded-lg transition-all">
+                        <div class="bg-gradient-to-br from-cyan-500 to-pink-500 p-2 rounded-full">
+                            <i class="fas fa-user w-4 text-white"></i>
+                        </div>
+                        <div class="text-left hidden sm:block">
+                            <div id="user-email" class="text-slate-300 text-sm"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 mb-2">
+                Lịch sử phân tích
+            </h1>
+            <p class="text-slate-400 text-lg">
+                Quản lý và xem lại các hợp đồng đã phân tích
+            </p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">
+                <div class="text-slate-400 text-sm mb-1">Tổng số phân tích</div>
+                <div class="text-cyan-100 text-3xl font-bold" id="total-count">0</div>
+            </div>
+            <div class="bg-slate-900/70 backdrop-blur-xl border border-green-500/30 rounded-xl p-6">
+                <div class="text-green-400 text-sm mb-1">Hoàn thành</div>
+                <div class="text-green-300 text-3xl font-bold" id="completed-count">0</div>
+            </div>
+            <div class="bg-slate-900/70 backdrop-blur-xl border border-blue-500/30 rounded-xl p-6">
+                <div class="text-blue-400 text-sm mb-1">Đang xử lý</div>
+                <div class="text-blue-300 text-3xl font-bold" id="processing-count">0</div>
+            </div>
+            <div class="bg-slate-900/70 backdrop-blur-xl border border-red-500/30 rounded-xl p-6">
+                <div class="text-red-400 text-sm mb-1">Có vấn đề</div>
+                <div class="text-red-300 text-3xl font-bold" id="issues-count">0</div>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Search -->
+                <div class="relative">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+                        <i class="fas fa-search w-5"></i>
+                    </div>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Tìm kiếm theo tên file..."
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-slate-200 placeholder-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    />
+                </div>
+
+                <!-- Filter -->
+                <div class="relative">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+                        <i class="fas fa-filter w-5"></i>
+                    </div>
+                    <select
+                        id="status-filter"
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-slate-200 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all appearance-none cursor-pointer"
+                    >
+                        <option value="all">Tất cả trạng thái</option>
+                        <option value="completed">Hoàn thành</option>
+                        <option value="processing">Đang xử lý</option>
+                        <option value="failed">Lỗi</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- History List -->
+        <div id="history-list" class="space-y-4">
+            <!-- Items will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl p-12 text-center">
+            <i class="fas fa-file-alt text-6xl text-slate-600 mb-4"></i>
+            <h3 class="text-slate-400 text-xl mb-2">Không tìm thấy kết quả</h3>
+            <p class="text-slate-500 text-sm">Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Load history data
+        async function loadHistory() {
+            try {
+                const response = await fetch('/api/history');
+                const data = await response.json();
+                
+                if (data.history) {
+                    renderHistory(data.history);
+                    updateStats(data.history);
+                }
+            } catch (error) {
+                console.error('Error loading history:', error);
+            }
+        }
+
+        function updateStats(history) {
+            document.getElementById('total-count').textContent = history.length;
+            document.getElementById('completed-count').textContent = history.filter(h => h.status === 'completed').length;
+            document.getElementById('processing-count').textContent = history.filter(h => h.status === 'processing').length;
+            document.getElementById('issues-count').textContent = history.filter(h => h.highRisk > 0).length;
+        }
+
+        function renderHistory(history) {
+            const listContainer = document.getElementById('history-list');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (history.length === 0) {
+                listContainer.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            listContainer.innerHTML = history.map((item, index) => `
+                <div class="group relative animate-fade-in bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300" style="animation-delay: ${index * 50}ms">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+                            <!-- Icon and Info -->
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="bg-gradient-to-br from-cyan-500 to-blue-500 p-3 rounded-xl shadow-lg shadow-cyan-500/30 flex-shrink-0">
+                                    <i class="fas fa-file-alt text-2xl text-white"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <h3 class="text-slate-200 text-lg truncate">${item.fileName}</h3>
+                                        ${getStatusBadge(item.status)}
+                                    </div>
+                                    <div class="flex items-center gap-4 text-sm text-slate-400">
+                                        <span class="flex items-center gap-1">
+                                            <i class="fas fa-calendar w-4"></i>
+                                            ${new Date(item.date).toLocaleDateString('vi-VN')}
+                                        </span>
+                                        ${item.status === 'completed' ? `
+                                            <span>•</span>
+                                            <span class="flex items-center gap-1">
+                                                <i class="fas fa-exclamation-triangle w-4"></i>
+                                                ${item.totalIssues} vấn đề
+                                            </span>
+                                            <span>•</span>
+                                            <span class="text-cyan-400">
+                                                Điểm: ${getRiskScore(item).toFixed(0)}/100
+                                            </span>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Risk Summary -->
+                            ${item.status === 'completed' ? `
+                                <div class="flex items-center gap-2">
+                                    ${item.highRisk > 0 ? `
+                                        <div class="px-3 py-1.5 bg-red-500/20 border border-red-500/30 rounded-lg">
+                                            <span class="text-red-300 text-sm">${item.highRisk} cao</span>
+                                        </div>
+                                    ` : ''}
+                                    ${item.mediumRisk > 0 ? `
+                                        <div class="px-3 py-1.5 bg-yellow-500/20 border border-yellow-500/30 rounded-lg">
+                                            <span class="text-yellow-300 text-sm">${item.mediumRisk} TB</span>
+                                        </div>
+                                    ` : ''}
+                                    ${item.lowRisk > 0 ? `
+                                        <div class="px-3 py-1.5 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+                                            <span class="text-blue-300 text-sm">${item.lowRisk} thấp</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            ` : ''}
+
+                            <!-- Actions -->
+                            <div class="flex items-center gap-2">
+                                ${item.status === 'completed' ? `
+                                    <button onclick="viewAnalysis('${item.id}')" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-lg transition-all shadow-lg shadow-cyan-500/30">
+                                        <i class="fas fa-eye w-4"></i>
+                                        <span class="hidden sm:inline">Xem</span>
+                                    </button>
+                                    <button class="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 rounded-lg transition-all">
+                                        <i class="fas fa-download text-xl"></i>
+                                    </button>
+                                ` : ''}
+                                <button onclick="deleteAnalysis('${item.id}')" class="p-2 text-slate-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all">
+                                    <i class="fas fa-trash text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getStatusBadge(status) {
+            switch (status) {
+                case 'completed':
+                    return '<span class="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full border border-green-500/30">Hoàn thành</span>';
+                case 'processing':
+                    return '<span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/30 flex items-center gap-1"><div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>Đang xử lý</span>';
+                case 'failed':
+                    return '<span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full border border-red-500/30">Lỗi</span>';
+            }
+        }
+
+        function getRiskScore(item) {
+            if (item.totalIssues === 0) return 100;
+            return 100 - ((item.highRisk * 20 + item.mediumRisk * 10 + item.lowRisk * 5) / item.totalIssues) * 10;
+        }
+
+        function viewAnalysis(id) {
+            window.location.href = `/?analysis=${id}`;
+        }
+
+        function deleteAnalysis(id) {
+            if (confirm('Bạn có chắc muốn xóa phân tích này?')) {
+                // Call API to delete
+                console.log('Delete analysis:', id);
+                loadHistory(); // Reload after delete
+            }
+        }
+
+        // Search and filter
+        document.getElementById('search-input').addEventListener('input', filterHistory);
+        document.getElementById('status-filter').addEventListener('change', filterHistory);
+
+        async function filterHistory() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const statusFilter = document.getElementById('status-filter').value;
+
+            const response = await fetch('/api/history');
+            const data = await response.json();
+            
+            const filtered = data.history.filter(item => {
+                const matchesSearch = item.fileName.toLowerCase().includes(searchTerm);
+                const matchesFilter = statusFilter === 'all' || item.status === statusFilter;
+                return matchesSearch && matchesFilter;
+            });
+
+            renderHistory(filtered);
+        }
+
+        // Load on page load
+        loadHistory();
+
+        // Update user email
+        const userEmail = sessionStorage.getItem('userEmail');
+        if (userEmail) {
+            document.getElementById('user-email').textContent = userEmail;
+        }
+    </script>
+</body>
+</html>
