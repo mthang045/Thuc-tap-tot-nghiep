@@ -8,7 +8,9 @@ from pageindex_rag import get_page_index_retriever
 from src.classifier import SVMContractClassifier
 from src.resource_config import (
     GROQ_API_KEY, GROQ_MODEL, LLM_TEMPERATURE, 
-    LLM_MAX_TOKENS, SVM_MODEL_DIR, DEFAULT_TOP_K
+    LLM_MAX_TOKENS, SVM_MODEL_DIR, DEFAULT_TOP_K,
+    FAST_ANALYSIS_MODE, FAST_EXTRACTION_CHARS, FAST_MAX_CLAUSES,
+    FAST_MAX_ANALYST_CLAUSES, FAST_TOP_K_DOCS, FAST_TOP_K_SECTIONS
 )
 
 # Khởi tạo LLM với GROQ - lazy instantiation
@@ -94,16 +96,20 @@ def extract_clauses_node(state: AgentState):
     contract_text = state['contract_text']
     llm = get_llm()
     
-    # Prompt yêu cầu AI tách điều khoản - tối ưu, ngắn gọn
+    # Prompt yêu cầu tách điều khoản có dẫn chiếu trực tiếp từ hợp đồng
     prompt = ChatPromptTemplate.from_template(
-        """Trích xuất các điều khoản quan trọng: Lương, Thưởng, Thời gian làm việc, Chấm dứt hợp đồng, Bảo mật.
-        Tách bằng '|||'. Chỉ nội dung, không tiêu đề.
-        
-        Hợp đồng: {text}
+        """Bạn là chuyên viên rà soát hợp đồng.
+        Trích xuất các điều khoản quan trọng xuất hiện trong hợp đồng (ưu tiên: nghĩa vụ các bên, thanh toán/lương, thời gian, phạt vi phạm, chấm dứt, giải quyết tranh chấp, bảo mật).
+        Mỗi điều khoản phải là trích đoạn cụ thể từ hợp đồng (không diễn giải chung chung).
+        Trả về tối đa 8 điều khoản, ngăn cách bằng '|||', không thêm tiêu đề.
+
+        Hợp đồng:
+        {text}
         """
     )
     chain = prompt | llm
-    result = chain.invoke({"text": contract_text[:3000]})  # Giới hạn input length
+    input_limit = FAST_EXTRACTION_CHARS if FAST_ANALYSIS_MODE else 6000
+    result = chain.invoke({"text": contract_text[:input_limit]})  # Giới hạn input length
     
     # Tách chuỗi kết quả thành list
     clauses = [c.strip() for c in result.content.split('|||') if c.strip()]
@@ -111,8 +117,9 @@ def extract_clauses_node(state: AgentState):
     # Nếu có SVM classifier, kiểm tra vi phạm cho từng điều khoản (batch nếu có thể)
     svm_classifier = get_svm_classifier()
     if svm_classifier:
+        clause_limit = FAST_MAX_CLAUSES if FAST_ANALYSIS_MODE else 10
         clauses_with_violations = []
-        for clause in clauses[:10]:  # Giới hạn tối đa 10 clauses
+        for clause in clauses[:clause_limit]:
             try:
                 violation_check = svm_classifier.detect_violation(clause)
                 clauses_with_violations.append({
@@ -150,14 +157,18 @@ def research_node(state: AgentState):
     clauses_with_svm = state.get('clauses_with_svm', [])
     
     # Giới hạn số clauses để xử lý
-    max_clauses = min(len(clauses), 10)
+    max_clauses = min(len(clauses), FAST_MAX_CLAUSES if FAST_ANALYSIS_MODE else 10)
     
     for idx in range(max_clauses):
         clause = clauses[idx]
         
         # PAGEINDEX: Tree-based retrieval with reasoning
         print(f"  🌲 PageIndex searching for clause {idx+1}...")
-        docs = retriever.search(query=clause, top_k_docs=2, top_k_sections=DEFAULT_TOP_K)
+        docs = retriever.search(
+            query=clause,
+            top_k_docs=FAST_TOP_K_DOCS if FAST_ANALYSIS_MODE else 2,
+            top_k_sections=FAST_TOP_K_SECTIONS if FAST_ANALYSIS_MODE else DEFAULT_TOP_K,
+        )
         
         # Format legal context from PageIndex results
         legal_context_parts = []
@@ -199,6 +210,7 @@ def analyst_node(state: AgentState):
     print("--- BƯỚC 4: PHÂN TÍCH RỦI RO ---")
     research_data = state['research_results']
     svm_results = state.get('svm_results', {})
+    contract_text = state.get('contract_text', '')
     llm = get_llm()
     
     # Thêm thông tin SVM classification vào context - ngắn gọn
@@ -219,10 +231,17 @@ def analyst_node(state: AgentState):
             svm_summary += f"Vi phạm: {has_vio} ({vc.get('violation_probability', 0):.0%})\n"
         context_parts.append(svm_summary)
     
-    # Thêm chi tiết điều khoản - rút gọn
-    for idx, item in enumerate(research_data[:5], 1):  # Chỉ lấy 5 điều khoản đầu
-        clause_text = item['clause'][:200]  # Giới hạn 200 ký tự
-        laws_text = item['laws'][:300]  # Giới hạn 300 ký tự
+    # Thêm trích đoạn hợp đồng gốc để giảm phân tích chung chung
+    excerpt_limit = 2500 if FAST_ANALYSIS_MODE else 5000
+    contract_excerpt = contract_text[:excerpt_limit]
+    if contract_excerpt:
+        context_parts.append(f"=== TRÍCH ĐOẠN HỢP ĐỒNG GỐC ===\n{contract_excerpt}\n")
+
+    # Thêm chi tiết điều khoản
+    analyst_limit = FAST_MAX_ANALYST_CLAUSES if FAST_ANALYSIS_MODE else 5
+    for idx, item in enumerate(research_data[:analyst_limit], 1):
+        clause_text = item['clause'][:400]
+        laws_text = item['laws'][:700]
         
         item_text = f"\nMỤC {idx}:\n- Nội dung: {clause_text}\n"
         
@@ -237,15 +256,19 @@ def analyst_node(state: AgentState):
     
     context_str = "\n".join(context_parts)
     
-    prompt_text = """Bạn là Luật sư AI. Phân tích hợp đồng dựa trên dữ liệu sau (bao gồm SVM và tra cứu luật).
+    prompt_text = """Bạn là Luật sư AI. Phân tích hợp đồng dựa trên dữ liệu sau (bao gồm SVM, trích đoạn hợp đồng gốc và tra cứu luật).
 
 Dữ liệu: {data}
 
-Yêu cầu (ngắn gọn):
-1. Tóm tắt loại hợp đồng và rủi ro
-2. Phân tích các điều khoản chính
-3. Danh sách vi phạm cụ thể
-4. Khuyến nghị sửa đổi"""
+Yêu cầu bắt buộc:
+1. Chỉ kết luận dựa trên dữ liệu đã cho, không nói chung chung.
+2. Mỗi nhận định quan trọng phải nêu rõ trích đoạn điều khoản tương ứng.
+3. Nếu dữ liệu chưa đủ để kết luận, ghi rõ "chưa đủ dữ liệu" thay vì suy đoán.
+4. Trình bày theo 4 phần:
+   - Tóm tắt loại hợp đồng và rủi ro
+   - Phân tích từng điều khoản chính (nêu điều khoản cụ thể)
+   - Danh sách vi phạm/rủi ro cụ thể gắn với điều khoản
+   - Khuyến nghị sửa đổi cụ thể theo từng rủi ro"""
     
     prompt = ChatPromptTemplate.from_template(prompt_text)
     chain = prompt | llm

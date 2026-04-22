@@ -4,8 +4,16 @@ import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
 import { ForgotPasswordForm } from './ForgotPasswordForm';
 
-export function AuthModal({ initialView, onClose, onLogin }) {
+export function AuthModal({ initialView, onClose, onLogin, onGoogleLogin }) {
   const [activeView, setActiveView] = useState(initialView);
+
+  const handleGoogleLoginSuccess = async (credential) => {
+    const result = await onGoogleLogin?.(credential);
+    if (result?.success) {
+      onClose();
+    }
+    return result;
+  };
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -74,6 +82,7 @@ export function AuthModal({ initialView, onClose, onLogin }) {
           {activeView === 'login' && (
             <LoginForm 
               onLogin={onLogin} 
+              onGoogleLogin={handleGoogleLoginSuccess}
               onForgotPassword={() => setActiveView('forgot')}
             />
           )}

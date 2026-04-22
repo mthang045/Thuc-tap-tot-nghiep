@@ -7,6 +7,19 @@ import logoImage from '/logo.png';
 export function AnalysisResults({ data, onReset }) {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
+  const cleanMarkdownText = (value) => {
+    if (typeof value !== 'string') {
+      return value || '';
+    }
+
+    return value
+      .replace(/\*\*/g, '')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/^\s*-\s+/gm, '• ')
+      .replace(/^\s*\d+\.\s+/gm, '• ')
+      .trim();
+  };
+
   const handleDownloadPDF = async () => {
     setIsGeneratingPDF(true);
     try {
@@ -257,7 +270,7 @@ export function AnalysisResults({ data, onReset }) {
               </div>
               <div className="prose prose-invert max-w-none">
                 <div className="text-purple-100/90 leading-relaxed whitespace-pre-wrap">
-                  {data.aiAnalysis}
+                  {cleanMarkdownText(data.aiAnalysis)}
                 </div>
               </div>
             </div>
@@ -284,7 +297,7 @@ export function AnalysisResults({ data, onReset }) {
                 <div className="flex-1 bg-slate-800/50 rounded-xl p-4 border border-slate-700">
                   <div className="text-xs text-slate-400 mb-2 font-semibold">💡 Nhận xét của AI:</div>
                   <div className="text-sm text-slate-300 leading-relaxed italic">
-                    {data.safetyReasoning}
+                      {cleanMarkdownText(data.safetyReasoning)}
                   </div>
                 </div>
               )}

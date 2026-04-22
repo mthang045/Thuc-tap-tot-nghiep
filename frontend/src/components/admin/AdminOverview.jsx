@@ -10,6 +10,8 @@ export function AdminOverview() {
     { label: 'Tỷ lệ chuyển đổi', value: '0%', change: '+0%', icon: TrendingUp, color: 'purple' }
   ]);
   const [isLoading, setIsLoading] = useState(true);
+  const [recentActivities, setRecentActivities] = useState([]);
+  const [systemStatus, setSystemStatus] = useState([]);
 
   useEffect(() => {
     loadAdminStats();
@@ -19,34 +21,45 @@ export function AdminOverview() {
     try {
       setIsLoading(true);
       const response = await apiService.getAdminStats();
+      const statsData = response.stats || response;
+
+      const totalUsers = Number(statsData.total_users || statsData.totalUsers || 0);
+      const totalAnalyses = Number(statsData.total_analyses || statsData.totalAnalyses || 0);
+      const totalContracts = Number(statsData.total_contracts || statsData.totalContracts || totalAnalyses);
+      const monthlyRevenue = Number(statsData.monthly_revenue || statsData.monthlyRevenue || 0);
+      const successRate = Number(statsData.success_rate || statsData.successRate || 0);
       
       setStats([
-        { label: 'Tổng người dùng', value: response.total_users.toString(), change: '+12%', icon: Users, color: 'cyan' },
-        { label: 'Tổng hợp đồng', value: response.total_contracts.toString(), change: '+23%', icon: FileText, color: 'blue' },
-        { label: 'Tổng phân tích', value: response.total_analyses.toString(), change: '+8%', icon: DollarSign, color: 'green' },
-        { label: 'Tỷ lệ thành công', value: Math.round((response.total_analyses / response.total_contracts) * 100) + '%', change: '+5%', icon: TrendingUp, color: 'purple' }
+        { label: 'Tổng người dùng', value: totalUsers.toString(), change: '', icon: Users, color: 'cyan' },
+        { label: 'Tổng hợp đồng', value: totalContracts.toString(), change: '', icon: FileText, color: 'blue' },
+        { label: 'Tổng phân tích', value: totalAnalyses.toString(), change: '', icon: DollarSign, color: 'green' },
+        { label: 'Tỷ lệ thành công', value: `${successRate}%`, change: '', icon: TrendingUp, color: 'purple' }
+      ]);
+
+      const activities = (response.recent_activities || []).map(item => ({
+        user: item.user || 'unknown',
+        action: item.action || 'Phân tích hợp đồng',
+        time: item.time || 'vừa xong',
+        type: item.type || 'analysis'
+      }));
+      setRecentActivities(activities);
+
+      const activeUsers = Number(statsData.active_users || statsData.activeUsers || 0);
+      const adminUsers = Number(statsData.admin_users || statsData.adminUsers || 0);
+      setSystemStatus([
+        { name: 'API Server', status: 'online', uptime: '100%', color: 'green' },
+        { name: 'Database', status: 'online', uptime: '100%', color: 'green' },
+        { name: 'Người dùng hoạt động', status: 'online', uptime: totalUsers ? `${Math.round((activeUsers / totalUsers) * 100)}%` : '0%', color: 'green' },
+        { name: 'Admin accounts', status: 'online', uptime: totalUsers ? `${Math.round((adminUsers / totalUsers) * 100)}%` : '0%', color: 'yellow' },
       ]);
     } catch (error) {
       console.error('Failed to load admin stats:', error);
+      setRecentActivities([]);
+      setSystemStatus([]);
     } finally {
       setIsLoading(false);
     }
   };
-
-  const recentActivities = [
-    { user: 'user@email.com', action: 'Nâng cấp lên Pro', time: '2 phút trước', type: 'upgrade' },
-    { user: 'admin@email.com', action: 'Phân tích hợp đồng', time: '5 phút trước', type: 'analysis' },
-    { user: 'test@email.com', action: 'Đăng ký mới', time: '12 phút trước', type: 'signup' },
-    { user: 'demo@email.com', action: 'Tải báo cáo', time: '23 phút trước', type: 'download' },
-    { user: 'user2@email.com', action: 'Hủy gói Pro', time: '1 giờ trước', type: 'downgrade' }
-  ];
-
-  const systemStatus = [
-    { name: 'API Server', status: 'online', uptime: '99.9%', color: 'green' },
-    { name: 'AI Processing', status: 'online', uptime: '99.5%', color: 'green' },
-    { name: 'Database', status: 'online', uptime: '100%', color: 'green' },
-    { name: 'Storage', status: 'warning', uptime: '85%', color: 'yellow' }
-  ];
 
   return (
     <div className="space-y-6">

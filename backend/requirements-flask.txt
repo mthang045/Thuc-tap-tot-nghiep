@@ -22,6 +22,9 @@ joblib
 PyPDF2
 python-docx
 reportlab
+PyMuPDF
+Pillow
+pytesseract
 
 # Other utilities
 numpy

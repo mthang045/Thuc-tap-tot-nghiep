@@ -1,31 +1,45 @@
 // Payment service for VNPay, MoMo, Stripe integration
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 class PaymentService {
+  async request(endpoint, options = {}) {
+    const method = (options.method || 'GET').toUpperCase();
+    const defaultHeaders = method === 'GET' ? {} : { 'Content-Type': 'application/json' };
+
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      ...options,
+      headers: {
+        ...defaultHeaders,
+        ...(options.headers || {}),
+      },
+      credentials: 'include',
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.error || data.message || 'Payment request failed');
+    }
+    return data;
+  }
+
   // VNPay payment
-  async createVNPayPayment(plan, amount) {
+  async createVNPayPayment(plan, amount, billingCycle = 'monthly') {
     try {
-      // In production, call backend API to create payment URL
-      // For now, simulate VNPay redirect
-      const vnpayUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
-      const params = new URLSearchParams({
-        vnp_Version: '2.1.0',
-        vnp_Command: 'pay',
-        vnp_TmnCode: 'YOUR_TMN_CODE',
-        vnp_Amount: amount * 100, // VNPay uses smallest currency unit
-        vnp_CurrencyCode: 'VND',
-        vnp_TxnRef: Date.now().toString(),
-        vnp_OrderInfo: `Nang cap goi ${plan}`,
-        vnp_OrderType: 'billpayment',
-        vnp_Locale: 'vn',
-        vnp_ReturnUrl: `${window.location.origin}/payment/return`,
-        vnp_IpAddr: '127.0.0.1',
-        vnp_CreateDate: new Date().toISOString().replace(/[-:]/g, '').split('.')[0]
+      const result = await this.request('/payments/vnpay/create', {
+        method: 'POST',
+        body: JSON.stringify({
+          plan,
+          amount,
+          billing_cycle: billingCycle,
+          return_url: `${window.location.origin}/payment/return`,
+        }),
       });
 
       return {
         success: true,
-        paymentUrl: `${vnpayUrl}?${params.toString()}`,
-        method: 'vnpay'
+        paymentUrl: result.payment_url,
+        method: 'vnpay',
+        txnRef: result.txn_ref,
       };
     } catch (error) {
       console.error('VNPay error:', error);
@@ -94,7 +108,7 @@ class PaymentService {
   }
 
   // Process payment based on selected method
-  async processPayment(plan, method) {
+  async processPayment(plan, method, billingCycle = 'monthly') {
     // Plan pricing
     const pricing = {
       'basic': 0,
@@ -110,7 +124,7 @@ class PaymentService {
 
     switch (method) {
       case 'vnpay':
-        return this.createVNPayPayment(plan, amount);
+        return this.createVNPayPayment(plan, amount, billingCycle);
       case 'momo':
         return this.createMoMoPayment(plan, amount);
       case 'stripe':
@@ -123,17 +137,26 @@ class PaymentService {
   }
 
   // Verify payment callback (for VNPay, MoMo)
-  async verifyPayment(_params) {
-    // In production, send params to backend for verification
-    // Backend validates signature and updates user subscription
-    // TODO: Implement real verification with backend API
-    
-    // Simulate verification
-    return {
-      success: true,
-      verified: true,
-      message: 'Thanh toán thành công'
-    };
+  async verifyPayment(params) {
+    try {
+      const txnRef = params?.txn_ref || params?.txnRef;
+      if (!txnRef) {
+        return { success: false, verified: false, error: 'Thiếu mã giao dịch' };
+      }
+
+      const result = await this.request(`/payments/status/${encodeURIComponent(txnRef)}`, {
+        method: 'GET',
+        headers: {},
+      });
+
+      return {
+        success: true,
+        verified: result?.payment?.status === 'success',
+        payment: result.payment,
+      };
+    } catch (error) {
+      return { success: false, verified: false, error: error.message };
+    }
   }
 }
 

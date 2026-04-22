@@ -2,12 +2,13 @@
 import { Check, X, Zap, Crown, Building2, Sparkles } from 'lucide-react';
 import paymentService from '../services/payment';
 
-export function PricingPlans({ userEmail, onUpgrade }) {
+export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
   const [billingCycle, setBillingCycle] = useState('monthly');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [templateModalFor, setTemplateModalFor] = useState('');
+  const normalizedCurrentPlan = String(currentPlan || 'free').toLowerCase() === 'free' ? 'free' : 'pro';
   const templates = [
     { id: 't1', title: 'Mẫu hợp đồng mua bán', desc: 'Bao gồm điều khoản thanh toán, giao nhận, bảo hành.' },
     { id: 't2', title: 'Mẫu hợp đồng lao động', desc: 'Quy định công việc, lương thưởng, chấm dứt hợp đồng.' },
@@ -26,9 +27,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
             <X className="w-4 h-4 text-slate-500" />
           </div>
         ) : (
-          <div className="bg-green-500/20 p-1 rounded-full flex items-center justify-center">
-            <Check className="w-4 h-4 text-green-400" />
-          </div>
+          <Check className="w-4 h-4 text-green-400" />
         )}
         <span className={isExcluded ? 'text-slate-600' : 'text-slate-300'}>{text}</span>
       </div>
@@ -42,7 +41,8 @@ export function PricingPlans({ userEmail, onUpgrade }) {
 
   const downloadTemplate = async (templateId) => {
     try {
-      const resp = await fetch(`${process.env.REACT_APP_API_BASE || 'http://localhost:5000'}/api/templates/${templateId}/download`, {
+      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const resp = await fetch(`${apiBaseUrl}/templates/${templateId}/download`, {
         method: 'GET',
         credentials: 'include'
       });
@@ -80,21 +80,28 @@ export function PricingPlans({ userEmail, onUpgrade }) {
   };
 
   const handleUpgradeClick = (planId) => {
+    if (planId === normalizedCurrentPlan) {
+      return;
+    }
     setSelectedPlan(planId);
     setShowPaymentModal(true);
   };
 
   const handlePayment = async (method) => {
     try {
-      const result = await paymentService.processPayment(selectedPlan, method);
+      const result = await paymentService.processPayment(selectedPlan, method, billingCycle);
       
       if (result.success) {
         if (result.paymentUrl) {
           // Redirect to payment gateway
+          setShowPaymentModal(false);
           window.location.href = result.paymentUrl;
+          return;
         } else if (result.checkoutUrl) {
           // Redirect to Stripe checkout
+          setShowPaymentModal(false);
           window.location.href = result.checkoutUrl;
+          return;
         } else if (result.deeplink) {
           // MoMo deeplink
           window.open(result.deeplink, '_blank');
@@ -105,7 +112,9 @@ export function PricingPlans({ userEmail, onUpgrade }) {
         }
         
         setShowPaymentModal(false);
-        onUpgrade(selectedPlan);
+        if (method === 'bank_transfer') {
+          onUpgrade(selectedPlan);
+        }
       } else {
         alert('Lỗi thanh toán: ' + result.error);
       }
@@ -251,6 +260,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
           const Icon = plan.icon;
           const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly;
           const yearlyDiscount = billingCycle === 'yearly' && plan.price.yearly > 0;
+          const isCurrentPlan = plan.id === normalizedCurrentPlan;
 
           return (
             <div
@@ -329,23 +339,17 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                   </ul>
 
                   {/* CTA Button */}
-                  {plan.id === 'free' ? (
-                    <button
-                      disabled
-                      className="w-full py-3 bg-slate-800 text-slate-500 rounded-xl cursor-not-allowed"
-                    >
-                      {plan.buttonText}
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handleUpgradeClick(plan.id)}
-                      className={`w-full py-3 bg-gradient-to-r ${plan.gradient} hover:opacity-90 text-white rounded-xl transition-all shadow-lg ${
-                        plan.id === 'pro' ? 'shadow-cyan-500/30' : 'shadow-purple-500/30'
-                      }`}
-                    >
-                      {plan.buttonText}
-                    </button>
-                  )}
+                  <button
+                    disabled={isCurrentPlan}
+                    onClick={() => handleUpgradeClick(plan.id)}
+                    className={`w-full py-3 rounded-xl transition-all ${
+                      isCurrentPlan
+                        ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:opacity-90 text-white shadow-lg shadow-cyan-500/30'
+                    }`}
+                  >
+                    {isCurrentPlan ? 'Gói hiện tại' : plan.buttonText}
+                  </button>
                 </div>
               </div>
             </div>
@@ -368,29 +372,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
                 <span className="text-sm">Visa, Mastercard, ATM</span>
               </button>
 
-              <button
-                onClick={() => handlePayment('momo')}
-                className="w-full p-4 bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-500 hover:to-pink-600 rounded-xl text-white transition-all flex items-center justify-between"
-              >
-                <span className="font-semibold">MoMo</span>
-                <span className="text-sm">Ví điện tử MoMo</span>
-              </button>
 
-              <button
-                onClick={() => handlePayment('bank_transfer')}
-                className="w-full p-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-xl text-white transition-all flex items-center justify-between"
-              >
-                <span className="font-semibold">Chuyển khoản</span>
-                <span className="text-sm">Ngân hàng</span>
-              </button>
-
-              <button
-                onClick={() => handlePayment('stripe')}
-                className="w-full p-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 rounded-xl text-white transition-all flex items-center justify-between"
-              >
-                <span className="font-semibold">Stripe</span>
-                <span className="text-sm">Thẻ quốc tế</span>
-              </button>
             </div>
 
             <button
@@ -516,7 +498,7 @@ export function PricingPlans({ userEmail, onUpgrade }) {
           </div>
           <div>
             <h3 className="text-cyan-100 mb-2">Có hỗ trợ dùng thử không?</h3>
-            <p className="text-slate-400 text-sm">Gói miễn phí luôn có sẵn. Gói Pro và Enterprise có thể dùng thử 7 ngày không mất phí.</p>
+            <p className="text-slate-400 text-sm">Gói miễn phí luôn có sẵn. Gói Pro có thể dùng thử 7 ngày không mất phí.</p>
           </div>
         </div>
       </div>

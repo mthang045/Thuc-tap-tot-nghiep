@@ -2,6 +2,8 @@
 import { User, Mail, Phone, Lock, Save, Camera, Bell, Shield, CreditCard, LogOut } from 'lucide-react';
 import api from '../services/api';
 
+const normalizePlan = (planValue) => (String(planValue || '').toLowerCase() === 'free' ? 'free' : 'pro');
+
 export function AccountSettings({ userEmail, onLogout }) {
   const [activeTab, setActiveTab] = useState('profile');
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,10 @@ export function AccountSettings({ userEmail, onLogout }) {
     phone: '',
     company: '',
     position: '',
-    avatar: ''
+    avatar: '',
+    plan: 'free',
+    usageThisMonth: 0,
+    analysisLimit: 5,
   });
 
   // Security state
@@ -46,13 +51,19 @@ export function AccountSettings({ userEmail, onLogout }) {
       setLoading(true);
       const response = await api.getProfile();
       if (response.success && response.profile) {
+        const profilePlan = normalizePlan(response.profile.plan || response.profile.subscription_tier);
+        const profileLimit = Number(response.profile.analysis_limit || (profilePlan === 'pro' ? 50 : 5));
+        const profileUsage = Number(response.profile.usage_this_month || 0);
         setProfileData({
           fullName: response.profile.full_name || '',
           email: response.profile.email || '',
           phone: response.profile.phone || '',
           company: response.profile.company || '',
           position: response.profile.position || '',
-          avatar: response.profile.avatar || ''
+          avatar: response.profile.avatar || '',
+          plan: profilePlan,
+          usageThisMonth: profileUsage,
+          analysisLimit: profileLimit,
         });
         if (response.profile.avatar) {
           setAvatarPreview(`http://localhost:5000${response.profile.avatar}`);
@@ -165,6 +176,11 @@ export function AccountSettings({ userEmail, onLogout }) {
     { id: 'billing', label: 'Thanh toán', icon: CreditCard }
   ];
 
+  const currentPlan = normalizePlan(profileData.plan);
+  const analysisLimit = Number(profileData.analysisLimit || (currentPlan === 'pro' ? 50 : 5));
+  const usageThisMonth = Number(profileData.usageThisMonth || 0);
+  const usagePercent = Math.min(100, Math.round((usageThisMonth / Math.max(analysisLimit, 1)) * 100));
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       {/* Header */}
@@ -246,6 +262,17 @@ export function AccountSettings({ userEmail, onLogout }) {
                     <div>
                       <h3 className="text-slate-200 mb-1">{profileData.fullName || 'Chưa có tên'}</h3>
                       <p className="text-slate-400 text-sm mb-2">{profileData.email}</p>
+                      <div className="mb-2">
+                        {currentPlan === 'pro' ? (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-500/40 bg-cyan-900/30 text-cyan-300 text-xs">
+                            Pro
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-600/50 bg-slate-800/60 text-slate-300 text-xs">
+                            Free
+                          </span>
+                        )}
+                      </div>
                       <div className="flex items-center gap-4">
                         <label
                           htmlFor="avatar-upload"
@@ -542,23 +569,23 @@ export function AccountSettings({ userEmail, onLogout }) {
                 <div className="bg-gradient-to-br from-cyan-900/40 to-blue-900/40 border-2 border-cyan-500/50 rounded-xl p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h3 className="text-cyan-100 mb-1">Gói miễn phí</h3>
-                      <p className="text-slate-400 text-sm">5 phân tích/tháng</p>
+                      <h3 className="text-cyan-100 mb-1">{currentPlan === 'pro' ? 'Gói Pro' : 'Gói miễn phí'}</h3>
+                      <p className="text-slate-400 text-sm">{analysisLimit} phân tích/tháng</p>
                     </div>
-                    <div className="text-cyan-400 text-2xl">$0</div>
+                    <div className="text-cyan-400 text-2xl">{currentPlan === 'pro' ? 'Pro' : '$0'}</div>
                   </div>
                   <div className="space-y-2 mb-6">
                     <div className="flex items-center gap-2 text-slate-300 text-sm">
                       <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-                      5 hợp đồng/tháng
+                      {analysisLimit} hợp đồng/tháng
                     </div>
                     <div className="flex items-center gap-2 text-slate-300 text-sm">
                       <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-                      Phân tích cơ bản
+                      {currentPlan === 'pro' ? 'Phân tích nâng cao' : 'Phân tích cơ bản'}
                     </div>
                     <div className="flex items-center gap-2 text-slate-300 text-sm">
                       <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-                      Lưu trữ 30 ngày
+                      {currentPlan === 'pro' ? 'Lưu trữ vĩnh viễn' : 'Lưu trữ 30 ngày'}
                     </div>
                   </div>
                   <a 
@@ -580,10 +607,10 @@ export function AccountSettings({ userEmail, onLogout }) {
                     <div>
                       <div className="flex items-center justify-between text-sm mb-2">
                         <span className="text-slate-400">Phân tích đã dùng</span>
-                        <span className="text-cyan-400">3/5</span>
+                        <span className="text-cyan-400">{usageThisMonth}/{analysisLimit}</span>
                       </div>
                       <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style={{ width: '60%' }}></div>
+                        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style={{ width: `${usagePercent}%` }}></div>
                       </div>
                     </div>
                   </div>

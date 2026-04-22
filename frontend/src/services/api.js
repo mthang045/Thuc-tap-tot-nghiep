@@ -26,6 +26,7 @@ class ApiService {
   // Helper method for fetch requests
   async request(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`;
+    const allowUnauthorized = options.allowUnauthorized === true;
     const config = {
       ...options,
       headers: {
@@ -34,11 +35,7 @@ class ApiService {
       credentials: 'include', // Include cookies for session auth
     };
 
-    // Add JWT token from localStorage
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
+    delete config.allowUnauthorized;
 
     // Add CSRF token for unsafe methods
     const csrfToken = this.getCsrfToken();
@@ -46,13 +43,16 @@ class ApiService {
       config.headers['X-CSRFToken'] = csrfToken;
     }
 
-    // Don't set Content-Type for FormData (browser sets it with boundary)
-    if (!(options.body instanceof FormData)) {
+    // Only set JSON content type when sending a JSON body.
+    if (options.body !== undefined && options.body !== null && !(options.body instanceof FormData)) {
       config.headers['Content-Type'] = 'application/json';
     }
 
     try {
       const response = await fetch(url, config);
+      if (endpoint === '/verify') {
+        console.info('[auth] verifyToken response status:', response.status);
+      }
       
       // Try to parse JSON response
       let data;
@@ -63,6 +63,12 @@ class ApiService {
       }
 
       if (!response.ok) {
+        if (allowUnauthorized && response.status === 401) {
+          if (endpoint === '/verify') {
+            console.info('[auth] No active session found (401 from /verify)');
+          }
+          return data;
+        }
         const errorMessage = data.error || data.message || data.detail || 'Request failed';
         throw new Error(errorMessage);
       }
@@ -87,23 +93,25 @@ class ApiService {
 
   // Authentication
   async login(email, password) {
-    console.log('API Service - login called with:', { email, passwordLength: password?.length });
+    console.info('[auth] api.login called for', email);
     // Ensure we have CSRF token before login
     await this.fetchCsrfToken();
     const body = JSON.stringify({ email, password });
-    console.log('API Service - request body:', body);
+    console.info('[auth] api.login request prepared');
     const response = await this.request('/login', {
       method: 'POST',
       body: body,
     });
-    
-    // Save token to localStorage if login successful
-    if (response && response.success && response.token) {
-      localStorage.setItem('authToken', response.token);
-      console.log('Token saved to localStorage');
-    }
-    
+
     return response;
+  }
+
+  async googleLogin(credential) {
+    await this.fetchCsrfToken();
+    return this.request('/google-login', {
+      method: 'POST',
+      body: JSON.stringify({ credential }),
+    });
   }
 
   async register(fullName, email, phone, password) {
@@ -121,8 +129,6 @@ class ApiService {
   }
 
   async logout() {
-    // Clear token from localStorage
-    localStorage.removeItem('authToken');
     return this.request('/logout', {
       method: 'POST',
     });
@@ -131,6 +137,7 @@ class ApiService {
   async verifyToken() {
     return this.request('/verify', {
       method: 'GET',
+      allowUnauthorized: true,
     });
   }
 
@@ -169,12 +176,11 @@ class ApiService {
   // Generate PDF report
   async generatePDF(analysisData) {
     try {
-      const token = localStorage.getItem('authToken');
-      const response = await fetch(`${this.baseURL}/generate-pdf`, {
+      const response = await fetch(`${this.baseURL}/generate-pdf/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': token ? `Bearer ${token}` : '',
+          'Accept': 'application/pdf',
         },
         credentials: 'include',
         body: JSON.stringify(analysisData),
@@ -207,6 +213,31 @@ class ApiService {
   // Admin endpoints
   async getAdminStats() {
     return this.request('/admin/stats', {
+      method: 'GET',
+    });
+  }
+
+  async getAdminUsers() {
+    return this.request('/admin/users', {
+      method: 'GET',
+    });
+  }
+
+  async updateAdminUser(userId, payload) {
+    return this.request(`/admin/users/${userId}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  }
+
+  async deleteAdminUser(userId) {
+    return this.request(`/admin/users/${userId}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async getAdminAnalyses() {
+    return this.request('/admin/analyses', {
       method: 'GET',
     });
   }

@@ -1,11 +1,102 @@
-﻿import { useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { Mail, Lock, LogIn, Eye, EyeOff } from 'lucide-react';
 
-export function LoginForm({ onLogin, onForgotPassword }) {
+export function LoginForm({ onLogin, onGoogleLogin, onForgotPassword }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const googleLoginRef = useRef(onGoogleLogin);
+  const googleInitPromiseRef = useRef(null);
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+  useEffect(() => {
+    googleLoginRef.current = onGoogleLogin;
+  }, [onGoogleLogin]);
+
+  const ensureGoogleClient = async () => {
+    if (!googleClientId) {
+      throw new Error('Thiếu VITE_GOOGLE_CLIENT_ID trong frontend để đăng nhập Google');
+    }
+
+    if (window.google?.accounts?.id && window.__googleGsiInitialized) {
+      return;
+    }
+
+    if (!googleInitPromiseRef.current) {
+      googleInitPromiseRef.current = new Promise((resolve, reject) => {
+        const scriptId = 'google-gsi-client';
+
+        if (window.google?.accounts?.id) {
+          resolve();
+          return;
+        }
+
+        let script = document.getElementById(scriptId);
+        if (!script) {
+          script = document.createElement('script');
+          script.id = scriptId;
+          script.src = 'https://accounts.google.com/gsi/client';
+          script.async = true;
+          script.defer = true;
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error('Không tải được Google Identity Services'));
+          document.head.appendChild(script);
+        } else {
+          const interval = setInterval(() => {
+            if (window.google?.accounts?.id) {
+              clearInterval(interval);
+              clearTimeout(timeoutId);
+              resolve();
+            }
+          }, 50);
+          const timeoutId = setTimeout(() => {
+            clearInterval(interval);
+            reject(new Error('Google Identity Services chưa sẵn sàng'));
+          }, 8000);
+        }
+      });
+    }
+
+    await googleInitPromiseRef.current;
+
+    if (!window.google?.accounts?.id) {
+      throw new Error('Google Identity Services chưa sẵn sàng');
+    }
+
+    if (!window.__googleGsiInitialized) {
+      window.google.accounts.id.initialize({
+        client_id: googleClientId,
+        callback: async (response) => {
+          if (!response?.credential) return;
+          try {
+            const result = await googleLoginRef.current?.(response.credential);
+            if (!result?.success) {
+              alert(result?.message || 'Đăng nhập Google thất bại');
+            }
+          } catch (error) {
+            alert('Lỗi đăng nhập Google: ' + error.message);
+          }
+        },
+      });
+      window.__googleGsiInitialized = true;
+    }
+  };
+
+  const handleGoogleClick = async () => {
+    try {
+      setIsGoogleLoading(true);
+      console.info('[auth] Google sign-in button clicked');
+      await ensureGoogleClient();
+      window.google.accounts.id.prompt();
+    } catch (error) {
+      console.warn('Google sign-in unavailable:', error);
+      alert(error.message);
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +107,7 @@ export function LoginForm({ onLogin, onForgotPassword }) {
       return;
     }
     
-    console.log('Login attempt:', { email, passwordLength: password?.length });
+    console.info('[auth] Email/password login submit', { email, passwordLength: password?.length });
     setIsLoading(true);
 
     try {
@@ -138,27 +229,21 @@ export function LoginForm({ onLogin, onForgotPassword }) {
       </div>
 
       {/* Social Login */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <button
           type="button"
-          className="flex items-center justify-center gap-3 px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-slate-600 hover:bg-slate-800 transition-all"
+          onClick={handleGoogleClick}
+          disabled={isGoogleLoading}
+          className="flex items-center justify-center gap-3 px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-slate-600 hover:bg-slate-800 transition-all text-slate-300 disabled:opacity-60 disabled:cursor-not-allowed"
         >
+          {isGoogleLoading ? 'Đang tải Google...' : null}
           <svg className="w-5 h-5" viewBox="0 0 24 24">
             <path fill="#EA4335" d="M5.27 9.76A7.46 7.46 0 0 1 12 5.16c1.75 0 3.3.6 4.52 1.58l3.4-3.4A11.85 11.85 0 0 0 12 0C7.31 0 3.25 2.7 1.27 6.55l3.99 3.21Z"/>
             <path fill="#34A853" d="M16.04 18.01A7.4 7.4 0 0 1 12 19.16a7.46 7.46 0 0 1-6.73-4.4l-4 3.2A11.85 11.85 0 0 0 12 24c2.93 0 5.58-1.08 7.6-2.84l-3.56-2.95Z"/>
             <path fill="#4A90E2" d="M19.6 21.16A11.8 11.8 0 0 0 24 12c0-.83-.09-1.64-.24-2.4H12v4.8h6.72a5.76 5.76 0 0 1-2.48 3.8l3.56 2.96Z"/>
             <path fill="#FBBC05" d="M5.27 14.76A7.38 7.38 0 0 1 4.8 12c0-.96.17-1.88.47-2.76L1.27 6.04A11.82 11.82 0 0 0 0 12c0 2.05.52 3.97 1.27 5.65l4-3.2Z"/>
           </svg>
-          <span className="text-slate-300">Google</span>
-        </button>
-        <button
-          type="button"
-          className="flex items-center justify-center gap-3 px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-slate-600 hover:bg-slate-800 transition-all"
-        >
-          <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-          <span className="text-slate-300">Facebook</span>
+          <span>Đăng nhập bằng Google</span>
         </button>
       </div>
     </form>

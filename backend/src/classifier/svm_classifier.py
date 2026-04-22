@@ -92,9 +92,9 @@ class SVMContractClassifier:
                 self._contract_type_model = joblib.load(contract_type_path)
                 if label_encoder_path.exists():
                     self.label_encoder = joblib.load(label_encoder_path)
-                print(f"✓ Loaded contract type model")
+                print("Loaded contract type model")
         except Exception as e:
-            print(f"⚠️ Could not load contract type model: {e}")
+            print(f"Could not load contract type model: {e}")
     
     def _load_risk_level_model(self):
         """Load risk level model từ disk"""
@@ -106,9 +106,9 @@ class SVMContractClassifier:
                 self._risk_level_model = joblib.load(risk_level_path)
                 if risk_encoder_path.exists():
                     self._risk_label_encoder = joblib.load(risk_encoder_path)
-                print(f"✓ Loaded risk level model")
+                print("Loaded risk level model")
         except Exception as e:
-            print(f"⚠️ Could not load risk level model: {e}")
+            print(f"Could not load risk level model: {e}")
     
     def _load_violation_model(self):
         """Load violation model từ disk"""
@@ -116,9 +116,9 @@ class SVMContractClassifier:
             violation_path = self.model_dir / "violation_model.pkl"
             if violation_path.exists():
                 self._violation_model = joblib.load(violation_path)
-                print(f"✓ Loaded violation model")
+                print("Loaded violation model")
         except Exception as e:
-            print(f"⚠️ Could not load violation model: {e}")
+            print(f"Could not load violation model: {e}")
     
     def train_contract_type_classifier(self, texts, labels, test_size=0.2, use_grid_search=True):
         """
@@ -133,13 +133,13 @@ class SVMContractClassifier:
         Returns:
             Dictionary chứa metrics và model
         """
-        print("\n🚀 BẮT ĐẦU TRAIN MODEL PHÂN LOẠI LOẠI HỢP ĐỒNG...")
+        print("\nStarting contract type model training...")
         
         # Encode labels
         y = self.label_encoder.fit_transform(labels)
         
         # Vectorize texts
-        print("  📊 Vectorizing texts with TF-IDF...")
+        print("  Vectorizing texts with TF-IDF...")
         X = self.vectorizer.fit_transform(texts)
         
         # Split data
@@ -147,13 +147,13 @@ class SVMContractClassifier:
             X, y, test_size=test_size, random_state=42, stratify=y
         )
         
-        print(f"  📦 Training set: {X_train.shape[0]} samples")
-        print(f"  📦 Test set: {X_test.shape[0]} samples")
+        print(f"  Training set: {X_train.shape[0]} samples")
+        print(f"  Test set: {X_test.shape[0]} samples")
         
         
         # Train SVM
         if use_grid_search:
-            print("  🔍 Performing GridSearch for optimal hyperparameters...")
+            print("  Performing GridSearch for optimal hyperparameters...")
             # Giảm search space để nhanh hơn
             param_grid = {
                 'C': [1, 10],  # Giảm từ [0.1, 1, 10, 100]
@@ -167,9 +167,9 @@ class SVMContractClassifier:
             grid_search.fit(X_train, y_train)
             
             self._contract_type_model = grid_search.best_estimator_
-            print(f"  ✓ Best parameters: {grid_search.best_params_}")
+            print(f"  Best parameters: {grid_search.best_params_}")
         else:
-            print("  🔧 Training SVM with default parameters...")
+            print("  Training SVM with default parameters...")
             self._contract_type_model = SVC(
                 kernel='linear', C=1.0, probability=True, random_state=42
             )
@@ -179,9 +179,9 @@ class SVMContractClassifier:
         y_pred = self._contract_type_model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         
-        print(f"\n✅ TRAINING COMPLETED!")
-        print(f"  🎯 Accuracy: {accuracy:.4f}")
-        print("\n📊 Classification Report:")
+        print("\nTRAINING COMPLETED!")
+        print(f"  Accuracy: {accuracy:.4f}")
+        print("\nClassification Report:")
         print(classification_report(
             y_test, y_pred, 
             target_names=self.label_encoder.classes_
@@ -208,7 +208,7 @@ class SVMContractClassifier:
         Returns:
             Dictionary chứa metrics và model
         """
-        print("\n🚀 BẮT ĐẦU TRAIN MODEL PHÂN LOẠI MỨC ĐỘ RỦI RO...")
+        print("\nStarting risk level model training...")
         
         # Encode labels
         label_encoder_risk = LabelEncoder()
@@ -224,7 +224,7 @@ class SVMContractClassifier:
         
         
         # Train SVM
-        print("  🔧 Training SVM for risk level...")
+        print("  Training SVM for risk level...")
         self._risk_level_model = SVC(
             kernel='linear', C=10.0, probability=True, random_state=42  # Dùng linear thay vì rbf
         )
@@ -234,9 +234,9 @@ class SVMContractClassifier:
         y_pred = self._risk_level_model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         
-        print(f"\n✅ TRAINING COMPLETED!")
-        print(f"  🎯 Accuracy: {accuracy:.4f}")
-        print("\n📊 Classification Report:")
+        print("\nTRAINING COMPLETED!")
+        print(f"  Accuracy: {accuracy:.4f}")
+        print("\nClassification Report:")
         print(classification_report(
             y_test, y_pred, 
             target_names=label_encoder_risk.classes_
@@ -268,7 +268,7 @@ class SVMContractClassifier:
         Returns:
             Dictionary chứa metrics và model
         """
-        print("\n🚀 BẮT ĐẦU TRAIN MODEL PHÁT HIỆN VI PHẠM...")
+        print("\nStarting violation model training...")
         
         # Vectorize
         X = self.vectorizer.transform(texts)
@@ -281,7 +281,7 @@ class SVMContractClassifier:
         
         
         # Train SVM
-        print("  🔧 Training SVM for violation detection...")
+        print("  Training SVM for violation detection...")
         self._violation_model = SVC(
             kernel='linear', C=1.0, probability=True, 
             class_weight='balanced', random_state=42
@@ -292,9 +292,9 @@ class SVMContractClassifier:
         y_pred = self._violation_model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         
-        print(f"\n✅ TRAINING COMPLETED!")
-        print(f"  🎯 Accuracy: {accuracy:.4f}")
-        print("\n📊 Classification Report:")
+        print("\nTRAINING COMPLETED!")
+        print(f"  Accuracy: {accuracy:.4f}")
+        print("\nClassification Report:")
         print(classification_report(
             y_test, y_pred, 
             target_names=['No Violation', 'Violation']
@@ -429,7 +429,7 @@ class SVMContractClassifier:
     
     def _save_models(self):
         """Lưu tất cả models và vectorizer"""
-        print("\n💾 Saving models...")
+        print("\nSaving models...")
         
         joblib.dump(self.vectorizer, self.model_dir / "vectorizer.pkl")
         joblib.dump(self.label_encoder, self.model_dir / "label_encoder.pkl")
@@ -452,14 +452,14 @@ class SVMContractClassifier:
                 self.model_dir / "violation_model.pkl"
             )
         
-        print(f"✓ Models saved to {self.model_dir}")
+        print(f"Models saved to {self.model_dir}")
     
     def unload_models(self):
         """Giải phóng memory bằng cách unload models"""
         self._contract_type_model = None
         self._risk_level_model = None
         self._violation_model = None
-        print("✓ Models unloaded from memory")
+        print("Models unloaded from memory")
     
     def get_feature_importance(self, top_n=20):
         """

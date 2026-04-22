@@ -2,7 +2,7 @@
 import { Upload, FileText, CheckCircle, Scale, Sparkles, Shield, Zap } from 'lucide-react';
 import logoImage from '/logo.png';
 
-export function UploadSection({ onFileUpload, isAnalyzing }) {
+export function UploadSection({ onFileUpload, isAnalyzing, analysisProgress }) {
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef(null);
@@ -56,8 +56,36 @@ export function UploadSection({ onFileUpload, isAnalyzing }) {
       {isAnalyzing && (
         <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-auto">
           <div className="bg-black/40 absolute inset-0"></div>
-          <div className="relative">
-            <div className="loader" />
+          <div className="relative w-full max-w-md px-6">
+            <div className="bg-slate-950/90 border border-cyan-500/30 rounded-2xl shadow-2xl shadow-cyan-500/20 p-6 backdrop-blur-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-pink-500 flex items-center justify-center shadow-lg shadow-cyan-500/40">
+                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                </div>
+                <div>
+                  <div className="text-cyan-100 text-lg">Đang phân tích hợp đồng</div>
+                  <div className="text-slate-400 text-sm">Vui lòng chờ trong giây lát</div>
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <div className="flex items-center justify-between text-sm mb-2">
+                  <span className="text-slate-300">{analysisProgress?.stage || 'Đang xử lý'}</span>
+                  <span className="text-cyan-300">{analysisProgress?.percent || 0}%</span>
+                </div>
+                <div className="h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-pink-500 transition-all duration-500"
+                    style={{ width: `${analysisProgress?.percent || 0}%` }}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="inline-flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span>{analysisProgress?.detail || 'Hệ thống đang chuẩn bị kết quả...'}</span>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -233,24 +261,24 @@ export function UploadSection({ onFileUpload, isAnalyzing }) {
           <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-2 rounded-lg shadow-lg shadow-cyan-500/50">
             <Scale className="w-6 h-6 text-white" />
           </div>
-          Quy trình phân tích Dual RAG
+          Quy trình phân tích hợp đồng pháp lý
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-cyan-500 to-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/50 group-hover:scale-110 transition-transform">1</div>
-            <p className="text-slate-300 leading-relaxed">Đọc và trích xuất các điều khoản trong hợp đồng bằng AI (Llama 3.3 70B)</p>
+            <p className="text-slate-300 leading-relaxed">Phân loại hợp đồng và mức độ rủi ro bằng SVM (TF-IDF) để định hướng phân tích</p>
           </div>
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-purple-500 to-pink-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/50 group-hover:scale-110 transition-transform">2</div>
-            <p className="text-slate-300 leading-relaxed">Tra cứu pháp luật bằng <span className="font-semibold text-cyan-300">Dual RAG</span>: BM25 (6ms) + PageIndex (LLM reasoning)</p>
+            <p className="text-slate-300 leading-relaxed">Trích xuất điều khoản quan trọng và phân tích vi phạm bằng LLM theo workflow của hệ thống</p>
           </div>
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-pink-500 to-rose-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-pink-500/50 group-hover:scale-110 transition-transform">3</div>
-            <p className="text-slate-300 leading-relaxed">Phát hiện và phân loại vấn đề (Nghiêm trọng, Trung bình, Thấp) với AI scoring</p>
+            <p className="text-slate-300 leading-relaxed">Tra cứu pháp luật bằng <span className="font-semibold text-cyan-300">PageIndex Tree</span> để tìm điều luật liên quan có giải thích rõ ràng</p>
           </div>
           <div className="flex items-start gap-3 group">
             <div className="bg-gradient-to-br from-orange-500 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/50 group-hover:scale-110 transition-transform">4</div>
-            <p className="text-slate-300 leading-relaxed">Đưa ra khuyến nghị cải thiện dựa trên 24 văn bản pháp luật Việt Nam</p>
+            <p className="text-slate-300 leading-relaxed">Tổng hợp báo cáo và khuyến nghị cải thiện bằng Groq (Llama 3.1), xuất kết quả trực quan</p>
           </div>
         </div>
       </div>

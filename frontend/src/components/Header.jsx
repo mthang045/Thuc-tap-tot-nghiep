@@ -1,12 +1,18 @@
-﻿import { useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { LogIn, UserPlus, User, LogOut, FileText, Settings, Home, Crown, Shield } from 'lucide-react';
 import logoImage from '/logo.png';
 import { AuthModal } from './AuthModal';
 
-export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, currentPage, onLogin, onLogout, onNavigate }) {
+export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, currentPage, onLogin, onGoogleLogin, onLogout, onNavigate }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authView, setAuthView] = useState('login');
   const [showUserMenu, setShowUserMenu] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated && showAuthModal) {
+      setShowAuthModal(false);
+    }
+  }, [isAuthenticated, showAuthModal]);
 
   const handleOpenAuth = (view) => {
     setAuthView(view);
@@ -241,6 +247,7 @@ export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, curren
           initialView={authView}
           onClose={() => setShowAuthModal(false)}
           onLogin={handleLoginSuccess}
+          onGoogleLogin={onGoogleLogin}
         />
       )}
     </>

@@ -51,6 +51,14 @@ CACHE_TTL = 3600  # Cache 1 giờ
 DEFAULT_TOP_K = 3  # Giảm từ 5 -> 3
 MAX_TOP_K = 5
 
+# Fast analysis preset - giảm thời gian chờ cho luồng phân tích tương tác
+FAST_ANALYSIS_MODE = True
+FAST_EXTRACTION_CHARS = 3500
+FAST_MAX_CLAUSES = 6
+FAST_MAX_ANALYST_CLAUSES = 5
+FAST_TOP_K_DOCS = 2
+FAST_TOP_K_SECTIONS = 3
+
 # Batch processing
 MAX_BATCH_SIZE = 10  # Xử lý tối đa 10 clauses cùng lúc
 
