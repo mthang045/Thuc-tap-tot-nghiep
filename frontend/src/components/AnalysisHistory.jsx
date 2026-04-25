@@ -8,6 +8,31 @@ export function AnalysisHistory({ onViewAnalysis }) {
   const [historyData, setHistoryData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const formatDisplayDateTime = (value) => {
+    if (!value) {
+      return 'N/A';
+    }
+
+    if (typeof value === 'string' && /^\d{2}\/\d{2}\/\d{4}(\s+\d{2}:\d{2}(:\d{2})?)?$/.test(value)) {
+      return value;
+    }
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) {
+      return String(value);
+    }
+
+    return parsed.toLocaleString('vi-VN', {
+      hour12: false,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  };
+
   useEffect(() => {
     loadHistory();
   }, []);
@@ -26,21 +51,8 @@ export function AnalysisHistory({ onViewAnalysis }) {
         // Transform backend data to frontend format
         const transformedData = historyRecords.map((contract, index) => {
           const data = contract.data || contract; // Handle both nested and flat structure
-          
-          // Parse date safely
-          let date = 'N/A';
-          try {
-            if (contract.created_at) {
-              date = new Date(contract.created_at).toLocaleDateString('vi-VN');
-            } else if (contract.upload_time) {
-              date = new Date(contract.upload_time).toLocaleDateString('vi-VN');
-            } else if (data.upload_time) {
-              date = data.upload_time.split(' ')[0]; // Format: "DD/MM/YYYY HH:MM:SS"
-            }
-          } catch (e) {
-            console.warn('Invalid date:', contract.created_at || contract.upload_time);
-            date = 'N/A';
-          }
+          const timestampValue = contract.timestamp || contract.created_at || contract.upload_time || data.upload_time;
+          const displayDateTime = formatDisplayDateTime(timestampValue);
           
           // Extract issues safely
           const issues = data.issues || contract.issues || [];
@@ -48,7 +60,7 @@ export function AnalysisHistory({ onViewAnalysis }) {
           return {
             id: contract._id || contract.id || index + 1,
             fileName: data.filename || contract.filename || 'Không rõ',
-            date: date,
+            date: displayDateTime,
             totalIssues: issues.length || 0,
             highRisk: issues.filter(i => 
               (typeof i === 'string' && i.includes('🚨')) || 
@@ -215,7 +227,7 @@ export function AnalysisHistory({ onViewAnalysis }) {
                       <div className="flex items-center gap-4 text-sm text-slate-400">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          {new Date(item.date).toLocaleDateString('vi-VN')}
+                          {item.date}
                         </span>
                         {item.status === 'completed' && (
                           <>
