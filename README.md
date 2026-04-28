@@ -667,8 +667,8 @@ MIT License - Xem [LICENSE](LICENSE) để chi tiết
 ## 👥 Tác Giả & Ghi Công
 
 **Phát Triển Bởi**: Minh Thắng  
-**Hướng Dẫn**: Kim Lợi, Nhã Quỳnh  
-**Tổ Chức**: Vietnam Aviation Academy (VAA)
+**Hỗ Trợ thực hiện**: Kim Lợi, Nhã Quỳnh  
+**Trường học**: Vietnam Aviation Academy (VAA)
 
 ### Cảm Ơn
 - **LangChain & LangGraph** - Workflow orchestration
