@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 import secrets
 import sys
 import hashlib
+import json
 from functools import wraps
 import time
 import atexit
@@ -1800,7 +1801,469 @@ def shutdown():
     ANALYSIS_CACHE.clear()
     RATE_LIMIT_STORE.clear()
 
+# Templates seeding
+TEMPLATES_CACHE = {}
+
+def seed_templates():
+    """Load templates from JSON file and cache them."""
+    seed_file = os.path.join(os.path.dirname(__file__), 'src', 'templates_seed.json')
+    if not os.path.exists(seed_file):
+        print(f"[WARN] Template seed file not found: {seed_file}")
+        return
+    
+    try:
+        with open(seed_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        for template in data.get('templates', []):
+            template_id = template.get('template_id')
+            TEMPLATES_CACHE[template_id] = template
+        
+        print(f"[OK] Loaded {len(TEMPLATES_CACHE)} templates from seed file")
+    except Exception as e:
+        print(f"[WARN] Failed to load templates: {e}")
+
+
+@app.route('/v1/templates', methods=['GET', 'OPTIONS'])
+def list_templates():
+    """List all templates"""
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    templates = []
+    for template_id, template in TEMPLATES_CACHE.items():
+        templates.append({
+            'template_id': template.get('template_id'),
+            'name': template.get('name'),
+            'category': template.get('category'),
+            'description': template.get('description'),
+            'variables': template.get('variables', {})
+        })
+    
+    return jsonify({
+        'success': True,
+        'templates': sorted(templates, key=lambda x: x.get('name', ''))
+    })
+
+
+@app.route('/v1/templates/<template_id>', methods=['GET', 'OPTIONS'])
+def get_template(template_id):
+    """Get template details"""
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    template = TEMPLATES_CACHE.get(template_id)
+    if not template:
+        return jsonify({'success': False, 'error': 'not_found'}), 404
+    
+    return jsonify({
+        'success': True,
+        'template': {
+            'template_id': template.get('template_id'),
+            'name': template.get('name'),
+            'category': template.get('category'),
+            'description': template.get('description'),
+            'template_content': json.dumps(template, ensure_ascii=False),
+            'variables': template.get('variables', {})
+        }
+    })
+
+
+def _docx_blank_line(length=72):
+    return '.' * length
+
+
+def _docx_add_center_paragraph(doc, text, *, bold=False, size=12):
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.shared import Pt
+
+    paragraph = doc.add_paragraph()
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = paragraph.add_run(text)
+    run.bold = bold
+    run.font.size = Pt(size)
+    run.font.name = 'Times New Roman'
+    return paragraph
+
+
+def _docx_add_text_paragraph(doc, text, *, bold=False, italic=False, size=12):
+    from docx.shared import Pt
+
+    paragraph = doc.add_paragraph()
+    run = paragraph.add_run(text)
+    run.bold = bold
+    run.italic = italic
+    run.font.size = Pt(size)
+    run.font.name = 'Times New Roman'
+    return paragraph
+
+
+def _docx_add_field_block(doc, label, field, index=None):
+    field_type = (field.get('type') or 'text').lower()
+    required = ' (*)' if field.get('required') else ''
+    prefix = f"{index}. " if index is not None else ''
+    base_label = f"{prefix}{label}{required}:"
+
+    if field_type == 'textarea':
+        _docx_add_text_paragraph(doc, base_label, bold=True, size=12)
+        for _ in range(4):
+            _docx_add_text_paragraph(doc, _docx_blank_line(92), size=11)
+        return
+
+    if field_type == 'date':
+        blank = '..... / ..... / ........'
+    elif field_type == 'number':
+        blank = _docx_blank_line(42)
+    elif field_type == 'select' and field.get('options'):
+        options = ' / '.join(str(option) for option in field.get('options', []))
+        blank = f"{_docx_blank_line(18)} ({options})"
+    else:
+        blank = _docx_blank_line(72)
+
+    _docx_add_text_paragraph(doc, f"{base_label} {blank}", size=12)
+
+
+def _docx_add_party_section(doc, heading, fields):
+    _docx_add_text_paragraph(doc, heading, bold=True, size=13)
+    for item in fields:
+        label = item[0] if isinstance(item, tuple) else str(item)
+        _docx_add_text_paragraph(doc, f"{label}: {_docx_blank_line(70)}", size=12)
+
+
+def _docx_add_numbered_heading(doc, number, heading):
+    _docx_add_text_paragraph(doc, f"ĐIỀU {number}: {heading}", bold=True, size=13)
+
+
+def _docx_add_clause_line(doc, number, text, indent=0):
+    prefix = f"{number} - " if number else ''
+    spaces = ' ' * indent if indent else ''
+    _docx_add_text_paragraph(doc, f"{spaces}{prefix}{text}", size=12)
+
+
+def _docx_add_blank_lines(doc, count=2, width=92):
+    for _ in range(count):
+        _docx_add_text_paragraph(doc, _docx_blank_line(width), size=11)
+
+
+def _docx_get_party_layout(template):
+    template_id = template.get('template_id')
+    variables = template.get('variables') or {}
+
+    if template_id == 'hop_dong_thue':
+        return [
+            ('BÊN CHO THUÊ MẶT BẰNG', [
+                ('Họ tên', variables.get('landlord', {})),
+                ('CMND/CCCD số', {}),
+                ('Thường trú', {}),
+                ('Là chủ sở hữu căn nhà/mặt bằng', {}),
+            ]),
+            ('BÊN THUÊ MẶT BẰNG', [
+                ('Họ tên', variables.get('tenant', {})),
+                ('CMND/CCCD số', {}),
+                ('Thường trú', {}),
+            ]),
+        ]
+
+    if template_id == 'hop_dong_lao_dong':
+        return [
+            ('BÊN SỬ DỤNG LAO ĐỘNG', [
+                ('Tên công ty', variables.get('company_name', {})),
+                ('Địa chỉ', {}),
+                ('Đại diện', {}),
+                ('Chức vụ', {}),
+            ]),
+            ('NGƯỜI LAO ĐỘNG', [
+                ('Họ tên', variables.get('employee_name', {})),
+                ('Ngày sinh', {}),
+                ('Số CCCD/CMND', {}),
+                ('Địa chỉ thường trú', {}),
+            ]),
+        ]
+
+    if template_id == 'hop_dong_dich_vu':
+        return [
+            ('BÊN CUNG CẤP DỊCH VỤ', [
+                ('Tên đơn vị', variables.get('provider_name', {})),
+                ('Địa chỉ', {}),
+                ('Người đại diện', {}),
+            ]),
+            ('BÊN SỬ DỤNG DỊCH VỤ', [
+                ('Tên đơn vị', variables.get('client_name', {})),
+                ('Địa chỉ', {}),
+                ('Người đại diện', {}),
+            ]),
+        ]
+
+    return [
+        ('BÊN A', [('Thông tin', {})]),
+        ('BÊN B', [('Thông tin', {})]),
+    ]
+
+
+def _docx_build_contract_body(doc, template):
+    template_id = template.get('template_id')
+    variables = template.get('variables') or {}
+    if not isinstance(variables, dict):
+        variables = {}
+
+    if template_id == 'hop_dong_thue':
+        _docx_add_numbered_heading(doc, 1, 'NỘI DUNG HỢP ĐỒNG')
+        _docx_add_clause_line(doc, '1.1', f"Bên A đồng ý cho bên B thuê mặt bằng tại: {_docx_blank_line(52)}")
+        _docx_add_blank_lines(doc, 2)
+        _docx_add_clause_line(doc, '1.2', f"Diện tích và hiện trạng mặt bằng: {_docx_blank_line(44)}")
+        _docx_add_blank_lines(doc, 2)
+        _docx_add_clause_line(doc, '1.3', f"Mục đích thuê: {_docx_blank_line(62)}")
+
+        _docx_add_numbered_heading(doc, 2, 'THỜI HẠN HỢP ĐỒNG')
+        _docx_add_clause_line(doc, '2.1', f"Thời hạn thuê mặt bằng là: {_docx_blank_line(32)} tháng, từ ngày {_docx_blank_line(18)} đến hết ngày {_docx_blank_line(18)}.")
+        _docx_add_clause_line(doc, '2.2', 'Sau khi hết hạn hợp đồng, hai bên có thể thỏa thuận gia hạn hoặc chấm dứt hợp đồng.')
+
+        _docx_add_numbered_heading(doc, 3, 'GIÁ CẢ - PHƯƠNG THỨC THANH TOÁN')
+        _docx_add_clause_line(doc, '3.1', f"Giá thuê mặt bằng là: {_docx_blank_line(58)}")
+        _docx_add_blank_lines(doc, 2)
+        _docx_add_clause_line(doc, '3.2', 'Việc thanh toán được thực hiện theo định kỳ hai bên đã thỏa thuận.')
+        _docx_add_clause_line(doc, '3.3', 'Các khoản chi phí phát sinh khác sẽ do hai bên thống nhất bằng văn bản.')
+
+        _docx_add_numbered_heading(doc, 4, 'TRÁCH NHIỆM CỦA HAI BÊN')
+        _docx_add_clause_line(doc, '4.1', 'Trách nhiệm của bên A:')
+        _docx_add_clause_line(doc, '4.1.1', 'Bên A bảo đảm quyền sử dụng hợp pháp mặt bằng cho bên B.')
+        _docx_add_clause_line(doc, '4.1.2', 'Bên A bàn giao mặt bằng, trang thiết bị theo thỏa thuận.')
+        _docx_add_clause_line(doc, '4.2', 'Trách nhiệm của bên B:')
+        _docx_add_clause_line(doc, '4.2.1', 'Sử dụng mặt bằng đúng mục đích thuê, giữ gìn tài sản và tuân thủ quy định pháp luật.')
+        _docx_add_clause_line(doc, '4.2.2', 'Thanh toán tiền thuê và các chi phí liên quan đúng thời hạn.')
+        _docx_add_clause_line(doc, '4.2.3', 'Khi chấm dứt hợp đồng, giao trả lại mặt bằng theo hiện trạng ban đầu.')
+
+        _docx_add_numbered_heading(doc, 5, 'CAM KẾT CHUNG')
+        _docx_add_clause_line(doc, '', 'Hai bên cam kết thực hiện đúng các điều khoản đã ghi trong hợp đồng.')
+        _docx_add_clause_line(doc, '', 'Nếu phát sinh tranh chấp, hai bên ưu tiên thương lượng; nếu không giải quyết được thì đưa ra Tòa án có thẩm quyền.')
+    elif template_id == 'hop_dong_lao_dong':
+        _docx_add_numbered_heading(doc, 1, 'CÔNG VIỆC VÀ ĐỊA ĐIỂM LÀM VIỆC')
+        _docx_add_clause_line(doc, '1.1', f"Vị trí công việc: {_docx_blank_line(58)}")
+        _docx_add_clause_line(doc, '1.2', f"Địa điểm làm việc: {_docx_blank_line(58)}")
+        _docx_add_clause_line(doc, '1.3', f"Thời gian làm việc: {_docx_blank_line(52)}")
+
+        _docx_add_numbered_heading(doc, 2, 'THỜI HẠN HỢP ĐỒNG')
+        _docx_add_clause_line(doc, '2.1', f"Loại hợp đồng: {_docx_blank_line(20)} (xác định thời hạn / không xác định thời hạn)")
+        _docx_add_clause_line(doc, '2.2', f"Thời hạn (nếu có): {_docx_blank_line(48)} tháng")
+
+        _docx_add_numbered_heading(doc, 3, 'TIỀN LƯƠNG VÀ CHẾ ĐỘ')
+        _docx_add_clause_line(doc, '3.1', f"Mức lương: {_docx_blank_line(60)} VND/tháng")
+        _docx_add_clause_line(doc, '3.2', 'Hình thức trả lương và các khoản phụ cấp được thỏa thuận cụ thể giữa hai bên.')
+
+        _docx_add_numbered_heading(doc, 4, 'TRÁCH NHIỆM CỦA CÁC BÊN')
+        _docx_add_clause_line(doc, '4.1', 'Bên sử dụng lao động bảo đảm điều kiện làm việc, trả lương và thực hiện các nghĩa vụ theo pháp luật.')
+        _docx_add_clause_line(doc, '4.2', 'Người lao động thực hiện đúng công việc được giao, tuân thủ nội quy và bảo mật thông tin.')
+
+        _docx_add_numbered_heading(doc, 5, 'CAM KẾT CHUNG')
+        _docx_add_clause_line(doc, '', 'Hai bên cam kết tuân thủ đầy đủ các quy định của Bộ luật Lao động và các thỏa thuận trong hợp đồng.')
+    elif template_id == 'hop_dong_dich_vu':
+        _docx_add_numbered_heading(doc, 1, 'PHẠM VI DỊCH VỤ')
+        _docx_add_clause_line(doc, '1.1', f"Mô tả dịch vụ: {_docx_blank_line(58)}")
+        _docx_add_clause_line(doc, '1.2', f"Thời hạn thực hiện: {_docx_blank_line(54)}")
+
+        _docx_add_numbered_heading(doc, 2, 'GIÁ DỊCH VỤ VÀ THANH TOÁN')
+        _docx_add_clause_line(doc, '2.1', f"Phí dịch vụ: {_docx_blank_line(58)} VND")
+        _docx_add_clause_line(doc, '2.2', 'Phương thức thanh toán: chuyển khoản/tiền mặt theo thỏa thuận.')
+
+        _docx_add_numbered_heading(doc, 3, 'TRÁCH NHIỆM CỦA HAI BÊN')
+        _docx_add_clause_line(doc, '3.1', 'Bên cung cấp dịch vụ thực hiện đúng phạm vi và tiến độ đã thỏa thuận.')
+        _docx_add_clause_line(doc, '3.2', 'Bên sử dụng dịch vụ thanh toán đầy đủ, đúng hạn và phối hợp cung cấp thông tin cần thiết.')
+
+        _docx_add_numbered_heading(doc, 4, 'CAM KẾT CHUNG')
+        _docx_add_clause_line(doc, '', 'Hai bên thống nhất bảo mật thông tin và giải quyết tranh chấp bằng thương lượng trước khi đưa ra cơ quan có thẩm quyền.')
+    elif template_id == 'hop_dong_mua_ban':
+        _docx_add_numbered_heading(doc, 1, 'HÀNG HÓA - SỐ LƯỢNG - CHẤT LƯỢNG')
+        _docx_add_clause_line(doc, '1.1', f"Mô tả hàng hóa: {_docx_blank_line(56)}")
+        _docx_add_clause_line(doc, '1.2', f"Số lượng: {_docx_blank_line(66)}")
+        _docx_add_clause_line(doc, '1.3', f"Đơn giá: {_docx_blank_line(70)} VND")
+
+        _docx_add_numbered_heading(doc, 2, 'GIAO NHẬN HÀNG HÓA')
+        _docx_add_clause_line(doc, '2.1', f"Địa điểm giao hàng: {_docx_blank_line(52)}")
+        _docx_add_clause_line(doc, '2.2', f"Thời gian giao hàng: {_docx_blank_line(52)}")
+
+        _docx_add_numbered_heading(doc, 3, 'THANH TOÁN')
+        _docx_add_clause_line(doc, '3.1', f"Tổng giá trị hợp đồng: {_docx_blank_line(44)}")
+        _docx_add_clause_line(doc, '3.2', 'Phương thức và thời hạn thanh toán theo thỏa thuận của hai bên.')
+
+        _docx_add_numbered_heading(doc, 4, 'CAM KẾT CHUNG')
+        _docx_add_clause_line(doc, '', 'Hai bên cam kết thực hiện đúng hợp đồng và chịu trách nhiệm trước pháp luật nếu vi phạm.')
+    elif template_id == 'bien_ban_hop':
+        _docx_add_numbered_heading(doc, 1, 'THÔNG TIN CUỘC HỌP')
+        _docx_add_clause_line(doc, '1.1', f"Tiêu đề cuộc họp: {_docx_blank_line(54)}")
+        _docx_add_clause_line(doc, '1.2', f"Thời gian: {_docx_blank_line(64)}")
+        _docx_add_clause_line(doc, '1.3', f"Địa điểm: {_docx_blank_line(64)}")
+
+        _docx_add_numbered_heading(doc, 2, 'THÀNH PHẦN THAM DỰ')
+        _docx_add_clause_line(doc, '2.1', 'Danh sách người tham dự:')
+        _docx_add_blank_lines(doc, 4)
+
+        _docx_add_numbered_heading(doc, 3, 'NỘI DUNG CUỘC HỌP')
+        _docx_add_clause_line(doc, '3.1', f"Các nội dung trao đổi: {_docx_blank_line(50)}")
+        _docx_add_blank_lines(doc, 4)
+
+        _docx_add_numbered_heading(doc, 4, 'KẾT LUẬN - THỐNG NHẤT')
+        _docx_add_clause_line(doc, '', 'Các bên thống nhất các nội dung sau:')
+        _docx_add_blank_lines(doc, 4)
+    elif template_id == 'cong_van':
+        _docx_add_numbered_heading(doc, 1, 'THÔNG TIN CÔNG VĂN')
+        _docx_add_clause_line(doc, '1.1', f"Đơn vị gửi: {_docx_blank_line(58)}")
+        _docx_add_clause_line(doc, '1.2', f"Đơn vị nhận: {_docx_blank_line(58)}")
+        _docx_add_clause_line(doc, '1.3', f"Trích yếu: {_docx_blank_line(60)}")
+
+        _docx_add_numbered_heading(doc, 2, 'NỘI DUNG')
+        _docx_add_clause_line(doc, '2.1', 'Nội dung công văn:')
+        _docx_add_blank_lines(doc, 5)
+
+        _docx_add_numbered_heading(doc, 3, 'KẾT THÚC')
+        _docx_add_clause_line(doc, '', 'Kính đề nghị Quý đơn vị xem xét, phối hợp và phản hồi trong thời gian sớm nhất.')
+    elif template_id == 'noi_quy':
+        _docx_add_numbered_heading(doc, 1, 'PHẠM VI ÁP DỤNG')
+        _docx_add_clause_line(doc, '1.1', f"Tên công ty: {_docx_blank_line(60)}")
+        _docx_add_clause_line(doc, '1.2', 'Nội quy này áp dụng đối với toàn bộ người lao động và các bộ phận liên quan.')
+
+        _docx_add_numbered_heading(doc, 2, 'THỜI GIỜ LÀM VIỆC - NGHỈ NGƠI')
+        _docx_add_clause_line(doc, '2.1', f"Giờ làm việc: {_docx_blank_line(60)}")
+        _docx_add_clause_line(doc, '2.2', f"Chính sách nghỉ phép: {_docx_blank_line(52)}")
+
+        _docx_add_numbered_heading(doc, 3, 'KỶ LUẬT LAO ĐỘNG')
+        _docx_add_clause_line(doc, '3.1', 'Người lao động phải tuân thủ nội quy, giữ gìn tài sản và bảo mật thông tin của công ty.')
+        _docx_add_clause_line(doc, '3.2', 'Mọi hành vi vi phạm sẽ bị xử lý theo quy định nội bộ và pháp luật hiện hành.')
+
+        _docx_add_numbered_heading(doc, 4, 'CAM KẾT CHUNG')
+        _docx_add_clause_line(doc, '', 'Nội quy có hiệu lực kể từ ngày ký và là cơ sở áp dụng thống nhất trong công ty.')
+    elif template_id == 'quyet_dinh':
+        _docx_add_numbered_heading(doc, 1, 'CĂN CỨ BAN HÀNH')
+        _docx_add_clause_line(doc, '', 'Căn cứ vào điều lệ, quy chế tổ chức và nhu cầu thực tế của đơn vị.')
+        _docx_add_blank_lines(doc, 2)
+
+        _docx_add_numbered_heading(doc, 2, 'NỘI DUNG QUYẾT ĐỊNH')
+        _docx_add_clause_line(doc, '2.1', f"Số quyết định: {_docx_blank_line(56)}")
+        _docx_add_clause_line(doc, '2.2', f"Nội dung quyết định: {_docx_blank_line(50)}")
+        _docx_add_blank_lines(doc, 4)
+
+        _docx_add_numbered_heading(doc, 3, 'HIỆU LỰC THI HÀNH')
+        _docx_add_clause_line(doc, '3.1', f"Quyết định có hiệu lực kể từ ngày {_docx_blank_line(38)}")
+        _docx_add_clause_line(doc, '3.2', 'Các bộ phận, cá nhân liên quan chịu trách nhiệm thi hành quyết định này.')
+    elif template_id == 'thong_bao':
+        _docx_add_numbered_heading(doc, 1, 'NỘI DUNG THÔNG BÁO')
+        _docx_add_clause_line(doc, '1.1', f"Tên công ty: {_docx_blank_line(60)}")
+        _docx_add_clause_line(doc, '1.2', f"Ngày hiệu lực: {_docx_blank_line(58)}")
+        _docx_add_clause_line(doc, '1.3', f"Nội dung thông báo: {_docx_blank_line(50)}")
+        _docx_add_blank_lines(doc, 4)
+
+        _docx_add_numbered_heading(doc, 2, 'ĐỐI TƯỢNG ÁP DỤNG')
+        _docx_add_clause_line(doc, '', 'Thông báo này áp dụng đối với toàn bộ cá nhân, bộ phận hoặc đơn vị được nêu trong văn bản.')
+        _docx_add_blank_lines(doc, 2)
+    elif template_id == 'nda':
+        _docx_add_numbered_heading(doc, 1, 'PHẠM VI THÔNG TIN BẢO MẬT')
+        _docx_add_clause_line(doc, '1.1', f"Phạm vi thông tin: {_docx_blank_line(52)}")
+        _docx_add_clause_line(doc, '1.2', f"Thời hạn bảo mật: {_docx_blank_line(48)} năm")
+
+        _docx_add_numbered_heading(doc, 2, 'NGHĨA VỤ CỦA CÁC BÊN')
+        _docx_add_clause_line(doc, '2.1', 'Bên nhận thông tin không được tiết lộ, sao chép hoặc sử dụng trái phép thông tin bảo mật.')
+        _docx_add_clause_line(doc, '2.2', 'Bên công khai thông tin có quyền yêu cầu hoàn trả, hủy bỏ hoặc ngừng sử dụng thông tin khi cần thiết.')
+
+        _docx_add_numbered_heading(doc, 3, 'XỬ LÝ VI PHẠM')
+        _docx_add_clause_line(doc, '', 'Nếu vi phạm, bên vi phạm phải bồi thường thiệt hại và chịu trách nhiệm theo quy định pháp luật.')
+    else:
+        _docx_add_numbered_heading(doc, 1, 'NỘI DUNG')
+        for index, (key, field) in enumerate(variables.items(), start=1):
+            label = field.get('label') or key.replace('_', ' ').title()
+            _docx_add_field_block(doc, label, field, index=index)
+
+        _docx_add_numbered_heading(doc, 2, 'NỘI DUNG THỎA THUẬN')
+        _docx_add_clause_line(doc, '2.1', 'Các bên thống nhất ký kết văn bản này trên cơ sở tự nguyện, trung thực và đúng quy định pháp luật.')
+        _docx_add_blank_lines(doc, 2)
+
+        _docx_add_numbered_heading(doc, 3, 'THỜI HẠN - HIỆU LỰC')
+        _docx_add_clause_line(doc, '3.1', f"Thời hạn áp dụng: {_docx_blank_line(54)}")
+        _docx_add_clause_line(doc, '3.2', f"Ngày hiệu lực: {_docx_blank_line(58)}")
+
+        _docx_add_numbered_heading(doc, 4, 'CAM KẾT CHUNG')
+        _docx_add_clause_line(doc, '', 'Hai bên cam kết thực hiện đúng các điều khoản đã ghi trong văn bản.')
+        _docx_add_blank_lines(doc, 2)
+
+
+def _docx_add_signature_block(doc):
+    _docx_add_text_paragraph(doc, 'ĐẠI DIỆN BÊN A', bold=True, size=12)
+    _docx_add_text_paragraph(doc, 'Ký, ghi rõ họ tên', size=11)
+    _docx_add_blank_lines(doc, 3, 36)
+    _docx_add_text_paragraph(doc, 'ĐẠI DIỆN BÊN B', bold=True, size=12)
+    _docx_add_text_paragraph(doc, 'Ký, ghi rõ họ tên', size=11)
+    _docx_add_blank_lines(doc, 3, 36)
+
+
+@app.route('/v1/templates/<template_id>/download', methods=['GET'])
+def download_template_docx(template_id):
+    """Generate a contract-style .docx for the given template and return it as attachment."""
+    try:
+        template = TEMPLATES_CACHE.get(template_id)
+        if not template:
+            return jsonify({'success': False, 'error': 'not_found'}), 404
+
+        try:
+            from io import BytesIO
+            from docx import Document as DocxDocument
+            from docx.shared import Inches
+        except Exception as e:
+            return jsonify({'success': False, 'error': f'missing_docx_lib: {e}'}), 500
+
+        doc = DocxDocument()
+        section = doc.sections[0]
+        section.top_margin = Inches(0.65)
+        section.bottom_margin = Inches(0.65)
+        section.left_margin = Inches(0.9)
+        section.right_margin = Inches(0.9)
+
+        # Vietnamese contract header
+        _docx_add_center_paragraph(doc, 'CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM', bold=True, size=13)
+        _docx_add_center_paragraph(doc, 'Độc lập - Tự do - Hạnh phúc', bold=True, size=12)
+        _docx_add_center_paragraph(doc, '--------------------------------', size=12)
+        doc.add_paragraph()
+
+        title = str(template.get('name', 'VĂN BẢN')).upper()
+        _docx_add_center_paragraph(doc, title, bold=True, size=18)
+        _docx_add_center_paragraph(doc, 'Số: .../...', size=12)
+        doc.add_paragraph()
+        _docx_add_text_paragraph(doc, 'Hôm nay, ngày ... tháng ... năm ... tại ............................................................', size=12)
+        _docx_add_text_paragraph(doc, 'Chúng tôi gồm:', bold=True, size=12)
+        doc.add_paragraph()
+
+        for heading, fields in _docx_get_party_layout(template):
+            _docx_add_party_section(doc, heading, fields)
+            doc.add_paragraph()
+
+        _docx_add_text_paragraph(doc, 'Hai bên thoả thuận ký kết văn bản với nội dung sau:', bold=True, size=12)
+        doc.add_paragraph()
+
+        _docx_build_contract_body(doc, template)
+        doc.add_paragraph()
+
+        _docx_add_text_paragraph(doc, 'ĐIỀU 5: CAM KẾT CHUNG', bold=True, size=13)
+        _docx_add_text_paragraph(doc, 'Hai bên cam kết thực hiện đúng các điều khoản đã ghi trong văn bản. Nếu có tranh chấp phát sinh thì sẽ ưu tiên giải quyết bằng thương lượng; nếu không đạt kết quả thì đưa ra cơ quan có thẩm quyền giải quyết.', size=12)
+        _docx_add_text_paragraph(doc, 'Văn bản được lập thành 02 bản có giá trị pháp lý như nhau, mỗi bên giữ 01 bản.', size=12)
+
+        doc.add_paragraph()
+        _docx_add_signature_block(doc)
+
+        bio = BytesIO()
+        doc.save(bio)
+        bio.seek(0)
+
+        return send_file(
+            bio,
+            mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            as_attachment=True,
+            download_name=f"{template_id}.docx"
+        )
+    except Exception as e:
+        print(f"[ERROR] generate docx: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 if __name__ == '__main__':
+    # Seed templates on startup
+    seed_templates()
+
     # Cleanup old files khi khởi động
     cleanup_old_files()
     app.run(debug=True, use_reloader=False, host='0.0.0.0', port=5000)
