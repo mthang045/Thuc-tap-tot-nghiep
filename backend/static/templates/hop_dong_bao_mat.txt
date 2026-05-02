@@ -1,0 +1,59 @@
+CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM
+Độc lập – Tự do – Hạnh phúc
+…... ngày…..tháng…năm….
+HỢP ĐỒNG BẢO MẬT THÔNG TIN
+Số: [...]
+Căn cứ Bộ Luật Dân sự số 91/2015/QH13 được Quốc hội nước CHXHCN Việt Nam thông qua ngày 24/11/2015;
+Căn cứ Luật Thương mại số 36/2005/QH11 do Quốc hội nước CHXHCN Việt Nam ban hành ngày 14 tháng 06 năm 2005;
+Căn cứ vào nhu cầu và khả năng của hai bên,
+Hôm nay, ngày ......tháng ..........năm ..........tại Công ty ..............., chúng tôi gồm:
+Bên Cung cấp thông tin: CÔNG TY [...]
+(Sau đây được gọi là “Bên A”)
+Bên Nhận thông tin: CÔNG TY [...]
+(Sau đây được gọi là “Bên B”).
+Hai bên cùng thống nhất ký hợp đồng bảo mật thông tin với những nội dung sau:
+Điều 1: Không tiết lộ thông tin bảo mật
+1.1 Hai bên hiểu và đồng ý rằng bên nhận thông tin, dữ liệu (sau đây gọi là thông tin)  có thể tiếp cận các thông tin bảo mật của bên cung cấp thông tin. Cho mục đích của Hợp đồng này, “Thông Tin Bảo Mật” nghĩa là các thông tin bảo mật và độc quyền về hoạt động hoặc kinh doanh của bên cung cấp thông tin mà thông tin đó thuộc phạm vi bảo mật của bên cung cấp thông tin, không thuộc hiểu biết thông thường của bên tiếp nhận thông tin;
+1.2 Cho mục đích của hợp đồng này, thông tin bảo mật không bao gồm các thông tin sau:
+-     Thông tin đang được công khai hoặc sẽ được công khai sau khi ký kết hợp đồng này;
+-     Thông tin mà một bên nhận được một cách hợp pháp từ bên thứ ba không bị hạn chế tiết lộ thông tin và không vi phạm nghĩa vụ bảo mật thông tin.
+Điều 2: Nghĩa vụ của bên tiếp nhận thông tin
+2.1 Bên nhận thông tin sẽ chỉ sử dụng những thông tin bảo mật cho mục đích thực hiện các công việc theo hợp đồng giữa các bên trừ khi được cho phép khác đi bằng văn bản của bên cung cấp thông tin, và sẽ không cung cấp hay tiết lộ bất cứ thông tin bảo mật cho bất cứ bên thứ ba nào trừ trường hợp đó là nhân viên được bên nhận thông tin chỉ định thực hiện trực tiếp công việc và cần biết những thông tin bảo mật đó; 
+2.2 Bên nhận thông tin phải ngay lập tức thông báo với nhân viên, đại diện, nhà thầu hay nhà tư vấn độc lập được cung cấp thông tin bảo mật về nghĩa vụ theo hợp đồng này và phải thực hiện những biện pháp cần thiết để đảm bảo tính bảo mật của thông tin bảo mật sẽ được duy trì theo hợp đồng này;
+2.3 Khi công việc kết thúc, bên tiếp nhận thông tin có nghĩa vụ phải xoá hết tất cả các dữ liệu về thông tin được cung cấp, phòng trường hợp thông tin bị đưa ra ngoài một cách không mong muốn do sự kiện bất khả kháng hoặc không do lỗi của bên tiếp nhận thông tin của các bên.
+Điều 3: Thời hạn
+3.1 Hợp đồng này sẽ có hiệu lực bắt đầu từ ngày [...]/[...]/[...] và sẽ kết thúc vào ngày [...]/[...]/[...], tuy nhiên nghĩa vụ của bên tiếp nhận thông tin về việc bảo vệ những thông tin bảo mật sẽ tồn tại trong thời hạn [...] năm tiếp theo kể từ ngày hợp đồng này chấm dứt;
+3.2 Hai bên có thể hợp đồng gia hạn thời hạn bảo mật thông tin nếu bên cung cấp thông tin thấy việc bảo mật đó là cần thiết. Việc gia hạn cam kết bao mật thông tin phải được lập thành văn bản và có chữ ký xác nhận của cả hai bên;
+3.3 Thời hạn bảo mật thông tin có thể ngắn hơn thời hạn quy định tại khoản 3.1 nêu trên nếu hai bên nhận thấy các thông tin đó không cần thiết phải bảo mật. Hai bên sẽ ký biên bản chấm dứt cam kết bảo mật này.
+Điều 4: Quyền sở hữu
+4.1 Bên nhận thông tin đồng ý rằng tất cả thông tin bảo mật do bên cung cấp thông tin cung cấp sẽ vẫn thuộc quyền sở hữu riêng của bên cung cấp thông tin;
+4.2 Mọi hành vi của bên nhận thông tin bao gồm nhưng không giới hạn các hành vi sử dụng, sao chép, trích dẫn, tái xuất bản, lưu thông, toàn bộ hay một phần các nội dung mà bên cung cấp thông tin cung cấp vì mục đích thương mại hay phi thương mại mà không được sự đồng ý trước bằng văn bản của bên cung cấp thông tin được xem là hành vi xâm phạm hợp đồng này, bên cung cấp thông tin có quyền yêu cầu bên vi phạm chấm dứt ngay hành vi vi phạm.
+Điều 5: Không ràng buộc
+5.1 Các Bên hiểu rằng Hợp đồng này được ký kết một cách riêng biệt cho mục đích trao đổi thông tin bảo mật và các bên cũng không bị ràng buộc theo bất kỳ khía cạnh nào phải tham gia vào bất kỳ mối quan hệ kinh doanh nào trong tương lai;
+5.2 Bản cam kết này có giá trị ràng buộc bắt buộc đối với cả hai bên, được xem và hiểu như là một bộ phận không thể tách rời với các hợp đồng, phụ lục hoặc thỏa thuận khác,… mà hai bên sẽ ký kết với nhau trong quá trình triển khai dự án.
+Điều 6: Cam kết của các bên
+6.1 Bên cung cấp thông tin cam kết rằng những thông tin cung cấp cho bên nhận thông tin là hoàn toàn chính xác, trung thực trong phạm vi và khả năng cho phép của bên cung cấp thông tin. Bên cung cấp thông tin sẽ chịu hoàn toàn trách nhiệm nếu những thông tin, tài liệu mà mình cung cấp nếu phát sinh bất cứ trách nhiệm nào kể cả bồi thường thiệt hại. Việc cung cấp thông tin, tài liệu này là hoàn toàn tự nguyện, không bị lừa dối, không bị ép buộc;
+6.2 Bên tiếp nhận thông tin cam kết sử dụng thông tin, tài liệu mà mình nhận được đúng mục đích mà hai bên hướng đến và thực hiện đúng nghĩa vụ quy định tại Điều 2 của cam kết này. 
+Điều 7: Bồi thường
+7.1 Tất cả thông tin do bên cung cấp thông tin cung cấp cho bên nhận thông tin đều là tài sản độc quyền của bên cung cấp thông tin. Thông tin bảo mật phải được xử lý theo các điều khoản và hạn chế quy định tại hợp đồng này. Bên nhận thông tin không được sử dụng, phổ biến hoặc trong bất kỳ cách nào tiết lộ bất kỳ thông tin bảo mật cho bất kỳ người, công ty hoặc doanh nghiệp nào khác ngoại trừ trong phạm vi cho phép của hợp đồng này;
+7.2 Mọi thông tin bị tiết lộ bởi bên nhận cung cấp thông tin hoặc bên thứ ba tiết lộ do bên nhận cung cấp thông tin cung cấp bị tiết bị cung cấp ra bên ngoài, gây thiệt hại lập tức hoặc có thể xảy ra trong tương lai mà thiệt hại đó có thể xác định được, Bên tiếp nhận thông tin phải bồi thường lập tức, kịp thời kể từ khi có số liệu chính xác về con số thiệt hại mà bên cung cấp thông tin về con số thiệt hại mà bên cung cấp thông tin phải phải gánh chịu.
+Điều 8: Sự kiện bất khả kháng
+Không bên nào phải chịu trách nhiệm đối với bất cứ sự vi phạm nào trong việc thực hiện bất cứ nội dung nào của cam kết này trong trường hợp những vi phạm đó gây ra bởi các sự kiện cháy nổ, bão lụt, chiến tranh, yêu cầu của chính phủ, quân đội, thiên tai, hay các nguyên nhân khác tương tự vượt khỏi tầm kiểm soát của mỗi bên và bên vi phạm và/hoặc chậm trễ không có lỗi (sau đây gọi là các “Sự Kiện Bất Khả Kháng”). Bên chịu ảnh hưởng bởi các Sự Kiện Bất Khả Kháng có nghĩa vụ thông báo cho bên kia bằng văn bản trong vòng mười (10) ngày kể từ ngày Sự Kiện Bất Khả Kháng bắt đầu tác động lên việc thực hiện cam kết của bên bị ảnh hưởng. Bên đơn phương chấm dứt cam kết có nghĩa vụ thông báo cho bên kia về việc đơn phương chấm dứt cam kết.
+Điều 9: Không chuyển nhượng
+9.1 Không bên nào được phép chuyển nhượng và/hoặc chuyển giao quyền, lợi ích và nghĩa vụ theo Hợp đồng này cho người khác mà không có sự đồng ý trước bằng văn bản của Bên kia;
+9.2 Việc chuyển nhượng và/ hoặc chuyển giao quyền, lơi ích và nghĩa vụ này có thể được thực hiện nếu có cơ sở rằng việc chuyển nhượng những thông tin này là vì lợi ích của bên cung cấp thông tin và không cần sự đồng ý bằng văn bản của bên kia. Bên chuyển nhượng phải chịu hoàn toàn trách nhiệm nếu có thiệt hại xảy ra trong trường hợp này theo Điều 7.
+Điều 10: Vô hiệu
+10.1 Mỗi điều khoản trong hợp đồng này đều riêng biệt và có thể chia tách được. Trong phạm vi mà bất kỳ điều khoản riêng biệt của hợp đồng này bị xem là vô hiệu, bất hợp pháp hoặc không thể thực hiện, thì sẽ không ảnh hưởng hoặc làm giảm hiệu lực tiếp tục của việc thực hiện hợp đồng này;
+10.2 Cam kết này chỉ vô hiệu toàn bộ trong trường hợp toàn bộ nội dung vi phạm điều cấm của pháp luật, các bên tham gia ký kết thông đúng thẩm quyền và có cơ sở để khẳng định rằng bên tiếp nhận thông tin có mục đích không đúng, gây ảnh hưởng đến bên cung cấp thông tin.
+Điều 11: Luật và ngôn ngữ áp dụng áp dụng
+11.1 Hiệu lực, việc áp dụng, giải thích và thực hiện hợp đồng này được điều chỉnh và được hiểu theo quy định của pháp luật Việt Nam;
+11.2 Cam kết này được soạn thảo bằng tiếng Việt. Trong trường hợp cam kết này được dịch sang một ngôn ngữ khác, bản tiếng Việt sẽ có giá trị áp dụng.
+Điều 12: Giải quyết tranh chấp
+12.1 Bất kỳ tranh chấp hoặc khiếu nại phát sinh hoặc liên quan đến hợp đồng này bao gồm bất kỳ vấn đề gì liên quan đến sự hình thành, hiệu lực hoặc chấm dứt hợp đồng này sẽ được giải quyết thông qua đàm phán hòa giải giữa các bên;
+12.2 Trường hợp hai bên không thể đàm phán, hoà giải các tranh chấp, khiếu nại phát sinh từ hoặc liên quan đến cam kết này sẽ được giải quyết bằng trọng tài tại Trung tâm Trọng tài Quốc tế Việt Nam (VIAC) theo Quy tắc tố tụng trọng tài của Trung tâm này.
+Điều 13: Điều khoản chung
+13.1 Hợp đồng này cấu thành một tổng thể hợp đồng giữa các bên về nội dung quy định tại đây và bao hàm tất cả các cuộc thảo luận trước của các bên về thông tin bảo mật. Hợp đồng này sẽ không được sửa đổi ngoại trừ có hợp đồng bằng văn bản sau ngày có hiệu lực của hợp đồng này được ký bởi bên cung cấp thông tin và bên nhận thông tin;
+13.2 Cam kết này được thực hiện kể từ ngày bên nhận cung cấp thông tin nhận được các thông tin tài liệu từ bên cung cấp thông tin;
+13.3 Hai bên đã đọc kỹ, hiểu rõ toàn bộ các nôi dung của bản cam kết này trước khi ký tên dưới đây để xác lập và làm cơ sở thực hiện;
+13.4 Cam kết này được lập thành [...] ([...]) bản, mỗi bên giữ [...] ([...]) bản có giá trị pháp lý như nhau./.
+(Hợp đồng này chỉ mang tính chất tham khảo)
