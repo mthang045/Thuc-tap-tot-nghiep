@@ -12,6 +12,8 @@ import { AboutPage } from './components/AboutPage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { TermsPage } from './components/TermsPage';
 import { PaymentReturnPage } from './components/PaymentReturnPage';
+import { Chatbot } from './components/Chatbot';
+import { TemplatesPage } from './components/TemplatesPage';
 import apiService from './services/api';
 
 const SESSION_HINT_KEY = 'legal-ai-session-hint';
@@ -26,6 +28,7 @@ export default function App() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisProgress, setAnalysisProgress] = useState({ percent: 0, stage: '', detail: '' });
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  const [showChatbot, setShowChatbot] = useState(false);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -53,10 +56,12 @@ export default function App() {
   // Restore session on mount (session-based auth with cookies)
   useEffect(() => {
     const restoreSession = async () => {
+      // Chỉ restore session nếu user đã tick "Ghi nhớ đăng nhập"
+      const rememberLogin = window.localStorage.getItem('legal-ai-remember') === 'true';
       const hasSessionHint = window.localStorage.getItem(SESSION_HINT_KEY) === '1';
 
-      if (!hasSessionHint) {
-        console.info('[auth] No session hint found, skipping restore check');
+      if (!hasSessionHint || !rememberLogin) {
+        console.info('[auth] No session hint or remember not enabled, skipping restore');
         setIsLoadingAuth(false);
         return;
       }
@@ -178,10 +183,12 @@ export default function App() {
       'history': '/history',
       'settings': '/settings',
       'pricing': '/pricing',
+      'templates': '/templates',
       'about': '/about',
       'privacy': '/privacy',
       'terms': '/terms',
-      'admin': '/admin'
+      'admin': '/admin',
+      'result': '/result'
     };
     navigate(routes[page] || '/');
   };
@@ -197,7 +204,7 @@ export default function App() {
     const issuesArray = data.issues || [];
     
     const analysisData = {
-      fileName: data.filename || historyItem.fileName,
+      contractName: data.filename || historyItem.fileName,
       uploadDate: data.upload_time || historyItem.date,
       riskLevel: data.risk_level || 'medium',
       summary: data.summary || '',
@@ -234,7 +241,8 @@ export default function App() {
     };
     
     setAnalysisData(analysisData);
-    navigate('/result'); // Navigate to result page (temporary analysis)
+    // Use setTimeout to ensure state is updated before navigation
+    setTimeout(() => navigate('/result'), 0);
   };
 
   const handleFileUpload = async (file) => {
@@ -369,6 +377,7 @@ export default function App() {
             isAdmin={isAdmin}
             userEmail={userEmail}
             userAvatar={userAvatar}
+            userPlan={userPlan}
             currentPage={location.pathname === '/' ? 'home' : location.pathname.slice(1)}
             onLogin={handleLogin}
             onGoogleLogin={handleGoogleLogin}
@@ -380,7 +389,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={
                 <UploadSection
-                  isAuthenticated={isAuthenticated}
                   onFileUpload={handleFileUpload}
                   isAnalyzing={isAnalyzing}
                   analysisProgress={analysisProgress}
@@ -410,10 +418,16 @@ export default function App() {
               } />
               
               <Route path="/pricing" element={
-                <PricingPlans 
+                <PricingPlans
                   isAuthenticated={isAuthenticated}
                   onUpgrade={handleUpgrade}
                   currentPlan={userPlan}
+                />
+              } />
+
+              <Route path="/templates" element={
+                <TemplatesPage
+                  onNavigate={handleNavigate}
                 />
               } />
 
@@ -425,6 +439,22 @@ export default function App() {
           </main>
 
           <Footer />
+
+          <Chatbot
+            isOpen={showChatbot}
+            onClose={() => setShowChatbot(false)}
+            analysisData={analysisData}
+          />
+
+          <button
+            onClick={() => setShowChatbot(true)}
+            className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-gradient-to-r from-cyan-500 to-pink-500 text-white rounded-full shadow-2xl shadow-cyan-500/40 flex items-center justify-center hover:from-cyan-400 hover:to-pink-400 transition-all duration-300 hover:scale-110 active:scale-95 group"
+            title="Chat với AI"
+          >
+            <svg className="w-7 h-7 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+            </svg>
+          </button>
         </>
       )}
     </div>

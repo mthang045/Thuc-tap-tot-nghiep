@@ -27,6 +27,18 @@ const parseMonthIndex = (value) => {
 };
 
 const isAllZeroSeries = (series) => Array.isArray(series) && series.every((item) => Number(item || 0) === 0);
+const sumSeries = (series) => (Array.isArray(series) ? series.reduce((sum, item) => sum + Number(item || 0), 0) : 0);
+
+const CHART_HEIGHT_PX = 192;
+
+const getBarHeight = (value, maxValue) => {
+  const safeValue = Number(value || 0);
+  if (!Number.isFinite(safeValue) || safeValue <= 0 || !Number.isFinite(maxValue) || maxValue <= 0) {
+    return '0px';
+  }
+  const px = (safeValue / maxValue) * CHART_HEIGHT_PX;
+  return `${Math.max(px, 6)}px`;
+};
 
 export function SystemStats() {
   const [usersByMonth, setUsersByMonth] = useState(emptyMonthlyCounts());
@@ -122,6 +134,9 @@ export function SystemStats() {
   const maxUsers = Math.max(...chartData.users, 1);
   const maxAnalyses = Math.max(...chartData.analyses, 1);
   const maxRevenue = Math.max(...chartData.revenue, 1);
+  const usersTotal = sumSeries(chartData.users);
+  const analysesTotal = sumSeries(chartData.analyses);
+  const revenueTotal = sumSeries(chartData.revenue);
 
   return (
     <div className="space-y-6">
@@ -150,18 +165,24 @@ export function SystemStats() {
               <Users className="w-5 h-5" />
               Người dùng mới
             </h2>
-            <span className="text-green-400 text-sm">Dữ liệu thật</span>
           </div>
           <div className="flex items-end gap-2 h-48">
             {chartData.users.map((value, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center gap-2">
-                <div className="w-full bg-slate-800 rounded-t-lg relative overflow-hidden" style={{ height: `${(value / maxUsers) * 100}%`, minHeight: '4px' }}>
+              <div key={index} className="flex-1 flex flex-col items-center gap-2 relative group">
+                <div className="pointer-events-none absolute -top-8 z-10 px-2 py-1 rounded-md bg-slate-800 border border-slate-600 text-[11px] text-slate-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                  {MONTH_LABELS[index]}: {Number(value || 0)}
+                </div>
+                <div className="w-full bg-slate-800 rounded-t-lg relative overflow-hidden" style={{ height: getBarHeight(value, maxUsers) }}>
                   <div className="absolute inset-0 bg-gradient-to-t from-cyan-500 to-blue-500 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}></div>
                 </div>
                 <span className="text-slate-500 text-xs">{MONTH_LABELS[index]}</span>
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">
+            Tổng người dùng mới: <span className="text-cyan-300">{usersTotal}</span>
+          </div>
+          {usersTotal === 0 && <div className="mt-2 text-xs text-slate-500">Chưa có dữ liệu người dùng theo tháng.</div>}
         </div>
 
         <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">
@@ -170,18 +191,24 @@ export function SystemStats() {
               <FileText className="w-5 h-5" />
               Số lượng phân tích
             </h2>
-            <span className="text-green-400 text-sm">Dữ liệu thật</span>
           </div>
           <div className="flex items-end gap-2 h-48">
             {chartData.analyses.map((value, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center gap-2">
-                <div className="w-full bg-slate-800 rounded-t-lg relative overflow-hidden" style={{ height: `${(value / maxAnalyses) * 100}%`, minHeight: '4px' }}>
+              <div key={index} className="flex-1 flex flex-col items-center gap-2 relative group">
+                <div className="pointer-events-none absolute -top-8 z-10 px-2 py-1 rounded-md bg-slate-800 border border-slate-600 text-[11px] text-slate-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                  {MONTH_LABELS[index]}: {Number(value || 0)}
+                </div>
+                <div className="w-full bg-slate-800 rounded-t-lg relative overflow-hidden" style={{ height: getBarHeight(value, maxAnalyses) }}>
                   <div className="absolute inset-0 bg-gradient-to-t from-purple-500 to-pink-500 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}></div>
                 </div>
                 <span className="text-slate-500 text-xs">{MONTH_LABELS[index]}</span>
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">
+            Tổng phân tích: <span className="text-pink-300">{analysesTotal}</span>
+          </div>
+          {analysesTotal === 0 && <div className="mt-2 text-xs text-slate-500">Chưa có dữ liệu phân tích theo tháng.</div>}
         </div>
 
         <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">
@@ -190,18 +217,24 @@ export function SystemStats() {
               <DollarSign className="w-5 h-5" />
               Doanh thu ước tính từ dữ liệu thật
             </h2>
-            <span className="text-green-400 text-sm">Từ phân tích thực tế</span>
           </div>
           <div className="flex items-end gap-2 h-48">
             {chartData.revenue.map((value, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center gap-2">
-                <div className="w-full bg-slate-800 rounded-t-lg relative overflow-hidden" style={{ height: `${(value / maxRevenue) * 100}%`, minHeight: '4px' }}>
+              <div key={index} className="flex-1 flex flex-col items-center gap-2 relative group">
+                <div className="pointer-events-none absolute -top-8 z-10 px-2 py-1 rounded-md bg-slate-800 border border-slate-600 text-[11px] text-slate-100 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                  {MONTH_LABELS[index]}: {Number(value || 0).toLocaleString('vi-VN')} VNĐ
+                </div>
+                <div className="w-full bg-slate-800 rounded-t-lg relative overflow-hidden" style={{ height: getBarHeight(value, maxRevenue) }}>
                   <div className="absolute inset-0 bg-gradient-to-t from-green-500 to-emerald-500 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}></div>
                 </div>
                 <span className="text-slate-500 text-xs">{MONTH_LABELS[index]}</span>
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">
+            Tổng doanh thu: <span className="text-emerald-300">{revenueTotal.toLocaleString('vi-VN')} VNĐ</span>
+          </div>
+          {revenueTotal === 0 && <div className="mt-2 text-xs text-slate-500">Chưa có dữ liệu thanh toán thành công.</div>}
         </div>
 
         <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">

@@ -1,0 +1,74 @@
+{
+  "templates": [
+    {
+      "template_id": "hop_dong_mua_ban_hang_hoa",
+      "name": "Hợp đồng mua bán hàng hóa",
+      "category": "Thương mại",
+      "description": "Mẫu hợp đồng mua bán hàng hóa theo quy định pháp luật Việt Nam",
+      "variables": {}
+    },
+    {
+      "template_id": "hop_dong_lao_dong",
+      "name": "Hợp đồng lao động",
+      "category": "Nhân sự",
+      "description": "Mẫu HĐLĐ theo Bộ luật Lao động 2019",
+      "variables": {}
+    },
+    {
+      "template_id": "hop_dong_bao_mat",
+      "name": "Thỏa thuận bảo mật (NDA)",
+      "category": "Pháp lý",
+      "description": "Mẫu thỏa thuận bảo mật thông tin (Non-Disclosure Agreement)",
+      "variables": {}
+    },
+    {
+      "template_id": "hop_dong_thue_nha",
+      "name": "Hợp đồng thuê nhà ở",
+      "category": "Bất động sản",
+      "description": "Mẫu hợp đồng thuê nhà ở hoặc mặt bằng kinh doanh",
+      "variables": {}
+    },
+    {
+      "template_id": "hop_dong_cung_cap_dich_vu",
+      "name": "Hợp đồng cung cấp dịch vụ",
+      "category": "Thương mại",
+      "description": "Mẫu hợp đồng cung cấp dịch vụ",
+      "variables": {}
+    },
+    {
+      "template_id": "hop_dong_cho_vay_tien",
+      "name": "Hợp đồng cho vay tiền",
+      "category": "Tài chính",
+      "description": "Mẫu hợp đồng cho vay tiền",
+      "variables": {}
+    },
+    {
+      "template_id": "giay_uy_quyen",
+      "name": "Giấy ủy quyền",
+      "category": "Pháp lý",
+      "description": "Mẫu giấy ủy quyền thay mặt thực hiện công việc",
+      "variables": {}
+    },
+    {
+      "template_id": "bien_ban_hop",
+      "name": "Biên bản họp",
+      "category": "Nội bộ",
+      "description": "Mẫu biên bản họp hội đồng cổ đông, ban lãnh đạo",
+      "variables": {}
+    },
+    {
+      "template_id": "quyet_dinh_bo_nhiem",
+      "name": "Quyết định bổ nhiệm",
+      "category": "Nhân sự",
+      "description": "Mẫu quyết định bổ nhiệm chức vụ",
+      "variables": {}
+    },
+    {
+      "template_id": "don_xin_nghi_viec",
+      "name": "Đơn xin nghỉ việc",
+      "category": "Nhân sự",
+      "description": "Mẫu đơn xin nghỉ việc hoặc thông báo chấm dứt HĐLĐ",
+      "variables": {}
+    }
+  ]
+}

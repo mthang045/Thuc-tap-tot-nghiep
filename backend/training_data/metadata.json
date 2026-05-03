@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-04-29 21:02:09",
+  "total_records": 10400,
+  "risk_distribution": {
+    "low": 4519,
+    "medium": 3742,
+    "high": 2139
+  },
+  "violation_distribution": {
+    "has_violation": 1982,
+    "no_violation": 8418
+  }
+}

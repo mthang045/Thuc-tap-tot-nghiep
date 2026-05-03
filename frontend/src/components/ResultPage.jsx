@@ -48,7 +48,7 @@ export function ResultPage({ analysisData: propAnalysisData }) {
 
           // Transform to component format
           const transformedData = {
-            fileName: data.filename,
+            contractName: data.filename,
             uploadDate: data.upload_time,
             riskLevel: data.risk_level || 'medium',
             summary: data.summary || '',

@@ -1,5 +1,5 @@
 // API service for backend communication
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = '/api';
 
 class ApiService {
   constructor() {
@@ -242,6 +242,78 @@ class ApiService {
     });
   }
 
+  async getAdminAnalysisDetail(analysisId) {
+    const result = await this.request(`/admin/analyses/${analysisId}`, {
+      method: 'GET',
+    });
+    console.log('[api] getAdminAnalysisDetail result:', result);
+    return result;
+  }
+
+  async downloadAdminAnalysis(analysisId, fileName = 'analysis') {
+    const response = await fetch(`${this.baseURL}/admin/analyses/${analysisId}/download`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (e) {
+        // ignore parse error
+      }
+      throw new Error(data.message || data.error || 'Không thể tải báo cáo');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${String(fileName || 'analysis').replace(/\.[^/.]+$/, '')}_analysis.txt`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+
+    return { success: true };
+  }
+
+  // Download admin analysis as PDF
+  async downloadAdminAnalysisPDF(analysisId, fileName = 'analysis') {
+    try {
+      const response = await fetch(`${this.baseURL}/admin/analyses/${analysisId}/download-pdf`, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        let data = {};
+        try {
+          data = await response.json();
+        } catch (e) {
+          // ignore parse error
+        }
+        throw new Error(data.message || data.error || 'Không thể tải báo cáo PDF');
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${String(fileName || 'Bao_Cao').replace(/\.[^/.]+$/, '')}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      return { success: true };
+    } catch (error) {
+      console.error('PDF download error:', error);
+      throw error;
+    }
+  }
+
   // Get all contracts (admin)
   async getAllContracts() {
     return this.request('/contracts/', {
@@ -283,6 +355,14 @@ class ApiService {
   async deleteAvatar() {
     return this.request('/delete-avatar/', {
       method: 'DELETE'
+    });
+  }
+
+  // Chat with AI about contract/legal questions
+  async chat(message, history = [], context = {}) {
+    return this.request('/chat/', {
+      method: 'POST',
+      body: JSON.stringify({ message, history, context }),
     });
   }
 }

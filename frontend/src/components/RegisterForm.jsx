@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Mail, Lock, User, UserPlus, Eye, EyeOff, Phone } from 'lucide-react';
 import apiService from '../services/api';
 
@@ -39,10 +39,11 @@ export function RegisterForm({ onRegister }) {
       );
       
       if (response.success) {
-        alert('Đăng ký thành công! Vui lòng đăng nhập.');
-        onRegister(); // Chuyển về form đăng nhập
+        alert('Đăng ký thành công!');
+        // Refresh page để restore session từ backend
+        window.location.reload();
       } else {
-        alert('Đăng ký thất bại: ' + (response.error || 'Lỗi không xác định'));
+        alert('Đăng ký thất bại: ' + (response.error || response.message || 'Lỗi không xác định'));
       }
     } catch (error) {
       alert('Lỗi đăng ký: ' + error.message);

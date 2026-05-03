@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Users, FileText, TrendingUp, DollarSign, Activity, AlertCircle } from 'lucide-react';
 import apiService from '../../services/api';
 
@@ -25,15 +25,18 @@ export function AdminOverview() {
 
       const totalUsers = Number(statsData.total_users || statsData.totalUsers || 0);
       const totalAnalyses = Number(statsData.total_analyses || statsData.totalAnalyses || 0);
-      const totalContracts = Number(statsData.total_contracts || statsData.totalContracts || totalAnalyses);
       const monthlyRevenue = Number(statsData.monthly_revenue || statsData.monthlyRevenue || 0);
-      const successRate = Number(statsData.success_rate || statsData.successRate || 0);
+      const completedAnalyses = Number(statsData.completed_analyses || statsData.completedAnalyses || 0);
+      const rawSuccessRate = Number(statsData.success_rate || statsData.successRate || 0);
+      const successRate = rawSuccessRate > 0
+        ? rawSuccessRate
+        : (totalAnalyses > 0 ? Math.round(((completedAnalyses || totalAnalyses) / totalAnalyses) * 1000) / 10 : 0);
       
       setStats([
         { label: 'Tổng người dùng', value: totalUsers.toString(), change: '', icon: Users, color: 'cyan' },
-        { label: 'Tổng hợp đồng', value: totalContracts.toString(), change: '', icon: FileText, color: 'blue' },
-        { label: 'Tổng phân tích', value: totalAnalyses.toString(), change: '', icon: DollarSign, color: 'green' },
-        { label: 'Tỷ lệ thành công', value: `${successRate}%`, change: '', icon: TrendingUp, color: 'purple' }
+        { label: 'Tổng phân tích', value: totalAnalyses.toString(), change: '', icon: FileText, color: 'blue' },
+        { label: 'Tổng doanh thu', value: `${monthlyRevenue.toLocaleString('vi-VN')} VNĐ`, change: '', icon: DollarSign, color: 'green' },
+        { label: 'Tỷ lệ hoàn tất phân tích', value: `${successRate}%`, change: '', icon: TrendingUp, color: 'purple' }
       ]);
 
       const activities = (response.recent_activities || []).map(item => ({

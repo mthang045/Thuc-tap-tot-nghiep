@@ -1,0 +1,252 @@
+// ============================================
+// Legal AI Contract Reviewer - Database Schema
+// MongoDB - legal_AI_db
+// Generated: 2026-05-02 | Normalized
+// Tool: dbdiagram.io
+// ============================================
+
+// ============================================
+// Users
+// ============================================
+Table users {
+  _id                objectid   [pk, note: 'User account']
+  email              varchar    [not null, unique, note: 'Login email']
+  username           varchar    [note: 'Unique username']
+  password           varchar    [note: 'Hashed password (werkzeug)']
+  full_name          varchar
+  phone              varchar
+  position           varchar
+  avatar             varchar    [note: '/static/avatars/filename']
+  company            varchar
+  role               varchar    [note: 'admin | member']
+  is_admin           bool       [default: false]
+  is_active          bool       [default: true]
+  subscription_tier  varchar    [default: 'free', note: 'free | pro']
+  plan               varchar
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Payments (VNPay transactions)
+// ============================================
+Table payments {
+  _id                objectid   [pk]
+  txn_ref            varchar    [not null, unique, note: 'VNPay transaction reference']
+  user_id            objectid   [ref: > users._id, note: 'Foreign key to users._id']
+  user_email         varchar    [note: 'Payer email (backup lookup)']
+  plan               varchar    [note: 'Plan purchased: pro | enterprise']
+  billing_cycle      varchar    [note: 'monthly | yearly']
+  amount             float      [note: 'Amount in VND']
+  status             varchar    [note: 'pending | success | failed']
+  provider           varchar    [note: 'vnpay | momo | stripe']
+  payment_url        varchar
+  return_url         varchar
+  vnpay_return_url   varchar
+  created_ip         varchar
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Chat Sessions
+// ============================================
+Table chat_sessions {
+  _id                objectid   [pk]
+  user_id            objectid   [ref: > users._id, note: 'Foreign key to users._id']
+  user               varchar    [note: 'Email string (backup, for legacy data)']
+  title              varchar
+  messages           json       [note: 'Embedded message array [{role, content, ts}]']
+  agent_type         varchar    [note: 'qa | review | draft']
+  status             varchar    [note: 'active | archived']
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Messages (chat history)
+// NOTE: messages are stored as embedded array in chat_sessions.messages.
+//       This collection is reserved for future normalization.
+// ============================================
+Table messages {
+  _id                objectid   [pk]
+  session_id         objectid   [ref: > chat_sessions._id]
+  user_id            objectid   [ref: > users._id]
+  role               varchar    [note: 'user | assistant']
+  content            text
+  citations          json       [note: 'Legal citations array']
+  confidence         float
+  tokens_used        int
+  model              varchar
+  created_at         timestamp
+}
+
+// ============================================
+// Uploaded Documents
+// ============================================
+Table documents {
+  _id                objectid   [pk]
+  user_id            objectid   [ref: > users._id]
+  name               varchar    [note: 'Filename']
+  file_path          varchar    [note: 'Storage path or supabase path']
+  file_size          int
+  mime_type          varchar    [note: 'application/pdf, application/vnd...']
+  doc_type           varchar    [note: 'other | contract | legal | report...']
+  extracted_text     text       [note: 'OCR/text extracted content']
+  analysis           json       [note: 'AI analysis result']
+  status             varchar    [note: 'uploaded | analyzed | edited']
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Contracts (managed contracts)
+// ============================================
+Table contracts {
+  _id                objectid   [pk]
+  user_id            objectid   [ref: > users._id]
+  name               varchar
+  contract_type      varchar    [note: 'hop_dong_lao_dong, hop_dong_thuong_mai...']
+  parties            json       [note: 'Array of party names']
+  extracted_text     text
+  status             varchar    [note: 'active | expired | deleted']
+  start_date         date
+  end_date           date
+  value              float      [note: 'Contract value in VND']
+  notes              text
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Document Templates
+// ============================================
+Table templates {
+  _id                objectid   [pk]
+  name               varchar
+  doc_type           varchar    [note: 'hop_dong_lao_dong, quyet_dinh...']
+  content            text       [note: 'Template content']
+  variables          json       [note: 'Placeholder variables']
+  is_default         bool       [default: false]
+  is_global          bool       [default: false, note: 'Global template shared to all users']
+  created_by         objectid   [ref: > users._id]
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Audit Logs
+// ============================================
+Table audit_logs {
+  _id                objectid   [pk]
+  user_id            objectid   [ref: > users._id]
+  action             varchar    [note: 'chat | review | login | upload...']
+  resource_type      varchar    [note: 'ai | contract | document...']
+  resource_id        varchar
+  details            json
+  created_at         timestamp
+}
+
+// ============================================
+// Analysis History (contract analysis records)
+// ============================================
+Table analysis_history {
+  _id                objectid   [pk]
+  user_id            objectid   [ref: > users._id, note: 'Foreign key to users._id']
+  user_email         varchar    [note: 'Email string (backup lookup)']
+  filename           varchar
+  file_size          int
+  contract_type      varchar    [note: 'Classified contract type']
+  risk_level         varchar    [note: 'low | medium | high']
+  has_violation      bool
+  summary            text
+  ai_analysis        text       [note: 'Full AI analysis text']
+  issues_count       int
+  issues             json       [note: 'Array of issue objects']
+  upload_time        timestamp
+  created_at         timestamp
+}
+
+// ============================================
+// Legal Documents (Vietnamese law database)
+// ============================================
+Table law_documents {
+  _id                objectid   [pk]
+  title              varchar    [note: 'Law name, e.g. "Bộ Luật Lao Động"']
+  law_number         varchar    [note: 'Official law number']
+  issuing_body       varchar
+  issue_date         date
+  effective_date     date
+  domains            json       [note: '["lao_dong","thue","doanh_nghiep"]']
+  content            text       [note: 'Full law text']
+  summary            text
+  status             varchar    [note: 'active | amended | repealed']
+  source_url         varchar
+  imported_at        timestamp
+  updated_at         timestamp
+  // Legacy raw fields (migrated from legal_documents)
+  _raw_filename      varchar
+  _raw_category      varchar
+  _raw_char_count    int
+  _raw_section_count int
+  _raw_file_size     int
+}
+
+// ============================================
+// Law Chunks (chunked law text for search/RAG)
+// ============================================
+Table law_chunks {
+  _id                objectid   [pk]
+  law_id             objectid   [ref: > law_documents._id]
+  article            varchar    [note: 'Article number, e.g. "Điều 1"']
+  section            varchar    [note: 'Section/khoản number']
+  title              varchar
+  content            text       [note: 'Chunk text content']
+  domains            json       [note: 'Legal domains array']
+  rank               float      [note: 'Search relevance score']
+  created_at         timestamp
+}
+
+// ============================================
+// Document Annotations (DOCX annotation metadata)
+// ============================================
+Table document_annotations {
+  _id                objectid   [pk]
+  document_id        objectid   [ref: > documents._id]
+  annotation_data    json       [note: 'Annotation coordinates + text']
+  created_by         objectid   [ref: > users._id]
+  created_at         timestamp
+  updated_at         timestamp
+}
+
+// ============================================
+// Relationships
+// ============================================
+// documents.user_id            -> users._id
+// contracts.user_id            -> users._id
+// payments.user_id             -> users._id
+// chat_sessions.user_id        -> users._id
+// templates.created_by         -> users._id
+// audit_logs.user_id           -> users._id
+// analysis_history.user_id     -> users._id
+// messages.session_id          -> chat_sessions._id
+// messages.user_id             -> users._id
+// law_chunks.law_id            -> law_documents._id
+// document_annotations.document_id -> documents._id
+// document_annotations.created_by  -> users._id
+
+// ============================================
+// Indexes
+// ============================================
+// users:               email (unique), username (unique), role
+// payments:            txn_ref (unique), user_email
+// chat_sessions:       user_id, agent_type, status, created_at
+// messages:            session_id+created_at, user_id
+// documents:           user_id+created_at, status, doc_type
+// contracts:           user_id+created_at, contract_type, status
+// templates:           doc_type, is_global, created_by
+// audit_logs:          user_id+created_at, action, resource_type
+// analysis_history:    user_id+created_at, contract_type, risk_level, user_email
+// law_documents:       title, status, domains, law_number
+// law_chunks:          law_id+article, domains
+// document_annotations: document_id, created_by

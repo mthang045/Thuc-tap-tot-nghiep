@@ -1,4 +1,4 @@
-﻿import { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Upload, FileText, CheckCircle, Scale, Sparkles, Shield, Zap } from 'lucide-react';
 import logoImage from '/logo.png';
 
@@ -221,7 +221,7 @@ export function UploadSection({ onFileUpload, isAnalyzing, analysisProgress }) {
               >
                 {selectedFile ? 'Chọn file khác' : 'Chọn file từ máy tính'}
               </button>
-              
+
               <p className="text-slate-500 mt-6">
                 Hỗ trợ: PDF, DOC, DOCX, TXT • Tối đa 10MB
               </p>
@@ -282,6 +282,7 @@ export function UploadSection({ onFileUpload, isAnalyzing, analysisProgress }) {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

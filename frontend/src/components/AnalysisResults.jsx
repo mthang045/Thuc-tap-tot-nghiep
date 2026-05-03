@@ -1,4 +1,4 @@
-﻿import { AlertTriangle, CheckCircle, Info, FileText, ArrowLeft, Download, TrendingUp, Shield, Sparkles } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Info, FileText, ArrowLeft, Download, TrendingUp, Shield, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import apiService from '../services/api';
 
@@ -23,18 +23,24 @@ export function AnalysisResults({ data, onReset }) {
   const handleDownloadPDF = async () => {
     setIsGeneratingPDF(true);
     try {
-      // Prepare data for PDF
+      // Prepare complete data for PDF report
       const pdfData = {
-        contract_name: data.contractName,
-        upload_date: data.uploadDate,
-        high_risk: data.highRisk,
-        medium_risk: data.mediumRisk,
-        low_risk: data.lowRisk,
-        total_issues: data.totalIssues,
-        issues: data.issues,
-        ai_analysis: data.aiAnalysis || '',
-        recommendations: data.summary
+        contract_name: data.filename || data.contractName || 'Hop_Dong',
+        upload_date: data.upload_time || data.uploadDate || new Date().toLocaleString('vi-VN'),
+        high_risk: data.highRisk || 0,
+        medium_risk: data.mediumRisk || 0,
+        low_risk: data.lowRisk || 0,
+        total_issues: data.totalIssues || (data.issues?.length || 0),
+        issues: data.issues || [],
+        ai_analysis: data.ai_analysis || data.aiAnalysis || '',
+        safety_score: data.safetyScore || 100,
       };
+
+      console.log('Generating PDF with data:', {
+        contract: pdfData.contract_name,
+        issues: pdfData.total_issues,
+        ai_analysis_length: pdfData.ai_analysis?.length || 0
+      });
 
       await apiService.generatePDF(pdfData);
     } catch (error) {
@@ -225,6 +231,24 @@ export function AnalysisResults({ data, onReset }) {
         </div>
       </div>
 
+      {/* Contract Info */}
+      <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div>
+            <span className="text-slate-400">Loại hợp đồng:</span>
+            <div className="text-slate-200 font-medium">{data.contractType || 'Không rõ'}</div>
+          </div>
+          <div>
+            <span className="text-slate-400">Mức rủi ro:</span>
+            <div className="text-slate-200 font-medium">{data.riskLevel || 'Không rõ'}</div>
+          </div>
+          <div>
+            <span className="text-slate-400">Ngày phân tích:</span>
+            <div className="text-slate-200 font-medium">{data.uploadDate || 'Không rõ'}</div>
+          </div>
+        </div>
+      </div>
+
       {/* Issues List */}
       <div className="space-y-6">
         <div className="flex items-center gap-3">
@@ -234,17 +258,59 @@ export function AnalysisResults({ data, onReset }) {
           <h2 className="text-cyan-100">Chi tiết các vấn đề phát hiện</h2>
         </div>
         
-        {data.issues.map((issue, index) => {
-          const config = getSeverityConfig(issue.severity);
+        {data.issues && data.issues.map((issue, index) => {
+          const issueType = issue.severity || issue.type || 'medium';
+          const config = getSeverityConfig(issueType);
           const Icon = config.icon;
-          
+
+          const issueTitle = issue.title || issue || '';
+          const issueDesc = issue.description || '';
+          const issueRef = issue.reference || issue.article || '';
+          const issueSuggestion = issue.suggestion || issue.recommendation || '';
+
           return (
             <div
               key={index}
-              className="group relative animate-fade-in"
+              className="relative animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Issue content here */}
+              <div className={`relative ${config.bgClass} border ${config.borderClass} rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden`}>
+                {index < data.highRisk && (
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-orange-500"></div>
+                )}
+                <div className="flex items-start gap-4">
+                  <div className={`flex-shrink-0 ${config.iconBg} p-2.5 rounded-xl`}>
+                    <Icon className={`w-5 h-5 ${config.textClass}`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h4 className={`font-semibold ${config.textClass}`}>
+                        {issueTitle}
+                      </h4>
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${config.badgeClass}`}>
+                        {config.label}
+                      </span>
+                    </div>
+                    {issueDesc && (
+                      <p className="text-slate-300 text-sm mb-2 leading-relaxed">
+                        {issueDesc}
+                      </p>
+                    )}
+                    {issueRef && (
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <span className="text-slate-500 text-xs">Điều luật:</span>
+                        <span className="text-cyan-400 text-xs font-medium">{issueRef}</span>
+                      </div>
+                    )}
+                    {issueSuggestion && (
+                      <div className="mt-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                        <div className="text-xs text-green-400 font-medium mb-1">Khuyến nghị:</div>
+                        <p className="text-slate-300 text-sm">{issueSuggestion}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           );
         })}
@@ -252,6 +318,26 @@ export function AnalysisResults({ data, onReset }) {
 
       {/* Enhanced Footer Info */}
       <div className="mt-10 relative">
+        {/* Summary */}
+        {data.summary && (
+          <div className="mb-6 relative animate-fade-in">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-2xl blur-xl"></div>
+            <div className="relative bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="bg-cyan-500/20 p-2 rounded-lg flex-shrink-0">
+                  <FileText className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div>
+                  <h4 className="text-cyan-200 font-semibold mb-2">Tóm tắt</h4>
+                  <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+                    {cleanMarkdownText(data.summary)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* AI DETAILED ANALYSIS SECTION */}
         {data.aiAnalysis && (
           <div className="mb-6 relative animate-fade-in">

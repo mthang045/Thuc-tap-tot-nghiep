@@ -3,8 +3,8 @@
 import * as React from "react";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
-} from "embla-carousel-react@8.6.0";
-import { ArrowLeft, ArrowRight } from "lucide-react@0.487.0";
+} from "embla-carousel-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { cn } from "./utils";
 import { Button } from "./button";
@@ -18,16 +18,16 @@ type CarouselProps = {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
-  setApi?: (api) => void;
+  setApi?: (api: CarouselApi) => void;
 };
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0];
-  api: ReturnType<typeof useEmblaCarousel>[1];
+  api: CarouselApi;
   scrollPrev: () => void;
   scrollNext: () => void;
-  canScrollPrev;
-  canScrollNext;
+  canScrollPrev: boolean;
+  canScrollNext: boolean;
 } & CarouselProps;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
@@ -50,15 +50,18 @@ function Carousel({
   className,
   children,
   ...props
-}"div"> & CarouselProps) {
+}: React.ComponentProps<"div"> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
-      axis);
+      axis: orientation === "horizontal" ? "x" : "y",
+    },
+    plugins,
+  );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
 
-  const onSelect = React.useCallback((api) => {
+  const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return;
     setCanScrollPrev(api.canScrollPrev());
     setCanScrollNext(api.canScrollNext());
@@ -73,7 +76,7 @@ function Carousel({
   }, [api]);
 
   const handleKeyDown = React.useCallback(
-    (event) => {
+    (event: React.KeyboardEvent) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         scrollPrev();
@@ -105,7 +108,7 @@ function Carousel({
     <CarouselContext.Provider
       value={{
         carouselRef,
-        api),
+        api,
         scrollPrev,
         scrollNext,
         canScrollPrev,
@@ -126,7 +129,7 @@ function Carousel({
   );
 }
 
-function CarouselContent({ className, ...props }"div">) {
+function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -138,14 +141,15 @@ function CarouselContent({ className, ...props }"div">) {
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" )}
+          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+        )}
         {...props}
       />
     </div>
   );
 }
 
-function CarouselItem({ className, ...props }"div">) {
+function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   const { orientation } = useCarousel();
 
   return (
@@ -155,7 +159,8 @@ function CarouselItem({ className, ...props }"div">) {
       data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" )}
+        orientation === "horizontal" ? "pl-4" : "mt-4",
+      )}
       {...props}
     />
   );
@@ -166,7 +171,7 @@ function CarouselPrevious({
   variant = "outline",
   size = "icon",
   ...props
-} Button>) {
+}: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -178,7 +183,8 @@ function CarouselPrevious({
         "absolute size-8 rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -left-12 -translate-y-1/2"
-          )}
+          : "-left-12 top-1/2 -translate-x-1/2 rotate-90",
+      )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
@@ -194,7 +200,7 @@ function CarouselNext({
   variant = "outline",
   size = "icon",
   ...props
-} Button>) {
+}: React.ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -206,7 +212,8 @@ function CarouselNext({
         "absolute size-8 rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -right-12 -translate-y-1/2"
-          )}
+          : "-right-12 top-1/2 -translate-x-1/2 rotate-90",
+      )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}

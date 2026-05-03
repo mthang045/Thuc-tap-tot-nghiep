@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Mail, Lock, LogIn, Eye, EyeOff } from 'lucide-react';
 
 export function LoginForm({ onLogin, onGoogleLogin, onForgotPassword }) {
@@ -7,6 +7,9 @@ export function LoginForm({ onLogin, onGoogleLogin, onForgotPassword }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [rememberLogin, setRememberLogin] = useState(() => {
+    return localStorage.getItem('legal-ai-remember') === 'true';
+  });
   const googleLoginRef = useRef(onGoogleLogin);
   const googleInitPromiseRef = useRef(null);
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
@@ -183,6 +186,11 @@ export function LoginForm({ onLogin, onGoogleLogin, onForgotPassword }) {
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
+            checked={rememberLogin}
+            onChange={(e) => {
+              setRememberLogin(e.target.checked);
+              localStorage.setItem('legal-ai-remember', e.target.checked);
+            }}
             className="w-4 h-4 bg-slate-800 border-slate-700 rounded text-cyan-500 focus:ring-cyan-500/20"
           />
           <span className="text-slate-400 text-sm">Ghi nhớ đăng nhập</span>

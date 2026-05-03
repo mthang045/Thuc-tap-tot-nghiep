@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.http import FileResponse, HttpResponse
 from django.middleware.csrf import get_token
 from .models import Contract, Analysis, Issue, UserProfile
 from .serializers import (
@@ -13,6 +14,14 @@ from .serializers import (
 )
 import sys
 import os
+import io
+
+try:
+    from docx import Document
+except Exception:
+    Document = None
+
+from .docx_formatter import format_document
 
 # Add src to path for Legal AI agent
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -319,3 +328,166 @@ def svm_detect_violation(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
+
+# ==================== TEMPLATE MANAGEMENT ====================
+
+# Map template IDs to file paths (relative to static/templates/)
+TEMPLATE_FILES = {
+    'hop_dong_mua_ban_hang_hoa': 'hop_dong_mua_ban_hang_hoa.txt',
+    'hop_dong_lao_dong': 'hop_dong_lao_dong.txt',
+    'hop_dong_bao_mat': 'hop_dong_bao_mat.txt',
+    'hop_dong_thue_nha': 'hop_dong_thue_nha.txt',
+    'hop_dong_cung_cap_dich_vu': 'hop_dong_cung_cap_dich_vu.txt',
+    'hop_dong_cho_vay_tien': 'hop_dong_cho_vay_tien.txt',
+    'giay_uy_quyen': 'giay_uy_quyen.txt',
+    'bien_ban_hop': 'bien_ban_hop.txt',
+    'quyet_dinh_bo_nhiem': 'quyet_dinh_bo_nhiem.txt',
+    'don_xin_nghi_viec': 'don_xin_nghi_viec.txt',
+}
+
+# Human-readable names for download filenames
+TEMPLATE_NAMES = {
+    'hop_dong_mua_ban_hang_hoa': 'Mau_Hop_Dong_Mua_Ban_Hang_Hoa',
+    'hop_dong_lao_dong': 'Mau_Hop_Dong_Lao_Dong',
+    'hop_dong_bao_mat': 'Mau_Thoa_Thuan_Bao_Mat_NDA',
+    'hop_dong_thue_nha': 'Mau_Hop_Dong_Thue_Nha_O',
+    'hop_dong_cung_cap_dich_vu': 'Mau_Hop_Dong_Cung_Cap_Dich_Vu',
+    'hop_dong_cho_vay_tien': 'Mau_Hop_Dong_Cho_Vay_Tien',
+    'giay_uy_quyen': 'Mau_Giay_Uy_Quyen',
+    'bien_ban_hop': 'Mau_Bien_Ban_Hop',
+    'quyet_dinh_bo_nhiem': 'Mau_Quyet_Dinh_Bo_Nhiem',
+    'don_xin_nghi_viec': 'Mau_Don_Xin_Nghi_Viec',
+}
+
+# Template metadata
+TEMPLATE_METADATA = {
+    'hop_dong_mua_ban_hang_hoa': {
+        'title': 'Hợp đồng mua bán hàng hóa',
+        'category': 'Thương mại',
+        'description': 'Mẫu hợp đồng mua bán hàng hóa theo quy định pháp luật Việt Nam.',
+        'tags': ['thương mại', 'mua bán', 'hàng hóa'],
+    },
+    'hop_dong_lao_dong': {
+        'title': 'Hợp đồng lao động',
+        'category': 'Nhân sự',
+        'description': 'Mẫu HĐLĐ theo Bộ luật Lao động 2019, bao gồm đầy đủ điều khoản về quyền và nghĩa vụ.',
+        'tags': ['nhân sự', 'lao động', 'Bộ luật Lao động'],
+    },
+    'hop_dong_bao_mat': {
+        'title': 'Thỏa thuận bảo mật (NDA)',
+        'category': 'Pháp lý',
+        'description': 'Thỏa thuận bảo mật thông tin giữa các bên.',
+        'tags': ['bảo mật', 'NDA', 'thỏa thuận'],
+    },
+    'hop_dong_thue_nha': {
+        'title': 'Hợp đồng thuê nhà ở',
+        'category': 'Bất động sản',
+        'description': 'Mẫu hợp đồng thuê nhà ở theo quy định của pháp luật.',
+        'tags': ['bất động sản', 'thuê nhà', 'nhà ở'],
+    },
+    'hop_dong_cung_cap_dich_vu': {
+        'title': 'Hợp đồng cung cấp dịch vụ',
+        'category': 'Thương mại',
+        'description': 'Mẫu hợp đồng cung cấp dịch vụ giữa các bên.',
+        'tags': ['dịch vụ', 'thương mại', 'hợp đồng'],
+    },
+    'hop_dong_cho_vay_tien': {
+        'title': 'Hợp đồng cho vay tiền',
+        'category': 'Tài chính',
+        'description': 'Mẫu hợp đồng cho vay tiền với lãi suất và điều khoản chi tiết.',
+        'tags': ['tài chính', 'cho vay', 'tiền tệ'],
+    },
+    'giay_uy_quyen': {
+        'title': 'Giấy ủy quyền',
+        'category': 'Pháp lý',
+        'description': 'Mẫu giấy ủy quyền cho cá nhân hoặc tổ chức.',
+        'tags': ['ủy quyền', 'pháp lý', 'cá nhân'],
+    },
+    'bien_ban_hop': {
+        'title': 'Biên bản họp',
+        'category': 'Nội bộ',
+        'description': 'Mẫu biên bản họp cho các cuộc họp công ty.',
+        'tags': ['nội bộ', 'biên bản', 'họp'],
+    },
+    'quyet_dinh_bo_nhiem': {
+        'title': 'Quyết định bổ nhiệm',
+        'category': 'Nhân sự',
+        'description': 'Mẫu quyết định bổ nhiệm chức vụ theo Luật Doanh nghiệp 2020.',
+        'tags': ['nhân sự', 'bổ nhiệm', 'doanh nghiệp'],
+    },
+    'don_xin_nghi_viec': {
+        'title': 'Đơn xin nghỉ việc',
+        'category': 'Nhân sự',
+        'description': 'Mẫu đơn xin nghỉ việc cho người lao động.',
+        'tags': ['nhân sự', 'nghỉ việc', 'đơn từ'],
+    },
+}
+
+
+def _build_docx_from_text(text_content, title):
+    """Build a formatted DOCX in memory from text content."""
+    if Document is None:
+        raise RuntimeError('python-docx is not installed on the server')
+
+    return format_document(text_content, title)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_templates(request):
+    """List all available contract templates."""
+    templates = []
+    for template_id, metadata in TEMPLATE_METADATA.items():
+        templates.append({
+            'id': template_id,
+            **metadata,
+        })
+    
+    return Response({
+        'success': True,
+        'templates': templates,
+        'total': len(templates),
+    })
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def download_template(request, template_id):
+    """Download a contract template as a properly formatted DOCX file."""
+    if template_id not in TEMPLATE_FILES:
+        return Response(
+            {'error': f'Template not found: {template_id}'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    filename = TEMPLATE_FILES[template_id]
+    download_name = TEMPLATE_NAMES.get(template_id, template_id)
+    metadata = TEMPLATE_METADATA.get(template_id, {})
+    title = metadata.get('title', download_name.replace('_', ' '))
+
+    backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = os.path.join(backend_dir, 'static', 'templates', filename)
+
+    if not os.path.exists(file_path):
+        return Response(
+            {'error': f'Template file not found on server: {filename}'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    with open(file_path, 'r', encoding='utf-8', errors='replace') as f:
+        text_content = f.read()
+
+    try:
+        docx_buffer = _build_docx_from_text(text_content, title)
+    except RuntimeError as e:
+        return Response(
+            {'error': str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+    response = HttpResponse(
+        docx_buffer.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    response['Content-Disposition'] = f'attachment; filename*=UTF-8\'\'{download_name}.docx'
+    return response

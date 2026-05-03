@@ -8,7 +8,7 @@ import { cn } from "./utils";
 function Label({
   className,
   ...props
-} LabelPrimitive.Root>) {
+}: React.ComponentProps<typeof LabelPrimitive.Root>) {
   return (
     <LabelPrimitive.Root
       data-slot="label"

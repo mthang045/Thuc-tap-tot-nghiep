@@ -14,6 +14,9 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('history/', views.history_view, name='history'),
     path('admin/stats/', views.stats_view, name='stats'),
+    # Template endpoints
+    path('templates/', views.list_templates, name='list_templates'),
+    path('templates/<str:template_id>/download/', views.download_template, name='download_template'),
     # SVM Classification endpoints
     path('svm/classify/', views.svm_classify_contract, name='svm_classify'),
     path('svm/detect-violation/', views.svm_detect_violation, name='svm_detect_violation'),

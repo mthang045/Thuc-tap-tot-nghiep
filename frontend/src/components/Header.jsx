@@ -1,12 +1,24 @@
 ﻿import { useEffect, useState } from 'react';
-import { LogIn, UserPlus, User, LogOut, FileText, Settings, Home, Crown, Shield } from 'lucide-react';
+import { LogIn, UserPlus, User, LogOut, FileText, Settings, Home, Crown, Shield, Lock, X } from 'lucide-react';
 import logoImage from '/logo.png';
 import { AuthModal } from './AuthModal';
 
-export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, currentPage, onLogin, onGoogleLogin, onLogout, onNavigate }) {
+export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, currentPage, userPlan, onLogin, onGoogleLogin, onLogout, onNavigate }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authView, setAuthView] = useState('login');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+
+  const normalizedUserPlan = String(userPlan || 'free').toLowerCase() === 'free' ? 'free' : 'pro';
+  const isPro = normalizedUserPlan === 'pro';
+
+  useEffect(() => {
+    if (!showToast) return;
+    const timer = setTimeout(() => setShowToast(false), 4000);
+    return () => clearTimeout(timer);
+  }, [showToast]);
 
   useEffect(() => {
     if (isAuthenticated && showAuthModal) {
@@ -80,6 +92,24 @@ export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, curren
                   >
                     <FileText className="w-4 h-4" />
                     Lịch sử
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (!isPro) {
+                        setIsUpgradeModalOpen(true);
+                        return;
+                      }
+                      onNavigate('templates');
+                    }}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                      currentPage === 'templates'
+                        ? 'bg-cyan-600/20 text-cyan-300 border border-cyan-500/30'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                  >
+                    <FileText className="w-4 h-4" />
+                    Mẫu tài liệu
+                    <Lock className="w-3 h-3 text-amber-400" />
                   </button>
                 </>
               )}
@@ -241,6 +271,22 @@ export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, curren
         </div>
       </header>
 
+      {/* Toast notification for non-Pro users */}
+      {showToast && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
+          <div className="flex items-center gap-3 px-5 py-3 bg-slate-800/95 backdrop-blur-xl border border-amber-500/50 rounded-xl shadow-2xl shadow-amber-500/20 max-w-md">
+            <Lock className="w-5 h-5 text-amber-400 flex-shrink-0" />
+            <p className="text-slate-200 text-sm leading-snug">{toastMessage}</p>
+            <button
+              onClick={() => setShowToast(false)}
+              className="text-slate-400 hover:text-slate-200 transition-colors ml-1 flex-shrink-0"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Auth Modal */}
       {showAuthModal && (
         <AuthModal
@@ -249,6 +295,55 @@ export function Header({ isAuthenticated, isAdmin, userEmail, userAvatar, curren
           onLogin={handleLoginSuccess}
           onGoogleLogin={onGoogleLogin}
         />
+      )}
+
+      {/* Upgrade Modal */}
+      {isUpgradeModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          onClick={() => setIsUpgradeModalOpen(false)}
+        >
+          <div
+            className="bg-slate-900 border border-cyan-500/30 rounded-2xl p-8 max-w-md w-full shadow-2xl shadow-cyan-500/10"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Crown Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="bg-gradient-to-br from-amber-400 to-orange-500 p-4 rounded-full shadow-lg shadow-amber-500/40">
+                <Crown className="w-10 h-10 text-white" />
+              </div>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-center text-2xl font-bold text-white mb-3">
+              Tính năng dành riêng cho gói Pro
+            </h3>
+
+            {/* Description */}
+            <p className="text-slate-400 text-center text-sm leading-relaxed mb-8">
+              Kho mẫu hợp đồng và tài liệu pháp lý thông minh chỉ áp dụng cho tài khoản đã nâng cấp. Trải nghiệm trọn vẹn sức mạnh AI để tối ưu hóa công việc của bạn ngay hôm nay!
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setIsUpgradeModalOpen(false)}
+                className="flex-1 py-3 rounded-xl border border-slate-600 text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all text-sm font-medium"
+              >
+                Để sau
+              </button>
+              <button
+                onClick={() => {
+                  setIsUpgradeModalOpen(false);
+                  onNavigate('pricing');
+                }}
+                className="flex-1 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/30 transition-all text-sm font-semibold"
+              >
+                Nâng cấp ngay
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

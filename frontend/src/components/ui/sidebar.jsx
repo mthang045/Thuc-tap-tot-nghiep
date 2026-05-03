@@ -237,7 +237,7 @@ function SidebarTrigger({
   className,
   onClick,
   ...props
-} Button>) {
+}: React.ComponentProps<typeof Button>) {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -301,7 +301,7 @@ function SidebarInset({ className, ...props }"main">) {
 function SidebarInput({
   className,
   ...props
-} Input>) {
+}: React.ComponentProps<typeof Input>) {
   return (
     <Input
       data-slot="sidebar-input"
@@ -337,7 +337,7 @@ function SidebarFooter({ className, ...props }"div">) {
 function SidebarSeparator({
   className,
   ...props
-} Separator>) {
+}: React.ComponentProps<typeof Separator>) {
   return (
     <Separator
       data-slot="sidebar-separator"
@@ -348,7 +348,7 @@ function SidebarSeparator({
   );
 }
 
-function SidebarContent({ className, ...props }"div">) {
+function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-content"

@@ -1,0 +1,3 @@
+﻿
+    legal_docs_collection = mongo_db['law_documents']
+    print(f"✅ Collections: users, analysis_history, contracts, law_documents")

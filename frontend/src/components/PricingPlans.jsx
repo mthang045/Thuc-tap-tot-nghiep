@@ -1,5 +1,6 @@
-﻿import { useState } from 'react';
-import { Check, X, Zap, Crown, Building2, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { Check, X, Zap, Crown, Building2, Sparkles, FileText } from 'lucide-react';
+import { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, BorderStyle, AlignmentType, HeadingLevel } from 'docx';
 import paymentService from '../services/payment';
 
 export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
@@ -8,18 +9,14 @@ export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [templateModalFor, setTemplateModalFor] = useState('');
+  const [allTemplates, setAllTemplates] = useState(null);
+  const [isLoadingTemplates, setIsLoadingTemplates] = useState(false);
   const normalizedCurrentPlan = String(currentPlan || 'free').toLowerCase() === 'free' ? 'free' : 'pro';
-  const templates = [
-    { id: 't1', title: 'Mẫu hợp đồng mua bán', desc: 'Bao gồm điều khoản thanh toán, giao nhận, bảo hành.' },
-    { id: 't2', title: 'Mẫu hợp đồng lao động', desc: 'Quy định công việc, lương thưởng, chấm dứt hợp đồng.' },
-    { id: 't3', title: 'Mẫu NDA (Bảo mật)', desc: 'Bảo vệ thông tin nhạy cảm giữa hai bên.' }
-  ];
 
   const renderComparisonCell = (value) => {
     const text = String(value || '').trim();
     const excludedKeywords = ['Không', '✗', '✖', 'No', 'N/A'];
     const isExcluded = excludedKeywords.includes(text);
-
     return (
       <div className="flex items-center justify-center gap-3">
         {isExcluded ? (
@@ -34,39 +31,55 @@ export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
     );
   };
 
+  const fetchAllTemplates = async () => {
+    setIsLoadingTemplates(true);
+    try {
+      const resp = await fetch('/v1/templates', { credentials: 'include' });
+      if (resp.ok) {
+        const data = await resp.json();
+        setAllTemplates(data.templates || []);
+      }
+    } catch (e) {
+      console.error('Failed to load templates', e);
+    } finally {
+      setIsLoadingTemplates(false);
+    }
+  };
+
   const openTemplateModal = (planId) => {
     setTemplateModalFor(planId);
+    fetchAllTemplates();
     setShowTemplateModal(true);
   };
 
   const downloadTemplate = async (templateId) => {
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-      const resp = await fetch(`${apiBaseUrl}/templates/${templateId}/download`, {
+      const resp = await fetch(`/api/templates/${templateId}/download`, {
         method: 'GET',
         credentials: 'include'
       });
 
       if (!resp.ok) {
-        const err = await resp.json().catch(() => ({}));
-        alert('Không thể tải file: ' + (err.error || resp.statusText));
+        // Đọc text trước, thử parse thành JSON
+        const text = await resp.text();
+        try {
+          const err = JSON.parse(text);
+          alert('Không thể tải file: ' + (err.error || resp.statusText));
+        } catch {
+          alert('Không thể tải file: ' + resp.statusText);
+        }
         return;
       }
 
       const blob = await resp.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
-      // try to extract filename from Content-Disposition
       const cd = resp.headers.get('Content-Disposition');
       let filename = 'template.txt';
       if (cd) {
         const match = /filename\*=UTF-8''([^;]+)|filename="?([^";]+)"?/.exec(cd);
         if (match) filename = decodeURIComponent(match[1] || match[2] || filename);
-      } else {
-        // fallback to templateId
-        filename = templateId + '.txt';
       }
-
       a.href = url;
       a.download = filename;
       document.body.appendChild(a);
@@ -78,6 +91,210 @@ export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
       alert('Lỗi khi tải file: ' + err.message);
     }
   };
+
+  const exportPricingPlansWord = async () => {
+    const formatPrice = (price) => {
+      return new Intl.NumberFormat('vi-VN').format(price);
+    };
+
+    const borderStyle = { style: BorderStyle.SINGLE, size: 1, color: "666666" };
+    
+    const headerRow = new TableRow({
+      children: [
+        new TableCell({
+          children: [new Paragraph({ children: [new TextRun({ text: "Tính năng", bold: true })] })],
+          width: { size: 50, type: WidthType.PERCENTAGE },
+          shading: { fill: "0ea5e9", type: "clear" },
+          borders: { top: borderStyle, bottom: borderStyle, left: borderStyle, right: borderStyle },
+        }),
+        new TableCell({
+          children: [new Paragraph({ children: [new TextRun({ text: "Thường", bold: true })], alignment: AlignmentType.CENTER })],
+          width: { size: 25, type: WidthType.PERCENTAGE },
+          shading: { fill: "334155", type: "clear" },
+          borders: { top: borderStyle, bottom: borderStyle, left: borderStyle, right: borderStyle },
+        }),
+        new TableCell({
+          children: [new Paragraph({ children: [new TextRun({ text: "Pro", bold: true })], alignment: AlignmentType.CENTER })],
+          width: { size: 25, type: WidthType.PERCENTAGE },
+          shading: { fill: "0891b2", type: "clear" },
+          borders: { top: borderStyle, bottom: borderStyle, left: borderStyle, right: borderStyle },
+        }),
+      ],
+    });
+
+    const featureRows = [
+      { name: "Phân tích/tháng", free: "5", pro: "50" },
+      { name: "Lưu trữ", free: "30 ngày", pro: "Vĩnh viễn" },
+      { name: "Kích thước file", free: "10MB", pro: "50MB" },
+      { name: "Loại file", free: "PDF, DOCX", pro: "PDF, DOCX, TXT" },
+      { name: "Phân tích điều khoản", free: "Cơ bản", pro: "Nâng cao" },
+      { name: "Đề xuất khuyến nghị", free: "Có", pro: "Có (Chi tiết)" },
+      { name: "So sánh hợp đồng", free: "Không", pro: "Có" },
+      { name: "Phân tích ngôn ngữ", free: "Tiếng Việt", pro: "Tiếng Việt" },
+      { name: "Chat hỏi đáp", free: "Không", pro: "Có" },
+      { name: "Báo cáo PDF", free: "Có", pro: "Có" },
+      { name: "Báo cáo Word", free: "Không", pro: "Có" },
+      { name: "Tùy chỉnh template", free: "Không", pro: "Có" },
+    ];
+
+    const dataRows = featureRows.map((f, idx) => 
+      new TableRow({
+        children: [
+          new TableCell({
+            children: [new Paragraph({ children: [new TextRun({ text: f.name })] })],
+            borders: { top: borderStyle, bottom: borderStyle, left: borderStyle, right: borderStyle },
+          }),
+          new TableCell({
+            children: [new Paragraph({ 
+              children: [new TextRun({ 
+                text: f.free === "Không" ? "✗" : f.free, 
+                color: f.free === "Không" ? "ef4444" : "334155" 
+              })], 
+              alignment: AlignmentType.CENTER 
+            })],
+            borders: { top: borderStyle, bottom: borderStyle, left: borderStyle, right: borderStyle },
+          }),
+          new TableCell({
+            children: [new Paragraph({ 
+              children: [new TextRun({ text: f.pro, color: "0ea5e9" })], 
+              alignment: AlignmentType.CENTER 
+            })],
+            borders: { top: borderStyle, bottom: borderStyle, left: borderStyle, right: borderStyle },
+          }),
+        ],
+      })
+    );
+
+    const table = new Table({
+      rows: [headerRow, ...dataRows],
+      width: { size: 100, type: WidthType.PERCENTAGE },
+    });
+
+    const doc = new Document({
+      sections: [{
+        properties: {},
+        children: [
+          new Paragraph({
+            children: [
+              new TextRun({ 
+                text: "BẢNG GIÁ DỊCH VỤ", 
+                bold: true, 
+                size: 48,
+                color: "0ea5e9"
+              }),
+            ],
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 200 },
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ 
+                text: "Nâng cấp để sử dụng đầy đủ sức mạnh AI phân tích hợp đồng chuyên nghiệp", 
+                size: 24,
+                color: "64748b"
+              }),
+            ],
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 400 },
+          }),
+          new Paragraph({
+            children: [new TextRun({ text: "SO SÁNH CHI TIẾT CÁC GÓI", bold: true, size: 28 })],
+            spacing: { after: 200 },
+          }),
+          table,
+          new Paragraph({ spacing: { before: 400, after: 200 } }),
+          new Paragraph({
+            children: [new TextRun({ text: "GÓI THƯỜNG", bold: true, size: 32, color: "334155" })],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ text: "Miễn phí", bold: true, size: 36, color: "334155" }),
+            ],
+          }),
+          new Paragraph({
+            children: [new TextRun({ text: "Dùng thử các tính năng cơ bản", size: 22, color: "64748b" })],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ text: "5 phân tích/tháng", size: 22 }),
+              new TextRun({ text: "  •  ", size: 22 }),
+              new TextRun({ text: "Lưu trữ 30 ngày", size: 22 }),
+              new TextRun({ text: "  •  ", size: 22 }),
+              new TextRun({ text: "File 10MB", size: 22 }),
+            ],
+            spacing: { before: 100, after: 100 },
+          }),
+          new Paragraph({ spacing: { before: 300, after: 200 } }),
+          new Paragraph({
+            children: [new TextRun({ text: "GÓI PRO", bold: true, size: 32, color: "0891b2" })],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ text: `${formatPrice(299000)}đ/tháng`, bold: true, size: 36, color: "0891b2" }),
+            ],
+          }),
+          new Paragraph({
+            children: [new TextRun({ text: "Cho cá nhân và doanh nghiệp nhỏ", size: 22, color: "64748b" })],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ text: "50 phân tích/tháng", size: 22 }),
+              new TextRun({ text: "  •  ", size: 22 }),
+              new TextRun({ text: "Lưu trữ vĩnh viễn", size: 22 }),
+              new TextRun({ text: "  •  ", size: 22 }),
+              new TextRun({ text: "File 50MB", size: 22 }),
+            ],
+            spacing: { before: 100, after: 100 },
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ text: `Tiết kiệm ${formatPrice(299000 * 12 - 2990000)}đ/năm khi chọn thanh toán hàng năm`, size: 20, italics: true, color: "22c55e" }),
+            ],
+          }),
+          new Paragraph({ spacing: { before: 400 } }),
+          new Paragraph({
+            children: [new TextRun({ text: `Ngày xuất: ${new Date().toLocaleDateString('vi-VN')}`, size: 18, color: "94a3b8" })],
+            alignment: AlignmentType.CENTER,
+          }),
+        ],
+      }],
+    });
+
+    const blob = await Packer.toBlob(doc);
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'bang-gia-dich-vu.docx';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const categoryIcons = {
+    'Thương mại': '🏪',
+    'Nhân sự': '👥',
+    'Pháp lý': '⚖️',
+    'Bất động sản': '🏠',
+    'Tài chính': '💰',
+    'Nội bộ': '📋',
+  };
+
+  const templates = allTemplates || [
+    { template_id: 't1', title: 'Hợp đồng mua bán hàng hóa', category: 'Thương mại', description: 'Mẫu hợp đồng mua bán hàng hóa.' },
+    { template_id: 't2', title: 'Hợp đồng lao động', category: 'Nhân sự', description: 'Mẫu HĐLĐ theo Bộ luật Lao động 2019.' },
+    { template_id: 't3', title: 'Thỏa thuận bảo mật (NDA)', category: 'Pháp lý', description: 'Thỏa thuận bảo mật thông tin.' },
+    { template_id: 't4', title: 'Hợp đồng thuê nhà ở', category: 'Bất động sản', description: 'Mẫu hợp đồng thuê nhà.' },
+    { template_id: 't5', title: 'Hợp đồng cung cấp dịch vụ', category: 'Thương mại', description: 'Mẫu hợp đồng dịch vụ.' },
+    { template_id: 't6', title: 'Hợp đồng giao khoán', category: 'Thương mại', description: 'Mẫu hợp đồng giao khoán.' },
+    { template_id: 't7', title: 'Quy chế nội bộ công ty', category: 'Nội bộ', description: 'Mẫu quy chế nội bộ.' },
+    { template_id: 't8', title: 'Giấy ủy quyền', category: 'Pháp lý', description: 'Mẫu giấy ủy quyền.' },
+    { template_id: 't9', title: 'Biên bản họp', category: 'Nội bộ', description: 'Mẫu biên bản họp.' },
+    { template_id: 't10', title: 'Hợp đồng vay tiền', category: 'Tài chính', description: 'Mẫu hợp đồng vay tiền.' },
+    { template_id: 't11', title: 'Quyết định bổ nhiệm', category: 'Nhân sự', description: 'Mẫu quyết định bổ nhiệm.' },
+    { template_id: 't12', title: 'Đơn xin nghỉ việc', category: 'Nhân sự', description: 'Mẫu đơn xin nghỉ việc.' },
+    { template_id: 't13', title: 'Hợp đồng thuê nhà', category: 'Bất động sản', description: 'Mẫu hợp đồng thuê nhà chi tiết.' },
+  ];
 
   const handleUpgradeClick = (planId) => {
     if (planId === normalizedCurrentPlan) {
@@ -371,8 +588,6 @@ export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
                 <span className="font-semibold">VNPay</span>
                 <span className="text-sm">Visa, Mastercard, ATM</span>
               </button>
-
-
             </div>
 
             <button
@@ -448,32 +663,93 @@ export function PricingPlans({ onUpgrade, currentPlan = 'free' }) {
 
       {/* Template Modal */}
       {showTemplateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 max-w-xl w-full">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-cyan-100 text-lg">Mẫu template ({templateModalFor === 'pro' ? 'Pro' : 'Thường'})</h3>
-              <button onClick={() => setShowTemplateModal(false)} className="text-slate-400">Đóng</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowTemplateModal(false)}>
+          <div className="bg-slate-900 border border-cyan-500/30 rounded-2xl p-6 max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-5 flex-shrink-0">
+              <div>
+                <h3 className="text-cyan-100 text-xl font-bold">
+                  {templateModalFor === 'pro' ? '📄 Thư viện mẫu tài liệu Pro' : '🔒 Nâng cấp để sử dụng'}
+                </h3>
+                <p className="text-slate-400 text-sm mt-1">
+                  {templateModalFor === 'pro' ? `${allTemplates?.length || 0} mẫu hợp đồng & tài liệu pháp lý` : 'Gói Pro để truy cập tất cả 13 mẫu tài liệu'}
+                </p>
+              </div>
+              <button onClick={() => setShowTemplateModal(false)} className="text-slate-400 hover:text-white text-2xl leading-none">&times;</button>
             </div>
 
-            <div className="space-y-4">
-              {templates.map(t => (
-                <div key={t.id} className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-slate-200 font-semibold">{t.title}</div>
-                      <div className="text-slate-400 text-sm">{t.desc}</div>
+            {templateModalFor === 'free' ? (
+              <div className="flex-1 flex flex-col items-center justify-center py-8">
+                <div className="text-6xl mb-4">🔒</div>
+                <h4 className="text-white text-xl font-bold mb-2">Nội dung chỉ dành cho Pro</h4>
+                <p className="text-slate-400 text-center mb-6 max-w-md">
+                  Mở khóa 13 mẫu hợp đồng và tài liệu pháp lý chuyên nghiệp để sử dụng ngay hôm nay.
+                </p>
+                <div className="grid grid-cols-3 gap-3 mb-6 max-w-md">
+                  {['Hợp đồng mua bán', 'Hợp đồng thuê nhà', 'Hợp đồng dịch vụ', 'Hợp đồng lao động', 'Thỏa thuận NDA', 'Hợp đồng vay tiền', 'Biên bản họp', 'Quy chế nội bộ'].map((name, i) => (
+                    <div key={i} className="bg-slate-800/50 rounded-lg px-3 py-2 text-slate-500 text-xs text-center border border-slate-700/50">
+                      {name}
                     </div>
-                    <div>
-                      {templateModalFor === 'pro' ? (
-                        <button onClick={() => downloadTemplate(t.id)} className="px-3 py-2 bg-cyan-600 text-white rounded-lg">Tải về</button>
-                      ) : (
-                        <button onClick={() => { setShowTemplateModal(false); handleUpgradeClick('pro'); }} className="px-3 py-2 bg-amber-600 text-white rounded-lg">Nâng cấp</button>
-                      )}
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+                <button onClick={() => { setShowTemplateModal(false); handleUpgradeClick('pro'); }} className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-semibold shadow-lg shadow-cyan-500/30 hover:from-cyan-400 hover:to-blue-400 transition-all">
+                  Nâng cấp Pro ngay
+                </button>
+              </div>
+            ) : isLoadingTemplates ? (
+              <div className="flex-1 flex items-center justify-center">
+                <div className="animate-spin w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full"></div>
+                <span className="ml-3 text-slate-400">Đang tải danh sách...</span>
+              </div>
+            ) : (
+              <div className="overflow-y-auto flex-1 space-y-6 pr-2">
+                {/* Group templates by category */}
+                {['Thương mại', 'Nhân sự', 'Pháp lý', 'Bất động sản', 'Tài chính', 'Nội bộ'].map(cat => {
+                  const catTemplates = (allTemplates || []).filter(t => t.category === cat);
+                  if (!catTemplates.length) return null;
+                  return (
+                    <div key={cat}>
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-xl">{categoryIcons[cat] || '📄'}</span>
+                        <h4 className="text-cyan-200 font-semibold">{cat}</h4>
+                        <div className="flex-1 h-px bg-slate-700/50"></div>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {catTemplates.map(t => (
+                          <div key={t.template_id} className="group bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 hover:border-cyan-500/40 hover:bg-slate-800/80 transition-all">
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="flex-1 min-w-0">
+                                <h5 className="text-slate-100 font-semibold mb-1 group-hover:text-cyan-200 transition-colors">{t.title || t.name}</h5>
+                                <p className="text-slate-400 text-xs leading-relaxed line-clamp-2">{t.description}</p>
+                                <div className="flex flex-wrap gap-1 mt-2">
+                                  {t.tags?.slice(0, 3).map(tag => (
+                                    <span key={tag} className="px-2 py-0.5 bg-slate-700/50 text-slate-500 text-[10px] rounded-full">{tag}</span>
+                                  ))}
+                                </div>
+                              </div>
+                              <button
+                                onClick={() => downloadTemplate(t.template_id)}
+                                className="flex-shrink-0 w-9 h-9 bg-cyan-600/20 hover:bg-cyan-500 text-cyan-400 hover:text-white rounded-lg flex items-center justify-center transition-all border border-cyan-500/30 hover:border-cyan-400"
+                                title="Tải về"
+                              >
+                                <FileText className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {templateModalFor === 'pro' && (
+              <div className="mt-4 pt-4 border-t border-slate-700/50 flex-shrink-0">
+                <p className="text-slate-500 text-xs text-center">
+                  💡 Tất cả mẫu tài liệu chỉ mang tính tham khảo. Vui lòng tham khảo ý kiến luật sư trước khi sử dụng.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       )}

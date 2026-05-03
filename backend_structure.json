@@ -1,0 +1,66 @@
+[
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\groq_simple.py",
+    "size": 2249,
+    "flask": false,
+    "fastapi": false,
+    "route": false,
+    "api": true
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\test_api.py",
+    "size": 1761,
+    "flask": false,
+    "fastapi": false,
+    "route": false,
+    "api": true
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\config\\settings.py",
+    "size": 371,
+    "flask": true,
+    "fastapi": false,
+    "route": false,
+    "api": false
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\src\\db.py",
+    "size": 26998,
+    "flask": false,
+    "fastapi": true,
+    "route": false,
+    "api": false
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\src\\routes\\contracts.py",
+    "size": 348,
+    "flask": false,
+    "fastapi": false,
+    "route": true,
+    "api": false
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\src\\routes\\__init__.py",
+    "size": 21,
+    "flask": false,
+    "fastapi": false,
+    "route": true,
+    "api": false
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\src\\services\\llm_provider.py",
+    "size": 4609,
+    "flask": false,
+    "fastapi": false,
+    "route": false,
+    "api": true
+  },
+  {
+    "file": "C:\\Users\\buimi\\OneDrive\\Documents\\Thực tập\\backend\\templates\\components.py",
+    "size": 13929,
+    "flask": true,
+    "fastapi": false,
+    "route": false,
+    "api": false
+  }
+]

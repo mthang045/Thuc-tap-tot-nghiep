@@ -7,6 +7,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import io
 import shutil
 import uuid
 from datetime import datetime, timedelta
@@ -27,6 +28,57 @@ from src.resource_config import (
     AUTO_CLEANUP_UPLOADS, CLEANUP_AFTER_HOURS, SESSION_LIFETIME,
     ENABLE_RATE_LIMIT, RATE_LIMIT_PER_MINUTE
 )
+
+# ML Models - Lazy loading (từ simple_api.py)
+_ml_models_loaded = False
+_svm_classifier = None
+_bm25_searcher = None
+_pageindex_manager = None
+
+
+def get_svm_classifier():
+    """Lazy load SVM classifier"""
+    global _svm_classifier, _ml_models_loaded
+    if _svm_classifier is None and not _ml_models_loaded:
+        _ml_models_loaded = True
+        try:
+            from ml_models import get_svm_classifier as _get_svm
+            _svm_classifier = _get_svm()
+            print("[OK] SVM classifier loaded")
+        except Exception as e:
+            print(f"[WARN] SVM classifier load failed: {e}")
+            _svm_classifier = None
+    return _svm_classifier
+
+
+def get_bm25_searcher():
+    """Lazy load BM25 searcher"""
+    global _bm25_searcher, _ml_models_loaded
+    if _bm25_searcher is None and not _ml_models_loaded:
+        _ml_models_loaded = True
+        try:
+            from bm25_search_v2 import get_bm25_searcher as _get_bm25
+            _bm25_searcher = _get_bm25()
+            print("[OK] BM25 searcher loaded")
+        except Exception as e:
+            print(f"[WARN] BM25 searcher load failed: {e}")
+            _bm25_searcher = None
+    return _bm25_searcher
+
+
+def get_pageindex_retriever():
+    """Lazy load PageIndex retriever"""
+    global _pageindex_manager
+    if _pageindex_manager is None:
+        try:
+            from pageindex_rag import PageIndexManager
+            _pageindex_manager = PageIndexManager(cache_file='embeddings/pageindex_cache.pkl')
+            _pageindex_manager.build_index(force_rebuild=False)
+            print("[OK] PageIndex system loaded")
+        except Exception as e:
+            print(f"[WARN] PageIndex load failed: {e}")
+            _pageindex_manager = None
+    return _pageindex_manager.get_retriever() if _pageindex_manager else None
 
 # MongoDB Connection
 import pymongo
@@ -64,7 +116,7 @@ try:
     try:
         users_collection.create_index('email', unique=True)
     except Exception as e:
-        print(f"⚠️ Email index creation failed: {e}")
+        print(f"[WARNING] Email index creation failed: {e}")
 
     try:
         username_indexes = []
@@ -85,7 +137,7 @@ try:
                     try:
                         users_collection.drop_index(name)
                     except Exception as e:
-                        print(f"⚠️ Failed to drop username index {name}: {e}")
+                        print(f"[WARNING] Failed to drop username index {name}: {e}")
 
             users_collection.create_index(
                 [('username', 1)],
@@ -94,20 +146,20 @@ try:
                 partialFilterExpression={'username': {'$type': 'string'}},
             )
     except Exception as e:
-        print(f"⚠️ Username index setup failed: {e}")
+        print(f"[WARNING] Username index setup failed: {e}")
 
     try:
         analysis_collection.create_index([('user', 1), ('timestamp', -1)])
         payments_collection.create_index('txn_ref', unique=True)
     except Exception as e:
-        print(f"⚠️ Other indexes creation failed: {e}")
+        print(f"[WARNING] Other indexes creation failed: {e}")
     
-    print(f"✅ MongoDB connected: {MONGODB_DB}")
-    print(f"✅ Collections: users, analysis_history, contracts, legal_documents")
+        print(f"OK - MongoDB connected: {MONGODB_DB}")
+        print(f"OK - Collections: users, analysis_history, contracts, legal_documents")
     MONGODB_CONNECTED = True
 except Exception as e:
-    print(f"⚠️ MongoDB connection failed: {e}")
-    print("⚠️ Will use in-memory storage instead")
+    print(f"WARNING - MongoDB connection failed: {e}")
+    print("WARNING - Will use in-memory storage instead")
     MONGODB_CONNECTED = False
     mongo_db = None
     users_collection = None
@@ -194,7 +246,7 @@ def cleanup_old_files():
                     os.remove(filepath)
                     print(f"✓ Cleaned up old file: {filename}")
                 except Exception as e:
-                    print(f"⚠️ Error cleaning {filename}: {e}")
+                    print(f"[WARNING] Error cleaning {filename}: {e}")
 
 def rate_limit(f):
     """Decorator để giới hạn số requests"""
@@ -998,7 +1050,7 @@ def upload_avatar():
             try:
                 os.remove(old_filepath)
             except Exception as e:
-                print(f"⚠️ Failed to delete old avatar: {e}")
+                print(f"[WARNING] Failed to delete old avatar: {e}")
 
     if result.modified_count == 0:
         return jsonify({'success': False, 'error': 'Không thể cập nhật avatar'}), 500
@@ -1029,7 +1081,7 @@ def delete_avatar():
             try:
                 os.remove(avatar_path)
             except Exception as e:
-                print(f"⚠️ Failed to remove avatar file: {e}")
+                print(f"[WARNING] Failed to remove avatar file: {e}")
 
     result = users_collection.update_one(
         {'email': session['user_email']},
@@ -1435,9 +1487,9 @@ def upload_file():
             if MONGODB_CONNECTED and analysis_collection is not None:
                 try:
                     analysis_collection.insert_one(history_doc)
-                    print("✅ Saved to MongoDB history")
+                    print("[OK] Saved to MongoDB history")
                 except Exception as e:
-                    print(f"⚠️ Failed to save to MongoDB: {e}")
+                    print(f"[WARNING] Failed to save to MongoDB: {e}")
                     # Fallback to memory
                     ANALYSIS_HISTORY.append({
                         'id': len(ANALYSIS_HISTORY) + 1,
@@ -1509,13 +1561,13 @@ def get_history():
                 }
                 user_history.append(history_item)
             
-            print(f"✅ Loaded {len(user_history)} items from MongoDB")
+            print(f"[OK] Loaded {len(user_history)} items from MongoDB")
             return jsonify({
                 'success': True,
                 'history': user_history
             })
         except Exception as e:
-            print(f"⚠️ MongoDB query failed: {e}")
+            print(f"[WARNING] MongoDB query failed: {e}")
             # Fallback to memory
     
     # Fallback: Lấy từ memory nếu MongoDB không khả dụng
@@ -1873,6 +1925,135 @@ def _docx_blank_line(length=72):
     return '.' * length
 
 
+@app.route('/api/chat/', methods=['POST', 'OPTIONS'])
+def chat():
+    """AI Legal Assistant - chat about contracts and legal questions"""
+    if request.method == 'OPTIONS':
+        return '', 200
+
+    try:
+        data = request.get_json(force=True)
+    except Exception:
+        return jsonify({'success': False, 'error': 'Invalid JSON body'}), 400
+
+    message = data.get('message', '').strip()
+    history = data.get('history', []) or []
+    context = data.get('context', {}) or {}
+
+    if not message:
+        return jsonify({'success': False, 'error': 'Message is required'}), 400
+
+    import os
+    api_key = os.environ.get('GROQ_API_KEY')
+
+    if not api_key or api_key == 'your-groq-api-key-here':
+        return jsonify({
+            'success': False,
+            'error': (
+                'Groq API key chưa được cấu hình. '
+                'Vui lòng thêm GROQ_API_KEY vào file backend/.env '
+                '(lấy key tại https://console.groq.com/keys)'
+            )
+        }), 503
+
+    contract_text = context.get('contract_text', '')
+
+    # Build system prompt
+    system_prompt = (
+        "Bạn là một trợ lý pháp lý AI chuyên nghiệp. "
+        "Hãy trả lời bằng tiếng Việt, ngắn gọn, chính xác và hữu ích. "
+        "Nếu câu hỏi liên quan đến hợp đồng được cung cấp, hãy phân tích và giải thích rõ ràng. "
+        "Nếu không chắc chắn, hãy nói rõ bạn không biết và khuyên người dùng tham khảo luật sư. "
+        "Tuyệt đối không đưa ra lời khuyên pháp lý chính thức thay thế ý kiến luật sư."
+    )
+
+    # Build conversation history (last 10 messages)
+    conversation_history = []
+    for msg in history[-10:]:
+        role = msg.get('role', '')
+        content = msg.get('content', '')
+        if role == 'user':
+            conversation_history.append({'role': 'user', 'content': content})
+        elif role == 'assistant':
+            conversation_history.append({'role': 'assistant', 'content': content})
+
+    # Assemble messages for Groq
+    messages = [
+        {'role': 'system', 'content': system_prompt}
+    ]
+
+    # Inject contract context as a user message if available
+    if contract_text:
+        messages.append({
+            'role': 'user',
+            'content': f'--- NỘI DUNG HỢP ĐỒNG (tham khảo) ---\n{contract_text[:3000]}\n--- HẾT NỘI DUNG ---'
+        })
+        conversation_history.insert(0, {
+            'role': 'assistant',
+            'content': 'Tôi đã tiếp nhận nội dung hợp đồng. Bạn có thể đặt câu hỏi.'
+        })
+
+    messages.extend(conversation_history)
+    messages.append({'role': 'user', 'content': message})
+
+    # Call Groq API
+    try:
+        import groq
+        client = groq.Groq(api_key=api_key)
+
+        completion = client.chat.completions.create(
+            model='llama-3.3-70b-versatile',
+            messages=messages,
+            temperature=0.3,
+            max_tokens=2048
+        )
+
+        reply = completion.choices[0].message.content.strip()
+        return jsonify({'success': True, 'reply': reply})
+
+    except groq.AuthenticationError:
+        return jsonify({
+            'success': False,
+            'error': 'Groq API key không hợp lệ. Vui lòng kiểm tra lại GROQ_API_KEY trong file backend/.env'
+        }), 401
+
+    except groq.RateLimitError:
+        return jsonify({
+            'success': False,
+            'error': 'Đã vượt giới hạn số lần gọi API (Rate Limit). Vui lòng chờ và thử lại sau.'
+        }), 429
+
+    except groq.APIConnectionError as e:
+        print(f'[Chat] Groq connection error: {e}')
+        return jsonify({
+            'success': False,
+            'error': 'Không thể kết nối đến máy chủ Groq. Vui lòng kiểm tra kết nối mạng và thử lại.'
+        }), 503
+
+    except groq.APIStatusError as e:
+        print(f'[Chat] Groq API status error: {e.status_code} - {e.response}')
+        return jsonify({
+            'success': False,
+            'error': f'Groq API trả về lỗi (mã {e.status_code}). Vui lòng thử lại sau.'
+        }), 502
+
+    except Exception as e:
+        print(f'[Chat] Unexpected error: {type(e).__name__}: {e}')
+        return jsonify({
+            'success': False,
+            'error': 'Đã xảy ra lỗi không mong muốn khi xử lý yêu cầu. Vui lòng thử lại.'
+        }), 500
+
+
+@app.route('/api/chat/history', methods=['GET', 'OPTIONS'])
+def chat_history():
+    """Get chat history"""
+    if request.method == 'OPTIONS':
+        return '', 200
+    # Currently using localStorage on frontend; this endpoint is a placeholder
+    return jsonify({'success': True, 'messages': []})
+
+
 def _docx_add_center_paragraph(doc, text, *, bold=False, size=12):
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.shared import Pt
@@ -2193,72 +2374,651 @@ def _docx_add_signature_block(doc):
     _docx_add_blank_lines(doc, 3, 36)
 
 
-@app.route('/v1/templates/<template_id>/download', methods=['GET'])
-def download_template_docx(template_id):
-    """Generate a contract-style .docx for the given template and return it as attachment."""
+# ==================== TEMPLATE DOWNLOAD ====================
+
+# Map template_id -> actual .txt filename in static/templates/
+TEMPLATE_FILE_MAP = {
+    'hop_dong_mua_ban_hang_hoa': 'hop_dong_mua_ban_hang_hoa.txt',
+    'hop_dong_lao_dong': 'hop_dong_lao_dong.txt',
+    'hop_dong_bao_mat': 'hop_dong_bao_mat.txt',
+    'hop_dong_thue_nha': 'hop_dong_thue_nha.txt',
+    'hop_dong_cung_cap_dich_vu': 'hop_dong_cung_cap_dich_vu.txt',
+    'hop_dong_cho_vay_tien': 'hop_dong_cho_vay_tien.txt',
+    'giay_uy_quyen': 'giay_uy_quyen.txt',
+    'bien_ban_hop': 'bien_ban_hop.txt',
+    'quyet_dinh_bo_nhiem': 'quyet_dinh_bo_nhiem.txt',
+    'don_xin_nghi_viec': 'don_xin_nghi_viec.txt',
+}
+
+# Map template_id -> human-readable download name
+TEMPLATE_NAMES_MAP = {
+    'hop_dong_mua_ban_hang_hoa': 'Mau_Hop_Dong_Mua_Ban_Hang_Hoa',
+    'hop_dong_lao_dong': 'Mau_Hop_Dong_Lao_Dong',
+    'hop_dong_bao_mat': 'Mau_Thoa_Thuan_Bao_Mat_NDA',
+    'hop_dong_thue_nha': 'Mau_Hop_Dong_Thue_Nha_O',
+    'hop_dong_cung_cap_dich_vu': 'Mau_Hop_Dong_Cung_Cap_Dich_Vu',
+    'hop_dong_cho_vay_tien': 'Mau_Hop_Dong_Cho_Vay_Tien',
+    'giay_uy_quyen': 'Mau_Giay_Uy_Quyen',
+    'bien_ban_hop': 'Mau_Bien_Ban_Hop',
+    'quyet_dinh_bo_nhiem': 'Mau_Quyet_Dinh_Bo_Nhiem',
+    'don_xin_nghi_viec': 'Mau_Don_Xin_Nghi_Viec',
+}
+
+
+def _build_template_docx(template_id):
+    """Build a DOCX file from a template .txt file. Returns (BytesIO, download_name) or (None, error)."""
+    import io
+    import re
+
+    if template_id not in TEMPLATE_FILE_MAP:
+        return None, 'not_found'
+
+    txt_filename = TEMPLATE_FILE_MAP[template_id]
+    download_name = TEMPLATE_NAMES_MAP.get(template_id, template_id)
+
+    template_dir = os.path.join(os.path.dirname(__file__), 'static', 'templates')
+    txt_path = os.path.join(template_dir, txt_filename)
+
+    if not os.path.exists(txt_path):
+        return None, 'file_not_found'
+
     try:
-        template = TEMPLATES_CACHE.get(template_id)
-        if not template:
-            return jsonify({'success': False, 'error': 'not_found'}), 404
+        from docx import Document
+        from docx.shared import Inches, Pt
+        from docx.enum.text import WD_ALIGN_PARAGRAPH
+        from docx.oxml.ns import qn
+    except ImportError:
+        return None, 'python-docx_not_installed'
 
-        try:
-            from io import BytesIO
-            from docx import Document as DocxDocument
-            from docx.shared import Inches
-        except Exception as e:
-            return jsonify({'success': False, 'error': f'missing_docx_lib: {e}'}), 500
+    with open(txt_path, 'r', encoding='utf-8', errors='replace') as f:
+        text_content = f.read()
 
-        doc = DocxDocument()
-        section = doc.sections[0]
-        section.top_margin = Inches(0.65)
-        section.bottom_margin = Inches(0.65)
-        section.left_margin = Inches(0.9)
-        section.right_margin = Inches(0.9)
+    # Clean ALL control characters (including BEL \x07, STX \x02, etc.)
+    import re
+    # Remove all control characters except newlines and tabs
+    text_content = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\xa0]', '', text_content)
+    # Normalize line endings
+    text_content = text_content.replace('\r\n', '\n').replace('\r', '\n')
+    # Clean up multiple spaces
+    text_content = re.sub(r'[ \t]+', ' ', text_content)
+    # Strip leading/trailing whitespace from each line
+    lines = text_content.split('\n')
+    lines = [line.strip() for line in lines]
+    text_content = '\n'.join(lines)
 
-        # Vietnamese contract header
-        _docx_add_center_paragraph(doc, 'CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM', bold=True, size=13)
-        _docx_add_center_paragraph(doc, 'Độc lập - Tự do - Hạnh phúc', bold=True, size=12)
-        _docx_add_center_paragraph(doc, '--------------------------------', size=12)
-        doc.add_paragraph()
+    doc = Document()
+    section = doc.sections[0]
+    section.top_margin = Inches(1.2)
+    section.bottom_margin = Inches(1.0)
+    section.left_margin = Inches(1.5)
+    section.right_margin = Inches(1.0)
 
-        title = str(template.get('name', 'VĂN BẢN')).upper()
-        _docx_add_center_paragraph(doc, title, bold=True, size=18)
-        _docx_add_center_paragraph(doc, 'Số: .../...', size=12)
-        doc.add_paragraph()
-        _docx_add_text_paragraph(doc, 'Hôm nay, ngày ... tháng ... năm ... tại ............................................................', size=12)
-        _docx_add_text_paragraph(doc, 'Chúng tôi gồm:', bold=True, size=12)
-        doc.add_paragraph()
+    FONT_NAME = 'Times New Roman'
+    BODY_SIZE = 13
+    LINE_SPACING = 1.5 * BODY_SIZE
 
-        for heading, fields in _docx_get_party_layout(template):
-            _docx_add_party_section(doc, heading, fields)
-            doc.add_paragraph()
+    def set_run_font(run):
+        run.font.name = FONT_NAME
+        run._element.rPr.rFonts.set(qn('w:eastAsia'), FONT_NAME)
 
-        _docx_add_text_paragraph(doc, 'Hai bên thoả thuận ký kết văn bản với nội dung sau:', bold=True, size=12)
-        doc.add_paragraph()
+    def add_centered_para(text, bold=False, size=13):
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_after = Pt(80)
+        p.paragraph_format.line_spacing = Pt(LINE_SPACING)
+        run = p.add_run(text)
+        run.bold = bold
+        run.font.size = Pt(size)
+        set_run_font(run)
+        return p
 
-        _docx_build_contract_body(doc, template)
-        doc.add_paragraph()
+    def add_body_para(text, bold=False, italic=False, size=BODY_SIZE):
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = Pt(LINE_SPACING)
+        p.paragraph_format.first_line_indent = Inches(0.5)
+        run = p.add_run(text)
+        run.bold = bold
+        run.italic = italic
+        run.font.size = Pt(size)
+        set_run_font(run)
+        return p
 
-        _docx_add_text_paragraph(doc, 'ĐIỀU 5: CAM KẾT CHUNG', bold=True, size=13)
-        _docx_add_text_paragraph(doc, 'Hai bên cam kết thực hiện đúng các điều khoản đã ghi trong văn bản. Nếu có tranh chấp phát sinh thì sẽ ưu tiên giải quyết bằng thương lượng; nếu không đạt kết quả thì đưa ra cơ quan có thẩm quyền giải quyết.', size=12)
-        _docx_add_text_paragraph(doc, 'Văn bản được lập thành 02 bản có giá trị pháp lý như nhau, mỗi bên giữ 01 bản.', size=12)
+    def add_article_heading(text):
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        p.paragraph_format.space_before = Pt(200)
+        p.paragraph_format.space_after = Pt(100)
+        p.paragraph_format.line_spacing = Pt(LINE_SPACING)
+        p.paragraph_format.first_line_indent = Inches(0)
+        run = p.add_run(text)
+        run.bold = True
+        run.font.size = Pt(BODY_SIZE)
+        set_run_font(run)
+        return p
 
-        doc.add_paragraph()
-        _docx_add_signature_block(doc)
+    def add_blank_para(spacing=60):
+        p = doc.add_paragraph()
+        p.paragraph_format.space_after = Pt(spacing)
+        p.paragraph_format.line_spacing = Pt(LINE_SPACING)
+        return p
 
-        bio = BytesIO()
-        doc.save(bio)
-        bio.seek(0)
-
-        return send_file(
-            bio,
-            mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            as_attachment=True,
-            download_name=f"{template_id}.docx"
+    def is_header_line(text):
+        upper = text.upper()
+        return (
+            'CỘNG HÒA' in upper or
+            'ĐỘC LẬP' in upper or
+            'Độc lập' in text or
+            'oOo' in text or
+            '---------oOo' in text
         )
+
+    def is_article_line(text):
+        return bool(re.match(r'^(ĐIỀU|CHƯƠNG)\s*\d+', text.upper()))
+
+    def is_party_line(text):
+        upper = text.upper()
+        return (
+            upper.startswith('BÊN ') or
+            upper.startswith('BÊN A') or
+            upper.startswith('BÊN B') or
+            'HỘI ĐỒNG QUẢN TRỊ' in upper or
+            'CÔNG TY' in upper
+        )
+
+    lines = text_content.split('\n')
+
+    def is_decorative_line(text):
+        """Dòng gạch ngang trang trí như --------- ***** -------- hoặc -------"""
+        return (
+            ('----' in text and '*' in text) or
+            'o-0-o' in text or
+            'oOo' in text or
+            '---------oOo' in text or
+            bool(re.match(r'^-{5,}$', text.strip()))  # dòng chỉ toàn dấu gạch ngang
+        )
+
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        line = line.rstrip('\r\n')
+        stripped = line.strip()
+        i += 1
+
+        # Skip markdown table separators
+        if stripped.startswith('|---') or stripped.startswith('|--'):
+            continue
+
+        # Centered header block (Quốc hiệu + Tiêu ngữ + dòng trang trí) — PHẢI check TRƯỚC footer
+        if is_header_line(stripped) or is_decorative_line(stripped):
+            add_blank_para(120)  # khoảng trắng phía trên block
+            add_centered_para(stripped, bold=is_header_line(stripped), size=13)
+            while i < len(lines):
+                next_line = lines[i].strip()
+                if is_header_line(next_line) or is_decorative_line(next_line):
+                    add_centered_para(next_line, bold=is_header_line(next_line), size=13)
+                    i += 1
+                else:
+                    break
+            add_blank_para(80)  # khoảng trắng phía dưới block
+            continue
+
+        # Skip footer lines
+        if stripped.startswith('---') or stripped.startswith('Tài liệu') or stripped.startswith('Cảnh báo'):
+            add_body_para(stripped, italic=True, size=10)
+            continue
+
+        # Article headings
+        if is_article_line(stripped):
+            add_article_heading(stripped)
+            continue
+
+        # Party headings
+        if is_party_line(stripped):
+            add_body_para(stripped, bold=True, size=13)
+            continue
+
+        # Signature lines
+        if '(Ký' in stripped or 'ký' in stripped.lower():
+            add_body_para(stripped, italic=True, size=11)
+            continue
+
+        # Numbered sub-items (1.1, (i), etc.)
+        if re.match(r'^\d+\.\d*', stripped) or re.match(r'^\([a-z0-9]+\)', stripped, re.IGNORECASE):
+            p = doc.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            p.paragraph_format.space_before = Pt(60)
+            p.paragraph_format.space_after = Pt(60)
+            p.paragraph_format.line_spacing = Pt(LINE_SPACING)
+            p.paragraph_format.first_line_indent = Inches(0.5)
+            run = p.add_run(stripped)
+            run.font.size = Pt(BODY_SIZE)
+            set_run_font(run)
+            continue
+
+        # Bullet items
+        if stripped.startswith('- '):
+            p = doc.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            p.paragraph_format.space_before = Pt(60)
+            p.paragraph_format.space_after = Pt(60)
+            p.paragraph_format.line_spacing = Pt(LINE_SPACING)
+            p.paragraph_format.first_line_indent = Inches(0.5)
+            p.paragraph_format.left_indent = Inches(0.5)
+            run = p.add_run(f"• {stripped[2:]}")
+            run.font.size = Pt(BODY_SIZE)
+            set_run_font(run)
+            continue
+
+        # Markdown table rows
+        if stripped.startswith('|'):
+            add_body_para(stripped, size=11)
+            continue
+
+        # Empty lines
+        if not stripped:
+            add_blank_para(60)
+            continue
+
+        # Default - justified body text with first line indent
+        add_body_para(stripped)
+
+    bio = io.BytesIO()
+    doc.save(bio)
+    bio.seek(0)
+    return bio, download_name
+
+
+@app.route('/api/templates/<template_id>/download', methods=['GET'])
+def download_template(template_id):
+    """Download a contract template as a formatted .docx file.
+    Reads content from static/templates/*.txt and converts to DOCX.
+    """
+    bio, result = _build_template_docx(template_id)
+
+    if bio is None:
+        return jsonify({'success': False, 'error': result}), 404
+
+    return send_file(
+        bio,
+        mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        as_attachment=True,
+        download_name=f'{result}.docx'
+    )
+
+
+# ==================== ML ENDPOINTS (từ simple_api.py) ====================
+
+@app.route('/api/classify-contract/', methods=['POST', 'OPTIONS'])
+def api_classify_contract():
+    """SVM Contract Classification Endpoint"""
+    if request.method == 'OPTIONS':
+        return '', 200
+
+    try:
+        data = request.json or {}
+        text = data.get('text', '')
+
+        if not text or len(text) < 50:
+            return jsonify({'success': False, 'error': 'Text quá ngắn (cần ít nhất 50 ký tự)'}), 400
+
+        svm_classifier = get_svm_classifier()
+        if not svm_classifier or not svm_classifier.is_loaded():
+            return jsonify({'success': False, 'error': 'SVM model chưa được load'}), 500
+
+        result = svm_classifier.classify(text)
+        return jsonify(result), 200
+
     except Exception as e:
-        print(f"[ERROR] generate docx: {e}")
+        print(f"[ERROR] Classification: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/bm25-search/', methods=['POST', 'OPTIONS'])
+def api_bm25_search():
+    """BM25 Keyword Search Endpoint"""
+    if request.method == 'OPTIONS':
+        return '', 200
+
+    try:
+        data = request.json or {}
+        query = data.get('query', '')
+        top_k = data.get('top_k', 5)
+
+        if len(query) < 3:
+            return jsonify({'success': False, 'error': 'Query quá ngắn'}), 400
+
+        bm25_searcher = get_bm25_searcher()
+        if not bm25_searcher or not bm25_searcher.is_loaded():
+            return jsonify({'success': False, 'error': 'BM25 index chưa được build'}), 500
+
+        result = bm25_searcher.search(query, top_k=top_k)
+        return jsonify(result), 200
+
+    except Exception as e:
+        print(f"[ERROR] BM25 search: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/search/', methods=['POST', 'OPTIONS'])
+@app.route('/api/pageindex-search/', methods=['POST', 'OPTIONS'])
+def api_pageindex_search():
+    """PageIndex Tree Search Endpoint"""
+    if request.method == 'OPTIONS':
+        return '', 200
+
+    try:
+        data = request.json or {}
+        query = data.get('query', '')
+        top_k_docs = data.get('top_k_docs', 2)
+        top_k_sections = data.get('top_k_sections', 3)
+
+        if len(query) < 3:
+            return jsonify({'success': False, 'error': 'Query quá ngắn'}), 400
+
+        pageindex_retriever = get_pageindex_retriever()
+        if not pageindex_retriever:
+            return jsonify({'success': False, 'error': 'PageIndex chưa được load'}), 500
+
+        results = pageindex_retriever.search(query, top_k_docs=top_k_docs, top_k_sections=top_k_sections)
+
+        return jsonify({
+            'success': True,
+            'results': results,
+            'total_results': len(results),
+            'method': 'pageindex_tree_search'
+        }), 200
+
+    except Exception as e:
+        print(f"[ERROR] PageIndex search: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/compare-search/', methods=['POST', 'OPTIONS'])
+def api_compare_search():
+    """Compare BM25 vs PageIndex results"""
+    if request.method == 'OPTIONS':
+        return '', 200
+
+    try:
+        data = request.json or {}
+        query = data.get('query', '')
+        top_k = data.get('top_k', 3)
+
+        if len(query) < 3:
+            return jsonify({'success': False, 'error': 'Query quá ngắn'}), 400
+
+        import time
+
+        # BM25 search
+        bm25_results = []
+        bm25_time = 0
+        bm25_searcher = get_bm25_searcher()
+        if bm25_searcher and bm25_searcher.is_loaded():
+            start = time.time()
+            bm25_result = bm25_searcher.search(query, top_k=top_k)
+            bm25_time = (time.time() - start) * 1000
+            if bm25_result.get('success'):
+                bm25_results = bm25_result.get('results', [])
+
+        # PageIndex search
+        pageindex_results = []
+        pageindex_time = 0
+        pageindex_retriever = get_pageindex_retriever()
+        if pageindex_retriever:
+            start = time.time()
+            pageindex_results = pageindex_retriever.search(query, top_k_docs=2, top_k_sections=top_k)
+            pageindex_time = (time.time() - start) * 1000
+
+        return jsonify({
+            'success': True,
+            'query': query,
+            'bm25': {
+                'results': bm25_results,
+                'count': len(bm25_results),
+                'time_ms': bm25_time,
+                'method': 'keyword_matching'
+            },
+            'pageindex': {
+                'results': pageindex_results,
+                'count': len(pageindex_results),
+                'time_ms': pageindex_time,
+                'method': 'llm_tree_reasoning'
+            }
+        }), 200
+
+    except Exception as e:
+        print(f"[ERROR] Compare search: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/ml-status/', methods=['GET'])
+def api_ml_status():
+    """Check ML models status"""
+    try:
+        svm_classifier = get_svm_classifier()
+        bm25_searcher = get_bm25_searcher()
+        pageindex_retriever = get_pageindex_retriever()
+
+        bm25_stats = bm25_searcher.get_stats() if bm25_searcher else {}
+
+        return jsonify({
+            'success': True,
+            'status': {
+                'svm': {
+                    'loaded': svm_classifier.is_loaded() if svm_classifier else False,
+                    'method': 'svm_classification'
+                },
+                'bm25': {
+                    'loaded': bm25_stats.get('loaded', False),
+                    'total_documents': bm25_stats.get('total_documents', 0),
+                    'method': 'keyword_matching'
+                },
+                'pageindex': {
+                    'loaded': pageindex_retriever is not None,
+                    'method': 'llm_tree_reasoning'
+                }
+            }
+        }), 200
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+# ==================== LEGAL DOCUMENTS ENDPOINTS ====================
+
+@app.route('/api/legal-documents/', methods=['GET'])
+def api_legal_documents_list():
+    """Get list of legal documents"""
+    if not MONGODB_CONNECTED or legal_docs_collection is None:
+        return jsonify({'success': False, 'error': 'Database không khả dụng'}), 503
+
+    try:
+        category = request.args.get('category')
+        year = request.args.get('year')
+        search = request.args.get('search')
+        limit = int(request.args.get('limit', 50))
+        skip = int(request.args.get('skip', 0))
+
+        query = {}
+        if category:
+            query['category_code'] = category
+        if year:
+            query['year'] = int(year)
+        if search:
+            query['$text'] = {'$search': search}
+
+        total = legal_docs_collection.count_documents(query)
+        documents = list(legal_docs_collection.find(
+            query,
+            {'full_content': 0}
+        ).sort('year', -1).skip(skip).limit(limit))
+
+        for doc in documents:
+            doc['_id'] = str(doc['_id'])
+            if 'imported_at' in doc and hasattr(doc['imported_at'], 'isoformat'):
+                doc['imported_at'] = doc['imported_at'].isoformat()
+
+        return jsonify({
+            'success': True,
+            'data': {
+                'documents': documents,
+                'total': total,
+                'limit': limit,
+                'skip': skip
+            }
+        }), 200
+
+    except Exception as e:
+        print(f"[ERROR] Legal documents list: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/legal-documents/<doc_id>', methods=['GET'])
+def api_legal_document_detail(doc_id):
+    """Get legal document detail"""
+    if not MONGODB_CONNECTED or legal_docs_collection is None:
+        return jsonify({'success': False, 'error': 'Database không khả dụng'}), 503
+
+    try:
+        from bson import ObjectId
+        document = legal_docs_collection.find_one({'_id': ObjectId(doc_id)})
+
+        if not document:
+            return jsonify({'success': False, 'error': 'Không tìm thấy văn bản'}), 404
+
+        document['_id'] = str(document['_id'])
+        if 'imported_at' in document and hasattr(document['imported_at'], 'isoformat'):
+            document['imported_at'] = document['imported_at'].isoformat()
+
+        return jsonify({'success': True, 'data': document}), 200
+
+    except Exception as e:
+        print(f"[ERROR] Legal document detail: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/legal-documents/search', methods=['POST'])
+def api_legal_documents_search():
+    """Search legal documents by text"""
+    if not MONGODB_CONNECTED or legal_docs_collection is None:
+        return jsonify({'success': False, 'error': 'Database không khả dụng'}), 503
+
+    try:
+        data = request.json or {}
+        query_text = data.get('query', '')
+        category = data.get('category')
+        limit = int(data.get('limit', 10))
+
+        if not query_text:
+            return jsonify({'success': False, 'error': 'Query text is required'}), 400
+
+        search_query = {'$text': {'$search': query_text}}
+        if category:
+            search_query['category_code'] = category
+
+        results = list(legal_docs_collection.find(
+            search_query,
+            {'score': {'$meta': 'textScore'}, 'full_content': 0}
+        ).sort([('score', {'$meta': 'textScore'})]).limit(limit))
+
+        for doc in results:
+            doc['_id'] = str(doc['_id'])
+            if 'imported_at' in doc and hasattr(doc['imported_at'], 'isoformat'):
+                doc['imported_at'] = doc['imported_at'].isoformat()
+
+        return jsonify({
+            'success': True,
+            'data': {
+                'results': results,
+                'count': len(results),
+                'query': query_text
+            }
+        }), 200
+
+    except Exception as e:
+        print(f"[ERROR] Legal documents search: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/legal-documents/categories', methods=['GET'])
+def api_legal_categories():
+    """Get legal document categories"""
+    if not MONGODB_CONNECTED or legal_docs_collection is None:
+        return jsonify({'success': False, 'error': 'Database không khả dụng'}), 503
+
+    try:
+        pipeline = [
+            {'$group': {
+                '_id': {'category': '$category', 'category_code': '$category_code'},
+                'count': {'$sum': 1}
+            }},
+            {'$sort': {'count': -1}}
+        ]
+
+        categories = []
+        for item in legal_docs_collection.aggregate(pipeline):
+            categories.append({
+                'category': item['_id']['category'],
+                'category_code': item['_id']['category_code'],
+                'count': item['count']
+            })
+
+        return jsonify({'success': True, 'data': categories}), 200
+
+    except Exception as e:
+        print(f"[ERROR] Legal categories: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+# ==================== CHANGE PASSWORD ====================
+
+@app.route('/api/change-password/', methods=['PUT'])
+@rate_limit
+def api_change_password():
+    """Allow user to change their password"""
+    if 'user_email' not in session:
+        return jsonify({'success': False, 'error': 'Chưa đăng nhập'}), 401
+
+    if not MONGODB_CONNECTED or users_collection is None:
+        return jsonify({'success': False, 'error': 'Database không khả dụng'}), 503
+
+    try:
+        data = request.json or {}
+        old_password = data.get('old_password', '')
+        new_password = data.get('new_password', '')
+
+        if not old_password or not new_password:
+            return jsonify({'success': False, 'error': 'Thiếu dữ liệu'}), 400
+
+        if len(new_password) < 8:
+            return jsonify({'success': False, 'error': 'Mật khẩu mới phải có ít nhất 8 ký tự'}), 400
+
+        user = users_collection.find_one({'email': session['user_email']})
+        if not user:
+            return jsonify({'success': False, 'error': 'Không tìm thấy người dùng'}), 404
+
+        stored_pw = user.get('password', '')
+
+        # Verify old password
+        valid_old = check_password_hash(stored_pw, old_password)
+        if not valid_old and stored_pw != old_password:
+            return jsonify({'success': False, 'error': 'Mật khẩu hiện tại không đúng'}), 401
+
+        # Hash and save new password
+        new_hashed = generate_password_hash(new_password)
+        users_collection.update_one(
+            {'email': session['user_email']},
+            {'$set': {'password': new_hashed, 'updated_at': datetime.now()}}
+        )
+
+        return jsonify({'success': True, 'message': 'Đổi mật khẩu thành công'}), 200
+
+    except Exception as e:
+        print(f"[ERROR] Change password: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     # Seed templates on startup

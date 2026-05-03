@@ -6,32 +6,32 @@ import { XIcon } from "lucide-react@0.487.0";
 
 import { cn } from "./utils";
 
-function Sheet({ ...props } SheetPrimitive.Root>) {
+function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
 function SheetTrigger({
   ...props
-} SheetPrimitive.Trigger>) {
+}: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
 function SheetClose({
   ...props
-} SheetPrimitive.Close>) {
+}: React.ComponentProps<typeof SheetPrimitive.Close>) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
 function SheetPortal({
   ...props
-} SheetPrimitive.Portal>) {
+}: React.ComponentProps<typeof SheetPrimitive.Portal>) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
 function SheetOverlay({
   className,
   ...props
-} SheetPrimitive.Overlay>) {
+}: React.ComponentProps<typeof SheetPrimitive.Overlay>) {
   return (
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
@@ -49,8 +49,9 @@ function SheetContent({
   children,
   side = "right",
   ...props
-} SheetPrimitive.Content> & {
-  side?) {
+}: React.ComponentProps<typeof SheetPrimitive.Content> & {
+  side?: "top" | "bottom" | "left" | "right";
+}) {
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -80,7 +81,7 @@ function SheetContent({
   );
 }
 
-function SheetHeader({ className, ...props }"div">) {
+function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sheet-header"
@@ -90,7 +91,7 @@ function SheetHeader({ className, ...props }"div">) {
   );
 }
 
-function SheetFooter({ className, ...props }"div">) {
+function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sheet-footer"
@@ -103,7 +104,7 @@ function SheetFooter({ className, ...props }"div">) {
 function SheetTitle({
   className,
   ...props
-} SheetPrimitive.Title>) {
+}: React.ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
@@ -116,7 +117,7 @@ function SheetTitle({
 function SheetDescription({
   className,
   ...props
-} SheetPrimitive.Description>) {
+}: React.ComponentProps<typeof SheetPrimitive.Description>) {
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"
